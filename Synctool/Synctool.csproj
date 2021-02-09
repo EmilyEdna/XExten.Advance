@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFrameworks>net47;netcoreapp3.1;netcoreapp5.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp5.0|AnyCPU'">
+    <DocumentationFile>D:\WorkCode\Source\Synctool\Synctool\Synctool.xml</DocumentationFile>
+  </PropertyGroup>
+
+	<ImportGroup Condition="'$(TargetFramework)' == 'net461'">
+		
+	</ImportGroup>
+	
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="MessagePack" Version="2.2.85" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="NPOI" Version="2.5.2" />
+    <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>
