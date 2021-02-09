@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using Microsoft.Extensions.DependencyModel;
+using Synctool.InternalFunc.Express;
+using Synctool.InternalFunc.Express.Common;
 using Synctool.InternalFunc.Office;
 using Synctool.InternalFunc.Office.Common;
 using Synctool.Linq;
@@ -382,8 +385,43 @@ namespace Synctool.Static
         /// <returns></returns>
         public static List<T> ImportExcel<T>(Stream fs, ExcelType Types,
             bool HasPageFooter = false, int SheetIndex = 0) where T : new()
-        { 
-           return ExcelFactory.ImportExcel<T>(fs, Types, HasPageFooter, SheetIndex);
+        {
+            return ExcelFactory.ImportExcel<T>(fs, Types, HasPageFooter, SheetIndex);
+        }
+
+        /// <summary>
+        /// 设置属性值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="JsonValue"></param>
+        /// <param name="Param"></param>
+        public static void SetProptertiesValue<T>(Dictionary<string, object> JsonValue, T Param) where T : class, new()
+        {
+            Expsion.SetProptertiesValue(JsonValue, Param);
+        }
+
+        /// <summary>
+        ///  返回一个new表达式
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="PropertyName"></param>
+        /// <returns></returns>
+        public static Expression<Func<T, object>> GetExpression<T>(params string[] PropertyName) where T : class, new()
+        {
+            return Expsion.GetExpression<T>(PropertyName);
+        }
+
+        /// <summary>
+        ///  返回一个bool表达式
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Property"></param>
+        /// <param name="Data"></param>
+        /// <param name="QueryType"></param>
+        /// <returns></returns>
+        public static Expression<Func<T, bool>> GetExpression<T>(string Property, object Data, QType QueryType)
+        {
+            return Expsion.GetExpression<T>(Property, Data, QueryType);
         }
     }
 }

@@ -8,6 +8,10 @@
     <DocumentationFile>D:\WorkCode\Source\Synctool\Synctool\Synctool.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net47|AnyCPU'">
+    <DocumentationFile>D:\WorkCode\Source\Synctool\Synctool\Synctool.xml</DocumentationFile>
+  </PropertyGroup>
+
 	<ImportGroup Condition="'$(TargetFramework)' == 'net461'">
 		
 	</ImportGroup>
