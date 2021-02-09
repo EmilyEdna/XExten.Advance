@@ -382,7 +382,7 @@ namespace Synctool.Static
         /// <returns></returns>
         public static List<T> ImportExcel<T>(Stream fs, ExcelType Types,
             bool HasPageFooter = false, int SheetIndex = 0) where T : new()
-        {
+        { 
            return ExcelFactory.ImportExcel<T>(fs, Types, HasPageFooter, SheetIndex);
         }
     }
