@@ -1,27 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	  <TargetFrameworks>net47;netcoreapp3.1;netcoreapp5.0</TargetFrameworks>
+	  <TargetFrameworks>netcoreapp3.1;netcoreapp5.0</TargetFrameworks>
+	  <Authors>EmilyEdna</Authors>
+	  <Description>XExten Package up</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp5.0|AnyCPU'">
     <DocumentationFile>D:\WorkCode\Source\Synctool\Synctool\Synctool.xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net47|AnyCPU'">
-    <DocumentationFile>D:\WorkCode\Source\Synctool\Synctool\Synctool.xml</DocumentationFile>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
+    <DocumentationFile>D:\Project\synctool\Synctool\Synctool.xml</DocumentationFile>
   </PropertyGroup>
 
-	<ImportGroup Condition="'$(TargetFramework)' == 'net461'">
-		
-	</ImportGroup>
-	
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="MessagePack" Version="2.2.85" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="5.0.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.12.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="NPOI" Version="2.5.2" />
+    <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
     <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
   </ItemGroup>
 
