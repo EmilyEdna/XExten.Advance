@@ -28,6 +28,7 @@ namespace Synctool.ValidataFramework
                 if (!Item.ParameterType.Namespace.Contains("System"))
                 {
                     ValitionClassAttribute Class = Item.ParameterType.GetCustomAttribute(typeof(ValitionClassAttribute)) as ValitionClassAttribute;
+                    if(Class==null) return await Task.FromResult((true, ""));
                     Dictionary<string, ValitionAttribute> KeyValues = Item.ParameterType.GetProperties()
                          .Where(t => t.GetCustomAttribute(typeof(ValitionAttribute)) != null)
                          .ToDictionary(t => t.Name, t => t.GetCustomAttributes(typeof(ValitionAttribute),true).FirstOrDefault() as ValitionAttribute);
