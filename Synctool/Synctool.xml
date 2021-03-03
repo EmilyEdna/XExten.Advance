@@ -2679,5 +2679,136 @@
             <param name="QueryType"></param>
             <returns></returns>
         </member>
+        <member name="T:Synctool.ValidataFramework.Enum.ValitionEnum">
+            <summary>
+            验证类型
+            </summary>
+        </member>
+        <member name="F:Synctool.ValidataFramework.Enum.ValitionEnum.NotNull">
+            <summary>
+            非空验证
+            </summary>
+        </member>
+        <member name="F:Synctool.ValidataFramework.Enum.ValitionEnum.Regex">
+            <summary>
+            正在验证
+            </summary>
+        </member>
+        <member name="F:Synctool.ValidataFramework.Enum.ValitionEnum.Customer">
+            <summary>
+            自定义验证
+            </summary>
+        </member>
+        <member name="T:Synctool.ValidataFramework.Enum.ValitionModuleEnum">
+            <summary>
+            验证模式
+            </summary>
+        </member>
+        <member name="F:Synctool.ValidataFramework.Enum.ValitionModuleEnum.Single">
+            <summary>
+            单个验证不满足则返回
+            </summary>
+        </member>
+        <member name="F:Synctool.ValidataFramework.Enum.ValitionModuleEnum.Global">
+            <summary>
+            全局验证完统一返回
+            </summary>
+        </member>
+        <member name="T:Synctool.ValidataFramework.ValitionAttribute">
+            <summary>
+            参数验证
+            </summary>
+        </member>
+        <member name="P:Synctool.ValidataFramework.ValitionAttribute.InfoMsg">
+            <summary>
+            验证消息
+            </summary>
+        </member>
+        <member name="P:Synctool.ValidataFramework.ValitionAttribute.ValiType">
+            <summary>
+            验证类型
+            </summary>
+        </member>
+        <member name="P:Synctool.ValidataFramework.ValitionAttribute.RegexStr">
+            <summary>
+            正在表达式
+            </summary>
+        </member>
+        <member name="P:Synctool.ValidataFramework.ValitionAttribute.UsageAppendField">
+            <summary>
+            是否使用不满足要求的自动名称代入返回信息
+            </summary>
+        </member>
+        <member name="P:Synctool.ValidataFramework.ValitionAttribute.CustomerValition">
+            <summary>
+            自定义验证
+            </summary>
+        </member>
+        <member name="T:Synctool.ValidataFramework.ValitionBaseRule">
+            <summary>
+            校验规则
+            </summary>
+        </member>
+        <member name="M:Synctool.ValidataFramework.ValitionBaseRule.ValitionRules(System.Collections.Generic.Dictionary{System.String,System.String},System.Reflection.ParameterInfo[])">
+            <summary>
+            校验逻辑
+            </summary>
+            <param name="pairs"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Synctool.ValidataFramework.ValitionClassAttribute">
+            <summary>
+            参数验证
+            </summary>
+        </member>
+        <member name="P:Synctool.ValidataFramework.ValitionClassAttribute.ModuleType">
+            <summary>
+            验证模式
+            </summary>
+        </member>
+        <member name="T:Synctool.ValidataFramework.ValitionExtension">
+            <summary>
+            注册验证框架
+            </summary>
+        </member>
+        <member name="M:Synctool.ValidataFramework.ValitionExtension.UseValition(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用验证
+            </summary>
+            <param name="application"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Synctool.ValidataFramework.ValitionMiddleWare">
+            <summary>
+            验证中间件
+            </summary>
+        </member>
+        <member name="M:Synctool.ValidataFramework.ValitionMiddleWare.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            初始化
+            </summary>
+            <param name="RequestDelegates"></param>
+        </member>
+        <member name="M:Synctool.ValidataFramework.ValitionMiddleWare.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            执行
+            </summary>
+            <param name="Context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Synctool.ValidataFramework.ValitionRule">
+            <summary>
+            校验规则
+            </summary>
+        </member>
+        <member name="M:Synctool.ValidataFramework.ValitionRule.ValitionRules(System.Collections.Generic.Dictionary{System.String,System.String},System.Reflection.ParameterInfo[])">
+            <summary>
+            验证参数
+            </summary>
+            <param name="pairs"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
