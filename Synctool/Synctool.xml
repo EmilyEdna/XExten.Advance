@@ -2684,6 +2684,11 @@
             验证类型
             </summary>
         </member>
+        <member name="F:Synctool.ValidataFramework.Enum.ValitionEnum.Ignore">
+            <summary>
+            忽略
+            </summary>
+        </member>
         <member name="F:Synctool.ValidataFramework.Enum.ValitionEnum.NotNull">
             <summary>
             非空验证
@@ -2743,6 +2748,18 @@
             <summary>
             自定义验证
             </summary>
+        </member>
+        <member name="T:Synctool.ValidataFramework.ValitionBaseCustomer">
+            <summary>
+            自定义验证父类
+            </summary>
+        </member>
+        <member name="M:Synctool.ValidataFramework.ValitionBaseCustomer.UserCustomerValition(System.String)">
+            <summary>
+            自定义验证
+            </summary>
+            <param name="requestParam">请求参数</param>
+            <returns>T1 是否符合要求,T2 验证信息</returns>
         </member>
         <member name="T:Synctool.ValidataFramework.ValitionBaseRule">
             <summary>

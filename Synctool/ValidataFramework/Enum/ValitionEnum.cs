@@ -10,6 +10,10 @@ namespace Synctool.ValidataFramework.Enum
     public enum ValitionEnum
     {
         /// <summary>
+        /// 忽略
+        /// </summary>
+        Ignore,
+        /// <summary>
         /// 非空验证
         /// </summary>
         NotNull,

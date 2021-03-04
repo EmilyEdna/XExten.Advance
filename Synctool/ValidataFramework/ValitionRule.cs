@@ -28,10 +28,10 @@ namespace Synctool.ValidataFramework
                 if (!Item.ParameterType.Namespace.Contains("System"))
                 {
                     ValitionClassAttribute Class = Item.ParameterType.GetCustomAttribute(typeof(ValitionClassAttribute)) as ValitionClassAttribute;
-                    if(Class==null) return await Task.FromResult((true, ""));
+                    if (Class == null) return await Task.FromResult((true, ""));
                     Dictionary<string, ValitionAttribute> KeyValues = Item.ParameterType.GetProperties()
                          .Where(t => t.GetCustomAttribute(typeof(ValitionAttribute)) != null)
-                         .ToDictionary(t => t.Name, t => t.GetCustomAttributes(typeof(ValitionAttribute),true).FirstOrDefault() as ValitionAttribute);
+                         .ToDictionary(t => t.Name, t => t.GetCustomAttributes(typeof(ValitionAttribute), true).FirstOrDefault() as ValitionAttribute);
                     if (Class.ModuleType == ValitionModuleEnum.Single)
                     {
                         foreach (var item in KeyValues)
@@ -41,10 +41,12 @@ namespace Synctool.ValidataFramework
                             if (val.CustomerValition != null && val.ValiType == ValitionEnum.Customer)
                             {
                                 pairs.TryGetValue(key, out string result);
-                                val.InfoMsg = val.CustomerValition.Invoke(result);
-                                if (val.UsageAppendField && val.InfoMsg.IsNullOrEmpty())
-                                    val.InfoMsg = key + ":" + val.InfoMsg;
-                                return await Task.FromResult((false, val.InfoMsg));
+                                ValitionBaseCustomer UserCustomer = Activator.CreateInstance(val.CustomerValition) as ValitionBaseCustomer;
+                                var response = UserCustomer.UserCustomerValition(result);
+                                if (val.UsageAppendField && !response.Info.IsNullOrEmpty())
+                                    response.Info = key + ":" + response.Info;
+                                if (!response.Success)
+                                    return await Task.FromResult(response);
                             }
                             else if (val.ValiType == ValitionEnum.Regex)
                             {
@@ -53,15 +55,18 @@ namespace Synctool.ValidataFramework
                                 if (!reg.IsMatch(result.ToString()))
                                     return await Task.FromResult((false, val.UsageAppendField ? val.InfoMsg = key + ":" + val.InfoMsg : val.InfoMsg));
                             }
-                            else
+                            else if (val.ValiType == ValitionEnum.NotNull)
                             {
                                 pairs.TryGetValue(key, out string result);
                                 if (result.IsNullOrEmpty())
                                     return await Task.FromResult((false, val.UsageAppendField ? val.InfoMsg = key + ":" + val.InfoMsg : val.InfoMsg));
                             }
+                            else
+                                continue;
                         }
                     }
-                    else {
+                    else
+                    {
                         List<string> results = new List<string>();
                         foreach (var item in KeyValues)
                         {
@@ -70,10 +75,12 @@ namespace Synctool.ValidataFramework
                             if (val.CustomerValition != null && val.ValiType == ValitionEnum.Customer)
                             {
                                 pairs.TryGetValue(key, out string result);
-                                val.InfoMsg = val.CustomerValition.Invoke(result);
-                                if (val.UsageAppendField && val.InfoMsg.IsNullOrEmpty())
-                                    val.InfoMsg = key + ":" + val.InfoMsg;
-                                results.Add(val.InfoMsg);
+                                ValitionBaseCustomer UserCustomer = Activator.CreateInstance(val.CustomerValition) as ValitionBaseCustomer;
+                                var response = UserCustomer.UserCustomerValition(result);
+                                if (val.UsageAppendField && !response.Info.IsNullOrEmpty())
+                                    response.Info = key + ":" + response.Info;
+                                if (!response.Success)
+                                    results.Add(response.Info);
                             }
                             else if (val.ValiType == ValitionEnum.Regex)
                             {
@@ -82,14 +89,16 @@ namespace Synctool.ValidataFramework
                                 if (!reg.IsMatch(result.ToString()))
                                     results.Add(val.UsageAppendField ? val.InfoMsg = key + ":" + val.InfoMsg : val.InfoMsg);
                             }
-                            else
+                            else if (val.ValiType == ValitionEnum.NotNull)
                             {
                                 pairs.TryGetValue(key, out string result);
                                 if (result.IsNullOrEmpty())
                                     results.Add(val.UsageAppendField ? val.InfoMsg = key + ":" + val.InfoMsg : val.InfoMsg);
                             }
+                            else
+                                continue;
                         }
-                        if(results.Count>0)
+                        if (results.Count > 0)
                             return await Task.FromResult((false, results));
                     }
                 }

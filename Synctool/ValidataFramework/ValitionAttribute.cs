@@ -30,6 +30,6 @@ namespace Synctool.ValidataFramework
         /// <summary>
         /// 自定义验证
         /// </summary>
-        public Func<string,string> CustomerValition { get; set; } = null;
+        public Type CustomerValition { get; set; } = null;
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyModel;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace Synctool.ValidataFramework
 {
@@ -52,10 +53,8 @@ namespace Synctool.ValidataFramework
                     Rule = Rules.FirstOrDefault();
                 var Instance = Activator.CreateInstance(Rule) as ValitionBaseRule;
                 Dictionary<string, string> KeyValues;
-                if (Request.Method.ToUpper().Equals("GET"))
-                    KeyValues = GetQueryString(Request.QueryString.ToString());
-                else
-                    KeyValues = GetQueryString(Request.QueryString.ToString());
+                var temp = GetQueryString(Request.QueryString.ToString());
+                KeyValues = temp.Count > 0 ? temp : GetQueryString(Request);
                 var result = await Instance.ValitionRules(KeyValues, TargetMethod.GetParameters());
                 if (!result.Success)
                 {
@@ -89,6 +88,24 @@ namespace Synctool.ValidataFramework
                 Result.Add(m.Result("$2"), m.Result("$3"));
             }
             return Result;
+        }
+        private Dictionary<string, string> GetQueryString(HttpRequest Request)
+        {
+            if (Request.ContentType == "application/x-www-form-urlencoded")
+            {
+                Dictionary<string, string> Result = new Dictionary<string, string>();
+                Request.Form.ToList().ForEach(t =>
+                {
+                    Result.Add(t.Key, t.Value.ToString());
+                });
+                return Result;
+            }
+            else if (Request.ContentType== "application/json")
+            {
+                StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8);
+                return reader.ReadToEndAsync().Result.ToModel<Dictionary<string, string>>();
+            }
+            return new Dictionary<string, string>();
         }
     }
 }
