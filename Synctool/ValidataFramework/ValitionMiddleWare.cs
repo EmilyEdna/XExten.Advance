@@ -59,7 +59,7 @@ namespace Synctool.ValidataFramework
                 if (!result.Success)
                 {
                     Context.Response.ContentType = "application/json";
-                    await Context.Response.WriteAsync(JsonConvert.SerializeObject(result), Encoding.UTF8);
+                    await Context.Response.WriteAsync(result.ToJson(), Encoding.UTF8);
                     return;
                 }
             }
