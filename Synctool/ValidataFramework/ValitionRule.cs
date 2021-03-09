@@ -42,7 +42,7 @@ namespace Synctool.ValidataFramework
                             {
                                 pairs.TryGetValue(key, out string result);
                                 ValitionBaseCustomer UserCustomer = Activator.CreateInstance(val.CustomerValition) as ValitionBaseCustomer;
-                                var response = UserCustomer.UserCustomerValition(result);
+                                var response = UserCustomer.UserCustomerValition(key,result);
                                 if (val.UsageAppendField && !response.Info.IsNullOrEmpty())
                                     response.Info = key + ":" + response.Info;
                                 if (!response.Success)
@@ -76,7 +76,7 @@ namespace Synctool.ValidataFramework
                             {
                                 pairs.TryGetValue(key, out string result);
                                 ValitionBaseCustomer UserCustomer = Activator.CreateInstance(val.CustomerValition) as ValitionBaseCustomer;
-                                var response = UserCustomer.UserCustomerValition(result);
+                                var response = UserCustomer.UserCustomerValition(key,result);
                                 if (val.UsageAppendField && !response.Info.IsNullOrEmpty())
                                     response.Info = key + ":" + response.Info;
                                 if (!response.Success)
