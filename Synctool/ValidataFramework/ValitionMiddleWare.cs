@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Synctool.Linq;
+using Synctool.LinqFramework;
 using System.Runtime.Loader;
 using Microsoft.Extensions.DependencyModel;
 using System.Reflection;

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Synctool.ValidataFramework.Enum;
-using Synctool.Linq;
+using Synctool.LinqFramework;
 using System.Text.RegularExpressions;
 
 namespace Synctool.ValidataFramework

@@ -4,27 +4,42 @@
         <name>Synctool</name>
     </assembly>
     <members>
-        <member name="T:Synctool.CacheFactory.Caches">
+        <member name="T:Synctool.CacheFramework.Caches">
              <summary>
             
              </summary>
         </member>
-        <member name="P:Synctool.CacheFactory.Caches.RedisConnectionString">
+        <member name="P:Synctool.CacheFramework.Caches.Redis">
+            <summary>
+            redis
+            </summary>
+        </member>
+        <member name="P:Synctool.CacheFramework.Caches.Mongo">
+            <summary>
+            mongodb
+            </summary>
+        </member>
+        <member name="P:Synctool.CacheFramework.Caches.Memory">
+            <summary>
+            memoryCache
+            </summary>
+        </member>
+        <member name="P:Synctool.CacheFramework.Caches.RedisConnectionString">
             <summary>
             Redis链接字符串
             </summary>
         </member>
-        <member name="P:Synctool.CacheFactory.Caches.MongoDBConnectionString">
+        <member name="P:Synctool.CacheFramework.Caches.MongoDBConnectionString">
             <summary>
             MongoDB链接字符串
             </summary>
         </member>
-        <member name="P:Synctool.CacheFactory.Caches.DbName">
+        <member name="P:Synctool.CacheFramework.Caches.DbName">
             <summary>
             缓存类型为MongoDB是必填
             </summary>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.RunTimeCacheSet``1(System.String,``0,System.Int32,System.Boolean)">
+        <member name="M:Synctool.CacheFramework.Caches.RunTimeCacheSet``1(System.String,``0,System.Int32,System.Boolean)">
             <summary>
             添加Memory缓存
             </summary>
@@ -34,7 +49,7 @@
             <param name="MinutesOrSecond"></param>
             <param name="UseSecond"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.RedisCacheSet``1(System.String,``0,System.Int32,System.Boolean)">
+        <member name="M:Synctool.CacheFramework.Caches.RedisCacheSet``1(System.String,``0,System.Int32,System.Boolean)">
             <summary>
             添加Redis缓存
             </summary>
@@ -44,14 +59,14 @@
             <param name="MinutesOrSecond"></param>
             <param name="UseSecond"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.MongoDBCacheSet``1(``0)">
+        <member name="M:Synctool.CacheFramework.Caches.MongoDBCacheSet``1(``0)">
             <summary>
             添加MongoDB缓存
             </summary>
             <typeparam name="T"></typeparam>
             <param name="value"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.RunTimeCacheGet``1(System.Object)">
+        <member name="M:Synctool.CacheFramework.Caches.RunTimeCacheGet``1(System.Object)">
             <summary>
             获取Memory缓存
             </summary>
@@ -59,7 +74,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.RedisCacheGet``1(System.Object)">
+        <member name="M:Synctool.CacheFramework.Caches.RedisCacheGet``1(System.Object)">
             <summary>
             获取Redis缓存
             </summary>
@@ -67,7 +82,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.MongoDBCacheGet``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:Synctool.CacheFramework.Caches.MongoDBCacheGet``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             获取MongoDB缓存
             </summary>
@@ -75,7 +90,7 @@
             <param name="Exp"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.MongoDBCachesGet``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:Synctool.CacheFramework.Caches.MongoDBCachesGet``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             获取MongoDB缓存列表
             </summary>
@@ -83,26 +98,26 @@
             <param name="Express">Exp</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.RunTimeCacheRemove(System.Object)">
+        <member name="M:Synctool.CacheFramework.Caches.RunTimeCacheRemove(System.Object)">
             <summary>
              删除Memory缓存
             </summary>
             <param name="key"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.RedisCacheRemove(System.Object)">
+        <member name="M:Synctool.CacheFramework.Caches.RedisCacheRemove(System.Object)">
             <summary>
             删除Redis缓存
             </summary>
             <param name="key"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.MongoDBCacheRemove``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:Synctool.CacheFramework.Caches.MongoDBCacheRemove``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             删除MongoDB缓存
             </summary>
             <typeparam name="T"></typeparam>
             <param name="Exp"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.MongoDbCacheUpdate``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.Caches.MongoDbCacheUpdate``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.String,System.String)">
             <summary>
             更新MongoDB某个指
             </summary>
@@ -111,7 +126,7 @@
             <param name="Property"></param>
             <param name="Value"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.RunTimeCacheSetAsync``1(System.String,``0,System.Int32,System.Boolean)">
+        <member name="M:Synctool.CacheFramework.Caches.RunTimeCacheSetAsync``1(System.String,``0,System.Int32,System.Boolean)">
             <summary>
             添加Memory缓存
             </summary>
@@ -122,7 +137,7 @@
             <param name="UseSecond"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.RedisCacheSetAsync``1(System.String,``0,System.Int32,System.Boolean)">
+        <member name="M:Synctool.CacheFramework.Caches.RedisCacheSetAsync``1(System.String,``0,System.Int32,System.Boolean)">
             <summary>
             添加Redis缓存
             </summary>
@@ -133,14 +148,14 @@
             <param name="UseSecond"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.MongoDBCacheSetAsync``1(``0)">
+        <member name="M:Synctool.CacheFramework.Caches.MongoDBCacheSetAsync``1(``0)">
             <summary>
             添加MongoDB缓存
             </summary>
             <typeparam name="T"></typeparam>
             <param name="value"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.RunTimeCacheGetAsync``1(System.Object)">
+        <member name="M:Synctool.CacheFramework.Caches.RunTimeCacheGetAsync``1(System.Object)">
             <summary>
             获取Memory缓存
             </summary>
@@ -148,7 +163,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.RedisCacheGetAsync``1(System.Object)">
+        <member name="M:Synctool.CacheFramework.Caches.RedisCacheGetAsync``1(System.Object)">
             <summary>
             获取Redis缓存
             </summary>
@@ -156,7 +171,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.MongoDBCacheGetAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:Synctool.CacheFramework.Caches.MongoDBCacheGetAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             获取MongoDB缓存
             </summary>
@@ -164,7 +179,7 @@
             <param name="Exp"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.MongoDBCachesGetAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:Synctool.CacheFramework.Caches.MongoDBCachesGetAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             获取MongoDB缓存列表
             </summary>
@@ -172,26 +187,26 @@
             <param name="Express"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.RunTimeCacheRemoveAsync(System.Object)">
+        <member name="M:Synctool.CacheFramework.Caches.RunTimeCacheRemoveAsync(System.Object)">
             <summary>
              删除Memory缓存
             </summary>
             <param name="key"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.RedisCacheRemoveAsync(System.Object)">
+        <member name="M:Synctool.CacheFramework.Caches.RedisCacheRemoveAsync(System.Object)">
             <summary>
             删除Redis缓存
             </summary>
             <param name="key"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.MongoDBCacheRemoveAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:Synctool.CacheFramework.Caches.MongoDBCacheRemoveAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             删除MongoDB缓存
             </summary>
             <typeparam name="T"></typeparam>
             <param name="Exp"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.Caches.MongoDbCacheUpdateAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.Caches.MongoDbCacheUpdateAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.String,System.String)">
             <summary>
             更新MongoDB某个指
             </summary>
@@ -201,41 +216,41 @@
             <param name="Value"></param>
             <returns></returns>
         </member>
-        <member name="T:Synctool.CacheFactory.MongoDbCache.MongoDbCaches">
+        <member name="T:Synctool.CacheFramework.MongoDbCache.MongoDbCaches">
              <summary>
             
              </summary>
         </member>
-        <member name="P:Synctool.CacheFactory.MongoDbCache.MongoDbCaches.MongoDBConnectionString">
+        <member name="P:Synctool.CacheFramework.MongoDbCache.MongoDbCaches.MongoDBConnectionString">
             <summary>
             链接字符串
             </summary>
         </member>
-        <member name="P:Synctool.CacheFactory.MongoDbCache.MongoDbCaches.MongoDBName">
+        <member name="P:Synctool.CacheFramework.MongoDbCache.MongoDbCaches.MongoDBName">
             <summary>
             库名
             </summary>
         </member>
-        <member name="P:Synctool.CacheFactory.MongoDbCache.MongoDbCaches.Instance">
+        <member name="P:Synctool.CacheFramework.MongoDbCache.MongoDbCaches.Instance">
             <summary>
             获取实例
             </summary>
         </member>
-        <member name="M:Synctool.CacheFactory.MongoDbCache.MongoDbCaches.Insert``1(``0)">
+        <member name="M:Synctool.CacheFramework.MongoDbCache.MongoDbCaches.Insert``1(``0)">
             <summary>
             插入单条记录
             </summary>
             <typeparam name="T"></typeparam>
             <param name="t"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.MongoDbCache.MongoDbCaches.InsertMany``1(System.Collections.Generic.IList{``0})">
+        <member name="M:Synctool.CacheFramework.MongoDbCache.MongoDbCaches.InsertMany``1(System.Collections.Generic.IList{``0})">
             <summary>
             批量插入
             </summary>
             <typeparam name="T"></typeparam>
             <param name="t"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.MongoDbCache.MongoDbCaches.Search``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:Synctool.CacheFramework.MongoDbCache.MongoDbCaches.Search``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             查询单个记录
             </summary>
@@ -243,7 +258,7 @@
             <param name="Filter"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.MongoDbCache.MongoDbCaches.SearchMany``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:Synctool.CacheFramework.MongoDbCache.MongoDbCaches.SearchMany``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             查询集合
             </summary>
@@ -251,7 +266,7 @@
             <param name="Filter"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.MongoDbCache.MongoDbCaches.Update``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.MongoDbCache.MongoDbCaches.Update``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.String,System.String)">
             <summary>
             更新单个
             </summary>
@@ -261,7 +276,7 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.MongoDbCache.MongoDbCaches.UpdateMany``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},``0)">
+        <member name="M:Synctool.CacheFramework.MongoDbCache.MongoDbCaches.UpdateMany``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},``0)">
             <summary>
             批量更新
             </summary>
@@ -270,7 +285,7 @@
             <param name="Entity"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.MongoDbCache.MongoDbCaches.Delete``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:Synctool.CacheFramework.MongoDbCache.MongoDbCaches.Delete``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             删除单条记录
             </summary>
@@ -278,7 +293,7 @@
             <param name="filter"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.MongoDbCache.MongoDbCaches.GetPage``1(System.Int32,System.Int32)">
+        <member name="M:Synctool.CacheFramework.MongoDbCache.MongoDbCaches.GetPage``1(System.Int32,System.Int32)">
             <summary>
             分页查询
             </summary>
@@ -287,74 +302,74 @@
             <param name="PageSize"></param>
             <returns></returns>
         </member>
-        <member name="T:Synctool.CacheFactory.RedisCache.RedisCaches">
+        <member name="T:Synctool.CacheFramework.RedisCache.RedisCaches">
              <summary>
             
              </summary>
         </member>
-        <member name="P:Synctool.CacheFactory.RedisCache.RedisCaches.Options">
+        <member name="P:Synctool.CacheFramework.RedisCache.RedisCaches.Options">
             <summary>
             配置redis
             </summary>
         </member>
-        <member name="P:Synctool.CacheFactory.RedisCache.RedisCaches.RedisConnectionString">
+        <member name="P:Synctool.CacheFramework.RedisCache.RedisCaches.RedisConnectionString">
             <summary>
             链接字符串
             </summary>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.DeleteRedisDataBase">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.DeleteRedisDataBase">
             <summary>
             删除所有redis库
             </summary>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.DeleteRedisDataBaseAsync">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.DeleteRedisDataBaseAsync">
             <summary>
             异步删除所有redis库
             </summary>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.MuxerInternalError(System.Object,StackExchange.Redis.InternalErrorEventArgs)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.MuxerInternalError(System.Object,StackExchange.Redis.InternalErrorEventArgs)">
             <summary>
             内部异常
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.MuxerHashSlotMoved(System.Object,StackExchange.Redis.HashSlotMovedEventArgs)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.MuxerHashSlotMoved(System.Object,StackExchange.Redis.HashSlotMovedEventArgs)">
             <summary>
             集群更改
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.MuxerConfigurationChanged(System.Object,StackExchange.Redis.EndPointEventArgs)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.MuxerConfigurationChanged(System.Object,StackExchange.Redis.EndPointEventArgs)">
             <summary>
             配置更改事件
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.MuxerErrorMessage(System.Object,StackExchange.Redis.RedisErrorEventArgs)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.MuxerErrorMessage(System.Object,StackExchange.Redis.RedisErrorEventArgs)">
             <summary>
             错误事件
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.MuxerConnectionRestored(System.Object,StackExchange.Redis.ConnectionFailedEventArgs)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.MuxerConnectionRestored(System.Object,StackExchange.Redis.ConnectionFailedEventArgs)">
             <summary>
             重连错误事件
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.MuxerConnectionFailed(System.Object,StackExchange.Redis.ConnectionFailedEventArgs)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.MuxerConnectionFailed(System.Object,StackExchange.Redis.ConnectionFailedEventArgs)">
             <summary>
             连接失败事件
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.Save``1(System.Func{StackExchange.Redis.IDatabase,``0})">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.Save``1(System.Func{StackExchange.Redis.IDatabase,``0})">
             <summary>
             保存通用
             </summary>
@@ -362,7 +377,7 @@
             <param name="exp"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ConvertToJson``1(``0)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ConvertToJson``1(``0)">
             <summary>
             Redis转String
             </summary>
@@ -370,7 +385,7 @@
             <param name="obj"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ConvertToObj``1(StackExchange.Redis.RedisValue)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ConvertToObj``1(StackExchange.Redis.RedisValue)">
             <summary>
             Redis值转对象
             </summary>
@@ -378,7 +393,7 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ConvertList``1(StackExchange.Redis.RedisValue[])">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ConvertList``1(StackExchange.Redis.RedisValue[])">
             <summary>
             Redis值数组转list集合
             </summary>
@@ -386,14 +401,14 @@
             <param name="val"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ConvertRedisKeys(System.Collections.Generic.List{System.String})">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ConvertRedisKeys(System.Collections.Generic.List{System.String})">
             <summary>
             集合转key
             </summary>
             <param name="val"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.StringSet(System.String,System.String,System.Nullable{System.TimeSpan})">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.StringSet(System.String,System.String,System.Nullable{System.TimeSpan})">
             <summary>
             单个保存
             </summary>
@@ -402,7 +417,7 @@
             <param name="exp">过期时间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.StringSet``1(System.String,``0,System.Nullable{System.TimeSpan})">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.StringSet``1(System.String,``0,System.Nullable{System.TimeSpan})">
             <summary>
             保存一个对象
             </summary>
@@ -412,14 +427,14 @@
             <param name="exp"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.StringGet(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.StringGet(System.String)">
             <summary>
             获取单个
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.StringGet``1(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.StringGet``1(System.String)">
             <summary>
             获取单个对象
             </summary>
@@ -427,7 +442,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.StringSetAsync(System.String,System.String,System.Nullable{System.TimeSpan})">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.StringSetAsync(System.String,System.String,System.Nullable{System.TimeSpan})">
             <summary>
             异步保存单个
             </summary>
@@ -436,7 +451,7 @@
             <param name="exp"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.StringSetAsync``1(System.String,``0,System.Nullable{System.TimeSpan})">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.StringSetAsync``1(System.String,``0,System.Nullable{System.TimeSpan})">
             <summary>
             异步保存一个对象
             </summary>
@@ -446,35 +461,35 @@
             <param name="exp"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.StringGetAsync(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.StringGetAsync(System.String)">
             <summary>
             异步获取单个
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.StringGetAsync``1(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.StringGetAsync``1(System.String)">
             <summary>
             异步获取单个对象
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.KeyDelete(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.KeyDelete(System.String)">
             <summary>
             删除单个Key
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.KeyDelete(System.Collections.Generic.List{System.String})">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.KeyDelete(System.Collections.Generic.List{System.String})">
             <summary>
             删除多个Key
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.KeyRename(System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.KeyRename(System.String,System.String)">
             <summary>
             重命名Key
             </summary>
@@ -482,7 +497,7 @@
             <param name="newKey">new key name</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.KeyExpire(System.String,System.Nullable{System.TimeSpan})">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.KeyExpire(System.String,System.Nullable{System.TimeSpan})">
             <summary>
             设置Key的时间
             </summary>
@@ -490,21 +505,21 @@
             <param name="exp"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.KeyDeleteAsync(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.KeyDeleteAsync(System.String)">
             <summary>
             异步删除单个key
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.KeyDeleteAsync(System.Collections.Generic.List{System.String})">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.KeyDeleteAsync(System.Collections.Generic.List{System.String})">
             <summary>
             异步删除多个Key
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.KeyRenameAsync(System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.KeyRenameAsync(System.String,System.String)">
             <summary>
              异步重命名Key
             </summary>
@@ -512,7 +527,7 @@
             <param name="newKey">new key name</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.KeyExpireAsync(System.String,System.Nullable{System.TimeSpan})">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.KeyExpireAsync(System.String,System.Nullable{System.TimeSpan})">
             <summary>
             异步设置Key的时间
             </summary>
@@ -520,7 +535,7 @@
             <param name="exp"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ListRemove``1(System.String,``0)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ListRemove``1(System.String,``0)">
             <summary>
             移除List内部指定的值
             </summary>
@@ -528,7 +543,7 @@
             <param name="key"></param>
             <param name="val"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ListRange``1(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ListRange``1(System.String)">
             <summary>
             获取指定Key的List
             </summary>
@@ -536,7 +551,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ListRightPush``1(System.String,``0)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ListRightPush``1(System.String,``0)">
             <summary>
             插入（入队）
             </summary>
@@ -544,7 +559,7 @@
             <param name="key"></param>
             <param name="val"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ListRightPop``1(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ListRightPop``1(System.String)">
             <summary>
             取出（出队）
             </summary>
@@ -552,7 +567,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ListLeftPush``1(System.String,``0)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ListLeftPush``1(System.String,``0)">
             <summary>
             入栈
             </summary>
@@ -560,7 +575,7 @@
             <param name="key"></param>
             <param name="val"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ListLeftPop``1(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ListLeftPop``1(System.String)">
             <summary>
             出栈
             </summary>
@@ -568,14 +583,14 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.GetListLength(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.GetListLength(System.String)">
             <summary>
             获取集合中的数量
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ListRemoveAsync``1(System.String,``0)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ListRemoveAsync``1(System.String,``0)">
             <summary>
             异步移除List内部指定的值
             </summary>
@@ -583,7 +598,7 @@
             <param name="key"></param>
             <param name="val"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ListRangeAsync``1(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ListRangeAsync``1(System.String)">
             <summary>
             异步获取指定Key的List
             </summary>
@@ -591,7 +606,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ListRightPushAsync``1(System.String,``0)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ListRightPushAsync``1(System.String,``0)">
             <summary>
             异步插入（入队）
             </summary>
@@ -599,7 +614,7 @@
             <param name="key"></param>
             <param name="val"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ListRightPopAsync``1(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ListRightPopAsync``1(System.String)">
             <summary>
             异步取出（出队）
             </summary>
@@ -607,7 +622,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ListLeftPushAsync``1(System.String,``0)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ListLeftPushAsync``1(System.String,``0)">
             <summary>
             异步入栈
             </summary>
@@ -615,7 +630,7 @@
             <param name="key"></param>
             <param name="val"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.ListLeftPopAsync``1(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.ListLeftPopAsync``1(System.String)">
             <summary>
             异步出栈
             </summary>
@@ -623,14 +638,14 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.GetListLengthAsync(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.GetListLengthAsync(System.String)">
             <summary>
             获取集合中的数量
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SetAdd(System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SetAdd(System.String,System.String)">
             <summary>
             添加
             </summary>
@@ -638,14 +653,14 @@
             <param name="val"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SetLength(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SetLength(System.String)">
             <summary>
             获取长度
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SetContains(System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SetContains(System.String,System.String)">
             <summary>
             是否存在
             </summary>
@@ -653,7 +668,7 @@
             <param name="val"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SetRemove(System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SetRemove(System.String,System.String)">
             <summary>
             移除
             </summary>
@@ -661,7 +676,7 @@
             <param name="val"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SetAddAsync(System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SetAddAsync(System.String,System.String)">
             <summary>
             添加
             </summary>
@@ -669,14 +684,14 @@
             <param name="val"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SetLengthAsync(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SetLengthAsync(System.String)">
             <summary>
             获取长度
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SetContainsAsync(System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SetContainsAsync(System.String,System.String)">
             <summary>
             是否存在
             </summary>
@@ -684,7 +699,7 @@
             <param name="val"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SetRemoveAsync(System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SetRemoveAsync(System.String,System.String)">
             <summary>
             移除
             </summary>
@@ -692,7 +707,7 @@
             <param name="val"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.HashExists(System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.HashExists(System.String,System.String)">
             <summary>
             是否被缓存
             </summary>
@@ -700,7 +715,7 @@
             <param name="dataKey"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.HashSet``1(System.String,System.String,``0)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.HashSet``1(System.String,System.String,``0)">
             <summary>
             存储数据到hash表
             </summary>
@@ -710,7 +725,7 @@
             <param name="val"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.HashDelete(System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.HashDelete(System.String,System.String)">
             <summary>
             从hash表中移除数据
             </summary>
@@ -718,7 +733,7 @@
             <param name="dataKey"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.HashRemove(System.String,System.Collections.Generic.List{StackExchange.Redis.RedisValue})">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.HashRemove(System.String,System.Collections.Generic.List{StackExchange.Redis.RedisValue})">
             <summary>
             移除hash中的多个值
             </summary>
@@ -726,7 +741,7 @@
             <param name="dataKey"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.HashGet``1(System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.HashGet``1(System.String,System.String)">
             <summary>
             从hash表中获取数据
             </summary>
@@ -735,7 +750,7 @@
             <param name="dataKey"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.HashKeys``1(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.HashKeys``1(System.String)">
             <summary>
             获取hashkey所有Redis key
             </summary>
@@ -743,7 +758,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.HashExistsAsync(System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.HashExistsAsync(System.String,System.String)">
             <summary>
             异步是否被缓存
             </summary>
@@ -751,7 +766,7 @@
             <param name="dataKey"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.HashSetAsync``1(System.String,System.String,``0)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.HashSetAsync``1(System.String,System.String,``0)">
             <summary>
             异步存储数据到hash表
             </summary>
@@ -761,7 +776,7 @@
             <param name="val"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.HashDeleteAsync(System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.HashDeleteAsync(System.String,System.String)">
             <summary>
             异步从hash表中移除数据
             </summary>
@@ -769,7 +784,7 @@
             <param name="dataKey"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.HashRemoveAsync(System.String,System.Collections.Generic.List{StackExchange.Redis.RedisValue})">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.HashRemoveAsync(System.String,System.Collections.Generic.List{StackExchange.Redis.RedisValue})">
             <summary>
             异步移除hash中的多个值
             </summary>
@@ -777,7 +792,7 @@
             <param name="dataKey"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.HashGetAsync``1(System.String,System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.HashGetAsync``1(System.String,System.String)">
             <summary>
             从hash表中获取数据
             </summary>
@@ -786,7 +801,7 @@
             <param name="dataKey"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.HashKeysAsync``1(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.HashKeysAsync``1(System.String)">
             <summary>
             获取hashkey所有Redis key
             </summary>
@@ -794,7 +809,7 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SortedSetAdd``1(System.String,``0,System.Double)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SortedSetAdd``1(System.String,``0,System.Double)">
             <summary>
             无序添加
             </summary>
@@ -804,7 +819,7 @@
             <param name="score"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SortedSetRemove``1(System.String,``0)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SortedSetRemove``1(System.String,``0)">
             <summary>
             删除
             </summary>
@@ -813,7 +828,7 @@
             <param name="val"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SortedSetRangeByRank``1(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SortedSetRangeByRank``1(System.String)">
             <summary>
             获取全部
             </summary>
@@ -821,14 +836,14 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SortedSetLength(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SortedSetLength(System.String)">
             <summary>
              获取集合中的数量
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SortedSetAddAsync``1(System.String,``0,System.Double)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SortedSetAddAsync``1(System.String,``0,System.Double)">
             <summary>
             异步无序添加
             </summary>
@@ -838,7 +853,7 @@
             <param name="score"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SortedSetRemoveAsync``1(System.String,``0)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SortedSetRemoveAsync``1(System.String,``0)">
             <summary>
             删除
             </summary>
@@ -847,7 +862,7 @@
             <param name="val"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SortedSetRangeByRankAsync``1(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SortedSetRangeByRankAsync``1(System.String)">
             <summary>
             获取全部
             </summary>
@@ -855,24 +870,24 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RedisCache.RedisCaches.SortedSetLengthAsync(System.String)">
+        <member name="M:Synctool.CacheFramework.RedisCache.RedisCaches.SortedSetLengthAsync(System.String)">
             <summary>
              获取集合中的数量
             </summary>
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="T:Synctool.CacheFactory.RunTimeCache.MemoryCaches">
+        <member name="T:Synctool.CacheFramework.RunTimeCache.MemoryCaches">
              <summary>
             
              </summary>
         </member>
-        <member name="F:Synctool.CacheFactory.RunTimeCache.MemoryCaches.Cache">
+        <member name="F:Synctool.CacheFramework.RunTimeCache.MemoryCaches.Cache">
             <summary>
             MemoryCaches
             </summary>
         </member>
-        <member name="M:Synctool.CacheFactory.RunTimeCache.MemoryCaches.AddCache``1(System.String,``0,System.Int32,System.Boolean)">
+        <member name="M:Synctool.CacheFramework.RunTimeCache.MemoryCaches.AddCache``1(System.String,``0,System.Int32,System.Boolean)">
             <summary>
             添加缓存
             </summary>
@@ -882,7 +897,7 @@
             <param name="Time"></param>
             <param name="UseSecond"></param>
         </member>
-        <member name="M:Synctool.CacheFactory.RunTimeCache.MemoryCaches.GetCache``1(System.String)">
+        <member name="M:Synctool.CacheFramework.RunTimeCache.MemoryCaches.GetCache``1(System.String)">
             <summary>
             获取缓存数据
             </summary>
@@ -890,18 +905,18 @@
             <param name="Key"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.CacheFactory.RunTimeCache.MemoryCaches.RemoveCache(System.String)">
+        <member name="M:Synctool.CacheFramework.RunTimeCache.MemoryCaches.RemoveCache(System.String)">
             <summary>
             删除指定缓存
             </summary>
             <param name="Key"></param>
         </member>
-        <member name="T:Synctool.HttpFactory.HttpKeyPairs">
+        <member name="T:Synctool.HttpFramework.HttpKeyPairs">
             <summary>
             封装数据
             </summary>
         </member>
-        <member name="M:Synctool.HttpFactory.HttpKeyPairs.KeyValuePairs``1(``0,System.Collections.Generic.IDictionary{System.String,System.String})">
+        <member name="M:Synctool.HttpFramework.HttpKeyPairs.KeyValuePairs``1(``0,System.Collections.Generic.IDictionary{System.String,System.String})">
             <summary>
             创建一个key-value格式的表单数据(Making form data to KeyValuePairs)
             </summary>
@@ -910,34 +925,34 @@
             <param name="Map"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.HttpKeyPairs.RetrunEnumValue``1(System.Reflection.PropertyInfo,``0)">
+        <member name="M:Synctool.HttpFramework.HttpKeyPairs.RetrunEnumValue``1(System.Reflection.PropertyInfo,``0)">
             <summary>
             返回枚举值
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Synctool.HttpFactory.HttpMultiClient">
+        <member name="T:Synctool.HttpFramework.HttpMultiClient">
             <summary>
             负载请求
             </summary>
         </member>
-        <member name="P:Synctool.HttpFactory.HttpMultiClient.HttpMulti">
+        <member name="P:Synctool.HttpFramework.HttpMultiClient.HttpMulti">
             <summary>
             Instance
             </summary>
         </member>
-        <member name="M:Synctool.HttpFactory.HttpMultiClient.#ctor">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.#ctor">
             <summary>
             Constructor
             </summary>
         </member>
-        <member name="M:Synctool.HttpFactory.HttpMultiClient.InitCookieContainer">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.InitCookieContainer">
             <summary>
             初始化Cookie容器
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.HttpMultiClient.Headers(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.Headers(System.String,System.String)">
             <summary>
             Add Header
             </summary>
@@ -945,14 +960,14 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.HttpMultiClient.Headers(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.Headers(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Header
             </summary>
             <param name="headers"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.HttpMultiClient.Cookies(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.Cookies(System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -960,7 +975,7 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.HttpMultiClient.Cookies(System.String,System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.Cookies(System.String,System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -969,7 +984,7 @@
             <param name="path"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.HttpMultiClient.Cookies(System.String,System.String,System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.Cookies(System.String,System.String,System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -979,7 +994,7 @@
             <param name="domain"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.HttpMultiClient.AddNode(System.String,Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.AddNode(System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -989,7 +1004,7 @@
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.HttpMultiClient.AddNode(System.String,System.String,Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1000,7 +1015,7 @@
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.HttpMultiClient.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1011,7 +1026,7 @@
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.HttpMultiClient.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1024,12 +1039,12 @@
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="T:Synctool.HttpFactory.MultiImplement.Builder">
+        <member name="T:Synctool.HttpFramework.MultiImplement.Builder">
             <summary>
             构建器
             </summary>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Builder.Build(System.Int32,System.Boolean)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.Build(System.Int32,System.Boolean)">
             <summary>
             构建
             </summary>
@@ -1037,62 +1052,62 @@
             <param name="UseHttps"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Builder.CacheTime(System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.CacheTime(System.Int32)">
             <summary>
             设置缓存时间
             </summary>
             <param name="CacheSeconds">单位：Seconds</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Builder.RunBytes">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunBytes">
             <summary>
             执行
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Builder.RunBytesAsync">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunBytesAsync">
             <summary>
             执行
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Builder.RunString">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunString">
             <summary>
             执行 default UTF-8
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Builder.RunStringAsync">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunStringAsync">
             <summary>
             执行 default UTF-8
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Builder.RequestString(Synctool.HttpFactory.WeightURL)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RequestString(Synctool.HttpFramework.WeightURL)">
             <summary>
             请求
             </summary>
             <param name="Item"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Builder.RequestBytes(Synctool.HttpFactory.WeightURL)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RequestBytes(Synctool.HttpFramework.WeightURL)">
             <summary>
             请求
             </summary>
             <param name="Item"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Builder.Dispose">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.Dispose">
             <summary>
             释放资源
             </summary>
         </member>
-        <member name="T:Synctool.HttpFactory.MultiImplement.Cookies">
+        <member name="T:Synctool.HttpFramework.MultiImplement.Cookies">
             <summary>
             Cookie
             </summary>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Cookies.Build(System.Int32,System.Boolean)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.Build(System.Int32,System.Boolean)">
             <summary>
             构建
             </summary>
@@ -1100,7 +1115,7 @@
             <param name="UseHttps"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Cookies.Cookie(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.Cookie(System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1108,7 +1123,7 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Cookies.Cookie(System.String,System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.Cookie(System.String,System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1117,7 +1132,7 @@
             <param name="path"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Cookies.Cookie(System.String,System.String,System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.Cookie(System.String,System.String,System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1127,7 +1142,7 @@
             <param name="domain"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Cookies.Header(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.Header(System.String,System.String)">
             <summary>
             Add Header
             </summary>
@@ -1135,14 +1150,14 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Cookies.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Header
             </summary>
             <param name="headers"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Cookies.AddNode(System.String,Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.AddNode(System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1152,18 +1167,7 @@
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Cookies.AddNode(System.String,System.String,Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Cookies.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1174,7 +1178,18 @@
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Cookies.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+            <summary>
+            Add Path
+            </summary>
+            <param name="Path"></param>
+            <param name="Param"></param>
+            <param name="Type"></param>
+            <param name="UseCache"></param>
+            <param name="Weight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1187,12 +1202,12 @@
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="T:Synctool.HttpFactory.MultiImplement.Headers">
+        <member name="T:Synctool.HttpFramework.MultiImplement.Headers">
             <summary>
             Header
             </summary>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Headers.Build(System.Int32,System.Boolean)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.Build(System.Int32,System.Boolean)">
             <summary>
             构建
             </summary>
@@ -1200,7 +1215,7 @@
             <param name="UseHttps"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Headers.Header(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.Header(System.String,System.String)">
             <summary>
             Add Header
             </summary>
@@ -1208,14 +1223,14 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Headers.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Header
             </summary>
             <param name="headers"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Headers.Cookie(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.Cookie(System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1223,7 +1238,7 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Headers.Cookie(System.String,System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.Cookie(System.String,System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1232,7 +1247,7 @@
             <param name="path"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Headers.Cookie(System.String,System.String,System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.Cookie(System.String,System.String,System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1242,7 +1257,7 @@
             <param name="domain"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Headers.AddNode(System.String,Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.AddNode(System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1252,18 +1267,7 @@
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Headers.AddNode(System.String,System.String,Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Headers.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1274,7 +1278,18 @@
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Headers.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+            <summary>
+            Add Path
+            </summary>
+            <param name="Path"></param>
+            <param name="Param"></param>
+            <param name="Type"></param>
+            <param name="UseCache"></param>
+            <param name="Weight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1287,12 +1302,12 @@
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="T:Synctool.HttpFactory.MultiImplement.Node">
+        <member name="T:Synctool.HttpFramework.MultiImplement.Node">
             <summary>
             URL
             </summary>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Node.Build(System.Int32,System.Boolean)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Node.Build(System.Int32,System.Boolean)">
             <summary>
             构建
             </summary>
@@ -1300,7 +1315,7 @@
             <param name="UseHttps"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Node.AddNode(System.String,Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Node.AddNode(System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1310,7 +1325,7 @@
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Node.AddNode(System.String,System.String,Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Node.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1321,7 +1336,7 @@
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Node.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Node.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1332,7 +1347,7 @@
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Node.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Node.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1345,7 +1360,7 @@
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Node.Cookie(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Node.Cookie(System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1353,7 +1368,7 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Node.Cookie(System.String,System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Node.Cookie(System.String,System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1362,7 +1377,7 @@
             <param name="path"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Node.Cookie(System.String,System.String,System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Node.Cookie(System.String,System.String,System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1372,7 +1387,7 @@
             <param name="domain"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Node.Header(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Node.Header(System.String,System.String)">
             <summary>
             Add Header
             </summary>
@@ -1380,19 +1395,19 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiImplement.Node.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Node.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Header
             </summary>
             <param name="headers"></param>
             <returns></returns>
         </member>
-        <member name="T:Synctool.HttpFactory.MultiInterface.IBuilder">
+        <member name="T:Synctool.HttpFramework.MultiInterface.IBuilder">
             <summary>
             构建
             </summary>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IBuilder.Build(System.Int32,System.Boolean)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.Build(System.Int32,System.Boolean)">
             <summary>
             构建
             </summary>
@@ -1400,43 +1415,43 @@
             <param name="UseHttps"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IBuilder.CacheTime(System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.CacheTime(System.Int32)">
             <summary>
             设置缓存时间
             </summary>
             <param name="CacheSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IBuilder.RunString">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunString">
             <summary>
             执行 default UTF-8
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IBuilder.RunStringAsync">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunStringAsync">
             <summary>
             执行 default UTF-8
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IBuilder.RunBytes">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunBytes">
             <summary>
             执行
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IBuilder.RunBytesAsync">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunBytesAsync">
             <summary>
             执行
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Synctool.HttpFactory.MultiInterface.ICookies">
+        <member name="T:Synctool.HttpFramework.MultiInterface.ICookies">
             <summary>
             Cookie
             </summary>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.ICookies.Build(System.Int32,System.Boolean)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.Build(System.Int32,System.Boolean)">
             <summary>
             构建
             </summary>
@@ -1444,7 +1459,7 @@
             <param name="UseHttps"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.ICookies.AddNode(System.String,Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.AddNode(System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1454,7 +1469,7 @@
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.ICookies.AddNode(System.String,System.String,Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1465,7 +1480,7 @@
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.ICookies.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1476,7 +1491,7 @@
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.ICookies.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1489,7 +1504,7 @@
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.ICookies.Header(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.Header(System.String,System.String)">
             <summary>
             Add Header
             </summary>
@@ -1497,14 +1512,14 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.ICookies.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Header
             </summary>
             <param name="headers"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.ICookies.Cookie(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.Cookie(System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1512,7 +1527,7 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.ICookies.Cookie(System.String,System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.Cookie(System.String,System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1521,7 +1536,7 @@
             <param name="path"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.ICookies.Cookie(System.String,System.String,System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.Cookie(System.String,System.String,System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1531,12 +1546,12 @@
             <param name="domain"></param>
             <returns></returns>
         </member>
-        <member name="T:Synctool.HttpFactory.MultiInterface.IHeaders">
+        <member name="T:Synctool.HttpFramework.MultiInterface.IHeaders">
             <summary>
             Header
             </summary>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IHeaders.Build(System.Int32,System.Boolean)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.Build(System.Int32,System.Boolean)">
             <summary>
             构建
             </summary>
@@ -1544,7 +1559,7 @@
             <param name="UseHttps"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IHeaders.AddNode(System.String,Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.AddNode(System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1554,7 +1569,7 @@
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IHeaders.AddNode(System.String,System.String,Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1565,7 +1580,7 @@
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IHeaders.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1576,7 +1591,7 @@
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IHeaders.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1589,7 +1604,7 @@
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IHeaders.Header(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.Header(System.String,System.String)">
             <summary>
             Add Header
             </summary>
@@ -1597,14 +1612,14 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IHeaders.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Header
             </summary>
             <param name="headers"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IHeaders.Cookie(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.Cookie(System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1612,7 +1627,7 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IHeaders.Cookie(System.String,System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.Cookie(System.String,System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1621,7 +1636,7 @@
             <param name="path"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.IHeaders.Cookie(System.String,System.String,System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.Cookie(System.String,System.String,System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1631,12 +1646,12 @@
             <param name="domain"></param>
             <returns></returns>
         </member>
-        <member name="T:Synctool.HttpFactory.MultiInterface.INode">
+        <member name="T:Synctool.HttpFramework.MultiInterface.INode">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.INode.Build(System.Int32,System.Boolean)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.INode.Build(System.Int32,System.Boolean)">
             <summary>
             构建
             </summary>
@@ -1644,7 +1659,7 @@
             <param name="UseHttps"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.INode.AddNode(System.String,Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.INode.AddNode(System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1654,18 +1669,7 @@
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.INode.AddNode(System.String,System.String,Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.INode.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.INode.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1676,7 +1680,18 @@
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.INode.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFactory.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.INode.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+            <summary>
+            Add Path
+            </summary>
+            <param name="Path"></param>
+            <param name="Param"></param>
+            <param name="Type"></param>
+            <param name="UseCache"></param>
+            <param name="Weight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.HttpFramework.MultiInterface.INode.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1689,7 +1704,7 @@
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.INode.Header(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.INode.Header(System.String,System.String)">
             <summary>
             Add Header
             </summary>
@@ -1697,14 +1712,14 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.INode.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:Synctool.HttpFramework.MultiInterface.INode.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Header
             </summary>
             <param name="headers"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.INode.Cookie(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.INode.Cookie(System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1712,7 +1727,7 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.INode.Cookie(System.String,System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.INode.Cookie(System.String,System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1721,7 +1736,7 @@
             <param name="path"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFactory.MultiInterface.INode.Cookie(System.String,System.String,System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.INode.Cookie(System.String,System.String,System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1731,169 +1746,169 @@
             <param name="domain"></param>
             <returns></returns>
         </member>
-        <member name="T:Synctool.HttpFactory.RequestType">
+        <member name="T:Synctool.HttpFramework.RequestType">
             <summary>
             RequestType
             </summary>
         </member>
-        <member name="F:Synctool.HttpFactory.RequestType.POST">
+        <member name="F:Synctool.HttpFramework.RequestType.POST">
             <summary>
             POST
             </summary>
         </member>
-        <member name="F:Synctool.HttpFactory.RequestType.GET">
+        <member name="F:Synctool.HttpFramework.RequestType.GET">
             <summary>
             GET
             </summary>
         </member>
-        <member name="F:Synctool.HttpFactory.RequestType.DELETE">
+        <member name="F:Synctool.HttpFramework.RequestType.DELETE">
             <summary>
             DELETE
             </summary>
         </member>
-        <member name="F:Synctool.HttpFactory.RequestType.PUT">
+        <member name="F:Synctool.HttpFramework.RequestType.PUT">
             <summary>
             PUT
             </summary>
         </member>
-        <member name="T:Synctool.HttpFactory.WeightURL">
+        <member name="T:Synctool.HttpFramework.WeightURL">
             <summary>
             负载路由
             </summary>
         </member>
-        <member name="P:Synctool.HttpFactory.WeightURL.Request">
+        <member name="P:Synctool.HttpFramework.WeightURL.Request">
             <summary>
             请求类型
             </summary>
         </member>
-        <member name="P:Synctool.HttpFactory.WeightURL.Weight">
+        <member name="P:Synctool.HttpFramework.WeightURL.Weight">
             <summary>
             负载比
             </summary>
         </member>
-        <member name="P:Synctool.HttpFactory.WeightURL.URL">
+        <member name="P:Synctool.HttpFramework.WeightURL.URL">
             <summary>
             路由
             </summary>
         </member>
-        <member name="P:Synctool.HttpFactory.WeightURL.Contents">
+        <member name="P:Synctool.HttpFramework.WeightURL.Contents">
             <summary>
             请求内容
             </summary>
         </member>
-        <member name="P:Synctool.HttpFactory.WeightURL.UseCache">
+        <member name="P:Synctool.HttpFramework.WeightURL.UseCache">
             <summary>
             使用缓存
             </summary>
         </member>
-        <member name="P:Synctool.HttpFactory.WeightURL.MediaTypeHeader">
+        <member name="P:Synctool.HttpFramework.WeightURL.MediaTypeHeader">
             <summary>
             请求类型
             </summary>
         </member>
-        <member name="T:Synctool.InternalFunc.Email.EmailSettting">
+        <member name="T:Synctool.InternalFramework.Email.EmailSettting">
             <summary>
             邮箱配置
             </summary>
         </member>
-        <member name="P:Synctool.InternalFunc.Email.EmailSettting.SmtpHost">
+        <member name="P:Synctool.InternalFramework.Email.EmailSettting.SmtpHost">
             <summary>
             邮箱地址
             </summary>
         </member>
-        <member name="P:Synctool.InternalFunc.Email.EmailSettting.EmailAccount">
+        <member name="P:Synctool.InternalFramework.Email.EmailSettting.EmailAccount">
             <summary>
             邮箱账号
             </summary>
         </member>
-        <member name="P:Synctool.InternalFunc.Email.EmailSettting.EmailPassWord">
+        <member name="P:Synctool.InternalFramework.Email.EmailSettting.EmailPassWord">
             <summary>
             邮箱密码
             </summary>
         </member>
-        <member name="P:Synctool.InternalFunc.Email.EmailSettting.SendTitle">
+        <member name="P:Synctool.InternalFramework.Email.EmailSettting.SendTitle">
             <summary>
             发送标题
             </summary>
         </member>
-        <member name="T:Synctool.InternalFunc.Email.EmailUtil">
+        <member name="T:Synctool.InternalFramework.Email.EmailUtil">
             <summary>
             邮箱工具类
             </summary>
         </member>
-        <member name="M:Synctool.InternalFunc.Email.EmailUtil.SendMail(Synctool.InternalFunc.Email.EmailViewModel)">
+        <member name="M:Synctool.InternalFramework.Email.EmailUtil.SendMail(Synctool.InternalFramework.Email.EmailViewModel)">
             <summary>
              发送邮件
             </summary>
             <param name="View"></param>
             <returns></returns>
         </member>
-        <member name="T:Synctool.InternalFunc.Email.EmailViewModel">
+        <member name="T:Synctool.InternalFramework.Email.EmailViewModel">
             <summary>
             邮箱内容
             </summary>
         </member>
-        <member name="P:Synctool.InternalFunc.Email.EmailViewModel.AcceptedAddress">
+        <member name="P:Synctool.InternalFramework.Email.EmailViewModel.AcceptedAddress">
             <summary>
             收件人邮箱
             </summary>
         </member>
-        <member name="P:Synctool.InternalFunc.Email.EmailViewModel.Title">
+        <member name="P:Synctool.InternalFramework.Email.EmailViewModel.Title">
             <summary>
             发送标题
             </summary>
         </member>
-        <member name="P:Synctool.InternalFunc.Email.EmailViewModel.Content">
+        <member name="P:Synctool.InternalFramework.Email.EmailViewModel.Content">
             <summary>
             内容
             </summary>
         </member>
-        <member name="T:Synctool.InternalFunc.Express.Common.QType">
+        <member name="T:Synctool.InternalFramework.Express.Common.QType">
              <summary>
             
              </summary>
         </member>
-        <member name="F:Synctool.InternalFunc.Express.Common.QType.Like">
+        <member name="F:Synctool.InternalFramework.Express.Common.QType.Like">
             <summary>
             Like
             </summary>
         </member>
-        <member name="F:Synctool.InternalFunc.Express.Common.QType.NotLike">
+        <member name="F:Synctool.InternalFramework.Express.Common.QType.NotLike">
             <summary>
             NotLike
             </summary>
         </member>
-        <member name="F:Synctool.InternalFunc.Express.Common.QType.Equals">
+        <member name="F:Synctool.InternalFramework.Express.Common.QType.Equals">
             <summary>
             Equals
             </summary>
         </member>
-        <member name="F:Synctool.InternalFunc.Express.Common.QType.NotEquals">
+        <member name="F:Synctool.InternalFramework.Express.Common.QType.NotEquals">
             <summary>
             NotEquals
             </summary>
         </member>
-        <member name="F:Synctool.InternalFunc.Express.Common.QType.GreaterThan">
+        <member name="F:Synctool.InternalFramework.Express.Common.QType.GreaterThan">
             <summary>
             GreaterThan
             </summary>
         </member>
-        <member name="F:Synctool.InternalFunc.Express.Common.QType.GreaterThanOrEqual">
+        <member name="F:Synctool.InternalFramework.Express.Common.QType.GreaterThanOrEqual">
             <summary>
             GreaterThanOrEqual
             </summary>
         </member>
-        <member name="F:Synctool.InternalFunc.Express.Common.QType.LessThan">
+        <member name="F:Synctool.InternalFramework.Express.Common.QType.LessThan">
             <summary>
             LessThan
             </summary>
         </member>
-        <member name="F:Synctool.InternalFunc.Express.Common.QType.LessThanOrEqual">
+        <member name="F:Synctool.InternalFramework.Express.Common.QType.LessThanOrEqual">
             <summary>
             LessThanOrEqual
             </summary>
         </member>
-        <member name="M:Synctool.InternalFunc.Express.Expsion.SetProptertiesValue``1(System.Collections.Generic.Dictionary{System.String,System.Object},``0)">
+        <member name="M:Synctool.InternalFramework.Express.Expsion.SetProptertiesValue``1(System.Collections.Generic.Dictionary{System.String,System.Object},``0)">
             <summary>
             设置属性值
             </summary>
@@ -1901,7 +1916,7 @@
             <param name="JsonValue"></param>
             <param name="Param"></param>
         </member>
-        <member name="M:Synctool.InternalFunc.Express.Expsion.GetExpression``1(System.String[])">
+        <member name="M:Synctool.InternalFramework.Express.Expsion.GetExpression``1(System.String[])">
             <summary>
              返回一个new表达式
             </summary>
@@ -1909,7 +1924,7 @@
             <param name="PropertyName"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Express.Expsion.GetExpression``1(System.String,System.Object,Synctool.InternalFunc.Express.Common.QType)">
+        <member name="M:Synctool.InternalFramework.Express.Expsion.GetExpression``1(System.String,System.Object,Synctool.InternalFramework.Express.Common.QType)">
             <summary>
              返回一个bool表达式
             </summary>
@@ -1919,7 +1934,7 @@
             <param name="QueryType"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Express.Expsion.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:Synctool.InternalFramework.Express.Expsion.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             合并表达式 ExprOne AND ExprTwo
             </summary>
@@ -1928,7 +1943,7 @@
             <param name="ExprTwo"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Express.Expsion.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:Synctool.InternalFramework.Express.Expsion.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             合并表达式 ExprOne or ExprTwo
             </summary>
@@ -1937,121 +1952,121 @@
             <param name="ExprTwo"></param>
             <returns></returns>
         </member>
-        <member name="T:Synctool.InternalFunc.Md5">
+        <member name="T:Synctool.InternalFramework.Md5">
             <summary>
             md5
             </summary>
         </member>
-        <member name="M:Synctool.InternalFunc.Md5.Md5By32(System.String)">
+        <member name="M:Synctool.InternalFramework.Md5.Md5By32(System.String)">
             <summary>
             32bit
             </summary>
             <param name="param"></param>
         </member>
-        <member name="M:Synctool.InternalFunc.Md5.Md5By16(System.String)">
+        <member name="M:Synctool.InternalFramework.Md5.Md5By16(System.String)">
             <summary>
             16bit
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="T:Synctool.InternalFunc.Office.Common.ExcelBoolType">
+        <member name="T:Synctool.InternalFramework.Office.Common.ExcelBoolType">
             <summary>
             bool类型映射值
             </summary>
         </member>
-        <member name="F:Synctool.InternalFunc.Office.Common.ExcelBoolType.TRUE">
+        <member name="F:Synctool.InternalFramework.Office.Common.ExcelBoolType.TRUE">
             <summary>
             是
             </summary>
         </member>
-        <member name="F:Synctool.InternalFunc.Office.Common.ExcelBoolType.FALSE">
+        <member name="F:Synctool.InternalFramework.Office.Common.ExcelBoolType.FALSE">
             <summary>
             否
             </summary>
         </member>
-        <member name="T:Synctool.InternalFunc.Office.Common.ExcelType">
+        <member name="T:Synctool.InternalFramework.Office.Common.ExcelType">
             <summary>
             Excel 类型
             </summary>
         </member>
-        <member name="T:Synctool.InternalFunc.Office.Common.OfficeAttribute">
+        <member name="T:Synctool.InternalFramework.Office.Common.OfficeAttribute">
             <summary>
             文档特性
             </summary>
         </member>
-        <member name="P:Synctool.InternalFunc.Office.Common.OfficeAttribute.IngoreField">
+        <member name="P:Synctool.InternalFramework.Office.Common.OfficeAttribute.IngoreField">
             <summary>
             忽略导出
             </summary>
         </member>
-        <member name="P:Synctool.InternalFunc.Office.Common.OfficeAttribute.MapperField">
+        <member name="P:Synctool.InternalFramework.Office.Common.OfficeAttribute.MapperField">
             <summary>
             映射字段
             </summary>
         </member>
-        <member name="P:Synctool.InternalFunc.Office.Common.OfficeAttribute.BoolEnum">
+        <member name="P:Synctool.InternalFramework.Office.Common.OfficeAttribute.BoolEnum">
             <summary>
             bool类型映射枚举
             </summary>
         </member>
-        <member name="P:Synctool.InternalFunc.Office.Common.OfficeAttribute.Enum">
+        <member name="P:Synctool.InternalFramework.Office.Common.OfficeAttribute.Enum">
             <summary>
             是否枚举
             </summary>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.GetWorkbook">
+        <member name="M:Synctool.InternalFramework.Office.Excel.GetWorkbook">
             <summary>
             获取工作薄
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.GetSheet">
+        <member name="M:Synctool.InternalFramework.Office.Excel.GetSheet">
             <summary>
             获取工作表
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.GetRow">
+        <member name="M:Synctool.InternalFramework.Office.Excel.GetRow">
             <summary>
             获取行
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.GetCell">
+        <member name="M:Synctool.InternalFramework.Office.Excel.GetCell">
             <summary>
             获取列
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.#ctor(Synctool.InternalFunc.Office.Common.ExcelType,System.String)">
+        <member name="M:Synctool.InternalFramework.Office.Excel.#ctor(Synctool.InternalFramework.Office.Common.ExcelType,System.String)">
             <summary>
             导出构造
             </summary>
             <param name="type"></param>
             <param name="Format"></param>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.CreateExportWorkBook">
+        <member name="M:Synctool.InternalFramework.Office.Excel.CreateExportWorkBook">
             <summary>
             创建工作薄
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.CreateExportSheet(System.String)">
+        <member name="M:Synctool.InternalFramework.Office.Excel.CreateExportSheet(System.String)">
             <summary>
             创建工作表
             </summary>
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.CreateExportRows(System.Int32)">
+        <member name="M:Synctool.InternalFramework.Office.Excel.CreateExportRows(System.Int32)">
             <summary>
             创建行
             </summary>
             <param name="index"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.CreateExportCells(System.Int32,System.Object)">
+        <member name="M:Synctool.InternalFramework.Office.Excel.CreateExportCells(System.Int32,System.Object)">
             <summary>
             创建单元格
             </summary>
@@ -2059,14 +2074,14 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.HeadExportStyle(System.Int32)">
+        <member name="M:Synctool.InternalFramework.Office.Excel.HeadExportStyle(System.Int32)">
             <summary>
             表头样式
             </summary>
             <param name="EndCol"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.BodyExportStyle(System.Int32,System.Int32)">
+        <member name="M:Synctool.InternalFramework.Office.Excel.BodyExportStyle(System.Int32,System.Int32)">
             <summary>
             内容样式
             </summary>
@@ -2074,7 +2089,7 @@
             <param name="EndCol"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.FootExportStyle(System.Int32,System.Int32)">
+        <member name="M:Synctool.InternalFramework.Office.Excel.FootExportStyle(System.Int32,System.Int32)">
             <summary>
             页脚样式
             </summary>
@@ -2082,7 +2097,7 @@
             <param name="EndCol"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.MergeExportCell(System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Synctool.InternalFramework.Office.Excel.MergeExportCell(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             合并单元格
             </summary>
@@ -2092,7 +2107,7 @@
             <param name="ECI">结束列</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.WriteExportStream(System.IO.Stream,System.Action{System.IO.Stream})">
+        <member name="M:Synctool.InternalFramework.Office.Excel.WriteExportStream(System.IO.Stream,System.Action{System.IO.Stream})">
             <summary>
              写入文件流
             </summary>
@@ -2100,7 +2115,7 @@
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.#ctor(System.IO.Stream,Synctool.InternalFunc.Office.Common.ExcelType,System.Boolean)">
+        <member name="M:Synctool.InternalFramework.Office.Excel.#ctor(System.IO.Stream,Synctool.InternalFramework.Office.Common.ExcelType,System.Boolean)">
             <summary>
             导入构造
             </summary>
@@ -2108,58 +2123,58 @@
             <param name="type"></param>
             <param name="HasPageFooter"></param>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.CreateImportWorkBook">
+        <member name="M:Synctool.InternalFramework.Office.Excel.CreateImportWorkBook">
             <summary>
             创建导入工作薄
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.CreateImportSheet(System.Int32)">
+        <member name="M:Synctool.InternalFramework.Office.Excel.CreateImportSheet(System.Int32)">
             <summary>
             获取导入的工作表
             </summary>
             <param name="Index"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.CreateImportHead``1">
+        <member name="M:Synctool.InternalFramework.Office.Excel.CreateImportHead``1">
             <summary>
             获取导入表格头
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.CreateImportBody``1">
+        <member name="M:Synctool.InternalFramework.Office.Excel.CreateImportBody``1">
             <summary>
             创建导入内容
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.CheckWorkBook">
+        <member name="M:Synctool.InternalFramework.Office.Excel.CheckWorkBook">
             <summary>
             检查工作薄是否被创建
             </summary>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.SetBorderColor(NPOI.SS.UserModel.ICellStyle,System.Boolean)">
+        <member name="M:Synctool.InternalFramework.Office.Excel.SetBorderColor(NPOI.SS.UserModel.ICellStyle,System.Boolean)">
             <summary>
             创建边框颜色
             </summary>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.SetAlignment(NPOI.SS.UserModel.ICellStyle)">
+        <member name="M:Synctool.InternalFramework.Office.Excel.SetAlignment(NPOI.SS.UserModel.ICellStyle)">
             <summary>
             创建布局方式
             </summary>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.SetBorder(NPOI.SS.UserModel.ICellStyle)">
+        <member name="M:Synctool.InternalFramework.Office.Excel.SetBorder(NPOI.SS.UserModel.ICellStyle)">
             <summary>
             创建边框
             </summary>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.SetFont(NPOI.SS.UserModel.ICellStyle,System.Boolean)">
+        <member name="M:Synctool.InternalFramework.Office.Excel.SetFont(NPOI.SS.UserModel.ICellStyle,System.Boolean)">
             <summary>
             设置字体
             </summary>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.Excel.SetStyle(System.Int32,System.Int32,System.Int32,System.Int32,NPOI.SS.UserModel.ICellStyle)">
+        <member name="M:Synctool.InternalFramework.Office.Excel.SetStyle(System.Int32,System.Int32,System.Int32,System.Int32,NPOI.SS.UserModel.ICellStyle)">
             <summary>
             为当前行设置样式
             </summary>
@@ -2169,12 +2184,12 @@
             <param name="EndColIndex">结束列索引</param>
             <param name="Style">单元格样式</param>
         </member>
-        <member name="T:Synctool.InternalFunc.Office.ExcelFactory">
+        <member name="T:Synctool.InternalFramework.Office.ExcelFactory">
             <summary>
             Excel工厂
             </summary>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.ExcelFactory.ExportExcel``1(System.Collections.Generic.IEnumerable{``0},Synctool.InternalFunc.Office.Common.ExcelType,System.String,System.Action{System.IO.Stream},System.IO.Stream,System.String)">
+        <member name="M:Synctool.InternalFramework.Office.ExcelFactory.ExportExcel``1(System.Collections.Generic.IEnumerable{``0},Synctool.InternalFramework.Office.Common.ExcelType,System.String,System.Object,System.Action{System.IO.Stream},System.IO.Stream,System.String)">
             <summary>
             导出EXCEL
             </summary>
@@ -2182,11 +2197,12 @@
             <param name="Data">需要被导出的数据</param>
             <param name="Types">Excel类型</param>
             <param name="SheetName">工作表名称</param>
+            <param name="Footer">页脚内容</param>
             <param name="stream">流</param>
             <param name="action">自定义导出</param>
             <param name="DateFormat">事件格式</param>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.ExcelFactory.ImportExcel``1(System.IO.Stream,Synctool.InternalFunc.Office.Common.ExcelType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.InternalFramework.Office.ExcelFactory.ImportExcel``1(System.IO.Stream,Synctool.InternalFramework.Office.Common.ExcelType,System.Boolean,System.Int32)">
             <summary>
             导入EXCEL
             </summary>
@@ -2197,14 +2213,14 @@
             <param name="SheetIndex">数据表索引</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.ExcelFactory.GetDatas(System.Reflection.PropertyInfo)">
+        <member name="M:Synctool.InternalFramework.Office.ExcelFactory.GetDatas(System.Reflection.PropertyInfo)">
             <summary>
             获取下拉值映射
             </summary>
             <param name="Info"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.ExcelFactory.CreateDropDwonListForXLSX(NPOI.XSSF.UserModel.XSSFSheet,System.Collections.Generic.List{System.String},System.Int32,System.Int32)">
+        <member name="M:Synctool.InternalFramework.Office.ExcelFactory.CreateDropDwonListForXLSX(NPOI.XSSF.UserModel.XSSFSheet,System.Collections.Generic.List{System.String},System.Int32,System.Int32)">
             <summary>
             EXCEL2007下拉值
             </summary>
@@ -2213,7 +2229,7 @@
             <param name="StarCol"></param>
             <param name="EndCol"></param>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.ExcelFactory.CreateDropDwonListForXLS(NPOI.HSSF.UserModel.HSSFSheet,System.Collections.Generic.List{System.String},System.Int32,System.Int32)">
+        <member name="M:Synctool.InternalFramework.Office.ExcelFactory.CreateDropDwonListForXLS(NPOI.HSSF.UserModel.HSSFSheet,System.Collections.Generic.List{System.String},System.Int32,System.Int32)">
             <summary>
             EXCEL2003下拉值
             </summary>
@@ -2222,7 +2238,7 @@
             <param name="StarCol"></param>
             <param name="EndCol"></param>
         </member>
-        <member name="M:Synctool.InternalFunc.Office.ExcelFactory.CreateDropDwonData(Synctool.InternalFunc.Office.Excel,Synctool.InternalFunc.Office.Common.ExcelType,System.Reflection.PropertyInfo,System.Int32,System.Int32)">
+        <member name="M:Synctool.InternalFramework.Office.ExcelFactory.CreateDropDwonData(Synctool.InternalFramework.Office.Excel,Synctool.InternalFramework.Office.Common.ExcelType,System.Reflection.PropertyInfo,System.Int32,System.Int32)">
             <summary>
             创建下拉值
             </summary>
@@ -2232,12 +2248,12 @@
             <param name="StarCol"></param>
             <param name="EndCol"></param>
         </member>
-        <member name="T:Synctool.Linq.SyncLinq">
+        <member name="T:Synctool.LinqFramework.SyncLinq">
             <summary>
             LinqExtension
             </summary>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToMd5Async(System.String,System.Int32)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToMd5Async(System.String,System.Int32)">
             <summary>
             Md5
             </summary>
@@ -2245,7 +2261,7 @@
             <param name="bit"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToFmtDateAsync(System.DateTime,System.Int32,System.String)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToFmtDateAsync(System.DateTime,System.Int32,System.String)">
             <summary>
             时间格式化
             </summary>
@@ -2258,7 +2274,7 @@
             <param name="fmt"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToEntityAsync``1(System.Data.DataTable)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToEntityAsync``1(System.Data.DataTable)">
             <summary>
             DataTable 2 Entity
             </summary>
@@ -2266,7 +2282,7 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToJsonAsync``1(``0)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToJsonAsync``1(``0)">
             <summary>
             序列化 JsonNet
             </summary>
@@ -2274,7 +2290,7 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToModelAsync``1(System.String)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToModelAsync``1(System.String)">
             <summary>
             反序列化 JsonNet
             </summary>
@@ -2282,14 +2298,14 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToDesAsync(System.Enum)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToDesAsync(System.Enum)">
             <summary>
             返回指定的枚举描述值
             </summary>
             <param name="Param"></param>
             <returns>枚举描叙</returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToDesAsync``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToDesAsync``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
             <summary>
              返回具有标记为描述属性字段的属性值的实体
             </summary>
@@ -2298,7 +2314,7 @@
             <param name="Expres"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToAttrAsync``2(``0,System.String,System.Boolean)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToAttrAsync``2(``0,System.String,System.Boolean)">
             <summary>
             获取指定字段的Attribute
             </summary>
@@ -2309,7 +2325,7 @@
             <param name="IsProperty">是否获取属性</param>
             <returns>Attribute</returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToTablesAsync``1(System.Collections.Generic.IList{``0})">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToTablesAsync``1(System.Collections.Generic.IList{``0})">
             <summary>
             将集合转换为数据表并返回数据表
             </summary>
@@ -2317,7 +2333,7 @@
             <param name="queryable"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToMapperAsync``1(System.Object)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToMapperAsync``1(System.Object)">
             <summary>
             映射对象
             </summary>
@@ -2325,7 +2341,7 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToMapperAsync``2(System.Object)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToMapperAsync``2(System.Object)">
             <summary>
             映射集合
             </summary>
@@ -2334,7 +2350,7 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.WithNamesAsync``1(System.Collections.Generic.IEnumerable{``0})">
+        <member name="M:Synctool.LinqFramework.SyncLinq.WithNamesAsync``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             返回实体中所有的字段名
             </summary>
@@ -2342,14 +2358,14 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.IsNullOrEmpty(System.String)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.IsNullOrEmpty(System.String)">
              <summary>
             检查字符
              </summary>
              <param name="param"></param>
              <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+        <member name="M:Synctool.LinqFramework.SyncLinq.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             检查集合
             </summary>
@@ -2357,14 +2373,14 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.IsIDCard(System.String)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.IsIDCard(System.String)">
             <summary>
             是否身份证
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToMd5(System.String,System.Int32)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToMd5(System.String,System.Int32)">
             <summary>
             Md5
             </summary>
@@ -2372,7 +2388,7 @@
             <param name="bit"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToFmtDate(System.DateTime,System.Int32,System.String)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToFmtDate(System.DateTime,System.Int32,System.String)">
             <summary>
             时间格式化
             </summary>
@@ -2385,7 +2401,7 @@
             <param name="fmt"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToEntity``1(System.Data.DataTable)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToEntity``1(System.Data.DataTable)">
             <summary>
             DataTable 2 Entity
             </summary>
@@ -2393,7 +2409,7 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToJson``1(``0)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToJson``1(``0)">
             <summary>
             序列化 JsonNet
             </summary>
@@ -2401,7 +2417,7 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToJson``1(``0,System.Boolean)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToJson``1(``0,System.Boolean)">
             <summary>
             序列化对象MsgPack
             </summary>
@@ -2410,7 +2426,7 @@
             <param name="isPublic"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToModel``1(``0,System.Byte[]@,System.Boolean)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToModel``1(``0,System.Byte[]@,System.Boolean)">
             <summary>
             反序列化对象MsgPack
             </summary>
@@ -2420,7 +2436,7 @@
             <param name="isPublic"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToModel``1(System.String)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToModel``1(System.String)">
             <summary>
             反序列化 JsonNet
             </summary>
@@ -2428,14 +2444,14 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToDes(System.Enum)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToDes(System.Enum)">
             <summary>
             返回指定的枚举描述值
             </summary>
             <param name="Param"></param>
             <returns>枚举描叙</returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToDes``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToDes``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
             <summary>
              返回具有标记为描述属性字段的属性值的实体
             </summary>
@@ -2444,7 +2460,7 @@
             <param name="Expres"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToAttr``2(``0,System.String,System.Boolean)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToAttr``2(``0,System.String,System.Boolean)">
             <summary>
             获取指定字段的Attribute
             </summary>
@@ -2455,7 +2471,7 @@
             <param name="IsProperty">是否获取属性</param>
             <returns>Attribute</returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToTables``1(System.Collections.Generic.IList{``0})">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToTables``1(System.Collections.Generic.IList{``0})">
             <summary>
             将集合转换为数据表并返回数据表
             </summary>
@@ -2463,7 +2479,7 @@
             <param name="queryable"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToMapper``1(System.Object)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToMapper``1(System.Object)">
             <summary>
             映射对象
             </summary>
@@ -2471,7 +2487,7 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ToMapper``2(System.Object)">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ToMapper``2(System.Object)">
             <summary>
             映射集合
             </summary>
@@ -2480,7 +2496,7 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ForDicEach``2(System.Collections.Generic.IDictionary{``0,``1},System.Action{``0,``1})">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ForDicEach``2(System.Collections.Generic.IDictionary{``0,``1},System.Action{``0,``1})">
             <summary>
             遍历字典
             </summary>
@@ -2489,7 +2505,7 @@
             <param name="param"></param>
             <param name="action"></param>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ForArrayEach``1(System.Array,System.Action{``0})">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ForArrayEach``1(System.Array,System.Action{``0})">
             <summary>
             遍历数组
             </summary>
@@ -2497,7 +2513,7 @@
             <param name="param"></param>
             <param name="action"></param>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.ForEnumerEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+        <member name="M:Synctool.LinqFramework.SyncLinq.ForEnumerEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
             <summary>
             遍历集合
             </summary>
@@ -2505,7 +2521,7 @@
             <param name="param"></param>
             <param name="action"></param>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.WithNames``1(System.Collections.Generic.IEnumerable{``0})">
+        <member name="M:Synctool.LinqFramework.SyncLinq.WithNames``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             返回实体中所有的字段名
             </summary>
@@ -2513,7 +2529,7 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:Synctool.LinqFramework.SyncLinq.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             合并表达式 ExprOne AND ExprTwo
             </summary>
@@ -2522,7 +2538,7 @@
             <param name="ExprTwo"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Linq.SyncLinq.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:Synctool.LinqFramework.SyncLinq.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             合并表达式 ExprOne or ExprTwo
             </summary>
@@ -2531,12 +2547,12 @@
             <param name="ExprTwo"></param>
             <returns></returns>
         </member>
-        <member name="T:Synctool.Static.SyncStatic">
+        <member name="T:Synctool.StaticFramework.SyncStatic">
             <summary>
             StaticUtil
             </summary>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.TryCatch(System.Action,System.Action{System.Exception},System.Action)">
+        <member name="M:Synctool.StaticFramework.SyncStatic.TryCatch(System.Action,System.Action{System.Exception},System.Action)">
             <summary>
             异常处理
             </summary>
@@ -2544,7 +2560,7 @@
             <param name="ection"></param>
             <param name="final"></param>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.TryCatch``1(System.Func{``0},System.Func{System.Exception,``0},System.Action)">
+        <member name="M:Synctool.StaticFramework.SyncStatic.TryCatch``1(System.Func{``0},System.Func{System.Exception,``0},System.Action)">
             <summary>
             异常处理
             </summary>
@@ -2554,20 +2570,20 @@
             <param name="final"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.RandomPho">
+        <member name="M:Synctool.StaticFramework.SyncStatic.RandomPho">
             <summary>
             随机手机
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.ConvCHN(System.Decimal)">
+        <member name="M:Synctool.StaticFramework.SyncStatic.ConvCHN(System.Decimal)">
             <summary>
             将小写的金钱转换成大写的金钱
             </summary>
             <param name="money"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.BarHtml(System.String,System.Int32,System.Int32)">
+        <member name="M:Synctool.StaticFramework.SyncStatic.BarHtml(System.String,System.Int32,System.Int32)">
             <summary>
             返回条形码
             </summary>
@@ -2576,7 +2592,7 @@
             <param name="height"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.ReadXml(System.String,System.String,System.String)">
+        <member name="M:Synctool.StaticFramework.SyncStatic.ReadXml(System.String,System.String,System.String)">
             <summary>
             读取Xml
             </summary>
@@ -2585,21 +2601,21 @@
             <param name="NodeValue"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.ConvertStamptime(System.String)">
+        <member name="M:Synctool.StaticFramework.SyncStatic.ConvertStamptime(System.String)">
             <summary>
             时间戳转时间
             </summary>
             <param name="TimeStamp"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.ConvertDateTime(System.DateTime)">
+        <member name="M:Synctool.StaticFramework.SyncStatic.ConvertDateTime(System.DateTime)">
             <summary>
             时间转时间戳
             </summary>
             <param name="TimeStamp"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.XmlSerializer``1(``0)">
+        <member name="M:Synctool.StaticFramework.SyncStatic.XmlSerializer``1(``0)">
             <summary>
             将对象序列化为XML(XmlSerializer)
             说明：此方法序列化复杂类，如果没有声明XmlInclude等特性，可能会引发“使用 XmlInclude 或 SoapInclude 特性静态指定非已知的类型。”的错误。
@@ -2609,7 +2625,7 @@
             <param name="Param"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.XmlDeserialize``1(System.String)">
+        <member name="M:Synctool.StaticFramework.SyncStatic.XmlDeserialize``1(System.String)">
             <summary>
             反系列化XML(XmlDeserialize)
             </summary>
@@ -2617,20 +2633,20 @@
             <param name="Xml"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.VerifyCode">
+        <member name="M:Synctool.StaticFramework.SyncStatic.VerifyCode">
             <summary>
             创建一个验证吗
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.Assembly(System.String)">
+        <member name="M:Synctool.StaticFramework.SyncStatic.Assembly(System.String)">
             <summary>
             获取指定的程序集
             </summary>
             <param name="AssemblyName"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.ExportExcel``1(System.Collections.Generic.IEnumerable{``0},Synctool.InternalFunc.Office.Common.ExcelType,System.String,System.Action{System.IO.Stream},System.IO.Stream,System.String)">
+        <member name="M:Synctool.StaticFramework.SyncStatic.ExportExcel``1(System.Collections.Generic.IEnumerable{``0},Synctool.InternalFramework.Office.Common.ExcelType,System.String,System.Action{System.IO.Stream},System.Object,System.IO.Stream,System.String)">
             <summary>
             导出EXCEL
             </summary>
@@ -2640,9 +2656,10 @@
             <param name="SheetName">工作表名称</param>
             <param name="stream">流</param>
             <param name="action">自定义导出</param>
+            <param name="footer">页脚内容</param>
             <param name="DateFormat">事件格式</param>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.ImportExcel``1(System.IO.Stream,Synctool.InternalFunc.Office.Common.ExcelType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.StaticFramework.SyncStatic.ImportExcel``1(System.IO.Stream,Synctool.InternalFramework.Office.Common.ExcelType,System.Boolean,System.Int32)">
             <summary>
             导入EXCEL
             </summary>
@@ -2653,7 +2670,7 @@
             <param name="SheetIndex">数据表索引</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.SetProptertiesValue``1(System.Collections.Generic.Dictionary{System.String,System.Object},``0)">
+        <member name="M:Synctool.StaticFramework.SyncStatic.SetProptertiesValue``1(System.Collections.Generic.Dictionary{System.String,System.Object},``0)">
             <summary>
             设置属性值
             </summary>
@@ -2661,7 +2678,7 @@
             <param name="JsonValue"></param>
             <param name="Param"></param>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.GetExpression``1(System.String[])">
+        <member name="M:Synctool.StaticFramework.SyncStatic.GetExpression``1(System.String[])">
             <summary>
              返回一个new表达式
             </summary>
@@ -2669,7 +2686,7 @@
             <param name="PropertyName"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.Static.SyncStatic.GetExpression``1(System.String,System.Object,Synctool.InternalFunc.Express.Common.QType)">
+        <member name="M:Synctool.StaticFramework.SyncStatic.GetExpression``1(System.String,System.Object,Synctool.InternalFramework.Express.Common.QType)">
             <summary>
              返回一个bool表达式
             </summary>
@@ -2754,10 +2771,11 @@
             自定义验证父类
             </summary>
         </member>
-        <member name="M:Synctool.ValidataFramework.ValitionBaseCustomer.UserCustomerValition(System.String)">
+        <member name="M:Synctool.ValidataFramework.ValitionBaseCustomer.UserCustomerValition(System.String,System.String)">
             <summary>
             自定义验证
             </summary>
+            <param name="propertyName">属性名称</param>
             <param name="requestParam">请求参数</param>
             <returns>T1 是否符合要求,T2 验证信息</returns>
         </member>
