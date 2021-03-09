@@ -26,10 +26,11 @@ namespace Synctool.InternalFunc.Office
         /// <param name="Data">需要被导出的数据</param>
         /// <param name="Types">Excel类型</param>
         /// <param name="SheetName">工作表名称</param>
+        /// <param name="Footer">页脚内容</param>
         /// <param name="stream">流</param>
         /// <param name="action">自定义导出</param>
         /// <param name="DateFormat">事件格式</param>
-        internal static void ExportExcel<T>(IEnumerable<T> Data, ExcelType Types, string SheetName, Action<Stream> action = null, Stream stream = null, string DateFormat = "yyyy-MM-dd") where T : class, new()
+        internal static void ExportExcel<T>(IEnumerable<T> Data, ExcelType Types, string SheetName,dynamic Footer=null, Action<Stream> action = null, Stream stream = null, string DateFormat = "yyyy-MM-dd") where T : class, new()
         {
             int Rows = Data.Count();//数据行
             var PropNames = Data.WithNames();
@@ -99,15 +100,18 @@ namespace Synctool.InternalFunc.Office
             }
             #endregion
             #region 创建页脚
-            excel.CreateExportRows(Rows + 1).CreateExportCells(0, "页脚");
-            var LastCol = Cols - 1;
-            var LastRow = Rows + 1;
-            if (LastCol != 0)
+            if (Footer != null)
             {
-                excel.MergeExportCell(Rows + 1, Rows + 1, 0, LastCol).FootExportStyle(Rows + 1, LastCol);
+                excel.CreateExportRows(Rows + 1).CreateExportCells(0, Footer);
+                var LastCol = Cols - 1;
+                var LastRow = Rows + 1;
+                if (LastCol != 0)
+                {
+                    excel.MergeExportCell(Rows + 1, Rows + 1, 0, LastCol).FootExportStyle(Rows + 1, LastCol);
+                }
+                else
+                    excel.FootExportStyle(Rows + 1, LastCol);
             }
-            else
-                excel.FootExportStyle(Rows + 1, LastCol);
             #endregion
             excel.WriteExportStream(stream ?? new MemoryStream(), action);
         }

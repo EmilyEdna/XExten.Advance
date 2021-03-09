@@ -367,11 +367,12 @@ namespace Synctool.Static
         /// <param name="SheetName">工作表名称</param>
         /// <param name="stream">流</param>
         /// <param name="action">自定义导出</param>
+        /// <param name="footer">页脚内容</param>
         /// <param name="DateFormat">事件格式</param>
         public static void ExportExcel<T>(IEnumerable<T> Data, ExcelType Types, string SheetName,
-            Action<Stream> action, Stream stream = null, string DateFormat = "yyyy-MM-dd") where T : class, new()
+            Action<Stream> action,dynamic footer=null, Stream stream = null, string DateFormat = "yyyy-MM-dd") where T : class, new()
         {
-            ExcelFactory.ExportExcel(Data, Types, SheetName, action, stream, DateFormat);
+            ExcelFactory.ExportExcel(Data, Types, SheetName, action, footer, stream, DateFormat);
         }
 
         /// <summary>
