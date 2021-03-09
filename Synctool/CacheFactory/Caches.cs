@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
+using MongoDB.Driver;
+using StackExchange.Redis;
 using Synctool.CacheFactory.MongoDbCache;
 using Synctool.CacheFactory.RedisCache;
 using Synctool.CacheFactory.RunTimeCache;
+using Synctool.Linq;
 
 namespace Synctool.CacheFactory
 {
@@ -13,6 +17,42 @@ namespace Synctool.CacheFactory
     /// </summary>
     public class Caches
     {
+
+        #region Instance
+        /// <summary>
+        /// redis
+        /// </summary>
+        public static IDatabase Redis
+        {
+            get
+            {
+                if (RedisCaches.RedisConnectionString.IsNullOrEmpty())
+                    throw new ArgumentNullException($"{nameof(RedisCaches.RedisConnectionString)} can't be null");
+                return RedisCaches.Instance.GetDatabase();
+            }
+        }
+
+        /// <summary>
+        /// mongodb
+        /// </summary>
+        public static IMongoDatabase Mongo
+        {
+            get
+            {
+                if (MongoDbCaches.MongoDBName.IsNullOrEmpty())
+                    throw new ArgumentNullException($"{nameof(MongoDbCaches.MongoDBName)} can't be null");
+                if (MongoDbCaches.MongoDBConnectionString.IsNullOrEmpty())
+                    throw new ArgumentNullException($"{nameof(MongoDbCaches.MongoDBConnectionString)} can't be null");
+                return MongoDbCaches.Instance;
+            }
+
+        }
+        /// <summary>
+        /// memoryCache
+        /// </summary>
+        public static IMemoryCache Memory => MemoryCaches.Cache;
+        #endregion
+
         #region Properties
 
         /// <summary>
