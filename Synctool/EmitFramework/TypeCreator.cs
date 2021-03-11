@@ -11,7 +11,7 @@ namespace Synctool.EmitFramework
         /// </summary>
         public static TypeCreator Instance = new Lazy<TypeCreator>().Value;
 
-        public dynamic CreateAssembly(string AssemblyName) 
+        public void CreateAssembly(string AssemblyName) 
         {
 
             AssemblyName assembly = new AssemblyName(AssemblyName);

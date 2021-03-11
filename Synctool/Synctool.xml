@@ -911,6 +911,11 @@
             </summary>
             <param name="Key"></param>
         </member>
+        <member name="F:Synctool.EmitFramework.TypeCreator.Instance">
+            <summary>
+             Instance
+            </summary>
+        </member>
         <member name="T:Synctool.HttpFramework.HttpKeyPairs">
             <summary>
             封装数据
@@ -2695,6 +2700,11 @@
             <param name="Data"></param>
             <param name="QueryType"></param>
             <returns></returns>
+        </member>
+        <member name="T:Synctool.StreamFramework.StreamBasic">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Synctool.ValidataFramework.Enum.ValitionEnum">
             <summary>
