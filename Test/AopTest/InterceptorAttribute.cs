@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test
+namespace Test.AopTest
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class InterceptorAttribute : InterceptorBaseAttribute
