@@ -1,3 +1,4 @@
+using Synctool.AopFramework;
 using System;
 using Xunit;
 
@@ -8,7 +9,8 @@ namespace Test
         [Fact]
         public void TestMethod()
         {
-     
+          var inst =  AopProxy.CreateProxyOfInherit<MyClass>();
+            inst.TestMethod(27);
         }
     }
 }
