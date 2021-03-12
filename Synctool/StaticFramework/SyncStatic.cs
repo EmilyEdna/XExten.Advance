@@ -9,6 +9,7 @@ using System.Runtime.Loader;
 using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using Chinese;
 using Microsoft.Extensions.DependencyModel;
 using Synctool.InternalFramework.Express;
 using Synctool.InternalFramework.Express.Common;
@@ -82,47 +83,15 @@ namespace Synctool.StaticFramework
         }
 
         /// <summary>
-        /// 将小写的金钱转换成大写的金钱
+        /// 获取中文拼音
         /// </summary>
-        /// <param name="money"></param>
+        /// <param name="Chinese"></param>
+        /// <param name="format"></param>
+        /// <param name="chineseType"></param>
         /// <returns></returns>
-        public static string ConvCHN(decimal money)
+        public static string CHNPinYin(string Chinese, PinyinFormat format, ChineseType chineseType = ChineseType.Simplified)
         {
-            string[] numList = { "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" };
-            string[] unitList = { "分", "角", "元", "拾", "佰", "仟", "万", "拾", "佰", "仟", "亿", "拾", "佰", "仟" };
-            if (money == 0) return "零元整";
-            StringBuilder strMoney = new StringBuilder();
-            string strNum = decimal.Truncate(money * 100).ToString();
-            int len = strNum.Length;
-            int zero = 0;
-            for (int i = 0; i < len; i++)
-            {
-                int num = int.Parse(strNum.Substring(i, 1));
-                int unitNum = len - i - 1;
-                if (num == 0)
-                {
-                    zero++;
-                    if (unitNum == 2 || unitNum == 6 || unitNum == 10)
-                    {
-                        if (unitNum == 2 || zero < 4)
-                            strMoney.Append(unitList[unitNum]);
-                        zero = 0;
-                    }
-                }
-                else
-                {
-                    if (zero > 0)
-                    {
-                        strMoney.Append(numList[0]);
-                        zero = 0;
-                    }
-                    strMoney.Append(numList[num]);
-                    strMoney.Append(unitList[unitNum]);
-                }
-            }
-            if (zero > 0)
-                strMoney.Append("整");
-            return strMoney.ToString();
+           return Pinyin.GetString(Chinese, format, chineseType);
         }
 
         /// <summary>
@@ -370,7 +339,7 @@ namespace Synctool.StaticFramework
         /// <param name="footer">页脚内容</param>
         /// <param name="DateFormat">事件格式</param>
         public static void ExportExcel<T>(IEnumerable<T> Data, ExcelType Types, string SheetName,
-            Action<Stream> action,dynamic footer=null, Stream stream = null, string DateFormat = "yyyy-MM-dd") where T : class, new()
+            Action<Stream> action, dynamic footer = null, Stream stream = null, string DateFormat = "yyyy-MM-dd") where T : class, new()
         {
             ExcelFactory.ExportExcel(Data, Types, SheetName, action, footer, stream, DateFormat);
         }
