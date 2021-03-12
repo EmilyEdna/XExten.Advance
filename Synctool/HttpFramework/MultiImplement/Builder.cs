@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Synctool.LinqFramework;
 using Synctool.CacheFramework;
+using System.Diagnostics;
 
 namespace Synctool.HttpFramework.MultiImplement
 {
@@ -95,8 +96,9 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <summary>
         /// 执行
         /// </summary>
+        /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public List<Byte[]> RunBytes()
+        public List<Byte[]> RunBytes(Action<byte[], Stopwatch> LoggerExcutor = null)
         {
             List<Byte[]> Result = new List<Byte[]>();
             HttpMultiClientWare.WeightPath.OrderByDescending(t => t.Weight).ForEnumerEach(item =>
@@ -106,14 +108,14 @@ namespace Synctool.HttpFramework.MultiImplement
                     var Data = Caches.RunTimeCacheGet<Byte[]>(item.URL.AbsoluteUri);
                     if (Data == null)
                     {
-                        Result.Add(RequestBytes(item));
+                        Result.Add(RequestBytes(item, LoggerExcutor));
                         Caches.RunTimeCacheSet(item.URL.AbsoluteUri, Result.FirstOrDefault(), CacheSecond, true);
                     }
                     else
                         Result.Add(Data);
                 }
                 else
-                    Result.Add(RequestBytes(item));
+                    Result.Add(RequestBytes(item, LoggerExcutor));
             });
             Dispose();
             return Result;
@@ -122,17 +124,19 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <summary>
         /// 执行
         /// </summary>
+        /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public async Task<List<Byte[]>> RunBytesAsync()
+        public async Task<List<Byte[]>> RunBytesAsync(Action<byte[], Stopwatch> LoggerExcutor = null)
         {
-            return await Task.FromResult(RunBytes());
+            return await Task.FromResult(RunBytes(LoggerExcutor));
         }
 
         /// <summary>
         /// 执行 default UTF-8
         /// </summary>
+        /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public List<string> RunString()
+        public List<string> RunString(Action<string, Stopwatch> LoggerExcutor = null)
         {
             List<string> Result = new List<string>();
             HttpMultiClientWare.WeightPath.OrderByDescending(t => t.Weight).ForEnumerEach(item =>
@@ -142,14 +146,14 @@ namespace Synctool.HttpFramework.MultiImplement
                     var Data = Caches.RunTimeCacheGet<string>(item.URL.AbsoluteUri);
                     if (Data.IsNullOrEmpty())
                     {
-                        Result.Add(RequestString(item));
+                        Result.Add(RequestString(item, LoggerExcutor));
                         Caches.RunTimeCacheSet(item.URL.AbsoluteUri, Result.FirstOrDefault(), CacheSecond, true);
                     }
                     else
                         Result.Add(Data);
                 }
                 else
-                    Result.Add(RequestString(item));
+                    Result.Add(RequestString(item, LoggerExcutor));
             });
             Dispose();
             return Result;
@@ -158,44 +162,103 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <summary>
         /// 执行 default UTF-8
         /// </summary>
+        /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public async Task<List<string>> RunStringAsync()
+        public async Task<List<string>> RunStringAsync(Action<String, Stopwatch> LoggerExcutor = null)
         {
-            return await Task.FromResult(RunString());
+            return await Task.FromResult(RunString(LoggerExcutor));
         }
 
         /// <summary>
         /// 请求
         /// </summary>
         /// <param name="Item"></param>
+        /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        private string RequestString(WeightURL Item)
+        private string RequestString(WeightURL Item, Action<String, Stopwatch> LoggerExcutor = null)
         {
             if (Item.Request == RequestType.GET)
-                return HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsStringAsync().Result;
+            {
+                Stopwatch wath = new Stopwatch();
+                wath.Start();
+                string result = HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsStringAsync().Result;
+                wath.Stop();
+                LoggerExcutor?.Invoke(result, wath);
+                return result;
+            }
             else if (Item.Request == RequestType.DELETE)
-                return HttpMultiClientWare.FactoryClient.DeleteAsync(Item.URL).Result.Content.ReadAsStringAsync().Result;
+            {
+                Stopwatch wath = new Stopwatch();
+                wath.Start();
+                string result = HttpMultiClientWare.FactoryClient.DeleteAsync(Item.URL).Result.Content.ReadAsStringAsync().Result;
+                wath.Stop();
+                LoggerExcutor?.Invoke(result, wath);
+                return result;
+            }
             else if (Item.Request == RequestType.POST)
-                return HttpMultiClientWare.FactoryClient.PostAsync(Item.URL, Item.Contents).Result.Content.ReadAsStringAsync().Result;
+            {
+                Stopwatch wath = new Stopwatch();
+                wath.Start();
+                string result = HttpMultiClientWare.FactoryClient.PostAsync(Item.URL, Item.Contents).Result.Content.ReadAsStringAsync().Result;
+                wath.Stop();
+                LoggerExcutor?.Invoke(result, wath);
+                return result;
+            }
             else
-                return HttpMultiClientWare.FactoryClient.PutAsync(Item.URL, Item.Contents).Result.Content.ReadAsStringAsync().Result;
+            {
+                Stopwatch wath = new Stopwatch();
+                wath.Start();
+                string result = HttpMultiClientWare.FactoryClient.PutAsync(Item.URL, Item.Contents).Result.Content.ReadAsStringAsync().Result;
+                wath.Stop();
+                LoggerExcutor?.Invoke(result, wath);
+                return result;
+            }
         }
 
         /// <summary>
         /// 请求
         /// </summary>
         /// <param name="Item"></param>
+        /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        private Byte[] RequestBytes(WeightURL Item)
+        private Byte[] RequestBytes(WeightURL Item, Action<byte[], Stopwatch> LoggerExcutor = null)
         {
             if (Item.Request == RequestType.GET)
-                return HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsByteArrayAsync().Result;
+            {
+                Stopwatch wath = new Stopwatch();
+                wath.Start();
+                byte[] result = HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsByteArrayAsync().Result;
+                wath.Stop();
+                LoggerExcutor?.Invoke(result, wath);
+                return result;
+            }
             else if (Item.Request == RequestType.DELETE)
-                return HttpMultiClientWare.FactoryClient.DeleteAsync(Item.URL).Result.Content.ReadAsByteArrayAsync().Result;
+            {
+                Stopwatch wath = new Stopwatch();
+                wath.Start();
+                byte[] result = HttpMultiClientWare.FactoryClient.DeleteAsync(Item.URL).Result.Content.ReadAsByteArrayAsync().Result;
+                wath.Stop();
+                LoggerExcutor?.Invoke(result, wath);
+                return result;
+            }
             else if (Item.Request == RequestType.POST)
-                return HttpMultiClientWare.FactoryClient.PostAsync(Item.URL, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
+            {
+                Stopwatch wath = new Stopwatch();
+                wath.Start();
+                byte[] result = HttpMultiClientWare.FactoryClient.PostAsync(Item.URL, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
+                wath.Stop();
+                LoggerExcutor?.Invoke(result, wath);
+                return result;
+            }
             else
-                return HttpMultiClientWare.FactoryClient.PutAsync(Item.URL, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
+            {
+                Stopwatch wath = new Stopwatch();
+                wath.Start();
+                byte[] result = HttpMultiClientWare.FactoryClient.PutAsync(Item.URL, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
+                wath.Stop();
+                LoggerExcutor?.Invoke(result, wath);
+                return result;
+            }
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -28,22 +29,26 @@ namespace Synctool.HttpFramework.MultiInterface
         /// <summary>
         /// 执行 default UTF-8
         /// </summary>
+        /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        List<String> RunString();
+        List<String> RunString(Action<String, Stopwatch> LoggerExcutor = null);
         /// <summary>
         /// 执行 default UTF-8
         /// </summary>
+        /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        Task<List<String>> RunStringAsync();
+        Task<List<String>> RunStringAsync(Action<String, Stopwatch> LoggerExcutor = null);
         /// <summary>
         /// 执行
         /// </summary>
+        /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        List<Byte[]> RunBytes();
+        List<Byte[]> RunBytes(Action<Byte[], Stopwatch> LoggerExcutor = null);
         /// <summary>
         /// 执行
         /// </summary>
+        /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        Task<List<Byte[]>> RunBytesAsync();
+        Task<List<Byte[]>> RunBytesAsync(Action<Byte[], Stopwatch> LoggerExcutor = null);
     }
 }
