@@ -3,7 +3,10 @@
   <PropertyGroup>
 	  <TargetFrameworks>netcoreapp3.1;netcoreapp5.0</TargetFrameworks>
 	  <Authors>EmilyEdna</Authors>
-	  <Description>XExten Package up</Description>
+	  <Description>XExten包的优化升级版本，后期只会更新这个包，不在维护XExten包</Description>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <PackageId>XExten.Advance</PackageId>
+	  <Product>XExten.Advance</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp5.0|AnyCPU'">
