@@ -1,4 +1,6 @@
-﻿using Synctool.HttpFramework.MultiInterface;
+﻿using Newtonsoft.Json.Linq;
+using Synctool.HttpFramework.MultiInterface;
+using Synctool.LinqFramework;
 using Synctool.StaticFramework;
 using System;
 using System.Collections.Generic;
@@ -58,11 +60,11 @@ namespace Synctool.HttpFramework.MultiImplement
             WeightURL WeightUri = new WeightURL
             {
                 Weight = Weight,
-                URL = new Uri(Path),
+                URL = new Uri(Path + ((Type == RequestType.GET || Type == RequestType.DELETE) ? Param.ToModel<JObject>().ByUri() : string.Empty)),
                 Request = Type,
                 UseCache = UseCache,
-                Contents = new StringContent(Param),
-                MediaTypeHeader = new MediaTypeHeaderValue("application/json")
+                Contents = (Type == RequestType.GET || Type == RequestType.DELETE) ? null : new StringContent(Param),
+                MediaTypeHeader = (Type == RequestType.GET || Type == RequestType.DELETE) ? null : new MediaTypeHeaderValue("application/json")
             };
             HttpMultiClientWare.WeightPath.Add(WeightUri);
             return HttpMultiClientWare.Nodes;
@@ -83,11 +85,11 @@ namespace Synctool.HttpFramework.MultiImplement
                 WeightURL WeightUri = new WeightURL
                 {
                     Weight = Weight,
-                    URL = new Uri(Path),
+                    URL = new Uri(Path + ((Type == RequestType.GET || Type == RequestType.DELETE) ? Param.ByUri() : string.Empty)),
                     Request = Type,
-                    Contents = new FormUrlEncodedContent(Param),
+                    Contents = (Type == RequestType.GET || Type == RequestType.DELETE) ? null : new FormUrlEncodedContent(Param),
                     UseCache = UseCache,
-                    MediaTypeHeader = new MediaTypeHeaderValue("application/x-www-form-urlencoded")
+                    MediaTypeHeader = (Type == RequestType.GET || Type == RequestType.DELETE) ? null : new MediaTypeHeaderValue("application/x-www-form-urlencoded")
                 };
                 HttpMultiClientWare.WeightPath.Add(WeightUri);
                 return HttpMultiClientWare.Nodes;
@@ -112,11 +114,11 @@ namespace Synctool.HttpFramework.MultiImplement
                 WeightURL WeightUri = new WeightURL
                 {
                     Weight = Weight,
-                    URL = new Uri(Path),
+                    URL = new Uri(Path + ((Type == RequestType.GET || Type == RequestType.DELETE) ? Param.ByUri() : string.Empty)),
                     Request = Type,
                     UseCache = UseCache,
-                    Contents = new FormUrlEncodedContent(HttpKeyPairs.KeyValuePairs(Param, MapFied)),
-                    MediaTypeHeader = new MediaTypeHeaderValue("application/x-www-form-urlencoded")
+                    Contents = (Type == RequestType.GET || Type == RequestType.DELETE) ? null : new FormUrlEncodedContent(HttpKeyPairs.KeyValuePairs(Param, MapFied)),
+                    MediaTypeHeader = (Type == RequestType.GET || Type == RequestType.DELETE) ? null : new MediaTypeHeaderValue("application/x-www-form-urlencoded")
                 };
                 HttpMultiClientWare.WeightPath.Add(WeightUri);
                 return HttpMultiClientWare.Nodes;
