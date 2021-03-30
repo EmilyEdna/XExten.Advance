@@ -1,4 +1,5 @@
 ﻿using Synctool.HttpFramework;
+using Synctool.LinqFramework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,8 +16,8 @@ namespace Test.HttpTest
         [Fact]
         public void TestMethond()
         {
-            var data = HttpMultiClient.HttpMulti.AddNode("https://www.baidu.com/")
-                   .AddNode("http://news.2010.sina.com.cn/").Build(UseHttps: true).RunString((result, wather) =>
+            var data = HttpMultiClient.HttpMulti.AddNode("https://www.baidu.com/",(new { a="1"}).ToJson(),Type:RequestType.DELETE)
+                   .Build(UseHttps: true).RunString((result, wather) =>
                    {
                        Trace.WriteLine(result);
                    });

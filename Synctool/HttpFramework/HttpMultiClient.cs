@@ -1,5 +1,7 @@
-﻿using Synctool.HttpFramework.MultiImplement;
+﻿using Newtonsoft.Json.Linq;
+using Synctool.HttpFramework.MultiImplement;
 using Synctool.HttpFramework.MultiInterface;
+using Synctool.LinqFramework;
 using Synctool.StaticFramework;
 using System;
 using System.Collections.Generic;
@@ -65,33 +67,22 @@ namespace Synctool.HttpFramework
         #endregion Header
 
         #region Cookie
+
         /// <summary>
         /// Add Cookie
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
+        /// <param name="uri"></param>
+        /// <param name="pairs"></param>
         /// <returns></returns>
-        public ICookies Cookies(string name, string value)
+        public ICookies Cookie(string uri, Dictionary<string, string> pairs) 
         {
-            Cookie Cookie = new Cookie(name, value);
-            if (HttpMultiClientWare.Container == null) throw new NullReferenceException("Please initialize the InitCookieContainer method before calling the cookie method");
-            HttpMultiClientWare.Container.Add(Cookie);
+            pairs.ForDicEach((key, val) =>
+            {
+                HttpMultiClientWare.Container.Add(new Uri(uri), new Cookie(key, val));
+            });
             return HttpMultiClientWare.Cookies;
         }
-        /// <summary>
-        /// Add Cookie
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public ICookies Cookies(string name, string value, string path)
-        {
-            Cookie Cookie = new Cookie(name, value, path);
-            if (HttpMultiClientWare.Container == null) throw new NullReferenceException("Please initialize the InitCookieContainer method before calling the cookie method");
-            HttpMultiClientWare.Container.Add(Cookie);
-            return HttpMultiClientWare.Cookies;
-        }
+
         /// <summary>
         /// Add Cookie
         /// </summary>
@@ -100,7 +91,7 @@ namespace Synctool.HttpFramework
         /// <param name="path"></param>
         /// <param name="domain"></param>
         /// <returns></returns>
-        public ICookies Cookies(string name, string value, string path, string domain)
+        public ICookies Cookie(string name, string value, string path, string domain)
         {
             Cookie Cookie = new Cookie(name, value, path, domain);
             if (HttpMultiClientWare.Container == null) throw new NullReferenceException("Please initialize the InitCookieContainer method before calling the cookie method");
@@ -118,7 +109,7 @@ namespace Synctool.HttpFramework
         /// <param name="UseCache">使用缓存</param>
         /// <param name="Weight">1~100区间</param>
         /// <returns></returns>
-        public INode AddNode(string Path, RequestType Type = RequestType.GET, bool UseCache = false, int Weight = 50)
+        public INode AddNode(string Path, RequestType Type = RequestType.POST, bool UseCache = false, int Weight = 50)
         {
             WeightURL WeightUri = new WeightURL
             {
@@ -142,14 +133,15 @@ namespace Synctool.HttpFramework
         /// <returns></returns>
         public INode AddNode(string Path, string Param, RequestType Type = RequestType.GET, bool UseCache = false, int Weight = 50)
         {
+
             WeightURL WeightUri = new WeightURL
             {
                 Weight = Weight,
-                URL = new Uri(Path),
+                URL = new Uri(Path + (Type == (RequestType.GET | RequestType.DELETE) ? Param.ToModel<JObject>().ByUri() : string.Empty)),
                 Request = Type,
-                Contents = new StringContent(Param),
+                Contents = Type == (RequestType.GET | RequestType.DELETE) ? null : new StringContent(Param),
                 UseCache = UseCache,
-                MediaTypeHeader = new MediaTypeHeaderValue("application/json")
+                MediaTypeHeader = Type == (RequestType.GET | RequestType.DELETE) ? null : new MediaTypeHeaderValue("application/json")
             };
             HttpMultiClientWare.WeightPath.Add(WeightUri);
             return HttpMultiClientWare.Nodes;
@@ -171,11 +163,11 @@ namespace Synctool.HttpFramework
                  WeightURL WeightUri = new WeightURL
                  {
                      Weight = Weight,
-                     URL = new Uri(Path),
+                     URL = new Uri(Path + (Type == (RequestType.GET | RequestType.DELETE) ? Param.ByUri() : string.Empty)),
                      Request = Type,
-                     Contents = new FormUrlEncodedContent(Param),
+                     Contents = Type == (RequestType.GET | RequestType.DELETE) ? null : new FormUrlEncodedContent(Param),
                      UseCache = UseCache,
-                     MediaTypeHeader = new MediaTypeHeaderValue("application/x-www-form-urlencoded")
+                     MediaTypeHeader = Type == (RequestType.GET | RequestType.DELETE) ? null : new MediaTypeHeaderValue("application/x-www-form-urlencoded")
                  };
                  HttpMultiClientWare.WeightPath.Add(WeightUri);
                  return HttpMultiClientWare.Nodes;
@@ -200,11 +192,11 @@ namespace Synctool.HttpFramework
                 WeightURL WeightUri = new WeightURL
                 {
                     Weight = Weight,
-                    URL = new Uri(Path),
+                    URL = new Uri(Path+(Type == (RequestType.GET | RequestType.DELETE) ? Param.ByUri() : string.Empty)),
                     Request = Type,
                     UseCache = UseCache,
-                    Contents = new FormUrlEncodedContent(HttpKeyPairs.KeyValuePairs(Param, MapFied)),
-                    MediaTypeHeader = new MediaTypeHeaderValue("application/x-www-form-urlencoded")
+                    Contents = Type == RequestType.GET ? null : new FormUrlEncodedContent(HttpKeyPairs.KeyValuePairs(Param, MapFied)),
+                    MediaTypeHeader = Type == (RequestType.GET | RequestType.DELETE) ? null : new MediaTypeHeaderValue("application/x-www-form-urlencoded")
                 };
                 HttpMultiClientWare.WeightPath.Add(WeightUri);
                 return HttpMultiClientWare.Nodes;

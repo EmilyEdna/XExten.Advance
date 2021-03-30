@@ -126,24 +126,12 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <summary>
         /// Add Cookie
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
+        /// <param name="uri"></param>
+        /// <param name="pairs"></param>
         /// <returns></returns>
-        public ICookies Cookie(string name, string value)
+        public ICookies Cookie(string uri, Dictionary<string, string> pairs)
         {
-            return HttpMultiClientWare.Cookies.Cookie(name, value);
-        }
-
-        /// <summary>
-        /// Add Cookie
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public ICookies Cookie(string name, string value, string path)
-        {
-            return HttpMultiClientWare.Cookies.Cookie(name, value, path);
+            return HttpMultiClientWare.Cookies.Cookie(uri, pairs);
         }
 
         /// <summary>

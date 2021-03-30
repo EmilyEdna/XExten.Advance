@@ -1,4 +1,5 @@
 ﻿using Synctool.HttpFramework.MultiInterface;
+using Synctool.LinqFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,27 +29,15 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <summary>
         /// Add Cookie
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
+        /// <param name="uri"></param>
+        /// <param name="pairs"></param>
         /// <returns></returns>
-        public ICookies Cookie(string name, string value)
+        public ICookies Cookie(string uri, Dictionary<string, string> pairs)
         {
-            Cookie Cookie = new Cookie(name, value);
-            HttpMultiClientWare.Container.Add(Cookie);
-            return HttpMultiClientWare.Cookies;
-        }
-
-        /// <summary>
-        /// Add Cookie
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public ICookies Cookie(string name, string value, string path)
-        {
-            Cookie Cookie = new Cookie(name, value, path);
-            HttpMultiClientWare.Container.Add(Cookie);
+            pairs.ForDicEach((key, val) =>
+            {
+                HttpMultiClientWare.Container.Add(new Uri(uri), new Cookie(key, val));
+            });
             return HttpMultiClientWare.Cookies;
         }
 

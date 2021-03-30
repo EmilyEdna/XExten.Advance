@@ -1036,24 +1036,15 @@
             <param name="headers"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.HttpMultiClient.Cookies(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Cookie
             </summary>
-            <param name="name"></param>
-            <param name="value"></param>
+            <param name="uri"></param>
+            <param name="pairs"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.HttpMultiClient.Cookies(System.String,System.String,System.String)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="path"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Synctool.HttpFramework.HttpMultiClient.Cookies(System.String,System.String,System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.Cookie(System.String,System.String,System.String,System.String)">
             <summary>
             Add Cookie
             </summary>
@@ -1190,21 +1181,12 @@
             <param name="UseHttps"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.Cookie(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Cookie
             </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.Cookie(System.String,System.String,System.String)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="path"></param>
+            <param name="uri"></param>
+            <param name="pairs"></param>
             <returns></returns>
         </member>
         <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.Cookie(System.String,System.String,System.String,System.String)">
@@ -1305,21 +1287,12 @@
             <param name="headers"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.Cookie(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Cookie
             </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.Cookie(System.String,System.String,System.String)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="path"></param>
+            <param name="uri"></param>
+            <param name="pairs"></param>
             <returns></returns>
         </member>
         <member name="M:Synctool.HttpFramework.MultiImplement.Headers.Cookie(System.String,System.String,System.String,System.String)">
@@ -1435,21 +1408,12 @@
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Node.Cookie(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Node.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Cookie
             </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Node.Cookie(System.String,System.String,System.String)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="path"></param>
+            <param name="uri"></param>
+            <param name="pairs"></param>
             <returns></returns>
         </member>
         <member name="M:Synctool.HttpFramework.MultiImplement.Node.Cookie(System.String,System.String,System.String,System.String)">
@@ -1598,21 +1562,12 @@
             <param name="headers"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.Cookie(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Cookie
             </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.Cookie(System.String,System.String,System.String)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="path"></param>
+            <param name="uri"></param>
+            <param name="pairs"></param>
             <returns></returns>
         </member>
         <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.Cookie(System.String,System.String,System.String,System.String)">
@@ -1698,21 +1653,12 @@
             <param name="headers"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.Cookie(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Cookie
             </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.Cookie(System.String,System.String,System.String)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="path"></param>
+            <param name="uri"></param>
+            <param name="pairs"></param>
             <returns></returns>
         </member>
         <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.Cookie(System.String,System.String,System.String,System.String)">
@@ -1798,21 +1744,12 @@
             <param name="headers"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.INode.Cookie(System.String,System.String)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.INode.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Cookie
             </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.INode.Cookie(System.String,System.String,System.String)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="path"></param>
+            <param name="uri"></param>
+            <param name="pairs"></param>
             <returns></returns>
         </member>
         <member name="M:Synctool.HttpFramework.MultiInterface.INode.Cookie(System.String,System.String,System.String,System.String)">
@@ -2429,6 +2366,22 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:Synctool.LinqFramework.SyncLinq.ByUriAsync``1(``0,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            将实体转为URL参数
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="MapFied"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.LinqFramework.SyncLinq.ByUriAsync(System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            将键值对转为URL参数
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
         <member name="M:Synctool.LinqFramework.SyncLinq.WithNamesAsync``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             返回实体中所有的字段名
@@ -2572,6 +2525,22 @@
             </summary>
             <typeparam name="K"></typeparam>
             <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.LinqFramework.SyncLinq.ByUri``1(``0,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            将实体转为URL参数
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="MapFied"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.LinqFramework.SyncLinq.ByUri(System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            将键值对转为URL参数
+            </summary>
             <param name="param"></param>
             <returns></returns>
         </member>

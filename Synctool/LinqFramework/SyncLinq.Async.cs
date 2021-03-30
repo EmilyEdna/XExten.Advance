@@ -142,6 +142,30 @@ namespace Synctool.LinqFramework
         }
         #endregion
 
+        #region By
+        /// <summary>
+        /// 将实体转为URL参数
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <param name="MapFied"></param>
+        /// <returns></returns>
+        public static async Task<string> ByUriAsync<T>(this T param, IDictionary<string, string> MapFied = null)
+        {
+            return await Task.Run(() => ByUri(param, MapFied));
+        }
+
+        /// <summary>
+        /// 将键值对转为URL参数
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static async Task<string> ByUriAsync(this List<KeyValuePair<string, string>> param)
+        {
+            return await Task.Run(() => ByUri(param));
+        }
+        #endregion
+
         #region With
         /// <summary>
         /// 返回实体中所有的字段名
