@@ -109,7 +109,7 @@ namespace Synctool.HttpFramework
         /// <param name="UseCache">使用缓存</param>
         /// <param name="Weight">1~100区间</param>
         /// <returns></returns>
-        public INode AddNode(string Path, RequestType Type = RequestType.POST, bool UseCache = false, int Weight = 50)
+        public INode AddNode(string Path, RequestType Type = RequestType.GET, bool UseCache = false, int Weight = 50)
         {
             WeightURL WeightUri = new WeightURL
             {
