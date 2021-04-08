@@ -2269,6 +2269,55 @@
             LinqExtension
             </summary>
         </member>
+        <member name="M:Synctool.LinqFramework.SyncLinq.AsInt(System.String)">
+            <summary>
+            To Int
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.LinqFramework.SyncLinq.AsLong(System.String)">
+            <summary>
+            To Long
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.LinqFramework.SyncLinq.AsDateTime(System.String)">
+            <summary>
+            To DateTime
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.LinqFramework.SyncLinq.AsString(System.Object)">
+            <summary>
+            To String
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.LinqFramework.SyncLinq.AsBool(System.String)">
+            <summary>
+            To Bool
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.LinqFramework.SyncLinq.AsBool(System.Int32)">
+            <summary>
+            To Bool
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.LinqFramework.SyncLinq.AsBytes(System.String)">
+            <summary>
+            To Bytes
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
         <member name="M:Synctool.LinqFramework.SyncLinq.ToMd5Async(System.String,System.Int32)">
             <summary>
             Md5
