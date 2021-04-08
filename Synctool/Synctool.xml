@@ -2318,6 +2318,13 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:Synctool.LinqFramework.SyncLinq.AsDecimal(System.String)">
+            <summary>
+            To Decimal
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
         <member name="M:Synctool.LinqFramework.SyncLinq.ToMd5Async(System.String,System.Int32)">
             <summary>
             Md5
