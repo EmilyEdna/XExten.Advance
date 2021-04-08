@@ -75,6 +75,16 @@ namespace Synctool.LinqFramework
         {
             return Encoding.Default.GetBytes(param);
         }
+        /// <summary>
+        /// To Decimal
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static decimal AsDecimal(this string param)
+        {
+            decimal.TryParse(param, out decimal result);
+            return result;
+        }
         #endregion
     }
 }
