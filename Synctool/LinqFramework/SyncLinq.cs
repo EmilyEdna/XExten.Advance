@@ -15,6 +15,8 @@ using MessagePack;
 using MessagePack.Resolvers;
 using Synctool.InternalFramework.Express;
 using Newtonsoft.Json.Linq;
+using Autofac;
+using Synctool.AopFramework;
 
 namespace Synctool.LinqFramework
 {
@@ -277,7 +279,7 @@ namespace Synctool.LinqFramework
                     if (MapFied != null)
                     {
                         MapFied.TryGetValue(t.Name, out string value);
-                        if(value.IsNullOrEmpty())
+                        if (value.IsNullOrEmpty())
                             result.Add($"{t.Name.ToLower()}={t.Value}");
                         else
                             result.Add($"{value.ToLower()}={t.Value}");
@@ -401,5 +403,20 @@ namespace Synctool.LinqFramework
         }
         #endregion
 
+        #region Aop
+        /// <summary>
+        /// 通过Auto使用Proxy
+        /// </summary>
+        /// <typeparam name="TService"></typeparam>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static TService ResolveProxy<TService>(this IComponentContext context)
+        {
+            if (!context.IsRegistered<TService>())
+                throw new NullReferenceException("this service is not regist!");
+            var Reuslt = context.Resolve<TService>();
+            return (TService)AopProxy.CreateProxyOfInherit(Reuslt.GetType());
+        }
+        #endregion
     }
 }

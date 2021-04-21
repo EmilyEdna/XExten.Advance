@@ -2651,6 +2651,14 @@
             <param name="ExprTwo"></param>
             <returns></returns>
         </member>
+        <member name="M:Synctool.LinqFramework.SyncLinq.ResolveProxy``1(Autofac.IComponentContext)">
+            <summary>
+            通过Auto使用Proxy
+            </summary>
+            <typeparam name="TService"></typeparam>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
         <member name="T:Synctool.StaticFramework.SyncStatic">
             <summary>
             StaticUtil

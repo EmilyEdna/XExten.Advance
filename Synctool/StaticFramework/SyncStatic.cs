@@ -91,7 +91,7 @@ namespace Synctool.StaticFramework
         /// <returns></returns>
         public static string CHNPinYin(string Chinese, PinyinFormat format, ChineseType chineseType = ChineseType.Simplified)
         {
-           return Pinyin.GetString(Chinese, format, chineseType);
+            return Pinyin.GetString(Chinese, format, chineseType);
         }
 
         /// <summary>
@@ -156,15 +156,14 @@ namespace Synctool.StaticFramework
 
             param = "*" + param.ToUpper() + "*";
             string Result = "";
-            try
+            TryCatch(() =>
             {
                 foreach (char ch in param)
                 {
                     Result += Has[ch].ToString();
                     Result += "0";
                 }
-            }
-            catch { return "not supported char!"; }
+            }, ex => throw new Exception("not supported char!"));
             string Html = "";
             string Color;
             foreach (char res in Result)
