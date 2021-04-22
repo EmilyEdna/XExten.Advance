@@ -5,10 +5,12 @@ using Synctool.StaticFramework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Authentication;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Synctool.HttpFramework.MultiImplement
@@ -29,6 +31,7 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <returns></returns>
         public IBuilder Build(int TimeOut = 60, Boolean UseHttps = false)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             if (HttpMultiClientWare.WeightPath.FirstOrDefault().URL == null)
                 throw new Exception("Request address is not set!");
             SyncStatic.TryCatch(() =>
@@ -103,7 +106,7 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public List<Byte[]> RunBytes(Action<CookieContainer> Container = null,Action<byte[], Stopwatch> LoggerExcutor = null)
+        public List<Byte[]> RunBytes(Action<CookieContainer, Uri> Container = null,Action<byte[], Stopwatch> LoggerExcutor = null)
         {
             List<Byte[]> Result = new List<Byte[]>();
             HttpMultiClientWare.WeightPath.OrderByDescending(t => t.Weight).ForEnumerEach(item =>
@@ -132,7 +135,7 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public async Task<List<Byte[]>> RunBytesAsync(Action<CookieContainer> Container = null,Action<byte[], Stopwatch> LoggerExcutor = null)
+        public async Task<List<Byte[]>> RunBytesAsync(Action<CookieContainer, Uri> Container = null,Action<byte[], Stopwatch> LoggerExcutor = null)
         {
             return await Task.FromResult(RunBytes(Container,LoggerExcutor));
         }
@@ -143,7 +146,7 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public List<string> RunString(Action<CookieContainer> Container = null,Action<string, Stopwatch> LoggerExcutor = null)
+        public List<string> RunString(Action<CookieContainer, Uri> Container = null,Action<string, Stopwatch> LoggerExcutor = null)
         {
             List<string> Result = new List<string>();
             HttpMultiClientWare.WeightPath.OrderByDescending(t => t.Weight).ForEnumerEach(item =>
@@ -172,7 +175,7 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public async Task<List<string>> RunStringAsync(Action<CookieContainer> Container = null,Action < String, Stopwatch> LoggerExcutor = null)
+        public async Task<List<string>> RunStringAsync(Action<CookieContainer, Uri> Container = null,Action < String, Stopwatch> LoggerExcutor = null)
         {
             return await Task.FromResult(RunString(Container,LoggerExcutor));
         }
@@ -184,15 +187,18 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        private string RequestString(WeightURL Item, Action<CookieContainer> Container = null, Action<String, Stopwatch> LoggerExcutor = null)
+        private string RequestString(WeightURL Item, Action<CookieContainer, Uri> Container = null, Action<String, Stopwatch> LoggerExcutor = null)
         {
             if (Item.Request == RequestType.GET)
             {
                 Stopwatch wath = new Stopwatch();
                 wath.Start();
-                string result = HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsStringAsync().Result;
+                Stream stream = HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsStreamAsync().Result;
+                if (stream.Length < 0) return null;
+                using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
+                string result = reader.ReadToEnd();
                 wath.Stop();
-                Container?.Invoke(HttpMultiClientWare.Container);
+                Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -200,9 +206,12 @@ namespace Synctool.HttpFramework.MultiImplement
             {
                 Stopwatch wath = new Stopwatch();
                 wath.Start();
-                string result = HttpMultiClientWare.FactoryClient.DeleteAsync(Item.URL).Result.Content.ReadAsStringAsync().Result;
+                Stream stream = HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsStreamAsync().Result;
+                if (stream.Length < 0) return null;
+                using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
+                string result = reader.ReadToEnd();
                 wath.Stop();
-                Container?.Invoke(HttpMultiClientWare.Container);
+                 Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -210,9 +219,12 @@ namespace Synctool.HttpFramework.MultiImplement
             {
                 Stopwatch wath = new Stopwatch();
                 wath.Start();
-                string result = HttpMultiClientWare.FactoryClient.PostAsync(Item.URL, Item.Contents).Result.Content.ReadAsStringAsync().Result;
+                Stream stream = HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsStreamAsync().Result;
+                if (stream.Length < 0) return null;
+                using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
+                string result = reader.ReadToEnd();
                 wath.Stop();
-                Container?.Invoke(HttpMultiClientWare.Container);
+                 Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -220,9 +232,12 @@ namespace Synctool.HttpFramework.MultiImplement
             {
                 Stopwatch wath = new Stopwatch();
                 wath.Start();
-                string result = HttpMultiClientWare.FactoryClient.PutAsync(Item.URL, Item.Contents).Result.Content.ReadAsStringAsync().Result;
+                Stream stream = HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsStreamAsync().Result;
+                if (stream.Length < 0) return null;
+                using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
+                string result = reader.ReadToEnd();
                 wath.Stop();
-                Container?.Invoke(HttpMultiClientWare.Container);
+                 Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -235,7 +250,7 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        private Byte[] RequestBytes(WeightURL Item, Action<CookieContainer> Container = null,Action<byte[], Stopwatch> LoggerExcutor = null)
+        private Byte[] RequestBytes(WeightURL Item, Action<CookieContainer, Uri> Container = null,Action<byte[], Stopwatch> LoggerExcutor = null)
         {
             if (Item.Request == RequestType.GET)
             {
@@ -243,7 +258,7 @@ namespace Synctool.HttpFramework.MultiImplement
                 wath.Start();
                 byte[] result = HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsByteArrayAsync().Result;
                 wath.Stop();
-                Container?.Invoke(HttpMultiClientWare.Container);
+                 Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -253,7 +268,7 @@ namespace Synctool.HttpFramework.MultiImplement
                 wath.Start();
                 byte[] result = HttpMultiClientWare.FactoryClient.DeleteAsync(Item.URL).Result.Content.ReadAsByteArrayAsync().Result;
                 wath.Stop();
-                Container?.Invoke(HttpMultiClientWare.Container);
+                 Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -263,7 +278,7 @@ namespace Synctool.HttpFramework.MultiImplement
                 wath.Start();
                 byte[] result = HttpMultiClientWare.FactoryClient.PostAsync(Item.URL, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
                 wath.Stop();
-                Container?.Invoke(HttpMultiClientWare.Container);
+                 Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -273,7 +288,7 @@ namespace Synctool.HttpFramework.MultiImplement
                 wath.Start();
                 byte[] result = HttpMultiClientWare.FactoryClient.PutAsync(Item.URL, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
                 wath.Stop();
-                Container?.Invoke(HttpMultiClientWare.Container);
+                 Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }

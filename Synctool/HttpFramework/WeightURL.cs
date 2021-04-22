@@ -22,6 +22,10 @@ namespace Synctool.HttpFramework
         /// </summary>
         public int Weight { get; set; }
         /// <summary>
+        /// 编码格式
+        /// </summary>
+        public string Encoding { get; set; }
+        /// <summary>
         /// 路由
         /// </summary>
         public Uri URL { get; set; }

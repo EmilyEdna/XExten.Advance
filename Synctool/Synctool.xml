@@ -1054,39 +1054,42 @@
             <param name="domain"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.HttpMultiClient.AddNode(System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.AddNode(System.String,Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path">请求地址</param>
             <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.HttpMultiClient.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path"></param>
             <param name="Param"></param>
              <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.HttpMultiClient.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path"></param>
             <param name="Param"></param>
             <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.HttpMultiClient.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.HttpMultiClient.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1095,6 +1098,7 @@
             <param name="Param">实体模型</param>
             <param name="MapFied">映射字段</param>
              <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight">1~100区间</param>
             <returns></returns>
@@ -1119,7 +1123,7 @@
             <param name="CacheSeconds">单位：Seconds</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunBytes(System.Action{System.Net.CookieContainer},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunBytes(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
             <summary>
             执行 bytes
             </summary>
@@ -1127,7 +1131,7 @@
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunBytesAsync(System.Action{System.Net.CookieContainer},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunBytesAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
             <summary>
             执行 bytes
             </summary>
@@ -1135,7 +1139,7 @@
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunString(System.Action{System.Net.CookieContainer},System.Action{System.String,System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunString(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.String,System.Diagnostics.Stopwatch})">
             <summary>
             执行 default UTF-8
             </summary>
@@ -1143,7 +1147,7 @@
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunStringAsync(System.Action{System.Net.CookieContainer},System.Action{System.String,System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunStringAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.String,System.Diagnostics.Stopwatch})">
             <summary>
             执行 default UTF-8
             </summary>
@@ -1151,7 +1155,7 @@
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RequestString(Synctool.HttpFramework.WeightURL,System.Action{System.Net.CookieContainer},System.Action{System.String,System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RequestString(Synctool.HttpFramework.WeightURL,System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.String,System.Diagnostics.Stopwatch})">
             <summary>
             请求
             </summary>
@@ -1160,7 +1164,7 @@
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RequestBytes(Synctool.HttpFramework.WeightURL,System.Action{System.Net.CookieContainer},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RequestBytes(Synctool.HttpFramework.WeightURL,System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
             <summary>
             请求
             </summary>
@@ -1220,39 +1224,42 @@
             <param name="headers"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.AddNode(System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.AddNode(System.String,Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path"></param>
             <param name="Type"></param>
+            <param name="Encoding"></param>
             <param name="UseCache"></param>
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path"></param>
             <param name="Param"></param>
             <param name="Type"></param>
+            <param name="Encoding"></param>
             <param name="UseCache"></param>
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
+            <summary>
+            Add Path
+            </summary>
+            <param name="Path"></param>
+            <param name="Param"></param>
+            <param name="Type"></param>
+            <param name="Encoding"></param>
+            <param name="UseCache"></param>
+            <param name="Weight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.HttpFramework.MultiImplement.Cookies.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1261,6 +1268,7 @@
             <param name="Param"></param>
             <param name="MapFied"></param>
             <param name="Type"></param>
+            <param name="Encoding"></param>
             <param name="UseCache"></param>
             <param name="Weight"></param>
             <returns></returns>
@@ -1311,39 +1319,42 @@
             <param name="domain"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.AddNode(System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.AddNode(System.String,Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path"></param>
             <param name="Type"></param>
+            <param name="Encoding"></param>
             <param name="UseCache"></param>
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path"></param>
             <param name="Param"></param>
             <param name="Type"></param>
+            <param name="Encoding"></param>
             <param name="UseCache"></param>
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
+            <summary>
+            Add Path
+            </summary>
+            <param name="Path"></param>
+            <param name="Param"></param>
+            <param name="Type"></param>
+            <param name="Encoding"></param>
+            <param name="UseCache"></param>
+            <param name="Weight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.HttpFramework.MultiImplement.Headers.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1352,6 +1363,7 @@
             <param name="Param"></param>
             <param name="MapFied"></param>
             <param name="Type"></param>
+            <param name="Encoding"></param>
             <param name="UseCache"></param>
             <param name="Weight"></param>
             <returns></returns>
@@ -1369,39 +1381,42 @@
             <param name="UseHttps"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Node.AddNode(System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Node.AddNode(System.String,Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path">请求地址</param>
             <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Node.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Node.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path"></param>
             <param name="Param"></param>
              <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Node.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Node.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path"></param>
             <param name="Param"></param>
             <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Node.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Node.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1410,6 +1425,7 @@
             <param name="Param">实体模型</param>
             <param name="MapFied">映射字段</param>
              <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight">1~100区间</param>
             <returns></returns>
@@ -1467,7 +1483,7 @@
             <param name="CacheSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunString(System.Action{System.Net.CookieContainer},System.Action{System.String,System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunString(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.String,System.Diagnostics.Stopwatch})">
             <summary>
             执行 default UTF-8
             </summary>
@@ -1475,7 +1491,7 @@
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunStringAsync(System.Action{System.Net.CookieContainer},System.Action{System.String,System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunStringAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.String,System.Diagnostics.Stopwatch})">
             <summary>
             执行 default UTF-8
             </summary>
@@ -1483,7 +1499,7 @@
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunBytes(System.Action{System.Net.CookieContainer},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunBytes(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
             <summary>
             执行 bytes
             </summary>
@@ -1491,7 +1507,7 @@
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunBytesAsync(System.Action{System.Net.CookieContainer},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunBytesAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
             <summary>
             执行 bytes
             </summary>
@@ -1512,39 +1528,42 @@
             <param name="UseHttps"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.AddNode(System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.AddNode(System.String,Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path">请求地址</param>
             <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path"></param>
             <param name="Param"></param>
              <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path"></param>
             <param name="Param"></param>
             <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.ICookies.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1553,6 +1572,7 @@
             <param name="Param">实体模型</param>
             <param name="MapFied">映射字段</param>
              <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight">1~100区间</param>
             <returns></returns>
@@ -1603,39 +1623,42 @@
             <param name="UseHttps"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.AddNode(System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.AddNode(System.String,Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path">请求地址</param>
             <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path"></param>
             <param name="Param"></param>
              <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path"></param>
             <param name="Param"></param>
             <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IHeaders.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
@@ -1644,6 +1667,7 @@
             <param name="Param">实体模型</param>
             <param name="MapFied">映射字段</param>
              <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
             <param name="Weight">1~100区间</param>
             <returns></returns>
@@ -1694,49 +1718,53 @@
             <param name="UseHttps"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.INode.AddNode(System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.INode.AddNode(System.String,Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
-            <param name="Path"></param>
-            <param name="Type"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
+            <param name="Path">请求地址</param>
+            <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
+            <param name="UseCache">使用缓存</param>
+            <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.INode.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.INode.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.INode.AddNode(System.String,System.String,Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <param name="Path"></param>
             <param name="Param"></param>
-            <param name="Type"></param>
-            <param name="UseCache"></param>
+             <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
+            <param name="UseCache">使用缓存</param>
             <param name="Weight"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.INode.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.Boolean,System.Int32)">
+        <member name="M:Synctool.HttpFramework.MultiInterface.INode.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
+            <summary>
+            Add Path
+            </summary>
+            <param name="Path"></param>
+            <param name="Param"></param>
+            <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
+            <param name="UseCache">使用缓存</param>
+            <param name="Weight">1~100区间</param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.HttpFramework.MultiInterface.INode.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},Synctool.HttpFramework.RequestType,System.String,System.Boolean,System.Int32)">
             <summary>
             Add Path
             </summary>
             <typeparam name="T"></typeparam>
             <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="MapFied"></param>
-            <param name="Type"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
+            <param name="Param">实体模型</param>
+            <param name="MapFied">映射字段</param>
+             <param name="Type">请求类型</param>
+            <param name="Encoding">编码格式</param>
+            <param name="UseCache">使用缓存</param>
+            <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
         <member name="M:Synctool.HttpFramework.MultiInterface.INode.Header(System.String,System.String)">
@@ -1810,6 +1838,11 @@
         <member name="P:Synctool.HttpFramework.WeightURL.Weight">
             <summary>
             负载比
+            </summary>
+        </member>
+        <member name="P:Synctool.HttpFramework.WeightURL.Encoding">
+            <summary>
+            编码格式
             </summary>
         </member>
         <member name="P:Synctool.HttpFramework.WeightURL.URL">

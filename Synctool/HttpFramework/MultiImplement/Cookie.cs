@@ -82,12 +82,13 @@ namespace Synctool.HttpFramework.MultiImplement
         /// </summary>
         /// <param name="Path"></param>
         /// <param name="Type"></param>
+        /// <param name="Encoding"></param>
         /// <param name="UseCache"></param>
         /// <param name="Weight"></param>
         /// <returns></returns>
-        public INode AddNode(string Path, RequestType Type = RequestType.GET, bool UseCache = false, int Weight = 50)
+        public INode AddNode(string Path, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50)
         {
-            return HttpMultiClientWare.Nodes.AddNode(Path, Type, UseCache, Weight);
+            return HttpMultiClientWare.Nodes.AddNode(Path, Type, Encoding, UseCache, Weight);
         }
 
         /// <summary>
@@ -96,12 +97,13 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <param name="Path"></param>
         /// <param name="Param"></param>
         /// <param name="Type"></param>
+        /// <param name="Encoding"></param>
         /// <param name="UseCache"></param>
         /// <param name="Weight"></param>
         /// <returns></returns>
-        public INode AddNode(string Path, string Param, RequestType Type = RequestType.GET, bool UseCache = false, int Weight = 50)
+        public INode AddNode(string Path, string Param, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50)
         {
-            return HttpMultiClientWare.Nodes.AddNode(Path, Param, Type, UseCache, Weight);
+            return HttpMultiClientWare.Nodes.AddNode(Path, Param, Type, Encoding, UseCache, Weight);
         }
 
         /// <summary>
@@ -110,12 +112,13 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <param name="Path"></param>
         /// <param name="Param"></param>
         /// <param name="Type"></param>
+        /// <param name="Encoding"></param>
         /// <param name="UseCache"></param>
         /// <param name="Weight"></param>
         /// <returns></returns>
-        public INode AddNode(string Path, List<KeyValuePair<String, String>> Param, RequestType Type = RequestType.GET, bool UseCache = false, int Weight = 50)
+        public INode AddNode(string Path, List<KeyValuePair<String, String>> Param, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50)
         {
-            return HttpMultiClientWare.Nodes.AddNode(Path, Param, Type, UseCache, Weight);
+            return HttpMultiClientWare.Nodes.AddNode(Path, Param, Type, Encoding, UseCache, Weight);
         }
 
         /// <summary>
@@ -126,12 +129,13 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <param name="Param"></param>
         /// <param name="MapFied"></param>
         /// <param name="Type"></param>
+        /// <param name="Encoding"></param>
         /// <param name="UseCache"></param>
         /// <param name="Weight"></param>
         /// <returns></returns>
-        public INode AddNode<T>(string Path, T Param, IDictionary<string, string> MapFied = null, RequestType Type = RequestType.GET, bool UseCache = false, int Weight = 50) where T : class, new()
+        public INode AddNode<T>(string Path, T Param, IDictionary<string, string> MapFied = null, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50) where T : class, new()
         {
-            return HttpMultiClientWare.Nodes.AddNode(Path, Param, MapFied, Type, UseCache, Weight);
+            return HttpMultiClientWare.Nodes.AddNode(Path, Param, MapFied, Type, Encoding, UseCache, Weight);
         }
     }
 }

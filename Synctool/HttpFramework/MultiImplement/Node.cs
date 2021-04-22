@@ -24,46 +24,49 @@ namespace Synctool.HttpFramework.MultiImplement
         {
             return HttpMultiClientWare.Builder.Build(TimeOut, UseHttps);
         }
-
         /// <summary>
         /// Add Path
         /// </summary>
         /// <param name="Path">请求地址</param>
         /// <param name="Type">请求类型</param>
+        /// <param name="Encoding">编码格式</param>
         /// <param name="UseCache">使用缓存</param>
         /// <param name="Weight">1~100区间</param>
         /// <returns></returns>
-        public INode AddNode(string Path, RequestType Type = RequestType.GET, bool UseCache = false, int Weight = 50)
+        public INode AddNode(string Path, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50)
         {
             WeightURL WeightUri = new WeightURL
             {
                 Weight = Weight,
                 URL = new Uri(Path),
                 Request = Type,
-                UseCache=UseCache
+                UseCache = UseCache,
+                Encoding = Encoding
             };
             HttpMultiClientWare.WeightPath.Add(WeightUri);
             return HttpMultiClientWare.Nodes;
         }
-
         /// <summary>
         /// Add Path
         /// </summary>
         /// <param name="Path"></param>
         /// <param name="Param"></param>
         ///  <param name="Type">请求类型</param>
+        /// <param name="Encoding">编码格式</param>
         /// <param name="UseCache">使用缓存</param>
         /// <param name="Weight"></param>
         /// <returns></returns>
-        public INode AddNode(string Path, string Param, RequestType Type = RequestType.GET, bool UseCache = false, int Weight = 50)
+        public INode AddNode(string Path, string Param, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50)
         {
+
             WeightURL WeightUri = new WeightURL
             {
                 Weight = Weight,
                 URL = new Uri(Path + ((Type == RequestType.GET || Type == RequestType.DELETE) ? Param.ToModel<JObject>().ByUri() : string.Empty)),
                 Request = Type,
-                UseCache = UseCache,
                 Contents = (Type == RequestType.GET || Type == RequestType.DELETE) ? null : new StringContent(Param),
+                UseCache = UseCache,
+                Encoding = Encoding,
                 MediaTypeHeader = (Type == RequestType.GET || Type == RequestType.DELETE) ? null : new MediaTypeHeaderValue("application/json")
             };
             HttpMultiClientWare.WeightPath.Add(WeightUri);
@@ -76,10 +79,12 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <param name="Path"></param>
         /// <param name="Param"></param>
         /// <param name="Type">请求类型</param>
+        /// <param name="Encoding">编码格式</param>
         /// <param name="UseCache">使用缓存</param>
         /// <param name="Weight">1~100区间</param>
         /// <returns></returns>
-        public INode AddNode(string Path, List<KeyValuePair<String, String>> Param, RequestType Type = RequestType.GET, bool UseCache = false, int Weight = 50) {
+        public INode AddNode(string Path, List<KeyValuePair<String, String>> Param, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50)
+        {
             return SyncStatic.TryCatch(() =>
             {
                 WeightURL WeightUri = new WeightURL
@@ -89,6 +94,7 @@ namespace Synctool.HttpFramework.MultiImplement
                     Request = Type,
                     Contents = (Type == RequestType.GET || Type == RequestType.DELETE) ? null : new FormUrlEncodedContent(Param),
                     UseCache = UseCache,
+                    Encoding = Encoding,
                     MediaTypeHeader = (Type == RequestType.GET || Type == RequestType.DELETE) ? null : new MediaTypeHeaderValue("application/x-www-form-urlencoded")
                 };
                 HttpMultiClientWare.WeightPath.Add(WeightUri);
@@ -104,10 +110,11 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <param name="Param">实体模型</param>
         /// <param name="MapFied">映射字段</param>
         ///  <param name="Type">请求类型</param>
+        /// <param name="Encoding">编码格式</param>
         /// <param name="UseCache">使用缓存</param>
         /// <param name="Weight">1~100区间</param>
         /// <returns></returns>
-        public INode AddNode<T>(string Path, T Param, IDictionary<string, string> MapFied = null, RequestType Type = RequestType.GET, bool UseCache = false, int Weight = 50) where T : class, new()
+        public INode AddNode<T>(string Path, T Param, IDictionary<string, string> MapFied = null, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50) where T : class, new()
         {
             return SyncStatic.TryCatch(() =>
             {
@@ -117,6 +124,7 @@ namespace Synctool.HttpFramework.MultiImplement
                     URL = new Uri(Path + ((Type == RequestType.GET || Type == RequestType.DELETE) ? Param.ByUri() : string.Empty)),
                     Request = Type,
                     UseCache = UseCache,
+                    Encoding = Encoding,
                     Contents = (Type == RequestType.GET || Type == RequestType.DELETE) ? null : new FormUrlEncodedContent(HttpKeyPairs.KeyValuePairs(Param, MapFied)),
                     MediaTypeHeader = (Type == RequestType.GET || Type == RequestType.DELETE) ? null : new MediaTypeHeaderValue("application/x-www-form-urlencoded")
                 };

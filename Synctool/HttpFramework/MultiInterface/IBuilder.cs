@@ -33,27 +33,27 @@ namespace Synctool.HttpFramework.MultiInterface
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        List<String> RunString(Action<CookieContainer> Container = null, Action<String, Stopwatch> LoggerExcutor = null);
+        List<String> RunString(Action<CookieContainer, Uri> Container = null, Action<String, Stopwatch> LoggerExcutor = null);
         /// <summary>
         /// 执行 default UTF-8
         /// </summary>
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        Task<List<String>> RunStringAsync(Action<CookieContainer> Container = null, Action<String, Stopwatch> LoggerExcutor = null);
+        Task<List<String>> RunStringAsync(Action<CookieContainer, Uri> Container = null, Action<String, Stopwatch> LoggerExcutor = null);
         /// <summary>
         /// 执行 bytes
         /// </summary>
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        List<Byte[]> RunBytes(Action<CookieContainer> Container = null,Action<Byte[], Stopwatch> LoggerExcutor = null);
+        List<Byte[]> RunBytes(Action<CookieContainer, Uri> Container = null, Action<Byte[], Stopwatch> LoggerExcutor = null);
         /// <summary>
         /// 执行 bytes
         /// </summary>
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        Task<List<Byte[]>> RunBytesAsync(Action<CookieContainer> Container = null,Action<Byte[], Stopwatch> LoggerExcutor = null);
+        Task<List<Byte[]>> RunBytesAsync(Action<CookieContainer, Uri> Container = null, Action<Byte[], Stopwatch> LoggerExcutor = null);
     }
 }

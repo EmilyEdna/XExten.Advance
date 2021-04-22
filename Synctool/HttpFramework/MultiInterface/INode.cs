@@ -21,44 +21,48 @@ namespace Synctool.HttpFramework.MultiInterface
         /// <summary>
         /// Add Path
         /// </summary>
-        /// <param name="Path"></param>
-        /// <param name="Type"></param>
-        /// <param name="UseCache"></param>
-        /// <param name="Weight"></param>
+        /// <param name="Path">请求地址</param>
+        /// <param name="Type">请求类型</param>
+        /// <param name="Encoding">编码格式</param>
+        /// <param name="UseCache">使用缓存</param>
+        /// <param name="Weight">1~100区间</param>
         /// <returns></returns>
-        INode AddNode(string Path, RequestType Type = RequestType.GET, bool UseCache = false, int Weight = 50);
+        INode AddNode(string Path, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50);
         /// <summary>
         /// Add Path
         /// </summary>
         /// <param name="Path"></param>
         /// <param name="Param"></param>
-        /// <param name="Type"></param>
-        /// <param name="UseCache"></param>
+        ///  <param name="Type">请求类型</param>
+        /// <param name="Encoding">编码格式</param>
+        /// <param name="UseCache">使用缓存</param>
         /// <param name="Weight"></param>
         /// <returns></returns>
-        INode AddNode(string Path, string Param, RequestType Type = RequestType.GET, bool UseCache = false, int Weight = 50);
+        INode AddNode(string Path, string Param, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50);
         /// <summary>
         /// Add Path
         /// </summary>
         /// <param name="Path"></param>
         /// <param name="Param"></param>
-        /// <param name="Type"></param>
-        /// <param name="UseCache"></param>
-        /// <param name="Weight"></param>
+        /// <param name="Type">请求类型</param>
+        /// <param name="Encoding">编码格式</param>
+        /// <param name="UseCache">使用缓存</param>
+        /// <param name="Weight">1~100区间</param>
         /// <returns></returns>
-        INode AddNode(string Path, List<KeyValuePair<String, String>> Param, RequestType Type = RequestType.GET, bool UseCache = false, int Weight = 50);
+        INode AddNode(string Path, List<KeyValuePair<String, String>> Param, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50);
         /// <summary>
         /// Add Path
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="Path"></param>
-        /// <param name="Param"></param>
-        /// <param name="MapFied"></param>
-        /// <param name="Type"></param>
-        /// <param name="UseCache"></param>
-        /// <param name="Weight"></param>
+        /// <param name="Param">实体模型</param>
+        /// <param name="MapFied">映射字段</param>
+        ///  <param name="Type">请求类型</param>
+        /// <param name="Encoding">编码格式</param>
+        /// <param name="UseCache">使用缓存</param>
+        /// <param name="Weight">1~100区间</param>
         /// <returns></returns>
-        INode AddNode<T>(string Path, T Param, IDictionary<string, string> MapFied = null, RequestType Type = RequestType.GET, bool UseCache = false, int Weight = 50) where T : class, new();
+        INode AddNode<T>(string Path, T Param, IDictionary<string, string> MapFied = null, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50) where T : class, new();
         /// <summary>
         /// Add Header
         /// </summary>

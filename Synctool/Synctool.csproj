@@ -7,10 +7,10 @@
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <PackageId>XExten.Advance</PackageId>
 	  <Product>XExten.Advance</Product>
-	  <Version>1.0.1.5</Version>
-	  <AssemblyVersion>1.0.1.5</AssemblyVersion>
+	  <Version>1.0.1.6</Version>
+	  <AssemblyVersion>1.0.1.6</AssemblyVersion>
 	  <PackageProjectUrl>https://github.com/EmilyEdna/SyncTool</PackageProjectUrl>
-	  <FileVersion>1.0.1.5</FileVersion>
+	  <FileVersion>1.0.1.6</FileVersion>
 	  <PackageReleaseNotes>Add Convert</PackageReleaseNotes>
   </PropertyGroup>
 
@@ -35,6 +35,7 @@
     <PackageReference Include="NPOI" Version="2.5.3" />
     <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
     <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
   </ItemGroup>
 
 </Project>
