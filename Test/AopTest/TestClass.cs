@@ -15,7 +15,7 @@ namespace Test.AopTest
             var builder = new ContainerBuilder();
             var autofac = builder.Build();
 
-          var xx =  autofac.ResolveProxy<IMyInterface>().TestMethod(27);
+            var xx = autofac.ResolveProxy<IMyInterface>().TestMethod(27);
 
 
             var ins1 = AopProxy.CreateProxyOfInherit<MyClass>();

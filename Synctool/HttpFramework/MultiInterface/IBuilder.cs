@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace Synctool.HttpFramework.MultiInterface
         /// <param name="TimeOut">超时:秒</param>
         /// <param name="UseHttps"></param>
         /// <returns></returns>
-        IBuilder Build(int TimeOut=60,Boolean UseHttps=false);
+        IBuilder Build(int TimeOut = 60, Boolean UseHttps = false);
         /// <summary>
         /// 设置缓存时间
         /// </summary>
@@ -29,26 +30,30 @@ namespace Synctool.HttpFramework.MultiInterface
         /// <summary>
         /// 执行 default UTF-8
         /// </summary>
+        /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        List<String> RunString(Action<String, Stopwatch> LoggerExcutor = null);
+        List<String> RunString(Action<CookieContainer> Container = null, Action<String, Stopwatch> LoggerExcutor = null);
         /// <summary>
         /// 执行 default UTF-8
         /// </summary>
+        /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        Task<List<String>> RunStringAsync(Action<String, Stopwatch> LoggerExcutor = null);
+        Task<List<String>> RunStringAsync(Action<CookieContainer> Container = null, Action<String, Stopwatch> LoggerExcutor = null);
         /// <summary>
-        /// 执行
+        /// 执行 bytes
         /// </summary>
+        /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        List<Byte[]> RunBytes(Action<Byte[], Stopwatch> LoggerExcutor = null);
+        List<Byte[]> RunBytes(Action<CookieContainer> Container = null,Action<Byte[], Stopwatch> LoggerExcutor = null);
         /// <summary>
-        /// 执行
+        /// 执行 bytes
         /// </summary>
+        /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        Task<List<Byte[]>> RunBytesAsync(Action<Byte[], Stopwatch> LoggerExcutor = null);
+        Task<List<Byte[]>> RunBytesAsync(Action<CookieContainer> Container = null,Action<Byte[], Stopwatch> LoggerExcutor = null);
     }
 }

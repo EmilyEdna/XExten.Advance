@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Security.Authentication;
 using System.Threading.Tasks;
@@ -97,11 +98,12 @@ namespace Synctool.HttpFramework.MultiImplement
         }
 
         /// <summary>
-        /// 执行
+        /// 执行 bytes
         /// </summary>
+        /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public List<Byte[]> RunBytes(Action<byte[], Stopwatch> LoggerExcutor = null)
+        public List<Byte[]> RunBytes(Action<CookieContainer> Container = null,Action<byte[], Stopwatch> LoggerExcutor = null)
         {
             List<Byte[]> Result = new List<Byte[]>();
             HttpMultiClientWare.WeightPath.OrderByDescending(t => t.Weight).ForEnumerEach(item =>
@@ -111,35 +113,37 @@ namespace Synctool.HttpFramework.MultiImplement
                     var Data = Caches.RunTimeCacheGet<Byte[]>(item.URL.AbsoluteUri);
                     if (Data == null)
                     {
-                        Result.Add(RequestBytes(item, LoggerExcutor));
+                        Result.Add(RequestBytes(item, Container,LoggerExcutor));
                         Caches.RunTimeCacheSet(item.URL.AbsoluteUri, Result.FirstOrDefault(), CacheSecond, true);
                     }
                     else
                         Result.Add(Data);
                 }
                 else
-                    Result.Add(RequestBytes(item, LoggerExcutor));
+                    Result.Add(RequestBytes(item, Container, LoggerExcutor));
             });
             Dispose();
             return Result;
         }
 
         /// <summary>
-        /// 执行
+        /// 执行 bytes
         /// </summary>
+        /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public async Task<List<Byte[]>> RunBytesAsync(Action<byte[], Stopwatch> LoggerExcutor = null)
+        public async Task<List<Byte[]>> RunBytesAsync(Action<CookieContainer> Container = null,Action<byte[], Stopwatch> LoggerExcutor = null)
         {
-            return await Task.FromResult(RunBytes(LoggerExcutor));
+            return await Task.FromResult(RunBytes(Container,LoggerExcutor));
         }
 
         /// <summary>
         /// 执行 default UTF-8
         /// </summary>
+        /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public List<string> RunString(Action<string, Stopwatch> LoggerExcutor = null)
+        public List<string> RunString(Action<CookieContainer> Container = null,Action<string, Stopwatch> LoggerExcutor = null)
         {
             List<string> Result = new List<string>();
             HttpMultiClientWare.WeightPath.OrderByDescending(t => t.Weight).ForEnumerEach(item =>
@@ -149,14 +153,14 @@ namespace Synctool.HttpFramework.MultiImplement
                     var Data = Caches.RunTimeCacheGet<string>(item.URL.AbsoluteUri);
                     if (Data.IsNullOrEmpty())
                     {
-                        Result.Add(RequestString(item, LoggerExcutor));
+                        Result.Add(RequestString(item, Container, LoggerExcutor));
                         Caches.RunTimeCacheSet(item.URL.AbsoluteUri, Result.FirstOrDefault(), CacheSecond, true);
                     }
                     else
                         Result.Add(Data);
                 }
                 else
-                    Result.Add(RequestString(item, LoggerExcutor));
+                    Result.Add(RequestString(item, Container, LoggerExcutor));
             });
             Dispose();
             return Result;
@@ -165,20 +169,22 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <summary>
         /// 执行 default UTF-8
         /// </summary>
+        /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public async Task<List<string>> RunStringAsync(Action<String, Stopwatch> LoggerExcutor = null)
+        public async Task<List<string>> RunStringAsync(Action<CookieContainer> Container = null,Action < String, Stopwatch> LoggerExcutor = null)
         {
-            return await Task.FromResult(RunString(LoggerExcutor));
+            return await Task.FromResult(RunString(Container,LoggerExcutor));
         }
 
         /// <summary>
         /// 请求
         /// </summary>
         /// <param name="Item"></param>
+        /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        private string RequestString(WeightURL Item, Action<String, Stopwatch> LoggerExcutor = null)
+        private string RequestString(WeightURL Item, Action<CookieContainer> Container = null, Action<String, Stopwatch> LoggerExcutor = null)
         {
             if (Item.Request == RequestType.GET)
             {
@@ -186,6 +192,7 @@ namespace Synctool.HttpFramework.MultiImplement
                 wath.Start();
                 string result = HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsStringAsync().Result;
                 wath.Stop();
+                Container?.Invoke(HttpMultiClientWare.Container);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -195,6 +202,7 @@ namespace Synctool.HttpFramework.MultiImplement
                 wath.Start();
                 string result = HttpMultiClientWare.FactoryClient.DeleteAsync(Item.URL).Result.Content.ReadAsStringAsync().Result;
                 wath.Stop();
+                Container?.Invoke(HttpMultiClientWare.Container);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -204,6 +212,7 @@ namespace Synctool.HttpFramework.MultiImplement
                 wath.Start();
                 string result = HttpMultiClientWare.FactoryClient.PostAsync(Item.URL, Item.Contents).Result.Content.ReadAsStringAsync().Result;
                 wath.Stop();
+                Container?.Invoke(HttpMultiClientWare.Container);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -213,6 +222,7 @@ namespace Synctool.HttpFramework.MultiImplement
                 wath.Start();
                 string result = HttpMultiClientWare.FactoryClient.PutAsync(Item.URL, Item.Contents).Result.Content.ReadAsStringAsync().Result;
                 wath.Stop();
+                Container?.Invoke(HttpMultiClientWare.Container);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -222,9 +232,10 @@ namespace Synctool.HttpFramework.MultiImplement
         /// 请求
         /// </summary>
         /// <param name="Item"></param>
+        /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        private Byte[] RequestBytes(WeightURL Item, Action<byte[], Stopwatch> LoggerExcutor = null)
+        private Byte[] RequestBytes(WeightURL Item, Action<CookieContainer> Container = null,Action<byte[], Stopwatch> LoggerExcutor = null)
         {
             if (Item.Request == RequestType.GET)
             {
@@ -232,6 +243,7 @@ namespace Synctool.HttpFramework.MultiImplement
                 wath.Start();
                 byte[] result = HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsByteArrayAsync().Result;
                 wath.Stop();
+                Container?.Invoke(HttpMultiClientWare.Container);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -241,6 +253,7 @@ namespace Synctool.HttpFramework.MultiImplement
                 wath.Start();
                 byte[] result = HttpMultiClientWare.FactoryClient.DeleteAsync(Item.URL).Result.Content.ReadAsByteArrayAsync().Result;
                 wath.Stop();
+                Container?.Invoke(HttpMultiClientWare.Container);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -250,6 +263,7 @@ namespace Synctool.HttpFramework.MultiImplement
                 wath.Start();
                 byte[] result = HttpMultiClientWare.FactoryClient.PostAsync(Item.URL, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
                 wath.Stop();
+                Container?.Invoke(HttpMultiClientWare.Container);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -259,6 +273,7 @@ namespace Synctool.HttpFramework.MultiImplement
                 wath.Start();
                 byte[] result = HttpMultiClientWare.FactoryClient.PutAsync(Item.URL, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
                 wath.Stop();
+                Container?.Invoke(HttpMultiClientWare.Container);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
