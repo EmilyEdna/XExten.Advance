@@ -1119,47 +1119,53 @@
             <param name="CacheSeconds">单位：Seconds</param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunBytes(System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunBytes(System.Action{System.Net.CookieContainer},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
             <summary>
-            执行
+            执行 bytes
             </summary>
+            <param name="Container"></param>
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunBytesAsync(System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunBytesAsync(System.Action{System.Net.CookieContainer},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
             <summary>
-            执行
+            执行 bytes
             </summary>
+            <param name="Container"></param>
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunString(System.Action{System.String,System.Diagnostics.Stopwatch})">
-            <summary>
-            执行 default UTF-8
-            </summary>
-            <param name="LoggerExcutor"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunStringAsync(System.Action{System.String,System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunString(System.Action{System.Net.CookieContainer},System.Action{System.String,System.Diagnostics.Stopwatch})">
             <summary>
             执行 default UTF-8
             </summary>
+            <param name="Container"></param>
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RequestString(Synctool.HttpFramework.WeightURL,System.Action{System.String,System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RunStringAsync(System.Action{System.Net.CookieContainer},System.Action{System.String,System.Diagnostics.Stopwatch})">
+            <summary>
+            执行 default UTF-8
+            </summary>
+            <param name="Container"></param>
+            <param name="LoggerExcutor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RequestString(Synctool.HttpFramework.WeightURL,System.Action{System.Net.CookieContainer},System.Action{System.String,System.Diagnostics.Stopwatch})">
             <summary>
             请求
             </summary>
             <param name="Item"></param>
+            <param name="Container"></param>
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RequestBytes(Synctool.HttpFramework.WeightURL,System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiImplement.Builder.RequestBytes(Synctool.HttpFramework.WeightURL,System.Action{System.Net.CookieContainer},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
             <summary>
             请求
             </summary>
             <param name="Item"></param>
+            <param name="Container"></param>
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
@@ -1461,31 +1467,35 @@
             <param name="CacheSeconds"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunString(System.Action{System.String,System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunString(System.Action{System.Net.CookieContainer},System.Action{System.String,System.Diagnostics.Stopwatch})">
             <summary>
             执行 default UTF-8
             </summary>
+            <param name="Container"></param>
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunStringAsync(System.Action{System.String,System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunStringAsync(System.Action{System.Net.CookieContainer},System.Action{System.String,System.Diagnostics.Stopwatch})">
             <summary>
             执行 default UTF-8
             </summary>
+            <param name="Container"></param>
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunBytes(System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunBytes(System.Action{System.Net.CookieContainer},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
             <summary>
-            执行
+            执行 bytes
             </summary>
+            <param name="Container"></param>
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunBytesAsync(System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:Synctool.HttpFramework.MultiInterface.IBuilder.RunBytesAsync(System.Action{System.Net.CookieContainer},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
             <summary>
-            执行
+            执行 bytes
             </summary>
+            <param name="Container"></param>
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
