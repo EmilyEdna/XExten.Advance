@@ -206,7 +206,7 @@ namespace Synctool.HttpFramework.MultiImplement
             {
                 Stopwatch wath = new Stopwatch();
                 wath.Start();
-                Stream stream = HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsStreamAsync().Result;
+                Stream stream = HttpMultiClientWare.FactoryClient.DeleteAsync(Item.URL).Result.Content.ReadAsStreamAsync().Result;
                 if (stream.Length < 0) return null;
                 using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
                 string result = reader.ReadToEnd();
@@ -219,7 +219,7 @@ namespace Synctool.HttpFramework.MultiImplement
             {
                 Stopwatch wath = new Stopwatch();
                 wath.Start();
-                Stream stream = HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsStreamAsync().Result;
+                Stream stream = HttpMultiClientWare.FactoryClient.PostAsync(Item.URL,Item.Contents).Result.Content.ReadAsStreamAsync().Result;
                 if (stream.Length < 0) return null;
                 using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
                 string result = reader.ReadToEnd();
@@ -232,7 +232,7 @@ namespace Synctool.HttpFramework.MultiImplement
             {
                 Stopwatch wath = new Stopwatch();
                 wath.Start();
-                Stream stream = HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsStreamAsync().Result;
+                Stream stream = HttpMultiClientWare.FactoryClient.PutAsync(Item.URL,Item.Contents).Result.Content.ReadAsStreamAsync().Result;
                 if (stream.Length < 0) return null;
                 using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
                 string result = reader.ReadToEnd();
