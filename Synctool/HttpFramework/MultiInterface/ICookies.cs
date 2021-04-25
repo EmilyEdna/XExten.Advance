@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -83,6 +84,13 @@ namespace Synctool.HttpFramework.MultiInterface
         /// <param name="pairs"></param>
         /// <returns></returns>
         ICookies Cookie(string uri, Dictionary<string, string> pairs);
+        /// <summary>
+        /// Add Cookie
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="cookies"></param>
+        /// <returns></returns>
+        ICookies Cookie(Uri uri, CookieCollection cookies);
         /// <summary>
         /// Add Cookie
         /// </summary>

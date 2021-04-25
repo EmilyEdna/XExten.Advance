@@ -4,6 +4,7 @@ using Synctool.LinqFramework;
 using Synctool.StaticFramework;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
@@ -142,6 +143,17 @@ namespace Synctool.HttpFramework.MultiImplement
         public ICookies Cookie(string uri, Dictionary<string, string> pairs)
         {
             return HttpMultiClientWare.Cookies.Cookie(uri, pairs);
+        }
+
+        /// <summary>
+        /// Add Cookie
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="cookies"></param>
+        /// <returns></returns>
+        public ICookies Cookie(Uri uri, CookieCollection cookies)
+        {
+            return HttpMultiClientWare.Cookies.Cookie(uri, cookies);
         }
 
         /// <summary>

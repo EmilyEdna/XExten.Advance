@@ -1,7 +1,7 @@
 ﻿using Synctool.HttpFramework.MultiInterface;
 using System;
 using System.Collections.Generic;
-
+using System.Net;
 
 namespace Synctool.HttpFramework.MultiImplement
 {
@@ -54,6 +54,17 @@ namespace Synctool.HttpFramework.MultiImplement
         public ICookies Cookie(string uri, Dictionary<string, string> pairs)
         {
             return HttpMultiClientWare.Cookies.Cookie(uri, pairs);
+        }
+
+        /// <summary>
+        /// Add Cookie
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="cookies"></param>
+        /// <returns></returns>
+        public ICookies Cookie(Uri uri, CookieCollection cookies)
+        {
+            return HttpMultiClientWare.Cookies.Cookie(uri, cookies);
         }
 
         /// <summary>

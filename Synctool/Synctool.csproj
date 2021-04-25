@@ -7,7 +7,7 @@
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <PackageId>XExten.Advance</PackageId>
 	  <Product>XExten.Advance</Product>
-	  <Version>1.0.1.6</Version>
+	  <Version>1.0.1.6-alpha-3</Version>
 	  <AssemblyVersion>1.0.1.6</AssemblyVersion>
 	  <PackageProjectUrl>https://github.com/EmilyEdna/SyncTool</PackageProjectUrl>
 	  <FileVersion>1.0.1.6</FileVersion>

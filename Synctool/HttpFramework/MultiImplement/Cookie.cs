@@ -44,6 +44,18 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <summary>
         /// Add Cookie
         /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="cookies"></param>
+        /// <returns></returns>
+        public ICookies Cookie(Uri uri, CookieCollection cookies)
+        {
+            HttpMultiClientWare.Container.Add(uri, cookies);
+            return HttpMultiClientWare.Cookies;
+        }
+
+        /// <summary>
+        /// Add Cookie
+        /// </summary>
         /// <param name="name"></param>
         /// <param name="value"></param>
         /// <param name="path"></param>
