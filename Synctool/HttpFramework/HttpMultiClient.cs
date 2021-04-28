@@ -211,7 +211,7 @@ namespace Synctool.HttpFramework
                 WeightURL WeightUri = new WeightURL
                 {
                     Weight = Weight,
-                    URL = new Uri(Path+((Type == RequestType.GET || Type == RequestType.DELETE) ? Param.ByUri() : string.Empty)),
+                    URL = new Uri(Path+((Type == RequestType.GET || Type == RequestType.DELETE) ? HttpKeyPairs.KeyValuePairs(Param, MapFied).ByUri() : string.Empty)),
                     Request = Type,
                     UseCache = UseCache,
                     Encoding = Encoding,
