@@ -284,6 +284,7 @@ namespace Synctool.HttpFramework.MultiImplement
         {
             HttpMultiClientWare.FactoryClient.Dispose();
             HttpMultiClientWare.Container = null;
+            HttpMultiClientWare.Proxy = null;
             HttpMultiClientWare.HeaderMaps.Clear();
             HttpMultiClientWare.WeightPath.Clear();
         }
