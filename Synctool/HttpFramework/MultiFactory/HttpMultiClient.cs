@@ -57,6 +57,21 @@ namespace Synctool.HttpFramework.MultiFactory
             return this;
         }
 
+        /// <summary>
+        /// 使用代理
+        /// </summary>
+        /// <param name="Proxy"></param>
+        /// <returns></returns>
+        public IHttpMultiClient InitWebProxy(ProxyURL Proxy)
+        {
+            if (Proxy.IP.IsNullOrEmpty() || Proxy.Port == -1)
+                return this;
+            HttpMultiClientWare.Proxy = new WebProxy(Proxy.IP, Proxy.Port);
+            if (!Proxy.UserName.IsNullOrEmpty() && !Proxy.PassWord.IsNullOrEmpty())
+                HttpMultiClientWare.Proxy.Credentials = new NetworkCredential(Proxy.UserName, Proxy.PassWord);
+            return this;
+        }
+
         #region Header
         /// <summary>
         /// Add Header

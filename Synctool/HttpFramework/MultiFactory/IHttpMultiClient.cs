@@ -28,6 +28,12 @@ namespace Synctool.HttpFramework.MultiFactory
         /// <returns></returns>
         IHttpMultiClient InitWebProxy(Action<ProxyURL> action);
         /// <summary>
+        /// 使用代理
+        /// </summary>
+        /// <param name="Proxy"></param>
+        /// <returns></returns>
+        IHttpMultiClient InitWebProxy(ProxyURL Proxy);
+        /// <summary>
         /// Add Header
         /// </summary>
         /// <param name="key"></param>

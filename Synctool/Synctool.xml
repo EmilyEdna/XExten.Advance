@@ -1113,6 +1113,13 @@
             <param name="action"></param>
             <returns></returns>
         </member>
+        <member name="M:Synctool.HttpFramework.MultiFactory.HttpMultiClient.InitWebProxy(Synctool.HttpFramework.MultiCommon.ProxyURL)">
+            <summary>
+            使用代理
+            </summary>
+            <param name="Proxy"></param>
+            <returns></returns>
+        </member>
         <member name="M:Synctool.HttpFramework.MultiFactory.HttpMultiClient.Headers(System.String,System.String)">
             <summary>
             Add Header
@@ -1224,6 +1231,13 @@
             使用代理
             </summary>
             <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Synctool.HttpFramework.MultiFactory.IHttpMultiClient.InitWebProxy(Synctool.HttpFramework.MultiCommon.ProxyURL)">
+            <summary>
+            使用代理
+            </summary>
+            <param name="Proxy"></param>
             <returns></returns>
         </member>
         <member name="M:Synctool.HttpFramework.MultiFactory.IHttpMultiClient.Headers(System.String,System.String)">
