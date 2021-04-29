@@ -14,12 +14,8 @@ namespace Synctool.HttpFramework
     /// <summary>
     /// 负载请求
     /// </summary>
-    public class HttpMultiClient
+    internal class HttpMultiClient:IHttpMultiClient
     {
-        /// <summary>
-        /// Instance
-        /// </summary>
-        public static HttpMultiClient HttpMulti => new HttpMultiClient();
 
         /// <summary>
         /// Constructor
@@ -36,7 +32,7 @@ namespace Synctool.HttpFramework
         /// 初始化Cookie容器
         /// </summary>
         /// <returns></returns>
-        public HttpMultiClient InitCookieContainer()
+        public IHttpMultiClient InitCookieContainer()
         {
             HttpMultiClientWare.Container = new CookieContainer();
             return this;
