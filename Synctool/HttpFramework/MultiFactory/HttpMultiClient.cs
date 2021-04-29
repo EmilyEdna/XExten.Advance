@@ -18,6 +18,7 @@ namespace Synctool.HttpFramework.MultiFactory
     /// </summary>
     internal class HttpMultiClient : IHttpMultiClient
     {
+        
         /// <summary>
         /// Constructor
         /// </summary>
@@ -29,6 +30,8 @@ namespace Synctool.HttpFramework.MultiFactory
             HttpMultiClientWare.Cookies = new Cookies();
             HttpMultiClientWare.Nodes = new Node();
         }
+
+        #region Init
 
         /// <summary>
         /// 初始化Cookie容器
@@ -71,6 +74,8 @@ namespace Synctool.HttpFramework.MultiFactory
                 HttpMultiClientWare.Proxy.Credentials = new NetworkCredential(Proxy.UserName, Proxy.PassWord);
             return this;
         }
+
+        #endregion Init
 
         #region Header
         /// <summary>
