@@ -34,9 +34,7 @@ namespace Synctool.HttpFramework.MultiImplement
                 Handler.CookieContainer = HttpMultiClientWare.Container;
             }
             if (HttpMultiClientWare.Proxy != null)
-            {
                 Handler.Proxy = HttpMultiClientWare.Proxy;
-            }
             if (UseHttps)
             {
                 Handler.SslProtocols = SslProtocols.Tls | SslProtocols.Tls11 | SslProtocols.Tls12;
