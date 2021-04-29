@@ -1,10 +1,11 @@
-﻿using Synctool.HttpFramework.MultiInterface;
+﻿using Synctool.HttpFramework.MultiCommon;
+using Synctool.HttpFramework.MultiInterface;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
 
-namespace Synctool.HttpFramework
+namespace Synctool.HttpFramework.MultiFactory
 {
     /// <summary>
     /// 负载请求
@@ -20,6 +21,12 @@ namespace Synctool.HttpFramework
         /// </summary>
         /// <returns></returns>
         IHttpMultiClient InitCookieContainer();
+        /// <summary>
+        /// 使用代理
+        /// </summary>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        IHttpMultiClient InitWebProxy(Action<ProxyURL> action);
         /// <summary>
         /// Add Header
         /// </summary>

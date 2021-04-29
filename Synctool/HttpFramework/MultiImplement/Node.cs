@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using Synctool.HttpFramework.MultiCommon;
 using Synctool.HttpFramework.MultiInterface;
 using Synctool.LinqFramework;
 using Synctool.StaticFramework;

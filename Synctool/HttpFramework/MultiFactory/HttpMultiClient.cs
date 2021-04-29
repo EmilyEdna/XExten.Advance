@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using Synctool.HttpFramework.MultiCommon;
 using Synctool.HttpFramework.MultiImplement;
 using Synctool.HttpFramework.MultiInterface;
 using Synctool.LinqFramework;
@@ -8,20 +9,21 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 
-namespace Synctool.HttpFramework
+namespace Synctool.HttpFramework.MultiFactory
 {
     /// <summary>
     /// 负载请求
     /// </summary>
-    internal class HttpMultiClient:IHttpMultiClient
+    internal class HttpMultiClient : IHttpMultiClient
     {
-
         /// <summary>
         /// Constructor
         /// </summary>
         public HttpMultiClient()
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             HttpMultiClientWare.Builder = new Builder();
             HttpMultiClientWare.Headers = new Headers();
             HttpMultiClientWare.Cookies = new Cookies();
@@ -35,6 +37,23 @@ namespace Synctool.HttpFramework
         public IHttpMultiClient InitCookieContainer()
         {
             HttpMultiClientWare.Container = new CookieContainer();
+            return this;
+        }
+
+        /// <summary>
+        /// 使用代理
+        /// </summary>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        public IHttpMultiClient InitWebProxy(Action<ProxyURL> action)
+        {
+            ProxyURL Proxy = new ProxyURL();
+            action(Proxy);
+            if (Proxy.IP.IsNullOrEmpty() || Proxy.Port == -1)
+                return this;
+            HttpMultiClientWare.Proxy = new WebProxy(Proxy.IP, Proxy.Port);
+            if (!Proxy.UserName.IsNullOrEmpty() && !Proxy.PassWord.IsNullOrEmpty())
+                HttpMultiClientWare.Proxy.Credentials = new NetworkCredential(Proxy.UserName, Proxy.PassWord);
             return this;
         }
 
@@ -70,7 +89,7 @@ namespace Synctool.HttpFramework
         /// <param name="uri"></param>
         /// <param name="pairs"></param>
         /// <returns></returns>
-        public ICookies Cookie(string uri, Dictionary<string, string> pairs) 
+        public ICookies Cookie(string uri, Dictionary<string, string> pairs)
         {
             pairs.ForDicEach((key, val) =>
             {
@@ -118,7 +137,7 @@ namespace Synctool.HttpFramework
         /// <param name="UseCache">使用缓存</param>
         /// <param name="Weight">1~100区间</param>
         /// <returns></returns>
-        public INode AddNode(string Path, RequestType Type = RequestType.GET,string Encoding="UTF-8", bool UseCache = false, int Weight = 50)
+        public INode AddNode(string Path, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50)
         {
             WeightURL WeightUri = new WeightURL
             {
@@ -126,7 +145,7 @@ namespace Synctool.HttpFramework
                 URL = new Uri(Path),
                 Request = Type,
                 UseCache = UseCache,
-                Encoding=Encoding
+                Encoding = Encoding
             };
             HttpMultiClientWare.WeightPath.Add(WeightUri);
             return HttpMultiClientWare.Nodes;
@@ -176,7 +195,7 @@ namespace Synctool.HttpFramework
                  WeightURL WeightUri = new WeightURL
                  {
                      Weight = Weight,
-                     URL = new Uri(Path + ((Type == RequestType.GET || Type== RequestType.DELETE) ? Param.ByUri() : string.Empty)),
+                     URL = new Uri(Path + ((Type == RequestType.GET || Type == RequestType.DELETE) ? Param.ByUri() : string.Empty)),
                      Request = Type,
                      Contents = (Type == RequestType.GET || Type == RequestType.DELETE) ? null : new FormUrlEncodedContent(Param),
                      UseCache = UseCache,
@@ -207,7 +226,7 @@ namespace Synctool.HttpFramework
                 WeightURL WeightUri = new WeightURL
                 {
                     Weight = Weight,
-                    URL = new Uri(Path+((Type == RequestType.GET || Type == RequestType.DELETE) ? HttpKeyPairs.KeyValuePairs(Param, MapFied).ByUri() : string.Empty)),
+                    URL = new Uri(Path + ((Type == RequestType.GET || Type == RequestType.DELETE) ? HttpKeyPairs.KeyValuePairs(Param, MapFied).ByUri() : string.Empty)),
                     Request = Type,
                     UseCache = UseCache,
                     Encoding = Encoding,

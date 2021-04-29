@@ -1,4 +1,5 @@
-﻿using Synctool.HttpFramework.MultiInterface;
+﻿using Synctool.HttpFramework.MultiCommon;
+using Synctool.HttpFramework.MultiInterface;
 using Synctool.LinqFramework;
 using System;
 using System.Collections.Generic;

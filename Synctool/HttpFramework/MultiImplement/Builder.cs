@@ -1,4 +1,5 @@
 ﻿using Synctool.CacheFramework;
+using Synctool.HttpFramework.MultiCommon;
 using Synctool.HttpFramework.MultiInterface;
 using Synctool.LinqFramework;
 using Synctool.StaticFramework;
@@ -23,6 +24,28 @@ namespace Synctool.HttpFramework.MultiImplement
 
         private static int CacheSecond = 30;
 
+        private HttpClientHandler Handler(Boolean UseHttps = false) 
+        {
+            HttpClientHandler Handler = new HttpClientHandler();
+            if (HttpMultiClientWare.Container != null)
+            {
+                Handler.AllowAutoRedirect = true;
+                Handler.UseCookies = true;
+                Handler.CookieContainer = HttpMultiClientWare.Container;
+            }
+            if (HttpMultiClientWare.Proxy != null)
+            {
+                //Handler.UseDefaultCredentials = false;
+                Handler.Proxy = HttpMultiClientWare.Proxy;
+            }
+            if (UseHttps)
+            {
+                Handler.SslProtocols = SslProtocols.Tls | SslProtocols.Tls11 | SslProtocols.Tls12;
+                Handler.ServerCertificateCustomValidationCallback = (Message, Certificate, Chain, Error) => true;
+            }
+            return Handler;
+        }
+
         /// <summary>
         /// 构建
         /// </summary>
@@ -31,60 +54,23 @@ namespace Synctool.HttpFramework.MultiImplement
         /// <returns></returns>
         public IBuilder Build(int TimeOut = 60, Boolean UseHttps = false)
         {
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             if (HttpMultiClientWare.WeightPath.FirstOrDefault().URL == null)
                 throw new Exception("Request address is not set!");
             SyncStatic.TryCatch(() =>
             {
-                if (HttpMultiClientWare.Container != null)
+                HttpClient Client = new HttpClient(Handler(UseHttps))
                 {
-                    HttpClientHandler Handler = new HttpClientHandler
+                    Timeout = new TimeSpan(0, 0, TimeOut)
+                };
+                if (HttpMultiClientWare.HeaderMaps.Count != 0)
+                    HttpMultiClientWare.HeaderMaps.ForEach(item =>
                     {
-                        AllowAutoRedirect = true,
-                        UseCookies = true,
-                        CookieContainer = HttpMultiClientWare.Container
-                    };
-                    if (UseHttps)
-                    {
-                        Handler.SslProtocols = SslProtocols.Tls | SslProtocols.Tls11 | SslProtocols.Tls12;
-                        Handler.ServerCertificateCustomValidationCallback = (Message, Certificate, Chain, Error) => true;
-                    }
-                    HttpClient Client = new HttpClient(Handler);
-                    if (HttpMultiClientWare.HeaderMaps.Count != 0)
-                        HttpMultiClientWare.HeaderMaps.ForEach(item =>
+                        foreach (var KeyValuePair in item)
                         {
-                            foreach (var KeyValuePair in item)
-                            {
-                                Client.DefaultRequestHeaders.Add(KeyValuePair.Key, KeyValuePair.Value);
-                            }
-                        });
-                    HttpMultiClientWare.FactoryClient = Client;
-                }
-                else
-                {
-                    HttpClient Client = null;
-                    if (UseHttps)
-                    {
-                        HttpClientHandler Handler = new HttpClientHandler
-                        {
-                            SslProtocols = SslProtocols.Tls | SslProtocols.Tls11 | SslProtocols.Tls12,
-                            ServerCertificateCustomValidationCallback = (Message, Certificate, Chain, Error) => true,
-                        };
-                        Client = new HttpClient(Handler);
-                    }
-                    else
-                        Client = new HttpClient();
-                    if (HttpMultiClientWare.HeaderMaps.Count != 0)
-                        HttpMultiClientWare.HeaderMaps.ForEach(item =>
-                        {
-                            foreach (var KeyValuePair in item)
-                            {
-                                Client.DefaultRequestHeaders.Add(KeyValuePair.Key, KeyValuePair.Value);
-                            }
-                        });
-                    HttpMultiClientWare.FactoryClient = Client;
-                }
-                HttpMultiClientWare.FactoryClient.Timeout = new TimeSpan(0, 0, TimeOut);
+                            Client.DefaultRequestHeaders.Add(KeyValuePair.Key, KeyValuePair.Value);
+                        }
+                    });
+                HttpMultiClientWare.FactoryClient = Client;
             }, ex => throw ex);
             return HttpMultiClientWare.Builder;
         }

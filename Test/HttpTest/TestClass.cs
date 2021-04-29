@@ -1,12 +1,5 @@
-﻿using Synctool.HttpFramework;
-using Synctool.LinqFramework;
-using System;
-using System.Collections.Generic;
+﻿using Synctool.HttpFramework.MultiFactory;
 using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Test.HttpTest
@@ -16,11 +9,11 @@ namespace Test.HttpTest
         [Fact]
         public void TestMethond()
         {
-            var data = IHttpMultiClient.HttpMulti.InitCookieContainer().AddNode("https://www.baidu.com/")
-                   .Build(UseHttps: true).RunString((result, wather) =>
-                   {
-                       Trace.WriteLine(result);
-                   });
+            var data = IHttpMultiClient.HttpMulti.InitCookieContainer().InitWebProxy(opt =>
+            {
+                //opt.IP = "203.74.120.79";
+                //opt.Port = 3128;
+            }).AddNode("https://www.baidu.com/").Build(360).RunString();
             Assert.NotNull(data);
         }
     }
