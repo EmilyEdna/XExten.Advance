@@ -7,7 +7,7 @@ namespace Synctool.HttpFramework.MultiCommon
     /// <summary>
     /// 代理
     /// </summary>
-    public class ProxyURL
+    internal class ProxyURL
     {
         /// <summary>
         /// IP
