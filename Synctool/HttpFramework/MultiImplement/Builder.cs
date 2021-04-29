@@ -35,7 +35,6 @@ namespace Synctool.HttpFramework.MultiImplement
             }
             if (HttpMultiClientWare.Proxy != null)
             {
-                //Handler.UseDefaultCredentials = false;
                 Handler.Proxy = HttpMultiClientWare.Proxy;
             }
             if (UseHttps)
