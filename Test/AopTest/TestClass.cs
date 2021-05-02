@@ -1,6 +1,6 @@
 using Autofac;
-using Synctool.AopFramework;
-using Synctool.LinqFramework;
+using XExten.Advance.AopFramework;
+using XExten.Advance.LinqFramework;
 using System;
 using Xunit;
 

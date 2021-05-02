@@ -1,4 +1,4 @@
-﻿using Synctool.HttpFramework.MultiFactory;
+﻿using XExten.Advance.HttpFramework.MultiFactory;
 using System.Diagnostics;
 using Xunit;
 

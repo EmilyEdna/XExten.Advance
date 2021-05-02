@@ -1,10 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="StaicTest\**" />
+    <EmbeddedResource Remove="StaicTest\**" />
+    <None Remove="StaicTest\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.2.0" />
@@ -21,11 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Synctool\Synctool.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="StaicTest\" />
+    <ProjectReference Include="..\XExten.Advance\XExten.Advance.csproj" />
   </ItemGroup>
 
 </Project>
