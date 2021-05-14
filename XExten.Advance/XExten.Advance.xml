@@ -1120,7 +1120,7 @@
             <param name="Proxy"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.Headers(System.String,System.String)">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.Header(System.String,System.String)">
             <summary>
             Add Header
             </summary>
@@ -1128,7 +1128,7 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.Headers(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Header
             </summary>
@@ -1240,7 +1240,7 @@
             <param name="Proxy"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.Headers(System.String,System.String)">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.Header(System.String,System.String)">
             <summary>
             Add Header
             </summary>
@@ -1248,7 +1248,7 @@
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.Headers(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Add Header
             </summary>
@@ -2132,11 +2132,6 @@
             内容
             </summary>
         </member>
-        <member name="T:XExten.Advance.InternalFramework.Express.Common.QType">
-             <summary>
-            
-             </summary>
-        </member>
         <member name="F:XExten.Advance.InternalFramework.Express.Common.QType.Like">
             <summary>
             Like
@@ -2607,20 +2602,22 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToJsonAsync``1(``0)">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToJsonAsync``1(``0,Newtonsoft.Json.JsonSerializerSettings)">
             <summary>
             序列化 JsonNet
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
+            <param name="Option"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToModelAsync``1(System.String)">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToModelAsync``1(System.String,Newtonsoft.Json.JsonSerializerSettings)">
             <summary>
             反序列化 JsonNet
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
+            <param name="Option"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToDesAsync(System.Enum)">
@@ -2750,15 +2747,16 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToJson``1(``0)">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToJson``1(``0,Newtonsoft.Json.JsonSerializerSettings)">
             <summary>
             序列化 JsonNet
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
+            <param name="Option"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToJson``1(``0,System.Boolean)">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToJsonLight``1(``0,System.Boolean)">
             <summary>
             序列化对象MsgPack
             </summary>
@@ -2767,7 +2765,7 @@
             <param name="isPublic"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToModel``1(``0,System.Byte[]@,System.Boolean)">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToModelLight``1(``0,System.Byte[]@,System.Boolean)">
             <summary>
             反序列化对象MsgPack
             </summary>
@@ -2777,12 +2775,13 @@
             <param name="isPublic"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToModel``1(System.String)">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToModel``1(System.String,Newtonsoft.Json.JsonSerializerSettings)">
             <summary>
             反序列化 JsonNet
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
+            <param name="Option"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToDes(System.Enum)">

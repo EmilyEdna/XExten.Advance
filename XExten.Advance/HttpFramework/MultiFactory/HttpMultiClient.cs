@@ -84,7 +84,7 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public IHeaders Headers(string key, string value)
+        public IHeaders Header(string key, string value)
         {
             HttpMultiClientWare.HeaderMaps.Add(new Dictionary<string, string>() { { key, value } });
             return HttpMultiClientWare.Headers;
@@ -94,7 +94,7 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         /// </summary>
         /// <param name="headers"></param>
         /// <returns></returns>
-        public IHeaders Headers(Dictionary<string, string> headers)
+        public IHeaders Header(Dictionary<string, string> headers)
         {
             HttpMultiClientWare.HeaderMaps.Add(headers);
             return HttpMultiClientWare.Headers;

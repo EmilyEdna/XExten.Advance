@@ -15,7 +15,10 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         /// <summary>
         /// Instance
         /// </summary>
-        static IHttpMultiClient HttpMulti => new HttpMultiClient();
+        static IHttpMultiClient HttpMulti
+        {
+            get { return new Lazy<HttpMultiClient>().Value; }
+        }
         /// <summary>
         /// 初始化Cookie容器
         /// </summary>
@@ -39,13 +42,13 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        IHeaders Headers(string key, string value);
+        IHeaders Header(string key, string value);
         /// <summary>
         /// Add Header
         /// </summary>
         /// <param name="headers"></param>
         /// <returns></returns>
-        IHeaders Headers(Dictionary<string, string> headers);
+        IHeaders Header(Dictionary<string, string> headers);
         /// <summary>
         /// Add Cookie
         /// </summary>

@@ -103,10 +103,14 @@ namespace XExten.Advance.LinqFramework
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="param"></param>
+        /// <param name="Option"></param>
         /// <returns></returns>
-        public static string ToJson<T>(this T param)
+        public static string ToJson<T>(this T param, JsonSerializerSettings Option = null)
         {
-            return JsonConvert.SerializeObject(param);
+            if (Option == null)
+                return JsonConvert.SerializeObject(param);
+            else
+                return JsonConvert.SerializeObject(param, Option);
         }
 
         /// <summary>
@@ -116,7 +120,7 @@ namespace XExten.Advance.LinqFramework
         /// <param name="param"></param>
         /// <param name="isPublic"></param>
         /// <returns></returns>
-        public static string ToJson<T>(this T param, bool isPublic = true)
+        public static string ToJsonLight<T>(this T param, bool isPublic = true)
         {
             MessagePackSerializerOptions Options;
             if (isPublic)
@@ -134,7 +138,7 @@ namespace XExten.Advance.LinqFramework
         /// <param name="bytes"></param>
         /// <param name="isPublic"></param>
         /// <returns></returns>
-        public static T ToModel<T>(this T param, out byte[] bytes, bool isPublic = true)
+        public static T ToModelLight<T>(this T param, out byte[] bytes, bool isPublic = true)
         {
             MessagePackSerializerOptions Options;
             if (isPublic)
@@ -150,10 +154,14 @@ namespace XExten.Advance.LinqFramework
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="param"></param>
+        /// <param name="Option"></param>
         /// <returns></returns>
-        public static T ToModel<T>(this string param)
+        public static T ToModel<T>(this string param, JsonSerializerSettings Option = null)
         {
-            return (T)JsonConvert.DeserializeObject(param, typeof(T));
+            if (Option == null)
+                return (T)JsonConvert.DeserializeObject(param, typeof(T));
+            else
+                return (T)JsonConvert.DeserializeObject(param, typeof(T), Option);
         }
 
         /// <summary>

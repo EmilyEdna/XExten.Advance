@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -54,10 +55,11 @@ namespace XExten.Advance.LinqFramework
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="param"></param>
+        /// <param name="Option"></param>
         /// <returns></returns>
-        public static async Task<string> ToJsonAsync<T>(this T param)
+        public static async Task<string> ToJsonAsync<T>(this T param, JsonSerializerSettings Option = null)
         {
-            return await Task.Factory.StartNew(() => ToJson(param));
+            return await Task.Factory.StartNew(() => ToJson(param, Option));
         }
 
         /// <summary>
@@ -65,10 +67,11 @@ namespace XExten.Advance.LinqFramework
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="param"></param>
+        /// <param name="Option"></param>
         /// <returns></returns>
-        public static async Task<T> ToModelAsync<T>(this string param)
+        public static async Task<T> ToModelAsync<T>(this string param, JsonSerializerSettings Option = null)
         {
-            return await Task.Factory.StartNew(() => ToModel<T>(param));
+            return await Task.Factory.StartNew(() => ToModel<T>(param, Option));
         }
 
         /// <summary>
