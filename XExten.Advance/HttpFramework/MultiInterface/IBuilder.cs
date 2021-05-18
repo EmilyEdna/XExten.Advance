@@ -19,8 +19,9 @@ namespace XExten.Advance.HttpFramework.MultiInterface
         /// </summary>
         /// <param name="TimeOut">超时:秒</param>
         /// <param name="UseHttps"></param>
+        /// <param name="action"></param>
         /// <returns></returns>
-        IBuilder Build(int TimeOut = 60, Boolean UseHttps = false);
+        IBuilder Build(int TimeOut = 60, Boolean UseHttps = false, Action<HttpClientHandler> action = null);
         /// <summary>
         /// 设置缓存时间
         /// </summary>

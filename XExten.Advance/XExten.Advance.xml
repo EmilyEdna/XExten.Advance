@@ -1335,12 +1335,13 @@
             构建器
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.Build(System.Int32,System.Boolean)">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.CacheTime(System.Int32)">
@@ -1410,12 +1411,13 @@
             Cookie
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.Build(System.Int32,System.Boolean)">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
@@ -1513,12 +1515,13 @@
             Header
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.Build(System.Int32,System.Boolean)">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.Header(System.String,System.String)">
@@ -1616,12 +1619,13 @@
             URL
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.Build(System.Int32,System.Boolean)">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
@@ -1719,12 +1723,13 @@
             构建
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilder.Build(System.Int32,System.Boolean)">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilder.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilder.CacheTime(System.Int32)">
@@ -1771,12 +1776,13 @@
             Cookie
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.Build(System.Int32,System.Boolean)">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
@@ -1874,12 +1880,13 @@
             Header
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.Build(System.Int32,System.Boolean)">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
@@ -1977,12 +1984,13 @@
             
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.Build(System.Int32,System.Boolean)">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
@@ -2131,6 +2139,11 @@
             <summary>
             内容
             </summary>
+        </member>
+        <member name="T:XExten.Advance.InternalFramework.Express.Common.QType">
+             <summary>
+            
+             </summary>
         </member>
         <member name="F:XExten.Advance.InternalFramework.Express.Common.QType.Like">
             <summary>

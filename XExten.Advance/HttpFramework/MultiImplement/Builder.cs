@@ -24,7 +24,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
 
         private static int CacheSecond = 30;
 
-        private HttpClientHandler Handler(Boolean UseHttps = false) 
+        private HttpClientHandler Handler(Boolean UseHttps = false, Action<HttpClientHandler> action = null)
         {
             HttpClientHandler Handler = new HttpClientHandler();
             if (HttpMultiClientWare.Container != null)
@@ -40,6 +40,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
                 Handler.SslProtocols = SslProtocols.Tls | SslProtocols.Tls11 | SslProtocols.Tls12;
                 Handler.ServerCertificateCustomValidationCallback = (Message, Certificate, Chain, Error) => true;
             }
+            action?.Invoke(Handler);
             return Handler;
         }
 
@@ -48,14 +49,15 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// </summary>
         /// <param name="TimeOut">超时:秒</param>
         /// <param name="UseHttps"></param>
+        /// <param name="action"></param>
         /// <returns></returns>
-        public IBuilder Build(int TimeOut = 60, Boolean UseHttps = false)
+        public IBuilder Build(int TimeOut = 60, Boolean UseHttps = false, Action<HttpClientHandler> action = null)
         {
             if (HttpMultiClientWare.WeightPath.FirstOrDefault().URL == null)
                 throw new Exception("Request address is not set!");
             SyncStatic.TryCatch(() =>
             {
-                HttpClient Client = new HttpClient(Handler(UseHttps))
+                HttpClient Client = new HttpClient(Handler(UseHttps, action))
                 {
                     Timeout = new TimeSpan(0, 0, TimeOut)
                 };
@@ -89,7 +91,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public List<Byte[]> RunBytes(Action<CookieContainer, Uri> Container = null,Action<byte[], Stopwatch> LoggerExcutor = null)
+        public List<Byte[]> RunBytes(Action<CookieContainer, Uri> Container = null, Action<byte[], Stopwatch> LoggerExcutor = null)
         {
             List<Byte[]> Result = new List<Byte[]>();
             HttpMultiClientWare.WeightPath.OrderByDescending(t => t.Weight).ForEnumerEach(item =>
@@ -99,7 +101,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
                     var Data = Caches.RunTimeCacheGet<Byte[]>(item.URL.AbsoluteUri);
                     if (Data == null)
                     {
-                        Result.Add(RequestBytes(item, Container,LoggerExcutor));
+                        Result.Add(RequestBytes(item, Container, LoggerExcutor));
                         Caches.RunTimeCacheSet(item.URL.AbsoluteUri, Result.FirstOrDefault(), CacheSecond, true);
                     }
                     else
@@ -118,9 +120,9 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public async Task<List<Byte[]>> RunBytesAsync(Action<CookieContainer, Uri> Container = null,Action<byte[], Stopwatch> LoggerExcutor = null)
+        public async Task<List<Byte[]>> RunBytesAsync(Action<CookieContainer, Uri> Container = null, Action<byte[], Stopwatch> LoggerExcutor = null)
         {
-            return await Task.FromResult(RunBytes(Container,LoggerExcutor));
+            return await Task.FromResult(RunBytes(Container, LoggerExcutor));
         }
 
         /// <summary>
@@ -129,7 +131,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public List<string> RunString(Action<CookieContainer, Uri> Container = null,Action<string, Stopwatch> LoggerExcutor = null)
+        public List<string> RunString(Action<CookieContainer, Uri> Container = null, Action<string, Stopwatch> LoggerExcutor = null)
         {
             List<string> Result = new List<string>();
             HttpMultiClientWare.WeightPath.OrderByDescending(t => t.Weight).ForEnumerEach(item =>
@@ -158,9 +160,9 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        public async Task<List<string>> RunStringAsync(Action<CookieContainer, Uri> Container = null,Action < String, Stopwatch> LoggerExcutor = null)
+        public async Task<List<string>> RunStringAsync(Action<CookieContainer, Uri> Container = null, Action<String, Stopwatch> LoggerExcutor = null)
         {
-            return await Task.FromResult(RunString(Container,LoggerExcutor));
+            return await Task.FromResult(RunString(Container, LoggerExcutor));
         }
 
         /// <summary>
@@ -194,7 +196,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
                 using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
                 string result = reader.ReadToEnd();
                 wath.Stop();
-                 Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
+                Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -202,12 +204,12 @@ namespace XExten.Advance.HttpFramework.MultiImplement
             {
                 Stopwatch wath = new Stopwatch();
                 wath.Start();
-                Stream stream = HttpMultiClientWare.FactoryClient.PostAsync(Item.URL,Item.Contents).Result.Content.ReadAsStreamAsync().Result;
+                Stream stream = HttpMultiClientWare.FactoryClient.PostAsync(Item.URL, Item.Contents).Result.Content.ReadAsStreamAsync().Result;
                 if (stream.Length < 0) return null;
                 using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
                 string result = reader.ReadToEnd();
                 wath.Stop();
-                 Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
+                Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -215,12 +217,12 @@ namespace XExten.Advance.HttpFramework.MultiImplement
             {
                 Stopwatch wath = new Stopwatch();
                 wath.Start();
-                Stream stream = HttpMultiClientWare.FactoryClient.PutAsync(Item.URL,Item.Contents).Result.Content.ReadAsStreamAsync().Result;
+                Stream stream = HttpMultiClientWare.FactoryClient.PutAsync(Item.URL, Item.Contents).Result.Content.ReadAsStreamAsync().Result;
                 if (stream.Length < 0) return null;
                 using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
                 string result = reader.ReadToEnd();
                 wath.Stop();
-                 Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
+                Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -233,7 +235,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        private Byte[] RequestBytes(WeightURL Item, Action<CookieContainer, Uri> Container = null,Action<byte[], Stopwatch> LoggerExcutor = null)
+        private Byte[] RequestBytes(WeightURL Item, Action<CookieContainer, Uri> Container = null, Action<byte[], Stopwatch> LoggerExcutor = null)
         {
             if (Item.Request == RequestType.GET)
             {
@@ -241,7 +243,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
                 wath.Start();
                 byte[] result = HttpMultiClientWare.FactoryClient.GetAsync(Item.URL).Result.Content.ReadAsByteArrayAsync().Result;
                 wath.Stop();
-                 Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
+                Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -251,7 +253,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
                 wath.Start();
                 byte[] result = HttpMultiClientWare.FactoryClient.DeleteAsync(Item.URL).Result.Content.ReadAsByteArrayAsync().Result;
                 wath.Stop();
-                 Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
+                Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -261,7 +263,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
                 wath.Start();
                 byte[] result = HttpMultiClientWare.FactoryClient.PostAsync(Item.URL, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
                 wath.Stop();
-                 Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
+                Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }
@@ -271,7 +273,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
                 wath.Start();
                 byte[] result = HttpMultiClientWare.FactoryClient.PutAsync(Item.URL, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
                 wath.Stop();
-                 Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
+                Container?.Invoke(HttpMultiClientWare.Container, Item.URL);
                 LoggerExcutor?.Invoke(result, wath);
                 return result;
             }

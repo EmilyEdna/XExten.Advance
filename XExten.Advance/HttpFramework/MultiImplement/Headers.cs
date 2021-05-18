@@ -3,6 +3,7 @@ using XExten.Advance.HttpFramework.MultiInterface;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 
 namespace XExten.Advance.HttpFramework.MultiImplement
 {
@@ -17,8 +18,9 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// </summary>
         /// <param name="TimeOut">超时:秒</param>
         /// <param name="UseHttps"></param>
+        /// <param name="action"></param>
         /// <returns></returns>
-        public IBuilder Build(int TimeOut = 60, Boolean UseHttps = false)
+        public IBuilder Build(int TimeOut = 60, Boolean UseHttps = false, Action<HttpClientHandler> action = null)
         {
             return HttpMultiClientWare.Builder.Build(TimeOut, UseHttps);
         }
