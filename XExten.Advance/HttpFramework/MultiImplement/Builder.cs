@@ -40,7 +40,8 @@ namespace XExten.Advance.HttpFramework.MultiImplement
                 Handler.SslProtocols = SslProtocols.Tls | SslProtocols.Tls11 | SslProtocols.Tls12;
                 Handler.ServerCertificateCustomValidationCallback = (Message, Certificate, Chain, Error) => true;
             }
-            action?.Invoke(Handler);
+            if (action != null)
+                action(Handler);
             return Handler;
         }
 
