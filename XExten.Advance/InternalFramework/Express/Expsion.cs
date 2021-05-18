@@ -4,6 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using XExten.Advance.InternalFramework.Express.Common;
+using XExten.Advance.LinqFramework;
 
 namespace XExten.Advance.InternalFramework.Express
 {
