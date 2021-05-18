@@ -22,7 +22,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// <returns></returns>
         public IBuilder Build(int TimeOut = 60, Boolean UseHttps = false, Action<HttpClientHandler> action = null)
         {
-            return HttpMultiClientWare.Builder.Build(TimeOut, UseHttps);
+            return HttpMultiClientWare.Builder.Build(TimeOut, UseHttps, action);
         }
 
         /// <summary>

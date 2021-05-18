@@ -13,7 +13,9 @@ namespace Test.HttpTest
             {
                 //opt.IP = "203.74.120.79";
                 //opt.Port = 3128;
-            }).AddNode("https://www.baidu.com/").Build(360).RunString();
+            }).AddNode("https://www.bilibili.com/audio/music-service-c/web/url?sid=1280236").Build(action:h=> {
+
+            }).RunString(); 
             Assert.NotNull(data);
         }
     }
