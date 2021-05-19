@@ -219,19 +219,31 @@ namespace XExten.Advance.StaticFramework
         public static DateTime ConvertStamptime(string TimeStamp)
         {
             DateTime StartTime = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Utc, TimeZoneInfo.Local);
-            TimeSpan Span = new TimeSpan(long.Parse(TimeStamp + "0000000"));
-            return StartTime.Add(Span);
+            if (TimeStamp.Length == 10)
+            {
+                TimeSpan Span = new TimeSpan(long.Parse(TimeStamp + "0000000"));
+                return StartTime.Add(Span);
+            }
+            else
+            {
+                TimeSpan Span = new TimeSpan(long.Parse(TimeStamp + "0000"));
+                return StartTime.Add(Span);
+            }
         }
 
         /// <summary>
         /// 时间转时间戳
         /// </summary>
         /// <param name="TimeStamp"></param>
+        /// <param name="RtSecond">True 返回秒 False 返回毫秒</param>
         /// <returns></returns>
-        public static string ConvertDateTime(DateTime TimeStamp)
+        public static string ConvertDateTime(DateTime TimeStamp, bool RtSecond = true)
         {
             DateTime StartTime = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Utc, TimeZoneInfo.Local);
-            return ((int)((TimeStamp - StartTime).TotalMilliseconds / 1000)).ToString();
+            if (RtSecond)
+                return ((long)((TimeStamp - StartTime).TotalMilliseconds / 1000)).ToString();
+            else
+                return ((long)(TimeStamp - StartTime).TotalMilliseconds).ToString();
         }
 
         /// <summary>
