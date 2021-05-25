@@ -2987,11 +2987,12 @@
             <param name="TimeStamp"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.StaticFramework.SyncStatic.ConvertDateTime(System.DateTime)">
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.ConvertDateTime(System.DateTime,System.Boolean)">
             <summary>
             时间转时间戳
             </summary>
             <param name="TimeStamp"></param>
+            <param name="RtSecond">True 返回秒 False 返回毫秒</param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.XmlSerializer``1(``0)">
