@@ -1000,6 +1000,46 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:XExten.Advance.HttpFramework.MultiCommon.LoadURL">
+            <summary>
+            负载路由
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiCommon.LoadURL.Request">
+            <summary>
+            请求类型
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiCommon.LoadURL.Load">
+            <summary>
+            负载比
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiCommon.LoadURL.Encoding">
+            <summary>
+            编码格式
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiCommon.LoadURL.URL">
+            <summary>
+            路由
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiCommon.LoadURL.Contents">
+            <summary>
+            请求内容
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiCommon.LoadURL.UseCache">
+            <summary>
+            使用缓存
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiCommon.LoadURL.MediaTypeHeader">
+            <summary>
+            请求类型
+            </summary>
+        </member>
         <member name="T:XExten.Advance.HttpFramework.MultiCommon.ProxyURL">
             <summary>
             代理
@@ -1048,46 +1088,6 @@
         <member name="F:XExten.Advance.HttpFramework.MultiCommon.RequestType.PUT">
             <summary>
             PUT
-            </summary>
-        </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiCommon.WeightURL">
-            <summary>
-            负载路由
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.WeightURL.Request">
-            <summary>
-            请求类型
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.WeightURL.Weight">
-            <summary>
-            负载比
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.WeightURL.Encoding">
-            <summary>
-            编码格式
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.WeightURL.URL">
-            <summary>
-            路由
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.WeightURL.Contents">
-            <summary>
-            请求内容
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.WeightURL.UseCache">
-            <summary>
-            使用缓存
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.WeightURL.MediaTypeHeader">
-            <summary>
-            请求类型
             </summary>
         </member>
         <member name="T:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient">
@@ -1169,7 +1169,7 @@
             <param name="Type">请求类型</param>
             <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
+            <param name="Load">1~100区间</param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.AddNode(System.String,System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
@@ -1181,7 +1181,7 @@
              <param name="Type">请求类型</param>
             <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
-            <param name="Weight"></param>
+            <param name="Load"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
@@ -1193,7 +1193,7 @@
             <param name="Type">请求类型</param>
             <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
+            <param name="Load">1~100区间</param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
@@ -1207,7 +1207,7 @@
              <param name="Type">请求类型</param>
             <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
+            <param name="Load">1~100区间</param>
             <returns></returns>
         </member>
         <member name="T:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient">
@@ -1330,18 +1330,43 @@
             <param name="Weight">1~100区间</param>
             <returns></returns>
         </member>
+        <member name="T:XExten.Advance.HttpFramework.MultiHandler.DNSClientHandler">
+            <summary>
+            自定义解析DNS
+            </summary>
+        </member>
+        <member name="T:XExten.Advance.HttpFramework.MultiHandler.DNSClientResolver">
+            <summary>
+            DNS解析器
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiHandler.DNSClientResolver.Resolve(System.String)">
+            <summary>
+            解析
+            </summary>
+            <param name="Host"></param>
+            <returns></returns>
+        </member>
         <member name="T:XExten.Advance.HttpFramework.MultiImplement.Builder">
             <summary>
             构建器
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="UseDnsResolver"></param>
             <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
+            <summary>
+            设置DNS解析器
+            </summary>
+            <param name="Resolver"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.CacheTime(System.Int32)">
@@ -1383,7 +1408,7 @@
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.RequestString(XExten.Advance.HttpFramework.MultiCommon.WeightURL,System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.String,System.Diagnostics.Stopwatch})">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.RequestString(XExten.Advance.HttpFramework.MultiCommon.LoadURL,System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.String,System.Diagnostics.Stopwatch})">
             <summary>
             请求
             </summary>
@@ -1392,7 +1417,7 @@
             <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.RequestBytes(XExten.Advance.HttpFramework.MultiCommon.WeightURL,System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.RequestBytes(XExten.Advance.HttpFramework.MultiCommon.LoadURL,System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
             <summary>
             请求
             </summary>
@@ -1411,13 +1436,21 @@
             Cookie
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="UseDnsResolver"></param>
             <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
+            <summary>
+            设置DNS解析器
+            </summary>
+            <param name="Resolver"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
@@ -1515,13 +1548,21 @@
             Header
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="UseDnsResolver"></param>
             <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
+            <summary>
+            设置DNS解析器
+            </summary>
+            <param name="Resolver"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.Header(System.String,System.String)">
@@ -1619,13 +1660,21 @@
             URL
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="UseDnsResolver"></param>
             <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
+            <summary>
+            设置DNS解析器
+            </summary>
+            <param name="Resolver"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
@@ -1636,7 +1685,7 @@
             <param name="Type">请求类型</param>
             <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
+            <param name="Load">1~100区间</param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.AddNode(System.String,System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
@@ -1648,7 +1697,7 @@
              <param name="Type">请求类型</param>
             <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
-            <param name="Weight"></param>
+            <param name="Load"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
@@ -1660,7 +1709,7 @@
             <param name="Type">请求类型</param>
             <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
+            <param name="Load">1~100区间</param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
@@ -1674,7 +1723,7 @@
              <param name="Type">请求类型</param>
             <param name="Encoding">编码格式</param>
             <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
+            <param name="Load">1~100区间</param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
@@ -1723,13 +1772,21 @@
             构建
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilder.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilder.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="UseDnsResolver"></param>
             <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilder.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
+            <summary>
+            设置DNS解析器
+            </summary>
+            <param name="Resolver"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilder.CacheTime(System.Int32)">
@@ -1776,13 +1833,21 @@
             Cookie
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="UseDnsResolver"></param>
             <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
+            <summary>
+            设置DNS解析器
+            </summary>
+            <param name="Resolver"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
@@ -1880,13 +1945,21 @@
             Header
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="UseDnsResolver"></param>
             <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
+            <summary>
+            设置DNS解析器
+            </summary>
+            <param name="Resolver"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
@@ -1984,13 +2057,21 @@
             
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.Build(System.Int32,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
             <param name="TimeOut">超时:秒</param>
             <param name="UseHttps"></param>
+            <param name="UseDnsResolver"></param>
             <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
+            <summary>
+            设置DNS解析器
+            </summary>
+            <param name="Resolver"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
@@ -2081,6 +2162,18 @@
             <param name="value"></param>
             <param name="path"></param>
             <param name="domain"></param>
+            <returns></returns>
+        </member>
+        <member name="T:XExten.Advance.HttpFramework.MultiInterface.IResolver">
+            <summary>
+            自定义解析器
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IResolver.Resolve(System.String)">
+            <summary>
+            解析
+            </summary>
+            <param name="Host"></param>
             <returns></returns>
         </member>
         <member name="T:XExten.Advance.InternalFramework.Email.EmailSettting">

@@ -9,7 +9,8 @@ namespace XExten.Advance.HttpFramework.MultiCommon
     internal class HttpMultiClientWare
     {
         internal static List<Dictionary<String, String>> HeaderMaps = new List<Dictionary<string, string>>();
-        internal static List<WeightURL> WeightPath = new List<WeightURL>();
+        internal static Dictionary<String, IResolver> ResolverMaps = new Dictionary<string, IResolver>(1);
+        internal static List<LoadURL> LoadPath = new List<LoadURL>();
         internal static CookieContainer Container { get; set; }
         internal static WebProxy Proxy { get; set; }
         internal static HttpClient FactoryClient { get; set; }

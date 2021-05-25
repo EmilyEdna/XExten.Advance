@@ -11,7 +11,7 @@ namespace XExten.Advance.HttpFramework.MultiCommon
     /// <summary>
     /// 负载路由
     /// </summary>
-    internal struct WeightURL
+    internal struct LoadURL
     {
         /// <summary>
         /// 请求类型
@@ -20,7 +20,7 @@ namespace XExten.Advance.HttpFramework.MultiCommon
         /// <summary>
         /// 负载比
         /// </summary>
-        public int Weight { get; set; }
+        public int Load { get; set; }
         /// <summary>
         /// 编码格式
         /// </summary>

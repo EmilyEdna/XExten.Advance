@@ -18,11 +18,22 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// </summary>
         /// <param name="TimeOut">超时:秒</param>
         /// <param name="UseHttps"></param>
+        /// <param name="UseDnsResolver"></param>
         /// <param name="action"></param>
         /// <returns></returns>
-        public IBuilder Build(int TimeOut = 60, Boolean UseHttps = false, Action<HttpClientHandler> action = null)
+        public IBuilder Build(int TimeOut = 60, Boolean UseHttps = false, Boolean UseDnsResolver = true, Action<HttpClientHandler> action = null)
         {
-            return HttpMultiClientWare.Builder.Build(TimeOut, UseHttps, action);
+            return HttpMultiClientWare.Builder.Build(TimeOut, UseHttps, UseDnsResolver, action);
+        }
+
+        /// <summary>
+        /// 设置DNS解析器
+        /// </summary>
+        /// <param name="Resolver"></param>
+        /// <returns></returns>
+        public IBuilder SetResolver(IResolver Resolver = null)
+        {
+            return HttpMultiClientWare.Builder.SetResolver(Resolver);
         }
 
         /// <summary>

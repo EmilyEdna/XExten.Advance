@@ -13,6 +13,7 @@ using System.Net.Http;
 using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
+using XExten.Advance.HttpFramework.MultiHandler;
 
 namespace XExten.Advance.HttpFramework.MultiImplement
 {
@@ -24,9 +25,17 @@ namespace XExten.Advance.HttpFramework.MultiImplement
 
         private static int CacheSecond = 30;
 
-        private HttpClientHandler Handler(Boolean UseHttps = false, Action<HttpClientHandler> action = null)
+        private HttpClientHandler Handler(Boolean UseHttps = false, Boolean UseDnsResolver = true, Action<HttpClientHandler> action = null)
         {
-            HttpClientHandler Handler = new HttpClientHandler();
+            HttpClientHandler Handler = null;
+            if (UseDnsResolver)
+            {
+                if (HttpMultiClientWare.ResolverMaps.Count == 0)
+                    SetResolver();
+                 Handler = new DNSClientHandler();
+            }
+            else
+                Handler = new HttpClientHandler();
             if (HttpMultiClientWare.Container != null)
             {
                 Handler.AllowAutoRedirect = true;
@@ -49,15 +58,16 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// </summary>
         /// <param name="TimeOut">超时:秒</param>
         /// <param name="UseHttps"></param>
+        /// <param name="UseDnsResolver"></param>
         /// <param name="action"></param>
         /// <returns></returns>
-        public IBuilder Build(int TimeOut = 60, Boolean UseHttps = false, Action<HttpClientHandler> action = null)
+        public IBuilder Build(int TimeOut = 60, Boolean UseHttps = false, Boolean UseDnsResolver = true, Action<HttpClientHandler> action = null)
         {
-            if (HttpMultiClientWare.WeightPath.FirstOrDefault().URL == null)
+            if (HttpMultiClientWare.LoadPath.FirstOrDefault().URL == null)
                 throw new Exception("Request address is not set!");
             SyncStatic.TryCatch(() =>
             {
-                HttpClient Client = new HttpClient(Handler(UseHttps, action))
+                HttpClient Client = new HttpClient(Handler(UseHttps, UseDnsResolver, action))
                 {
                     Timeout = new TimeSpan(0, 0, TimeOut)
                 };
@@ -74,6 +84,18 @@ namespace XExten.Advance.HttpFramework.MultiImplement
             return HttpMultiClientWare.Builder;
         }
 
+        /// <summary>
+        /// 设置DNS解析器
+        /// </summary>
+        /// <param name="Resolver"></param>
+        /// <returns></returns>
+        public IBuilder SetResolver(IResolver Resolver=null)
+        {
+            if (Resolver == null)
+                Resolver = new DNSClientResolver();
+            HttpMultiClientWare.ResolverMaps.TryAdd(Resolver.GetType().FullName, Resolver);
+            return this;
+        }
         /// <summary>
         /// 设置缓存时间
         /// </summary>
@@ -94,7 +116,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         public List<Byte[]> RunBytes(Action<CookieContainer, Uri> Container = null, Action<byte[], Stopwatch> LoggerExcutor = null)
         {
             List<Byte[]> Result = new List<Byte[]>();
-            HttpMultiClientWare.WeightPath.OrderByDescending(t => t.Weight).ForEnumerEach(item =>
+            HttpMultiClientWare.LoadPath.OrderByDescending(t => t.Load).ForEnumerEach(item =>
             {
                 if (item.UseCache)
                 {
@@ -134,7 +156,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         public List<string> RunString(Action<CookieContainer, Uri> Container = null, Action<string, Stopwatch> LoggerExcutor = null)
         {
             List<string> Result = new List<string>();
-            HttpMultiClientWare.WeightPath.OrderByDescending(t => t.Weight).ForEnumerEach(item =>
+            HttpMultiClientWare.LoadPath.OrderByDescending(t => t.Load).ForEnumerEach(item =>
             {
                 if (item.UseCache)
                 {
@@ -172,7 +194,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        private string RequestString(WeightURL Item, Action<CookieContainer, Uri> Container = null, Action<String, Stopwatch> LoggerExcutor = null)
+        private string RequestString(LoadURL Item, Action<CookieContainer, Uri> Container = null, Action<String, Stopwatch> LoggerExcutor = null)
         {
             if (Item.Request == RequestType.GET)
             {
@@ -235,7 +257,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// <param name="Container"></param>
         /// <param name="LoggerExcutor"></param>
         /// <returns></returns>
-        private Byte[] RequestBytes(WeightURL Item, Action<CookieContainer, Uri> Container = null, Action<byte[], Stopwatch> LoggerExcutor = null)
+        private Byte[] RequestBytes(LoadURL Item, Action<CookieContainer, Uri> Container = null, Action<byte[], Stopwatch> LoggerExcutor = null)
         {
             if (Item.Request == RequestType.GET)
             {
@@ -288,7 +310,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
             HttpMultiClientWare.Container = null;
             HttpMultiClientWare.Proxy = null;
             HttpMultiClientWare.HeaderMaps.Clear();
-            HttpMultiClientWare.WeightPath.Clear();
+            HttpMultiClientWare.LoadPath.Clear();
         }
     }
 }

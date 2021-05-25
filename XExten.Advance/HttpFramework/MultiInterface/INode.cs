@@ -19,9 +19,16 @@ namespace XExten.Advance.HttpFramework.MultiInterface
         /// </summary>
         /// <param name="TimeOut">超时:秒</param>
         /// <param name="UseHttps"></param>
+        /// <param name="UseDnsResolver"></param>
         /// <param name="action"></param>
         /// <returns></returns>
-        IBuilder Build(int TimeOut = 60, Boolean UseHttps = false, Action<HttpClientHandler> action = null);
+        IBuilder Build(int TimeOut = 60, Boolean UseHttps = false, Boolean UseDnsResolver = true, Action<HttpClientHandler> action = null);
+        /// <summary>
+        /// 设置DNS解析器
+        /// </summary>
+        /// <param name="Resolver"></param>
+        /// <returns></returns>
+        IBuilder SetResolver(IResolver Resolver = null);
         /// <summary>
         /// Add Path
         /// </summary>
