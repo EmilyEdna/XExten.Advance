@@ -309,6 +309,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
             HttpMultiClientWare.FactoryClient.Dispose();
             HttpMultiClientWare.Container = null;
             HttpMultiClientWare.Proxy = null;
+            HttpMultiClientWare.ResolverMaps.Clear();
             HttpMultiClientWare.HeaderMaps.Clear();
             HttpMultiClientWare.LoadPath.Clear();
         }
