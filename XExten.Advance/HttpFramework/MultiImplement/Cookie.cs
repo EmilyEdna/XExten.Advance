@@ -48,6 +48,8 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// <returns></returns>
         public ICookies Cookie(string uri, Dictionary<string, string> pairs)
         {
+            if (HttpMultiClientWare.Container == null)
+                HttpMultiClientWare.Container = new CookieContainer();
             pairs.ForDicEach((key, val) =>
             {
                 HttpMultiClientWare.Container.Add(new Uri(uri), new Cookie(key, val));
@@ -63,6 +65,8 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// <returns></returns>
         public ICookies Cookie(Uri uri, CookieCollection cookies)
         {
+            if (HttpMultiClientWare.Container == null)
+                HttpMultiClientWare.Container = new CookieContainer();
             HttpMultiClientWare.Container.Add(uri, cookies);
             return HttpMultiClientWare.Cookies;
         }
@@ -77,6 +81,8 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// <returns></returns>
         public ICookies Cookie(string name, string value, string path, string domain)
         {
+            if (HttpMultiClientWare.Container == null)
+                HttpMultiClientWare.Container = new CookieContainer();
             Cookie Cookie = new Cookie(name, value, path, domain);
             HttpMultiClientWare.Container.Add(Cookie);
             return HttpMultiClientWare.Cookies;

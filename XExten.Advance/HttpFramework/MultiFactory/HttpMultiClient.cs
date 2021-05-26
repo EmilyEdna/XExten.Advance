@@ -18,7 +18,7 @@ namespace XExten.Advance.HttpFramework.MultiFactory
     /// </summary>
     internal class HttpMultiClient : IHttpMultiClient
     {
-        
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -39,7 +39,8 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         /// <returns></returns>
         public IHttpMultiClient InitCookieContainer()
         {
-            HttpMultiClientWare.Container = new CookieContainer();
+            if (HttpMultiClientWare.Container == null)
+                HttpMultiClientWare.Container = new CookieContainer();
             return this;
         }
 
@@ -111,6 +112,8 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         /// <returns></returns>
         public ICookies Cookie(string uri, Dictionary<string, string> pairs)
         {
+            if (HttpMultiClientWare.Container == null)
+                HttpMultiClientWare.Container = new CookieContainer();
             pairs.ForDicEach((key, val) =>
             {
                 HttpMultiClientWare.Container.Add(new Uri(uri), new Cookie(key, val));
@@ -126,6 +129,8 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         /// <returns></returns>
         public ICookies Cookie(Uri uri, CookieCollection cookies)
         {
+            if (HttpMultiClientWare.Container == null)
+                HttpMultiClientWare.Container = new CookieContainer();
             HttpMultiClientWare.Container.Add(uri, cookies);
             return HttpMultiClientWare.Cookies;
         }
@@ -141,7 +146,8 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         public ICookies Cookie(string name, string value, string path, string domain)
         {
             Cookie Cookie = new Cookie(name, value, path, domain);
-            if (HttpMultiClientWare.Container == null) throw new NullReferenceException("Please initialize the InitCookieContainer method before calling the cookie method");
+            if (HttpMultiClientWare.Container == null)
+                HttpMultiClientWare.Container = new CookieContainer();
             HttpMultiClientWare.Container.Add(Cookie);
             return HttpMultiClientWare.Cookies;
         }
