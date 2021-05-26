@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace XExten.Advance.HttpFramework.MultiCommon
 {
     /// <summary>
     /// RequestType
     /// </summary>
-    public enum RequestType
+    public enum MultiType
     {
         /// <summary>
         /// POST

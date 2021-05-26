@@ -980,239 +980,86 @@
             </summary>
             <param name="Key"></param>
         </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiCommon.HttpKeyPairs">
+        <member name="T:XExten.Advance.HttpFramework.MultiCommon.MultiKeyPairs">
             <summary>
             封装数据
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiCommon.HttpKeyPairs.KeyValuePairs``1(``0,System.Collections.Generic.IDictionary{System.String,System.String})">
+        <member name="M:XExten.Advance.HttpFramework.MultiCommon.MultiKeyPairs.KeyValuePairs(System.Object,System.Collections.Generic.IDictionary{System.String,System.String})">
             <summary>
             创建一个key-value格式的表单数据(Making form data to KeyValuePairs)
             </summary>
-            <typeparam name="T"></typeparam>
             <param name="Entity"></param>
             <param name="Map"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiCommon.HttpKeyPairs.RetrunEnumValue``1(System.Reflection.PropertyInfo,``0)">
+        <member name="M:XExten.Advance.HttpFramework.MultiCommon.MultiKeyPairs.KeyValuePairs``1(``0,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            创建一个key-value格式的表单数据(Making form data to KeyValuePairs)
+            </summary>
+            <param name="Entity"></param>
+            <param name="Map"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiCommon.MultiKeyPairs.RetrunEnumValue``1(System.Reflection.PropertyInfo,``0)">
             <summary>
             返回枚举值
             </summary>
             <returns></returns>
         </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiCommon.LoadURL">
-            <summary>
-            负载路由
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.LoadURL.Request">
-            <summary>
-            请求类型
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.LoadURL.Load">
-            <summary>
-            负载比
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.LoadURL.Encoding">
-            <summary>
-            编码格式
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.LoadURL.URL">
-            <summary>
-            路由
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.LoadURL.Contents">
-            <summary>
-            请求内容
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.LoadURL.UseCache">
-            <summary>
-            使用缓存
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.LoadURL.MediaTypeHeader">
-            <summary>
-            请求类型
-            </summary>
-        </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiCommon.ProxyURL">
+        <member name="T:XExten.Advance.HttpFramework.MultiCommon.MultiProxy">
             <summary>
             代理
             </summary>
         </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.ProxyURL.IP">
+        <member name="P:XExten.Advance.HttpFramework.MultiCommon.MultiProxy.IP">
             <summary>
             IP
             </summary>
         </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.ProxyURL.Port">
+        <member name="P:XExten.Advance.HttpFramework.MultiCommon.MultiProxy.Port">
             <summary>
             端口
             </summary>
         </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.ProxyURL.UserName">
+        <member name="P:XExten.Advance.HttpFramework.MultiCommon.MultiProxy.UserName">
             <summary>
             用户
             </summary>
         </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiCommon.ProxyURL.PassWord">
+        <member name="P:XExten.Advance.HttpFramework.MultiCommon.MultiProxy.PassWord">
             <summary>
             密码
             </summary>
         </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiCommon.RequestType">
+        <member name="T:XExten.Advance.HttpFramework.MultiCommon.MultiType">
             <summary>
             RequestType
             </summary>
         </member>
-        <member name="F:XExten.Advance.HttpFramework.MultiCommon.RequestType.POST">
+        <member name="F:XExten.Advance.HttpFramework.MultiCommon.MultiType.POST">
             <summary>
             POST
             </summary>
         </member>
-        <member name="F:XExten.Advance.HttpFramework.MultiCommon.RequestType.GET">
+        <member name="F:XExten.Advance.HttpFramework.MultiCommon.MultiType.GET">
             <summary>
             GET
             </summary>
         </member>
-        <member name="F:XExten.Advance.HttpFramework.MultiCommon.RequestType.DELETE">
+        <member name="F:XExten.Advance.HttpFramework.MultiCommon.MultiType.DELETE">
             <summary>
             DELETE
             </summary>
         </member>
-        <member name="F:XExten.Advance.HttpFramework.MultiCommon.RequestType.PUT">
+        <member name="F:XExten.Advance.HttpFramework.MultiCommon.MultiType.PUT">
             <summary>
             PUT
             </summary>
         </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient">
-            <summary>
-            负载请求
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.#ctor">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.InitCookieContainer">
-            <summary>
-            初始化Cookie容器
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.InitWebProxy(System.Action{XExten.Advance.HttpFramework.MultiCommon.ProxyURL})">
-            <summary>
-            使用代理
-            </summary>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.InitWebProxy(XExten.Advance.HttpFramework.MultiCommon.ProxyURL)">
-            <summary>
-            使用代理
-            </summary>
-            <param name="Proxy"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.Header(System.String,System.String)">
-            <summary>
-            Add Header
-            </summary>
-            <param name="key"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Add Header
-            </summary>
-            <param name="headers"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="uri"></param>
-            <param name="pairs"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.Cookie(System.Uri,System.Net.CookieCollection)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="uri"></param>
-            <param name="cookies"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.Cookie(System.String,System.String,System.String,System.String)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="path"></param>
-            <param name="domain"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path">请求地址</param>
-            <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Load">1~100区间</param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.AddNode(System.String,System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-             <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Load"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Load">1~100区间</param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Path"></param>
-            <param name="Param">实体模型</param>
-            <param name="MapFied">映射字段</param>
-             <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Load">1~100区间</param>
-            <returns></returns>
-        </member>
         <member name="T:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient">
             <summary>
-            负载请求
+            Http
             </summary>
         </member>
         <member name="P:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.HttpMulti">
@@ -1220,114 +1067,46 @@
             Instance
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.InitCookieContainer">
-            <summary>
-            初始化Cookie容器
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.InitWebProxy(System.Action{XExten.Advance.HttpFramework.MultiCommon.ProxyURL})">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.InitWebProxy(System.Action{XExten.Advance.HttpFramework.MultiCommon.MultiProxy})">
             <summary>
             使用代理
             </summary>
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.InitWebProxy(XExten.Advance.HttpFramework.MultiCommon.ProxyURL)">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.InitWebProxy(XExten.Advance.HttpFramework.MultiCommon.MultiProxy)">
             <summary>
             使用代理
             </summary>
-            <param name="Proxy"></param>
+            <param name="proxy"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.Header(System.String,System.String)">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
             <summary>
-            Add Header
+            使用DNS解析器
             </summary>
-            <param name="key"></param>
-            <param name="value"></param>
+            <param name="Resolver"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.AddHeader(System.Action{XExten.Advance.HttpFramework.MultiOption.HeaderOption})">
             <summary>
-            Add Header
+            Header
             </summary>
-            <param name="headers"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.AddCookie(System.Action{XExten.Advance.HttpFramework.MultiOption.CookieOption})">
             <summary>
-            Add Cookie
+            Cookie
             </summary>
-            <param name="uri"></param>
-            <param name="pairs"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.Cookie(System.Uri,System.Net.CookieCollection)">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.AddNode(System.Action{XExten.Advance.HttpFramework.MultiOption.NodeOption})">
             <summary>
-            Add Cookie
+            Node
             </summary>
-            <param name="uri"></param>
-            <param name="cookies"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.Cookie(System.String,System.String,System.String,System.String)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="path"></param>
-            <param name="domain"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path">请求地址</param>
-            <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.AddNode(System.String,System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-             <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Path"></param>
-            <param name="Param">实体模型</param>
-            <param name="MapFied">映射字段</param>
-             <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
+            <param name="action"></param>
             <returns></returns>
         </member>
         <member name="T:XExten.Advance.HttpFramework.MultiHandler.DNSClientHandler">
@@ -1347,485 +1126,94 @@
             <param name="Host"></param>
             <returns></returns>
         </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiImplement.Builder">
-            <summary>
-            构建器
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
-            <summary>
-            构建
-            </summary>
-            <param name="TimeOut">超时:秒</param>
-            <param name="UseHttps"></param>
-            <param name="UseDnsResolver"></param>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
-            <summary>
-            设置DNS解析器
-            </summary>
-            <param name="Resolver"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.CacheTime(System.Int32)">
-            <summary>
-            设置缓存时间
-            </summary>
-            <param name="CacheSeconds">单位：Seconds</param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.RunBytes(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunBytes(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
             执行 bytes
             </summary>
             <param name="Container"></param>
-            <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.RunBytesAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunBytesAsync(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
             执行 bytes
             </summary>
             <param name="Container"></param>
-            <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.RunString(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.String,System.Diagnostics.Stopwatch})">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunString(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
             执行 default UTF-8
             </summary>
             <param name="Container"></param>
-            <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.RunStringAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.String,System.Diagnostics.Stopwatch})">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunStringAsync(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
             执行 default UTF-8
             </summary>
             <param name="Container"></param>
-            <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.RequestString(XExten.Advance.HttpFramework.MultiCommon.LoadURL,System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.String,System.Diagnostics.Stopwatch})">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RequestBytes(XExten.Advance.HttpFramework.MultiOption.NodeOption,System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
             请求
             </summary>
             <param name="Item"></param>
             <param name="Container"></param>
-            <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.RequestBytes(XExten.Advance.HttpFramework.MultiCommon.LoadURL,System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RequestString(XExten.Advance.HttpFramework.MultiOption.NodeOption,System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
             请求
             </summary>
             <param name="Item"></param>
             <param name="Container"></param>
-            <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builder.Dispose">
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.Dispose">
             <summary>
             释放资源
             </summary>
         </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiImplement.Cookies">
+        <member name="T:XExten.Advance.HttpFramework.MultiInterface.IBuilders">
             <summary>
-            Cookie
+            builder
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.Build(System.Action{XExten.Advance.HttpFramework.MultiOption.BuilderOption},System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
-            <param name="TimeOut">超时:秒</param>
-            <param name="UseHttps"></param>
-            <param name="UseDnsResolver"></param>
             <param name="action"></param>
+            <param name="handle"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunBytes(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
-            设置DNS解析器
-            </summary>
-            <param name="Resolver"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="uri"></param>
-            <param name="pairs"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.Cookie(System.Uri,System.Net.CookieCollection)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="uri"></param>
-            <param name="cookies"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.Cookie(System.String,System.String,System.String,System.String)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="path"></param>
-            <param name="domain"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.Header(System.String,System.String)">
-            <summary>
-            Add Header
-            </summary>
-            <param name="key"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Add Header
-            </summary>
-            <param name="headers"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Type"></param>
-            <param name="Encoding"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.AddNode(System.String,System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type"></param>
-            <param name="Encoding"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type"></param>
-            <param name="Encoding"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Cookies.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="MapFied"></param>
-            <param name="Type"></param>
-            <param name="Encoding"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiImplement.Headers">
-            <summary>
-            Header
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
-            <summary>
-            构建
-            </summary>
-            <param name="TimeOut">超时:秒</param>
-            <param name="UseHttps"></param>
-            <param name="UseDnsResolver"></param>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
-            <summary>
-            设置DNS解析器
-            </summary>
-            <param name="Resolver"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.Header(System.String,System.String)">
-            <summary>
-            Add Header
-            </summary>
-            <param name="key"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Add Header
-            </summary>
-            <param name="headers"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="uri"></param>
-            <param name="pairs"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.Cookie(System.Uri,System.Net.CookieCollection)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="uri"></param>
-            <param name="cookies"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.Cookie(System.String,System.String,System.String,System.String)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="path"></param>
-            <param name="domain"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Type"></param>
-            <param name="Encoding"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.AddNode(System.String,System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type"></param>
-            <param name="Encoding"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type"></param>
-            <param name="Encoding"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Headers.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="MapFied"></param>
-            <param name="Type"></param>
-            <param name="Encoding"></param>
-            <param name="UseCache"></param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiImplement.Node">
-            <summary>
-            URL
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
-            <summary>
-            构建
-            </summary>
-            <param name="TimeOut">超时:秒</param>
-            <param name="UseHttps"></param>
-            <param name="UseDnsResolver"></param>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
-            <summary>
-            设置DNS解析器
-            </summary>
-            <param name="Resolver"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path">请求地址</param>
-            <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Load">1~100区间</param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.AddNode(System.String,System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-             <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Load"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Load">1~100区间</param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Path"></param>
-            <param name="Param">实体模型</param>
-            <param name="MapFied">映射字段</param>
-             <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Load">1~100区间</param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="uri"></param>
-            <param name="pairs"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.Cookie(System.Uri,System.Net.CookieCollection)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="uri"></param>
-            <param name="cookies"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.Cookie(System.String,System.String,System.String,System.String)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="path"></param>
-            <param name="domain"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.Header(System.String,System.String)">
-            <summary>
-            Add Header
-            </summary>
-            <param name="key"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Node.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Add Header
-            </summary>
-            <param name="headers"></param>
-            <returns></returns>
-        </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiInterface.IBuilder">
-            <summary>
-            构建
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilder.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
-            <summary>
-            构建
-            </summary>
-            <param name="TimeOut">超时:秒</param>
-            <param name="UseHttps"></param>
-            <param name="UseDnsResolver"></param>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilder.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
-            <summary>
-            设置DNS解析器
-            </summary>
-            <param name="Resolver"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilder.CacheTime(System.Int32)">
-            <summary>
-            设置缓存时间
-            </summary>
-            <param name="CacheSeconds"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilder.RunString(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.String,System.Diagnostics.Stopwatch})">
-            <summary>
-            执行 default UTF-8
+            请求
             </summary>
             <param name="Container"></param>
-            <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilder.RunStringAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.String,System.Diagnostics.Stopwatch})">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunBytesAsync(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
-            执行 default UTF-8
+            请求
             </summary>
             <param name="Container"></param>
-            <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilder.RunBytes(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunString(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
-            执行 bytes
+            请求
             </summary>
             <param name="Container"></param>
-            <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilder.RunBytesAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Action{System.Byte[],System.Diagnostics.Stopwatch})">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunStringAsync(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
-            执行 bytes
+            请求
             </summary>
             <param name="Container"></param>
-            <param name="LoggerExcutor"></param>
             <returns></returns>
         </member>
         <member name="T:XExten.Advance.HttpFramework.MultiInterface.ICookies">
@@ -1833,111 +1221,33 @@
             Cookie
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.Build(System.Action{XExten.Advance.HttpFramework.MultiOption.BuilderOption},System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
-            构建
+            Builder
             </summary>
-            <param name="TimeOut">超时:秒</param>
-            <param name="UseHttps"></param>
-            <param name="UseDnsResolver"></param>
+            <param name="action"></param>
+            <param name="handle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.AddCookie(System.Action{XExten.Advance.HttpFramework.MultiOption.CookieOption})">
+            <summary>
+            Cookie
+            </summary>
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.AddNode(System.Action{XExten.Advance.HttpFramework.MultiOption.NodeOption})">
             <summary>
-            设置DNS解析器
+            Node
             </summary>
-            <param name="Resolver"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.AddHeader(System.Action{XExten.Advance.HttpFramework.MultiOption.HeaderOption})">
             <summary>
-            Add Path
+            Header
             </summary>
-            <param name="Path">请求地址</param>
-            <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.AddNode(System.String,System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-             <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Path"></param>
-            <param name="Param">实体模型</param>
-            <param name="MapFied">映射字段</param>
-             <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.Header(System.String,System.String)">
-            <summary>
-            Add Header
-            </summary>
-            <param name="key"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Add Header
-            </summary>
-            <param name="headers"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="uri"></param>
-            <param name="pairs"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.Cookie(System.Uri,System.Net.CookieCollection)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="uri"></param>
-            <param name="cookies"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.Cookie(System.String,System.String,System.String,System.String)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="path"></param>
-            <param name="domain"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
         <member name="T:XExten.Advance.HttpFramework.MultiInterface.IHeaders">
@@ -1945,223 +1255,67 @@
             Header
             </summary>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.Build(System.Action{XExten.Advance.HttpFramework.MultiOption.BuilderOption},System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
-            构建
+            Builder
             </summary>
-            <param name="TimeOut">超时:秒</param>
-            <param name="UseHttps"></param>
-            <param name="UseDnsResolver"></param>
+            <param name="action"></param>
+            <param name="handle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.AddCookie(System.Action{XExten.Advance.HttpFramework.MultiOption.CookieOption})">
+            <summary>
+            Cookie
+            </summary>
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.AddNode(System.Action{XExten.Advance.HttpFramework.MultiOption.NodeOption})">
             <summary>
-            设置DNS解析器
+            Node
             </summary>
-            <param name="Resolver"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path">请求地址</param>
-            <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.AddNode(System.String,System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-             <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
-            <summary>
-            Add Path
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Path"></param>
-            <param name="Param">实体模型</param>
-            <param name="MapFied">映射字段</param>
-             <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.Header(System.String,System.String)">
-            <summary>
-            Add Header
-            </summary>
-            <param name="key"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Add Header
-            </summary>
-            <param name="headers"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="uri"></param>
-            <param name="pairs"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.Cookie(System.Uri,System.Net.CookieCollection)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="uri"></param>
-            <param name="cookies"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.Cookie(System.String,System.String,System.String,System.String)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="path"></param>
-            <param name="domain"></param>
-            <returns></returns>
-        </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiInterface.INode">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.Build(System.Int32,System.Boolean,System.Boolean,System.Action{System.Net.Http.HttpClientHandler})">
-            <summary>
-            构建
-            </summary>
-            <param name="TimeOut">超时:秒</param>
-            <param name="UseHttps"></param>
-            <param name="UseDnsResolver"></param>
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.AddHeader(System.Action{XExten.Advance.HttpFramework.MultiOption.HeaderOption})">
             <summary>
-            设置DNS解析器
+            Header
             </summary>
-            <param name="Resolver"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.AddNode(System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
+        <member name="T:XExten.Advance.HttpFramework.MultiInterface.INodes">
             <summary>
-            Add Path
+            Node
             </summary>
-            <param name="Path">请求地址</param>
-            <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INodes.Build(System.Action{XExten.Advance.HttpFramework.MultiOption.BuilderOption},System.Action{System.Net.Http.HttpClientHandler})">
+            <summary>
+            Builder
+            </summary>
+            <param name="action"></param>
+            <param name="handle"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.AddNode(System.String,System.String,XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INodes.AddCookie(System.Action{XExten.Advance.HttpFramework.MultiOption.CookieOption})">
             <summary>
-            Add Path
+            Cookie
             </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-             <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.AddNode(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INodes.AddNode(System.Action{XExten.Advance.HttpFramework.MultiOption.NodeOption})">
             <summary>
-            Add Path
+            Node
             </summary>
-            <param name="Path"></param>
-            <param name="Param"></param>
-            <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
+            <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.AddNode``1(System.String,``0,System.Collections.Generic.IDictionary{System.String,System.String},XExten.Advance.HttpFramework.MultiCommon.RequestType,System.String,System.Boolean,System.Int32)">
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INodes.AddHeader(System.Action{XExten.Advance.HttpFramework.MultiOption.HeaderOption})">
             <summary>
-            Add Path
+            Header
             </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Path"></param>
-            <param name="Param">实体模型</param>
-            <param name="MapFied">映射字段</param>
-             <param name="Type">请求类型</param>
-            <param name="Encoding">编码格式</param>
-            <param name="UseCache">使用缓存</param>
-            <param name="Weight">1~100区间</param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.Header(System.String,System.String)">
-            <summary>
-            Add Header
-            </summary>
-            <param name="key"></param>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.Header(System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Add Header
-            </summary>
-            <param name="headers"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.Cookie(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="uri"></param>
-            <param name="pairs"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.Cookie(System.Uri,System.Net.CookieCollection)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="uri"></param>
-            <param name="cookies"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INode.Cookie(System.String,System.String,System.String,System.String)">
-            <summary>
-            Add Cookie
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="path"></param>
-            <param name="domain"></param>
+            <param name="action"></param>
             <returns></returns>
         </member>
         <member name="T:XExten.Advance.HttpFramework.MultiInterface.IResolver">
@@ -2175,6 +1329,156 @@
             </summary>
             <param name="Host"></param>
             <returns></returns>
+        </member>
+        <member name="T:XExten.Advance.HttpFramework.MultiOption.BuilderOption">
+            <summary>
+            BuilderOption
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.BuilderOption.TimeOut">
+            <summary>
+            TimeOut
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.BuilderOption.CacheTime">
+            <summary>
+            CacheTime
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.BuilderOption.UseHttps">
+            <summary>
+            UseHttps
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.BuilderOption.UseDnsResolver">
+            <summary>
+            使用DNS解析器
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.BuilderOption.UseZip">
+            <summary>
+            数据压缩
+            </summary>
+        </member>
+        <member name="T:XExten.Advance.HttpFramework.MultiOption.CookieOption">
+            <summary>
+            CookieOption
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.CookieOption.URI">
+            <summary>
+            URI
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.CookieOption.CookieName">
+            <summary>
+            CookieName
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.CookieOption.CookieValue">
+            <summary>
+            CookieValue
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.CookieOption.CookiePath">
+            <summary>
+            CookiePath
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.CookieOption.CookieDomain">
+            <summary>
+            CookieDomain
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.CookieOption.Cookies">
+            <summary>
+            Cookies
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.CookieOption.CookieColl">
+            <summary>
+            CookieColl
+            </summary>
+        </member>
+        <member name="T:XExten.Advance.HttpFramework.MultiOption.HeaderOption">
+            <summary>
+            HeaderOption
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.HeaderOption.HeaderKey">
+            <summary>
+            HeaderKey
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.HeaderOption.HeaderValue">
+            <summary>
+            HeaderValue
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.HeaderOption.Headers">
+            <summary>
+            Headers
+            </summary>
+        </member>
+        <member name="T:XExten.Advance.HttpFramework.MultiOption.NodeOption">
+            <summary>
+            NodeOption
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.NodeOption.NodePath">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.NodeOption.ReqType">
+            <summary>
+            请求类型
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.NodeOption.Encoding">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.NodeOption.CacheNode">
+            <summary>
+            缓存当前节点
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.NodeOption.JsonParam">
+            <summary>
+            Json格式参数
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.NodeOption.EntityParam">
+            <summary>
+            实体参数
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.NodeOption.FormParam">
+            <summary>
+            表单参数
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.NodeOption.MapFied">
+            <summary>
+            字段映射
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.NodeOption.Contents">
+            <summary>
+            请求内容
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.NodeOption.MediaTypeHeader">
+            <summary>
+            请求类型
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.NodeOption.URI">
+            <summary>
+            地址
+            </summary>
         </member>
         <member name="T:XExten.Advance.InternalFramework.Email.EmailSettting">
             <summary>

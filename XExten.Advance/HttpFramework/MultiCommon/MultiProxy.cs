@@ -7,7 +7,7 @@ namespace XExten.Advance.HttpFramework.MultiCommon
     /// <summary>
     /// 代理
     /// </summary>
-    public class ProxyURL
+    public class MultiProxy
     {
         /// <summary>
         /// IP

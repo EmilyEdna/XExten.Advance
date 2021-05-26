@@ -7,9 +7,9 @@ using XExten.Advance.HttpFramework.MultiOption;
 namespace XExten.Advance.HttpFramework.MultiInterface
 {
     /// <summary>
-    /// Cookie
+    /// Node
     /// </summary>
-    public interface ICookies
+    public interface INodes
     {
         /// <summary>
         /// Builder

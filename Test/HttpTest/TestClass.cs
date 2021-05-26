@@ -5,6 +5,7 @@ using System.Linq;
 using DnsClient;
 using System.Net;
 using XExten.Advance.HttpFramework.MultiInterface;
+using XExten.Advance.HttpFramework.MultiCommon;
 
 namespace Test.HttpTest
 {
@@ -15,11 +16,11 @@ namespace Test.HttpTest
         {
           
             var data = IHttpMultiClient.HttpMulti
-                .AddNode("https://bilibili.com")
-                .Build().RunString().FirstOrDefault();
+                .AddNode(opt=> {
+                    opt.NodePath = "https://bilibili.com";
+                }).Build().RunString().FirstOrDefault();
 
-            var data1 = IHttpMultiClient.HttpMulti.AddNode("https://baidu.com").SetResolver(new T())
-                .Build().RunString().FirstOrDefault();
+
             Assert.NotNull(data);
         }
         public class T : IResolver

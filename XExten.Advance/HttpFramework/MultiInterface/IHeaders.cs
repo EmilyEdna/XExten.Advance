@@ -1,11 +1,8 @@
-﻿using XExten.Advance.HttpFramework.MultiCommon;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Http;
+using System.Text;
+using XExten.Advance.HttpFramework.MultiOption;
 
 namespace XExten.Advance.HttpFramework.MultiInterface
 {
@@ -15,100 +12,29 @@ namespace XExten.Advance.HttpFramework.MultiInterface
     public interface IHeaders
     {
         /// <summary>
-        /// 构建
+        /// Builder
         /// </summary>
-        /// <param name="TimeOut">超时:秒</param>
-        /// <param name="UseHttps"></param>
-        /// <param name="UseDnsResolver"></param>
+        /// <param name="action"></param>
+        /// <param name="handle"></param>
+        /// <returns></returns>
+        IBuilders Build(Action<BuilderOption> action = null, Action<HttpClientHandler> handle = null);
+        /// <summary>
+        /// Cookie
+        /// </summary>
         /// <param name="action"></param>
         /// <returns></returns>
-        IBuilder Build(int TimeOut = 60, Boolean UseHttps = false, Boolean UseDnsResolver = true, Action<HttpClientHandler> action = null);
+        ICookies AddCookie(Action<CookieOption> action);
         /// <summary>
-        /// 设置DNS解析器
+        /// Node
         /// </summary>
-        /// <param name="Resolver"></param>
+        /// <param name="action"></param>
         /// <returns></returns>
-        IBuilder SetResolver(IResolver Resolver = null);
+        INodes AddNode(Action<NodeOption> action);
         /// <summary>
-        /// Add Path
+        /// Header
         /// </summary>
-        /// <param name="Path">请求地址</param>
-        /// <param name="Type">请求类型</param>
-        /// <param name="Encoding">编码格式</param>
-        /// <param name="UseCache">使用缓存</param>
-        /// <param name="Weight">1~100区间</param>
+        /// <param name="action"></param>
         /// <returns></returns>
-        INode AddNode(string Path, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50);
-        /// <summary>
-        /// Add Path
-        /// </summary>
-        /// <param name="Path"></param>
-        /// <param name="Param"></param>
-        ///  <param name="Type">请求类型</param>
-        /// <param name="Encoding">编码格式</param>
-        /// <param name="UseCache">使用缓存</param>
-        /// <param name="Weight"></param>
-        /// <returns></returns>
-        INode AddNode(string Path, string Param, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50);
-        /// <summary>
-        /// Add Path
-        /// </summary>
-        /// <param name="Path"></param>
-        /// <param name="Param"></param>
-        /// <param name="Type">请求类型</param>
-        /// <param name="Encoding">编码格式</param>
-        /// <param name="UseCache">使用缓存</param>
-        /// <param name="Weight">1~100区间</param>
-        /// <returns></returns>
-        INode AddNode(string Path, List<KeyValuePair<String, String>> Param, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50);
-        /// <summary>
-        /// Add Path
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="Path"></param>
-        /// <param name="Param">实体模型</param>
-        /// <param name="MapFied">映射字段</param>
-        ///  <param name="Type">请求类型</param>
-        /// <param name="Encoding">编码格式</param>
-        /// <param name="UseCache">使用缓存</param>
-        /// <param name="Weight">1~100区间</param>
-        /// <returns></returns>
-        INode AddNode<T>(string Path, T Param, IDictionary<string, string> MapFied = null, RequestType Type = RequestType.GET, string Encoding = "UTF-8", bool UseCache = false, int Weight = 50) where T : class, new();
-        /// <summary>
-        /// Add Header
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        IHeaders Header(string key, string value);
-        /// <summary>
-        /// Add Header
-        /// </summary>
-        /// <param name="headers"></param>
-        /// <returns></returns>
-        IHeaders Header(Dictionary<string, string> headers);
-        /// <summary>
-        /// Add Cookie
-        /// </summary>
-        /// <param name="uri"></param>
-        /// <param name="pairs"></param>
-        /// <returns></returns>
-        ICookies Cookie(string uri, Dictionary<string, string> pairs);
-        /// <summary>
-        /// Add Cookie
-        /// </summary>
-        /// <param name="uri"></param>
-        /// <param name="cookies"></param>
-        /// <returns></returns>
-        ICookies Cookie(Uri uri, CookieCollection cookies);
-        /// <summary>
-        /// Add Cookie
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
-        /// <param name="path"></param>
-        /// <param name="domain"></param>
-        /// <returns></returns>
-        ICookies Cookie(string name, string value, string path, string domain);
+        IHeaders AddHeader(Action<HeaderOption> action);
     }
 }

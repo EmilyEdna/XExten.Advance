@@ -8,7 +8,7 @@ using XExten.Advance.HttpFramework.MultiOption;
 
 namespace XExten.Advance.HttpFramework.MultiImplement
 {
-    internal class Headers : IHeaders
+    internal class Cookies : ICookies
     {
         public IBuilders Build(Action<BuilderOption> action = null, Action<HttpClientHandler> handle = null)
         {
@@ -17,15 +17,15 @@ namespace XExten.Advance.HttpFramework.MultiImplement
 
         public ICookies AddCookie(Action<CookieOption> action)
         {
-            return MultiConfig.Cookies.AddCookie(action);
+            CookieOption Option = new CookieOption();
+            action(Option);
+            Option.SetCookie();
+            return MultiConfig.Cookies;
         }
 
         public IHeaders AddHeader(Action<HeaderOption> action)
         {
-            HeaderOption Option = new HeaderOption();
-            action(Option);
-            Option.SetHeader();
-            return MultiConfig.Headers;
+            return MultiConfig.Headers.AddHeader(action);
         }
 
         public INodes AddNode(Action<NodeOption> action)

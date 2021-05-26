@@ -8,7 +8,7 @@ using XExten.Advance.HttpFramework.MultiOption;
 
 namespace XExten.Advance.HttpFramework.MultiImplement
 {
-    internal class Headers : IHeaders
+    internal class Nodes : INodes
     {
         public IBuilders Build(Action<BuilderOption> action = null, Action<HttpClientHandler> handle = null)
         {
@@ -22,15 +22,15 @@ namespace XExten.Advance.HttpFramework.MultiImplement
 
         public IHeaders AddHeader(Action<HeaderOption> action)
         {
-            HeaderOption Option = new HeaderOption();
-            action(Option);
-            Option.SetHeader();
-            return MultiConfig.Headers;
+            return MultiConfig.Headers.AddHeader(action);
         }
 
         public INodes AddNode(Action<NodeOption> action)
         {
-            return MultiConfig.Nodes.AddNode(action);
+            NodeOption Option = new NodeOption();
+            action(Option);
+            Option.SetNode();
+            return MultiConfig.Nodes;
         }
     }
 }
