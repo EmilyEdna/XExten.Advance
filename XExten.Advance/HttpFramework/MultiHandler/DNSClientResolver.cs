@@ -22,7 +22,7 @@ namespace XExten.Advance.HttpFramework.MultiHandler
             LookupClient lookup = new LookupClient();
             var result = lookup.Query(Host, QueryType.A);
             var dns = result.Answers.ARecords().ToList();
-            return dns.FirstOrDefault().Address.ToString();
+            return dns.LastOrDefault().Address.ToString();
         }
     }
 }

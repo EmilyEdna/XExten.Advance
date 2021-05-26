@@ -1,37 +1,25 @@
 ﻿using XExten.Advance.HttpFramework.MultiFactory;
-using System.Diagnostics;
-using Xunit;
 using System.Linq;
 using DnsClient;
-using System.Net;
 using XExten.Advance.HttpFramework.MultiInterface;
-using XExten.Advance.HttpFramework.MultiCommon;
 
 namespace Test.HttpTest
 {
     public class TestClass
     {
-        [Fact]
-        public void TestMethond()
+        public string TestMethond()
         {
-          
-            var data = IHttpMultiClient.HttpMulti
-                .AddNode(opt=> {
-                    opt.NodePath = "https://bilibili.com";
-                }).Build().RunString().FirstOrDefault();
 
+            return IHttpMultiClient.HttpMulti
+                .SetResolver()
+                .AddNode(opt =>
+                {
+                    opt.NodePath = "http://www.bilibili.com";
+                }).Build(opt =>
+                {
+                    opt.UseDnsResolver = true;
+                }).RunString().FirstOrDefault();
 
-            Assert.NotNull(data);
-        }
-        public class T : IResolver
-        {
-            public string Resolve(string Host)
-            {
-                LookupClient lookup = new LookupClient();
-                var result = lookup.Query(Host, QueryType.A);
-                var dns = result.Answers.ARecords().ToList();
-                return dns.FirstOrDefault().Address.ToString();
-            }
         }
     }
 }
