@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
+using System.Runtime.Loader;
 using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +23,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
     internal class Builders : IBuilders, IDisposable
     {
         private int CacheSecond = 60;
+        private static List<Assembly> Assemblies = new List<Assembly>();
         private HttpClientHandler Handler(BuilderOption Option, Action<HttpClientHandler> action = null)
         {
             HttpClientHandler Handler = null;
@@ -40,7 +44,19 @@ namespace XExten.Advance.HttpFramework.MultiImplement
             if (Option.UseHttps)
             {
                 Handler.SslProtocols = SslProtocols.Tls | SslProtocols.Tls11 | SslProtocols.Tls12;
-                Handler.ServerCertificateCustomValidationCallback = (Message, Certificate, Chain, Error) => true;
+                if (Assemblies.Count <= 0)
+                {
+                    var libs = DependencyContext.Default.CompileLibraries.Where(lib => !lib.Serviceable);
+                    foreach (var item in libs)
+                    {
+                        Assembly assembly = AssemblyLoadContext.Default.LoadFromAssemblyName(new AssemblyName(item.Name));
+                        Assemblies.Add(assembly);
+                    }
+                }
+                var TargerType = Assemblies.SelectMany(t => t.ExportedTypes.Where(x => x.BaseType == typeof(ServerIdentity))).FirstOrDefault();
+                if (TargerType==null)
+                    throw new NotImplementedException(nameof(ServerIdentity));
+                Handler.ServerCertificateCustomValidationCallback += (Activator.CreateInstance(TargerType) as ServerIdentity).ServerCertificate;
             }
             if (Option.UseZip)
             {

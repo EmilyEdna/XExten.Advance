@@ -1126,6 +1126,21 @@
             <param name="Host"></param>
             <returns></returns>
         </member>
+        <member name="T:XExten.Advance.HttpFramework.MultiHandler.ServerIdentity">
+            <summary>
+            证书验证
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiHandler.ServerIdentity.ServerCertificate(System.Net.Http.HttpRequestMessage,System.Security.Cryptography.X509Certificates.X509Certificate2,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            证书验证
+            </summary>
+            <param name="httpRequest"></param>
+            <param name="x509"></param>
+            <param name="chain"></param>
+            <param name="err"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunBytes(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
             执行 bytes

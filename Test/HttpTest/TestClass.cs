@@ -4,6 +4,10 @@ using DnsClient;
 using XExten.Advance.HttpFramework.MultiInterface;
 using XExten.Advance.HttpFramework.MultiCommon;
 using System.Net;
+using XExten.Advance.HttpFramework.MultiHandler;
+using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 namespace Test.HttpTest
 {
@@ -15,13 +19,22 @@ namespace Test.HttpTest
                 .SetResolver()
                 .AddNode(opt =>
                 {
-                    opt.NodePath = "https://www.konachan.com";
+                    opt.NodePath = "https://www.bilibili.com";
                 })
                 .Build(opt =>
                 {
-                    opt.UseDnsResolver = true;
+                    //opt.UseDnsResolver = true;
+                    opt.UseHttps = true;
+                    opt.UseZip = true;
                 }).RunString().FirstOrDefault();
 
+        }
+    }
+    public class T : ServerIdentity
+    {
+        public override bool ServerCertificate(HttpRequestMessage httpRequest, X509Certificate2 x509, X509Chain chain, SslPolicyErrors err)
+        {
+            return false;
         }
     }
 }
