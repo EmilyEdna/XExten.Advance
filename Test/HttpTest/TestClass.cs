@@ -2,6 +2,8 @@
 using System.Linq;
 using DnsClient;
 using XExten.Advance.HttpFramework.MultiInterface;
+using XExten.Advance.HttpFramework.MultiCommon;
+using System.Net;
 
 namespace Test.HttpTest
 {
@@ -9,13 +11,13 @@ namespace Test.HttpTest
     {
         public string TestMethond()
         {
-
             return IHttpMultiClient.HttpMulti
                 .SetResolver()
                 .AddNode(opt =>
                 {
-                    opt.NodePath = "http://www.bilibili.com";
-                }).Build(opt =>
+                    opt.NodePath = "https://www.konachan.com";
+                })
+                .Build(opt =>
                 {
                     opt.UseDnsResolver = true;
                 }).RunString().FirstOrDefault();

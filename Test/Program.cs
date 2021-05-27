@@ -1,4 +1,10 @@
 ﻿using System;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Text;
 using Test.HttpTest;
 
 namespace Test
@@ -7,7 +13,9 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(new TestClass().TestMethond());
+            var bytes = new TestClass().TestMethond();
+            Console.WriteLine(bytes);
+
         }
     }
 }

@@ -47,7 +47,7 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         {
             if (Resolver == null)
                 Resolver = new DNSClientResolver();
-            MultiConfig.ResolverOpt.TryAdd(Resolver.GetType().FullName, Resolver);
+            MultiConfig.ResolverOpt.Add(Resolver);
             return this;
         }
 

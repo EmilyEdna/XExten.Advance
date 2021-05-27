@@ -12,7 +12,7 @@ namespace XExten.Advance.HttpFramework.MultiCommon
     {
         internal static List<Dictionary<string, string>> HeaderOpt = new List<Dictionary<string, string>>();
         internal static List<NodeOption> NodeOpt = new List<NodeOption>();
-        internal static Dictionary<string, IResolver> ResolverOpt = new Dictionary<string, IResolver>();
+        internal static List<IResolver> ResolverOpt = new List<IResolver>();
         internal static CookieContainer Container { get; set; }
         internal static HttpClient FactoryClient { get; set; }
         internal static WebProxy Proxy { get; set; }

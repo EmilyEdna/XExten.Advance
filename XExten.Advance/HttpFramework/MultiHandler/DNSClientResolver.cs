@@ -1,8 +1,7 @@
 ﻿using DnsClient;
-using System;
-using System.Collections.Generic;
+using System.Net;
 using System.Linq;
-using System.Text;
+using XExten.Advance.LinqFramework;
 using XExten.Advance.HttpFramework.MultiInterface;
 
 namespace XExten.Advance.HttpFramework.MultiHandler
@@ -19,10 +18,10 @@ namespace XExten.Advance.HttpFramework.MultiHandler
         /// <returns></returns>
         public string Resolve(string Host)
         {
-            LookupClient lookup = new LookupClient();
-            var result = lookup.Query(Host, QueryType.A);
-            var dns = result.Answers.ARecords().ToList();
-            return dns.LastOrDefault().Address.ToString();
+            LookupClient client = new LookupClient(IPAddress.Parse("101.101.101.101"));
+            var Dns = client.Query(Host, QueryType.A).Answers.ARecords().ToList();
+            var Ip = Dns.FirstOrDefault().Address.ToString();
+            return Ip;
         }
     }
 }
