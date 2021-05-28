@@ -44,24 +44,10 @@ namespace XExten.Advance.HttpFramework.MultiImplement
             if (Option.UseHttps)
             {
                 Handler.SslProtocols = SslProtocols.Tls | SslProtocols.Tls11 | SslProtocols.Tls12;
-                if (Assemblies.Count <= 0)
-                {
-                    var libs = DependencyContext.Default.CompileLibraries.Where(lib => !lib.Serviceable);
-                    foreach (var item in libs)
-                    {
-                        Assembly assembly = AssemblyLoadContext.Default.LoadFromAssemblyName(new AssemblyName(item.Name));
-                        Assemblies.Add(assembly);
-                    }
-                }
-                var TargerType = Assemblies.SelectMany(t => t.ExportedTypes.Where(x => x.BaseType == typeof(ServerIdentity))).FirstOrDefault();
-                if (TargerType==null)
-                    throw new NotImplementedException(nameof(ServerIdentity));
-                Handler.ServerCertificateCustomValidationCallback += (Activator.CreateInstance(TargerType) as ServerIdentity).ServerCertificate;
+                Handler.ServerCertificateCustomValidationCallback = (Message, Certificate, Chain, Error) => true;
             }
             if (Option.UseZip)
-            {
                 Handler.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            }
             action?.Invoke(Handler);
             return Handler;
         }

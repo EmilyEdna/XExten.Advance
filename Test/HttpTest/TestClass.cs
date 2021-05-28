@@ -30,11 +30,4 @@ namespace Test.HttpTest
 
         }
     }
-    public class T : ServerIdentity
-    {
-        public override bool ServerCertificate(HttpRequestMessage httpRequest, X509Certificate2 x509, X509Chain chain, SslPolicyErrors err)
-        {
-            return false;
-        }
-    }
 }
