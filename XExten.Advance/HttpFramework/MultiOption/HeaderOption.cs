@@ -39,7 +39,7 @@ namespace XExten.Advance.HttpFramework.MultiOption
         {
             SyncStatic.TryCatch(() =>
             {
-                if (Headers.Count > 0)
+                if (Headers != null && Headers.Count > 0)
                     MultiConfig.HeaderOpt.Add(Headers);
                 else if (!HeaderKey.IsNullOrEmpty())
                     MultiConfig.HeaderOpt.Add(new Dictionary<string, string> { { HeaderKey, HeaderValue } });

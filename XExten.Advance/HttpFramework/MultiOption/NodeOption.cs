@@ -73,12 +73,12 @@ namespace XExten.Advance.HttpFramework.MultiOption
                 }
                 if (!JsonParam.IsNullOrEmpty() && (ReqType == MultiType.DELETE || ReqType == MultiType.GET))
                     URI = new Uri(NodePath + JsonParam.ToModel<JObject>().ByUri());
-                if (FormParam != null && FormParam.Count > 0 && ReqType != MultiType.DELETE && ReqType != MultiType.GET)
+                if (FormParam != null && FormParam != null && FormParam.Count > 0 && ReqType != MultiType.DELETE && ReqType != MultiType.GET)
                 {
                     Contents = new FormUrlEncodedContent(FormParam);
                     MediaTypeHeader = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
                 }
-                if (FormParam != null && FormParam.Count > 0 && (ReqType == MultiType.DELETE || ReqType == MultiType.GET))
+                if (FormParam != null && FormParam != null && FormParam.Count > 0 && (ReqType == MultiType.DELETE || ReqType == MultiType.GET))
                     URI = new Uri(NodePath + FormParam.ByUri());
                 if (EntityParam != null && ReqType != MultiType.DELETE && ReqType != MultiType.GET)
                 {
