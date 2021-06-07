@@ -1081,13 +1081,6 @@
             <param name="proxy"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.SetResolver(XExten.Advance.HttpFramework.MultiInterface.IResolver)">
-            <summary>
-            使用DNS解析器
-            </summary>
-            <param name="Resolver"></param>
-            <returns></returns>
-        </member>
         <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.AddHeader(System.Action{XExten.Advance.HttpFramework.MultiOption.HeaderOption})">
             <summary>
             Header
@@ -1107,38 +1100,6 @@
             Node
             </summary>
             <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiHandler.DNSClientHandler">
-            <summary>
-            自定义解析DNS
-            </summary>
-        </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiHandler.DNSClientResolver">
-            <summary>
-            DNS解析器
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiHandler.DNSClientResolver.Resolve(System.String)">
-            <summary>
-            解析
-            </summary>
-            <param name="Host"></param>
-            <returns></returns>
-        </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiHandler.ServerIdentity">
-            <summary>
-            证书验证
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiHandler.ServerIdentity.ServerCertificate(System.Net.Http.HttpRequestMessage,System.Security.Cryptography.X509Certificates.X509Certificate2,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
-            <summary>
-            证书验证
-            </summary>
-            <param name="httpRequest"></param>
-            <param name="x509"></param>
-            <param name="chain"></param>
-            <param name="err"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunBytes(System.Action{System.Net.CookieContainer,System.Uri})">
@@ -1333,18 +1294,6 @@
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiInterface.IResolver">
-            <summary>
-            自定义解析器
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IResolver.Resolve(System.String)">
-            <summary>
-            解析
-            </summary>
-            <param name="Host"></param>
-            <returns></returns>
-        </member>
         <member name="T:XExten.Advance.HttpFramework.MultiOption.BuilderOption">
             <summary>
             BuilderOption
@@ -1363,11 +1312,6 @@
         <member name="P:XExten.Advance.HttpFramework.MultiOption.BuilderOption.UseHttps">
             <summary>
             UseHttps
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpFramework.MultiOption.BuilderOption.UseDnsResolver">
-            <summary>
-            使用DNS解析器
             </summary>
         </member>
         <member name="P:XExten.Advance.HttpFramework.MultiOption.BuilderOption.UseZip">
@@ -2365,7 +2309,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.StaticFramework.SyncStatic.CHNPinYin(System.String,Chinese.PinyinFormat,Chinese.ChineseType)">
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.CHNPinYin(System.String,Chinese.PinyinFormat,Chinese.ChineseTypes)">
             <summary>
             获取中文拼音
             </summary>
