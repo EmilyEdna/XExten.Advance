@@ -48,12 +48,12 @@ namespace XExten.Advance.HttpFramework.MultiOption
             {
                 if (MultiConfig.Container == null)
                     MultiConfig.Container = new CookieContainer();
-                if (!URI.IsNullOrEmpty() && Cookies.Count > 0)
+                if (!URI.IsNullOrEmpty() && Cookies != null && Cookies.Count > 0)
                     Cookies.ForDicEach((key, val) =>
                     {
                         MultiConfig.Container.Add(new Uri(URI), new Cookie(key, val));
                     });
-                else if (!URI.IsNullOrEmpty() && CookieColl.Count > 0)
+                else if (!URI.IsNullOrEmpty() && CookieColl != null && CookieColl.Count > 0)
                     MultiConfig.Container.Add(new Uri(URI), CookieColl);
                 else if (!CookieName.IsNullOrEmpty() && !CookieValue.IsNullOrEmpty() && !CookiePath.IsNullOrEmpty())
                     MultiConfig.Container.Add(new Cookie(CookieName, CookieValue, CookiePath, CookieDomain));
