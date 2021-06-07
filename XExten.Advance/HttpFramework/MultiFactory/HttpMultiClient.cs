@@ -42,6 +42,14 @@ namespace XExten.Advance.HttpFramework.MultiFactory
                 MultiConfig.Proxy.Credentials = new NetworkCredential(proxy.UserName, proxy.PassWord);
             return this;
         }
+
+        public IHttpMultiClient InitCookie()
+        {
+            if (MultiConfig.Container == null)
+                MultiConfig.Container = new CookieContainer();
+            return this;
+        }
+
         public ICookies AddCookie(Action<CookieOption> action)
         {
             CookieOption Option = new CookieOption();
@@ -65,6 +73,5 @@ namespace XExten.Advance.HttpFramework.MultiFactory
             Option.SetNode();
             return MultiConfig.Nodes;
         }
-
     }
 }

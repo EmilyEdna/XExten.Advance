@@ -29,6 +29,11 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         /// <returns></returns>
         IHttpMultiClient InitWebProxy(MultiProxy proxy);
         /// <summary>
+        /// 初始化Cookie
+        /// </summary>
+        /// <returns></returns>
+        IHttpMultiClient InitCookie();
+        /// <summary>
         /// Header
         /// </summary>
         /// <param name="action"></param>
