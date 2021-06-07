@@ -1,18 +1,14 @@
-﻿using Microsoft.Extensions.DependencyModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Reflection;
-using System.Runtime.Loader;
 using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
 using XExten.Advance.CacheFramework;
 using XExten.Advance.HttpFramework.MultiCommon;
-using XExten.Advance.HttpFramework.MultiHandler;
 using XExten.Advance.HttpFramework.MultiInterface;
 using XExten.Advance.HttpFramework.MultiOption;
 using XExten.Advance.LinqFramework;
@@ -23,16 +19,9 @@ namespace XExten.Advance.HttpFramework.MultiImplement
     internal class Builders : IBuilders, IDisposable
     {
         private int CacheSecond = 60;
-        private static List<Assembly> Assemblies = new List<Assembly>();
         private HttpClientHandler Handler(BuilderOption Option, Action<HttpClientHandler> action = null)
         {
-            HttpClientHandler Handler = null;
-            if (Option.UseDnsResolver)
-            {
-                Handler = new DNSClientHandler();
-            }
-            else
-                Handler = new HttpClientHandler();
+            HttpClientHandler Handler  = new HttpClientHandler();
             if (MultiConfig.Container != null)
             {
                 Handler.AllowAutoRedirect = true;
@@ -240,7 +229,6 @@ namespace XExten.Advance.HttpFramework.MultiImplement
             MultiConfig.FactoryClient.Dispose();
             MultiConfig.Container = null;
             MultiConfig.Proxy = null;
-            MultiConfig.ResolverOpt.Clear();
             MultiConfig.HeaderOpt.Clear();
             MultiConfig.NodeOpt.Clear();
         }

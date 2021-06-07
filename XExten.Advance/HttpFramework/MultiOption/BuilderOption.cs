@@ -22,10 +22,6 @@ namespace XExten.Advance.HttpFramework.MultiOption
         /// </summary>
         public bool UseHttps { get; set; } = false;
         /// <summary>
-        /// 使用DNS解析器
-        /// </summary>
-        public bool UseDnsResolver { get; set; } = false;
-        /// <summary>
         /// 数据压缩
         /// </summary>
         public bool UseZip { get; set; } = false;

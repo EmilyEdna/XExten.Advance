@@ -29,12 +29,6 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         /// <returns></returns>
         IHttpMultiClient InitWebProxy(MultiProxy proxy);
         /// <summary>
-        /// 使用DNS解析器
-        /// </summary>
-        /// <param name="Resolver"></param>
-        /// <returns></returns>
-        IHttpMultiClient SetResolver(IResolver Resolver = null);
-        /// <summary>
         /// Header
         /// </summary>
         /// <param name="action"></param>

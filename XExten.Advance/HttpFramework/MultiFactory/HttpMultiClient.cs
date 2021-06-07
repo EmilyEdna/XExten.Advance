@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using XExten.Advance.HttpFramework.MultiCommon;
-using XExten.Advance.HttpFramework.MultiHandler;
 using XExten.Advance.HttpFramework.MultiImplement;
 using XExten.Advance.HttpFramework.MultiInterface;
 using XExten.Advance.HttpFramework.MultiOption;
@@ -43,14 +42,6 @@ namespace XExten.Advance.HttpFramework.MultiFactory
                 MultiConfig.Proxy.Credentials = new NetworkCredential(proxy.UserName, proxy.PassWord);
             return this;
         }
-        public IHttpMultiClient SetResolver(IResolver Resolver = null)
-        {
-            if (Resolver == null)
-                Resolver = new DNSClientResolver();
-            MultiConfig.ResolverOpt.Add(Resolver);
-            return this;
-        }
-
         public ICookies AddCookie(Action<CookieOption> action)
         {
             CookieOption Option = new CookieOption();

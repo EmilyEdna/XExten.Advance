@@ -89,9 +89,9 @@ namespace XExten.Advance.StaticFramework
         /// <param name="format"></param>
         /// <param name="chineseType"></param>
         /// <returns></returns>
-        public static string CHNPinYin(string Chinese, PinyinFormat format, ChineseType chineseType = ChineseType.Simplified)
+        public static string CHNPinYin(string Chinese, PinyinFormat format, ChineseTypes chineseType = ChineseTypes.Simplified)
         {
-            return Pinyin.GetString(Chinese, format, chineseType);
+            return Pinyin.GetString(chineseType,Chinese, format);
         }
 
         /// <summary>
