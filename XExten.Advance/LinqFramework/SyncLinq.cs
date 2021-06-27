@@ -15,7 +15,7 @@ using MessagePack;
 using MessagePack.Resolvers;
 using XExten.Advance.InternalFramework.Express;
 using Newtonsoft.Json.Linq;
-using Autofac;
+//using Autofac;
 using XExten.Advance.AopFramework;
 
 namespace XExten.Advance.LinqFramework
@@ -412,7 +412,7 @@ namespace XExten.Advance.LinqFramework
         #endregion
 
         #region Aop
-        /// <summary>
+ /*       /// <summary>
         /// 通过Auto使用Proxy
         /// </summary>
         /// <typeparam name="TService"></typeparam>
@@ -424,7 +424,7 @@ namespace XExten.Advance.LinqFramework
                 throw new NullReferenceException("this service is not regist!");
             var Reuslt = context.Resolve<TService>();
             return (TService)AopProxy.CreateProxyOfInherit(Reuslt.GetType());
-        }
+        }*/
         #endregion
     }
 }

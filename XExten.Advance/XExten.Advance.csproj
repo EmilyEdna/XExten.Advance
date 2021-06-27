@@ -7,7 +7,7 @@
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <PackageId>XExten.Advance</PackageId>
 	  <Product>XExten.Advance</Product>
-	  <Version>1.1.0.1</Version>
+	  <Version>1.1.0.1-app-beta</Version>
 	  <AssemblyVersion>1.1.0.1</AssemblyVersion>
 	  <PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
 	  <FileVersion>1.1.0.1</FileVersion>
@@ -29,17 +29,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="6.2.0" />
+    <Compile Remove="CacheFramework\MongoDbCache\**" />
+    <Compile Remove="CacheFramework\RedisCache\**" />
+    <Compile Remove="InternalFramework\Office\**" />
+    <EmbeddedResource Remove="CacheFramework\MongoDbCache\**" />
+    <EmbeddedResource Remove="CacheFramework\RedisCache\**" />
+    <EmbeddedResource Remove="InternalFramework\Office\**" />
+    <None Remove="CacheFramework\MongoDbCache\**" />
+    <None Remove="CacheFramework\RedisCache\**" />
+    <None Remove="InternalFramework\Office\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--<PackageReference Include="Autofac" Version="6.2.0" />
+    <PackageReference Include="NPOI" Version="2.5.3" />
+    <PackageReference Include="MongoDB.Driver" Version="2.12.4" />
+    <PackageReference Include="StackExchange.Redis" Version="2.2.4" />-->
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Chinese" Version="0.4.6" />
     <PackageReference Include="MessagePack" Version="2.2.85" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="5.0.0" />
-    <PackageReference Include="MongoDB.Driver" Version="2.12.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="NPOI" Version="2.5.3" />
-    <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
     <PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
   </ItemGroup>

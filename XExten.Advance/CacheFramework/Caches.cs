@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
-using MongoDB.Driver;
+/*using MongoDB.Driver;
 using StackExchange.Redis;
 using XExten.Advance.CacheFramework.MongoDbCache;
-using XExten.Advance.CacheFramework.RedisCache;
+using XExten.Advance.CacheFramework.RedisCache;*/
 using XExten.Advance.CacheFramework.RunTimeCache;
 using XExten.Advance.LinqFramework;
 
@@ -19,7 +19,7 @@ namespace XExten.Advance.CacheFramework
     {
 
         #region Instance
-        /// <summary>
+       /* /// <summary>
         /// redis
         /// </summary>
         public static IDatabase Redis
@@ -45,8 +45,7 @@ namespace XExten.Advance.CacheFramework
                     throw new ArgumentNullException($"{nameof(MongoDbCaches.MongoDBConnectionString)} can't be null");
                 return MongoDbCaches.Instance;
             }
-
-        }
+        }*/
         /// <summary>
         /// memoryCache
         /// </summary>
@@ -55,7 +54,7 @@ namespace XExten.Advance.CacheFramework
 
         #region Properties
 
-        /// <summary>
+        /*/// <summary>
         /// Redis链接字符串
         /// </summary>
         public static string RedisConnectionString
@@ -77,7 +76,7 @@ namespace XExten.Advance.CacheFramework
         public static string DbName
         {
             set { MongoDbCaches.MongoDBName = value; }
-        }
+        }*/
 
         #endregion Properties
 
@@ -96,7 +95,7 @@ namespace XExten.Advance.CacheFramework
             MemoryCaches.AddCache<T>(key, value, MinutesOrSecond, UseSecond);
         }
 
-        /// <summary>
+        /*/// <summary>
         /// 添加Redis缓存
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -117,7 +116,7 @@ namespace XExten.Advance.CacheFramework
         public static void MongoDBCacheSet<T>(T value)
         {
             MongoDbCaches.Insert<T>(value);
-        }
+        }*/
 
         /// <summary>
         /// 获取Memory缓存
@@ -130,7 +129,7 @@ namespace XExten.Advance.CacheFramework
             return MemoryCaches.GetCache<T>(key.ToString());
         }
 
-        /// <summary>
+        /*/// <summary>
         /// 获取Redis缓存
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -161,7 +160,7 @@ namespace XExten.Advance.CacheFramework
         public static IList<T> MongoDBCachesGet<T>(Expression<Func<T, bool>> Express)
         {
             return MongoDbCaches.SearchMany(Express);
-        }
+        }*/
 
         /// <summary>
         ///  删除Memory缓存
@@ -172,7 +171,7 @@ namespace XExten.Advance.CacheFramework
             MemoryCaches.RemoveCache(key.ToString());
         }
 
-        /// <summary>
+        /*/// <summary>
         /// 删除Redis缓存
         /// </summary>
         /// <param name="key"></param>
@@ -201,7 +200,7 @@ namespace XExten.Advance.CacheFramework
         public static void MongoDbCacheUpdate<T>(Expression<Func<T, bool>> Exp, string Property, string Value)
         {
             MongoDbCaches.Update(Exp, Property, Value);
-        }
+        }*/
 
         #endregion Sync
 
@@ -221,7 +220,7 @@ namespace XExten.Advance.CacheFramework
             await Task.Run(() => RunTimeCacheSet(key, value, MinutesOrSecond, UseSecond));
         }
 
-        /// <summary>
+        /*/// <summary>
         /// 添加Redis缓存
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -243,7 +242,7 @@ namespace XExten.Advance.CacheFramework
         public static async Task MongoDBCacheSetAsync<T>(T value)
         {
             await Task.Run(() => MongoDBCacheSet<T>(value));
-        }
+        }*/
 
         /// <summary>
         /// 获取Memory缓存
@@ -256,7 +255,7 @@ namespace XExten.Advance.CacheFramework
             return await Task.Run(() => RunTimeCacheGet<T>(key));
         }
 
-        /// <summary>
+        /*/// <summary>
         /// 获取Redis缓存
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -287,7 +286,7 @@ namespace XExten.Advance.CacheFramework
         public static async Task<IList<T>> MongoDBCachesGetAsync<T>(Expression<Func<T, bool>> Express)
         {
             return await Task.Run(() => MongoDBCachesGet<T>(Express));
-        }
+        }*/
 
         /// <summary>
         ///  删除Memory缓存
@@ -298,7 +297,7 @@ namespace XExten.Advance.CacheFramework
             await Task.Run(() => RunTimeCacheRemove(key));
         }
 
-        /// <summary>
+        /*/// <summary>
         /// 删除Redis缓存
         /// </summary>
         /// <param name="key"></param>
@@ -328,7 +327,7 @@ namespace XExten.Advance.CacheFramework
         public static async Task MongoDbCacheUpdateAsync<T>(Expression<Func<T, bool>> Exp, string Property, string Value)
         {
             await Task.Run(() => MongoDbCaches.Update(Exp, Property, Value));
-        }
+        }*/
 
         #endregion Async
     }

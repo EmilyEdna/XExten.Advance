@@ -13,8 +13,8 @@ using Chinese;
 using Microsoft.Extensions.DependencyModel;
 using XExten.Advance.InternalFramework.Express;
 using XExten.Advance.InternalFramework.Express.Common;
-using XExten.Advance.InternalFramework.Office;
-using XExten.Advance.InternalFramework.Office.Common;
+/*using XExten.Advance.InternalFramework.Office;
+using XExten.Advance.InternalFramework.Office.Common;*/
 using XExten.Advance.LinqFramework;
 
 namespace XExten.Advance.StaticFramework
@@ -338,7 +338,7 @@ namespace XExten.Advance.StaticFramework
             return Assemblies;
         }
 
-        /// <summary>
+        /*/// <summary>
         /// 导出EXCEL
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -368,7 +368,7 @@ namespace XExten.Advance.StaticFramework
             bool HasPageFooter = false, int SheetIndex = 0) where T : new()
         {
             return ExcelFactory.ImportExcel<T>(fs, Types, HasPageFooter, SheetIndex);
-        }
+        }*/
 
         /// <summary>
         /// 设置属性值
