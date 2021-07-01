@@ -15,8 +15,6 @@ using MessagePack;
 using MessagePack.Resolvers;
 using XExten.Advance.InternalFramework.Express;
 using Newtonsoft.Json.Linq;
-using Autofac;
-using XExten.Advance.AopFramework;
 
 namespace XExten.Advance.LinqFramework
 {
@@ -408,22 +406,6 @@ namespace XExten.Advance.LinqFramework
         public static Expression<Func<T, bool>> Or<T>(this Expression<Func<T, bool>> ExprOne, Expression<Func<T, bool>> ExprTwo)
         {
             return Expsion.Or(ExprOne, ExprTwo);
-        }
-        #endregion
-
-        #region Aop
-        /// <summary>
-        /// 通过Auto使用Proxy
-        /// </summary>
-        /// <typeparam name="TService"></typeparam>
-        /// <param name="context"></param>
-        /// <returns></returns>
-        public static TService ResolveProxy<TService>(this IComponentContext context)
-        {
-            if (!context.IsRegistered<TService>())
-                throw new NullReferenceException("this service is not regist!");
-            var Reuslt = context.Resolve<TService>();
-            return (TService)AopProxy.CreateProxyOfInherit(Reuslt.GetType());
         }
         #endregion
     }
