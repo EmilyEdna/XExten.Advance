@@ -1,6 +1,6 @@
-using Autofac;
 using XExten.Advance.AopFramework;
 using XExten.Advance.LinqFramework;
+using DryIoc;
 using System;
 
 namespace Test.AopTest
@@ -9,20 +9,17 @@ namespace Test.AopTest
     {
         public void TestMethod()
         {
+           var xx = new Container().RegistAop<IMyInterface>();
 
-            var builder = new ContainerBuilder();
-            var autofac = builder.Build();
+            xx.Resolve<IMyInterface>().TestMethod(123);
 
-            var xx = autofac.ResolveProxy<IMyInterface>().TestMethod(27);
-
-
-            var ins1 = AopProxy.CreateProxyOfInherit<MyClass>();
+           /* var ins1 = AopProxy.CreateProxyOfInherit<MyClass>();
 
             var ins2 = AopProxy.CreateProxyOfRealize<IMyInterface, MyClass>();
 
             var ins3 = AopProxy.CreateProxyOfInherit(typeof(MyClass));
 
-            var ins4 = AopProxy.CreateProxyOfRealize(typeof(IMyInterface), typeof(MyClass));
+            var ins4 = AopProxy.CreateProxyOfRealize(typeof(IMyInterface), typeof(MyClass));*/
         }
 
 

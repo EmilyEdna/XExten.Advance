@@ -10,7 +10,7 @@ namespace Test.AopTest
     public class MyClass: IMyInterface
     {
         [MyAction]
-        public virtual string TestMethod(int age)
+        public string TestMethod(int age)
         {
             return age.ToString();
         }
