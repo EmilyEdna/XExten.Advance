@@ -7,11 +7,12 @@
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <PackageId>XExten.Advance</PackageId>
 	  <Product>XExten.Advance</Product>
-	  <Version>1.1.0.1-app-beta</Version>
-	  <AssemblyVersion>1.1.0.1</AssemblyVersion>
+	  <Version>1.1.0.2-app-beta</Version>
+	  <AssemblyVersion>1.1.0.2</AssemblyVersion>
 	  <PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
-	  <FileVersion>1.1.0.1</FileVersion>
-	  <PackageReleaseNotes>针对升级上来的版本所有的域名空间变更，由以前的Synctool变更为XExten.Advance</PackageReleaseNotes>
+	  <FileVersion>1.1.0.2</FileVersion>
+	  <PackageReleaseNotes>此版本适用xarmarin.form
+【文件监听】-&gt;1.1.0.2</PackageReleaseNotes>
 	  <AssemblyName>XExten.Advance</AssemblyName>
 	  <RootNamespace>XExten.Advance</RootNamespace>
   </PropertyGroup>
