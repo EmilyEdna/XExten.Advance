@@ -47,6 +47,7 @@
     <PackageReference Include="StackExchange.Redis" Version="2.2.4" />-->
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Chinese" Version="0.4.6" />
+    <PackageReference Include="DryIoc.dll" Version="4.8.1" />
     <PackageReference Include="MessagePack" Version="2.2.85" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />

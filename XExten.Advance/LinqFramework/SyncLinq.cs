@@ -15,8 +15,9 @@ using MessagePack;
 using MessagePack.Resolvers;
 using XExten.Advance.InternalFramework.Express;
 using Newtonsoft.Json.Linq;
-//using Autofac;
+using Autofac;
 using XExten.Advance.AopFramework;
+using DryIoc;
 
 namespace XExten.Advance.LinqFramework
 {
@@ -412,19 +413,23 @@ namespace XExten.Advance.LinqFramework
         #endregion
 
         #region Aop
- /*       /// <summary>
-        /// 通过Auto使用Proxy
+        /// <summary>
+        /// 注册代理
         /// </summary>
-        /// <typeparam name="TService"></typeparam>
-        /// <param name="context"></param>
+        /// <param name="container"></param>
         /// <returns></returns>
-        public static TService ResolveProxy<TService>(this IComponentContext context)
+        public static DryIoc.IContainer RegistAop<T>(this DryIoc.IContainer container)
         {
-            if (!context.IsRegistered<TService>())
-                throw new NullReferenceException("this service is not regist!");
-            var Reuslt = context.Resolve<TService>();
-            return (TService)AopProxy.CreateProxyOfInherit(Reuslt.GetType());
-        }*/
+            var Class = typeof(T);
+            Class.Assembly.GetTypes()
+               .Where(t => t.IsClass)
+               .Where(t => t.GetInterfaces().Contains(Class))
+               .ForEnumerEach(item =>
+               {
+                   container.Register(Class, AopProxy.CreateProxyOfRealize(Class, item).GetType(), Reuse.Singleton);
+               });
+            return container;
+        }
         #endregion
     }
 }

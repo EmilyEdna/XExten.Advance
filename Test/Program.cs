@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
-using Test.HttpTest;
+using Test.AopTest;
 
 namespace Test
 {
@@ -13,9 +13,7 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            var bytes = new TestClass().TestMethond();
-            Console.WriteLine(bytes);
-
+           new TestClass().TestMethod();
         }
     }
 }

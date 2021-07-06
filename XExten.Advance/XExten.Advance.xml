@@ -1186,6 +1186,13 @@
             <param name="ExprTwo"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.RegistAop``1(DryIoc.IContainer)">
+            <summary>
+            注册代理
+            </summary>
+            <param name="container"></param>
+            <returns></returns>
+        </member>
         <member name="T:XExten.Advance.StaticFramework.SyncStatic">
             <summary>
             StaticUtil
