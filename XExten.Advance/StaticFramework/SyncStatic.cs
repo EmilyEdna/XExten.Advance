@@ -13,6 +13,7 @@ using Chinese;
 using Microsoft.Extensions.DependencyModel;
 using XExten.Advance.InternalFramework.Express;
 using XExten.Advance.InternalFramework.Express.Common;
+using XExten.Advance.InternalFramework.FileWatch;
 /*using XExten.Advance.InternalFramework.Office;
 using XExten.Advance.InternalFramework.Office.Common;*/
 using XExten.Advance.LinqFramework;
