@@ -10,7 +10,7 @@ namespace ValiTest
     [ValitionClass(ModuleType = ValitionModuleEnum.Global)]
     public class TestClass
     {
-        [Valition(CustomerValition = typeof(ValitionCustomer), ValiType = ValitionEnum.Customer)]
+        [Valition(CustomerValition = typeof(ValitionCustomer), ValiType = ValitionEnum.Customer, UsageAppendField = true)]
         public int Age { get; set; }
         [Valition(InfoMsg = "不能为空", UsageAppendField = true)]
         public string Name { get; set; }
@@ -19,9 +19,10 @@ namespace ValiTest
     {
         public override (bool Success, string Info) UserCustomerValition(string propertyName, string requestParam)
         {
-            var m = requestParam;
-            var p = propertyName;
-            return (false, "");
+            int.TryParse(requestParam, out int age);
+            if (age == 0)
+                return (false, "参数错误");
+            return (true, "");
         }
     }
 }

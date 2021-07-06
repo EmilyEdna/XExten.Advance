@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using Test.AopTest;
+using XExten.Advance.StaticFramework;
 
 namespace Test
 {
@@ -13,7 +14,7 @@ namespace Test
     {
         static void Main(string[] args)
         {
-           new TestClass().TestMethod();
+            new TestClass().TestMethod();
         }
     }
 }
