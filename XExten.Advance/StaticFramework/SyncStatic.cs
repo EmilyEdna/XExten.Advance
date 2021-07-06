@@ -13,6 +13,7 @@ using Chinese;
 using Microsoft.Extensions.DependencyModel;
 using XExten.Advance.InternalFramework.Express;
 using XExten.Advance.InternalFramework.Express.Common;
+using XExten.Advance.InternalFramework.FileWatch;
 using XExten.Advance.InternalFramework.Office;
 using XExten.Advance.InternalFramework.Office.Common;
 using XExten.Advance.LinqFramework;
@@ -91,7 +92,7 @@ namespace XExten.Advance.StaticFramework
         /// <returns></returns>
         public static string CHNPinYin(string Chinese, PinyinFormat format, ChineseTypes chineseType = ChineseTypes.Simplified)
         {
-            return Pinyin.GetString(chineseType,Chinese, format);
+            return Pinyin.GetString(chineseType, Chinese, format);
         }
 
         /// <summary>
@@ -379,6 +380,18 @@ namespace XExten.Advance.StaticFramework
         public static void SetProptertiesValue<T>(Dictionary<string, object> JsonValue, T Param) where T : class, new()
         {
             Expsion.SetProptertiesValue(JsonValue, Param);
+        }
+
+        /// <summary>
+        /// 文件监听
+        /// </summary>
+        /// <param name="Module"></param>
+        public static void FileMonitors(FileModule Module)
+        {
+            if (!Module.Module)
+                FileMonitor.MonitorInit(Module);
+            else
+                FileMonitor.MonitorRead(Module);
         }
 
         /// <summary>

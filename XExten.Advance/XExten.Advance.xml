@@ -1591,6 +1591,58 @@
             <param name="ExprTwo"></param>
             <returns></returns>
         </member>
+        <member name="T:XExten.Advance.InternalFramework.FileWatch.FileModule">
+            <summary>
+            文件模式
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.InternalFramework.FileWatch.FileModule.Path">
+            <summary>
+            文件路径
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.InternalFramework.FileWatch.FileModule.Pattern">
+            <summary>
+            文件类型
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.InternalFramework.FileWatch.FileModule.IsInclude">
+            <summary>
+            是否包含文件夹
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.InternalFramework.FileWatch.FileModule.Module">
+            <summary>
+            false 只是监听文件,true 监听并读取
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.InternalFramework.FileWatch.FileModule.Action">
+            <summary>
+            监听并读取
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.InternalFramework.FileWatch.FileModule.Events">
+            <summary>
+            监听文件
+            </summary>
+        </member>
+        <member name="T:XExten.Advance.InternalFramework.FileWatch.FileMonitor">
+            <summary>
+            文件监听
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.FileWatch.FileMonitor.MonitorRead(XExten.Advance.InternalFramework.FileWatch.FileModule)">
+            <summary>
+            文件监听(读取)
+            </summary>
+            <param name="Module"></param>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.FileWatch.FileMonitor.MonitorInit(XExten.Advance.InternalFramework.FileWatch.FileModule)">
+            <summary>
+            文件监听(不读取)
+            </summary>
+            <param name="Module"></param>
+        </member>
         <member name="T:XExten.Advance.InternalFramework.Md5">
             <summary>
             md5
@@ -2418,6 +2470,12 @@
             <typeparam name="T"></typeparam>
             <param name="JsonValue"></param>
             <param name="Param"></param>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.FileMonitors(XExten.Advance.InternalFramework.FileWatch.FileModule)">
+            <summary>
+            文件监听
+            </summary>
+            <param name="Module"></param>
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.GetExpression``1(System.String[])">
             <summary>
