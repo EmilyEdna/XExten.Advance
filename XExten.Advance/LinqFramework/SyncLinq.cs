@@ -15,7 +15,6 @@ using MessagePack;
 using MessagePack.Resolvers;
 using XExten.Advance.InternalFramework.Express;
 using Newtonsoft.Json.Linq;
-using Autofac;
 using XExten.Advance.AopFramework;
 using DryIoc;
 
