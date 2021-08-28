@@ -21,7 +21,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         private int CacheSecond = 60;
         private HttpClientHandler Handler(BuilderOption Option, Action<HttpClientHandler> action = null)
         {
-            HttpClientHandler Handler  = new HttpClientHandler();
+            HttpClientHandler Handler = new HttpClientHandler();
             if (MultiConfig.Container != null)
             {
                 Handler.AllowAutoRedirect = true;
@@ -149,30 +149,17 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// <returns></returns>
         private Byte[] RequestBytes(NodeOption Item, Action<CookieContainer, Uri> Container = null)
         {
+            byte[] result = null;
             if (Item.ReqType == MultiType.GET)
-            {
-                byte[] result = MultiConfig.FactoryClient.GetAsync(Item.URI).Result.Content.ReadAsByteArrayAsync().Result;
-                Container?.Invoke(MultiConfig.Container, Item.URI);
-                return result;
-            }
+                result = MultiConfig.FactoryClient.GetAsync(Item.URI).Result.Content.ReadAsByteArrayAsync().Result;
             else if (Item.ReqType == MultiType.DELETE)
-            {
-                byte[] result = MultiConfig.FactoryClient.DeleteAsync(Item.URI).Result.Content.ReadAsByteArrayAsync().Result;
-                Container?.Invoke(MultiConfig.Container, Item.URI);
-                return result;
-            }
+                result = MultiConfig.FactoryClient.DeleteAsync(Item.URI).Result.Content.ReadAsByteArrayAsync().Result;
             else if (Item.ReqType == MultiType.POST)
-            {
-                byte[] result = MultiConfig.FactoryClient.PostAsync(Item.URI, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
-                Container?.Invoke(MultiConfig.Container, Item.URI);
-                return result;
-            }
+                result = MultiConfig.FactoryClient.PostAsync(Item.URI, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
             else
-            {
-                byte[] result = MultiConfig.FactoryClient.PutAsync(Item.URI, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
-                Container?.Invoke(MultiConfig.Container, Item.URI);
-                return result;
-            }
+                result = MultiConfig.FactoryClient.PutAsync(Item.URI, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
+            Container?.Invoke(MultiConfig.Container, Item.URI);
+            return result;
         }
 
         /// <summary>
@@ -183,42 +170,20 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// <returns></returns>
         private string RequestString(NodeOption Item, Action<CookieContainer, Uri> Container = null)
         {
+            Stream stream = null;
             if (Item.ReqType == MultiType.GET)
-            {
-                Stream stream = MultiConfig.FactoryClient.GetAsync(Item.URI).Result.Content.ReadAsStreamAsync().Result;
-                if (stream.Length < 0) return null;
-                using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
-                string result = reader.ReadToEnd();
-                Container?.Invoke(MultiConfig.Container, Item.URI);
-                return result;
-            }
+                stream = MultiConfig.FactoryClient.GetAsync(Item.URI).Result.Content.ReadAsStreamAsync().Result;
             else if (Item.ReqType == MultiType.DELETE)
-            {
-                Stream stream = MultiConfig.FactoryClient.DeleteAsync(Item.URI).Result.Content.ReadAsStreamAsync().Result;
-                if (stream.Length < 0) return null;
-                using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
-                string result = reader.ReadToEnd();
-                Container?.Invoke(MultiConfig.Container, Item.URI);
-                return result;
-            }
+                stream = MultiConfig.FactoryClient.DeleteAsync(Item.URI).Result.Content.ReadAsStreamAsync().Result;
             else if (Item.ReqType == MultiType.POST)
-            {
-                Stream stream = MultiConfig.FactoryClient.PostAsync(Item.URI, Item.Contents).Result.Content.ReadAsStreamAsync().Result;
-                if (stream.Length < 0) return null;
-                using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
-                string result = reader.ReadToEnd();
-                Container?.Invoke(MultiConfig.Container, Item.URI);
-                return result;
-            }
+                stream = MultiConfig.FactoryClient.PostAsync(Item.URI, Item.Contents).Result.Content.ReadAsStreamAsync().Result;
             else
-            {
-                Stream stream = MultiConfig.FactoryClient.PutAsync(Item.URI, Item.Contents).Result.Content.ReadAsStreamAsync().Result;
-                if (stream.Length < 0) return null;
-                using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
-                string result = reader.ReadToEnd();
-                Container?.Invoke(MultiConfig.Container, Item.URI);
-                return result;
-            }
+                stream = MultiConfig.FactoryClient.PutAsync(Item.URI, Item.Contents).Result.Content.ReadAsStreamAsync().Result;
+            if (stream.Length < 0) return null;
+            using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
+            string result = reader.ReadToEnd();
+            Container?.Invoke(MultiConfig.Container, Item.URI);
+            return result;
         }
 
         /// <summary>
