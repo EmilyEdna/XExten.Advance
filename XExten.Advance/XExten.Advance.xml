@@ -371,6 +371,13 @@
             <param name="PageSize"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.Query``1">
+            <summary>
+            返回查询
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
         <member name="T:XExten.Advance.CacheFramework.RedisCache.RedisCaches">
              <summary>
             
