@@ -7,11 +7,11 @@
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <PackageId>XExten.Advance</PackageId>
 	  <Product>XExten.Advance</Product>
-	  <Version>1.1.0.4</Version>
-	  <AssemblyVersion>1.1.0.4</AssemblyVersion>
+	  <Version>1.1.0.5</Version>
+	  <AssemblyVersion>1.1.0.5</AssemblyVersion>
 	  <PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
-	  <FileVersion>1.1.0.4</FileVersion>
-	  <PackageReleaseNotes>【优化部分功能】-&gt;1.1.0.4</PackageReleaseNotes>
+	  <FileVersion>1.1.0.5</FileVersion>
+	  <PackageReleaseNotes>【优化部分功能】-&gt;1.1.0.5</PackageReleaseNotes>
 	  <AssemblyName>XExten.Advance</AssemblyName>
 	  <RootNamespace>XExten.Advance</RootNamespace>
   </PropertyGroup>

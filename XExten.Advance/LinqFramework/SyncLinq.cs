@@ -280,6 +280,21 @@ namespace XExten.Advance.LinqFramework
             return mapper.Map<List<T>>(param);
         }
 
+        /// <summary>
+        /// 映射对象
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="source"></param>
+        /// <param name="target"></param>
+        /// <param name="targets"></param>
+        /// <returns></returns>
+        public static object ToMapper(this object param,Type source, Type target,Type targets)
+        {
+            if (param == null) return default;
+            IMapper mapper = new MapperConfiguration(t => t.CreateMap(source, target)).CreateMapper();
+            return mapper.Map(param, param.GetType(), targets);
+        }
+
         #endregion
 
         #region By
