@@ -133,6 +133,18 @@ namespace XExten.Advance.LinqFramework
         }
 
         /// <summary>
+        /// 映射对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static async Task<object> ToMapperAsync<T>(this object param,Type target)
+        {
+            return await Task.Factory.StartNew(() => ToMapper(param, target));
+        }
+
+        /// <summary>
         /// 映射集合
         /// </summary>
         /// <typeparam name="K"></typeparam>
