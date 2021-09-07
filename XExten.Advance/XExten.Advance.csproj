@@ -7,13 +7,12 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>XExten.Advance</PackageId>
 		<Product>XExten.Advance</Product>
-		<Version>1.1.0.2-app-beta</Version>
-		<AssemblyVersion>1.1.0.2</AssemblyVersion>
+		<Version>1.1.0.5-app-beta</Version>
+		<AssemblyVersion>1.1.0.5</AssemblyVersion>
 		<PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
-		<FileVersion>1.1.0.2</FileVersion>
-		<PackageReleaseNotes>
-			此版本适用xarmarin.form
-			【文件监听】-&gt;1.1.0.2
+		<FileVersion>1.1.0.5</FileVersion>
+		<PackageReleaseNotes>此版本适用xarmarin.form
+【功能优化】-&gt;1.1.0.5
 		</PackageReleaseNotes>
 		<AssemblyName>XExten.Advance</AssemblyName>
 		<RootNamespace>XExten.Advance</RootNamespace>
