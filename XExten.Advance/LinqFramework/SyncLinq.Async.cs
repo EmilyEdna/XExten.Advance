@@ -133,6 +133,18 @@ namespace XExten.Advance.LinqFramework
         }
 
         /// <summary>
+        /// 映射对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static async Task<object> ToMapperAsync<T>(this object param, Type target)
+        {
+            return await Task.Factory.StartNew(() => ToMapper(param, target));
+        }
+
+        /// <summary>
         /// 映射集合
         /// </summary>
         /// <typeparam name="K"></typeparam>
@@ -142,6 +154,19 @@ namespace XExten.Advance.LinqFramework
         public static async Task<List<T>> ToMapperAsync<K, T>(this object param)
         {
             return await Task.Factory.StartNew(() => ToMapper<K, T>(param));
+        }
+
+        /// <summary>
+        /// 映射集合
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="source"></param>
+        /// <param name="target"></param>
+        /// <param name="targets"></param>
+        /// <returns></returns>
+        public static async Task<object> ToMapperAsync(this object param, Type source, Type target, Type targets)
+        {
+            return await Task.Factory.StartNew(() => ToMapper(param, source, target, targets));
         }
         #endregion
 

@@ -254,6 +254,19 @@ namespace XExten.Advance.LinqFramework
         }
 
         /// <summary>
+        /// 映射对象
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static object ToMapper(this object param, Type target)
+        {
+            if (param == null) return default;
+            IMapper mapper = new MapperConfiguration(t => t.CreateMap(param.GetType(), target)).CreateMapper();
+            return mapper.Map(param, param.GetType(), target);
+        }
+
+        /// <summary>
         /// 映射集合
         /// </summary>
         /// <typeparam name="K"></typeparam>
@@ -266,6 +279,22 @@ namespace XExten.Advance.LinqFramework
             IMapper mapper = new MapperConfiguration(t => t.CreateMap(typeof(K), typeof(T))).CreateMapper();
             return mapper.Map<List<T>>(param);
         }
+
+        /// <summary>
+        /// 映射对象
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="source"></param>
+        /// <param name="target"></param>
+        /// <param name="targets"></param>
+        /// <returns></returns>
+        public static object ToMapper(this object param,Type source, Type target,Type targets)
+        {
+            if (param == null) return default;
+            IMapper mapper = new MapperConfiguration(t => t.CreateMap(source, target)).CreateMapper();
+            return mapper.Map(param, param.GetType(), targets);
+        }
+
         #endregion
 
         #region By

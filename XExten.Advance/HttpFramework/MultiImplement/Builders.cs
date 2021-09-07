@@ -21,7 +21,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         private int CacheSecond = 60;
         private HttpClientHandler Handler(BuilderOption Option, Action<HttpClientHandler> action = null)
         {
-            HttpClientHandler Handler  = new HttpClientHandler();
+            HttpClientHandler Handler = new HttpClientHandler();
             if (MultiConfig.Container != null)
             {
                 Handler.AllowAutoRedirect = true;

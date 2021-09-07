@@ -127,5 +127,16 @@ namespace XExten.Advance.CacheFramework.MongoDbCache
         {
             return Instance.GetCollection<T>(typeof(T).Name).AsQueryable().Skip((PageIndex - 1) * PageSize).Take(PageSize);
         }
+
+        /// <summary>
+        /// 返回查询
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static IMongoQueryable<T> Query<T>()
+        {
+            return Instance.GetCollection<T>(typeof(T).Name).AsQueryable();
+        }
+
     }
 }
