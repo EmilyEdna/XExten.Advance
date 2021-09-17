@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Mapster;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -167,6 +168,29 @@ namespace XExten.Advance.LinqFramework
         public static async Task<object> ToMapperAsync(this object param, Type source, Type target, Type targets)
         {
             return await Task.Factory.StartNew(() => ToMapper(param, source, target, targets));
+        }
+        /// <summary>
+        /// 映射对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <param name="config"></param>
+        /// <returns></returns>
+        public static async Task<T> ToMapestAsync<T>(this object param, TypeAdapterConfig config = null)
+        {
+            return await Task.Factory.StartNew(() => ToMapest<T>(param, config));
+        }
+
+        /// <summary>
+        /// 映射对象
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="destinationType"></param>
+        /// <param name="config"></param>
+        /// <returns></returns>
+        public static async Task<object> ToMapestAsync(this object param, Type destinationType, TypeAdapterConfig config = null)
+        {
+            return await Task.Factory.StartNew(() => ToMapest(param, destinationType, config));
         }
         #endregion
 

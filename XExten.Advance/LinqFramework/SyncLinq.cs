@@ -17,6 +17,7 @@ using XExten.Advance.InternalFramework.Express;
 using Newtonsoft.Json.Linq;
 using XExten.Advance.AopFramework;
 using DryIoc;
+using Mapster;
 
 namespace XExten.Advance.LinqFramework
 {
@@ -288,13 +289,36 @@ namespace XExten.Advance.LinqFramework
         /// <param name="target"></param>
         /// <param name="targets"></param>
         /// <returns></returns>
-        public static object ToMapper(this object param,Type source, Type target,Type targets)
+        public static object ToMapper(this object param, Type source, Type target, Type targets)
         {
             if (param == null) return default;
             IMapper mapper = new MapperConfiguration(t => t.CreateMap(source, target)).CreateMapper();
             return mapper.Map(param, param.GetType(), targets);
         }
 
+        /// <summary>
+        /// 映射对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <param name="config"></param>
+        /// <returns></returns>
+        public static T ToMapest<T>(this object param, TypeAdapterConfig config = null)
+        {
+            return config == null ? param.Adapt<T>() : param.Adapt<T>(config);
+        }
+
+        /// <summary>
+        /// 映射对象
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="destinationType"></param>
+        /// <param name="config"></param>
+        /// <returns></returns>
+        public static object ToMapest(this object param,Type destinationType, TypeAdapterConfig config = null)
+        {
+            return config == null ? param.Adapt(param.GetType(),destinationType) : param.Adapt(param.GetType(), destinationType,config);
+        }
         #endregion
 
         #region By
