@@ -2097,6 +2097,15 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapperAsync``1(System.Object,System.Type)">
+            <summary>
+            映射对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapperAsync``2(System.Object)">
             <summary>
             映射集合
@@ -2104,6 +2113,34 @@
             <typeparam name="K"></typeparam>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapperAsync(System.Object,System.Type,System.Type,System.Type)">
+            <summary>
+            映射集合
+            </summary>
+            <param name="param"></param>
+            <param name="source"></param>
+            <param name="target"></param>
+            <param name="targets"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapestAsync``1(System.Object,Mapster.TypeAdapterConfig)">
+            <summary>
+            映射对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="config"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapestAsync(System.Object,System.Type,Mapster.TypeAdapterConfig)">
+            <summary>
+            映射对象
+            </summary>
+            <param name="param"></param>
+            <param name="destinationType"></param>
+            <param name="config"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ByUriAsync``1(``0,System.Collections.Generic.IDictionary{System.String,System.String})">
@@ -2261,6 +2298,14 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapper(System.Object,System.Type)">
+            <summary>
+            映射对象
+            </summary>
+            <param name="param"></param>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapper``2(System.Object)">
             <summary>
             映射集合
@@ -2268,6 +2313,34 @@
             <typeparam name="K"></typeparam>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapper(System.Object,System.Type,System.Type,System.Type)">
+            <summary>
+            映射对象
+            </summary>
+            <param name="param"></param>
+            <param name="source"></param>
+            <param name="target"></param>
+            <param name="targets"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapest``1(System.Object,Mapster.TypeAdapterConfig)">
+            <summary>
+            映射对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="config"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapest(System.Object,System.Type,Mapster.TypeAdapterConfig)">
+            <summary>
+            映射对象
+            </summary>
+            <param name="param"></param>
+            <param name="destinationType"></param>
+            <param name="config"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ByUri``1(``0,System.Collections.Generic.IDictionary{System.String,System.String})">

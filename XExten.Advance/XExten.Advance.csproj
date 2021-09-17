@@ -7,11 +7,11 @@
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <PackageId>XExten.Advance</PackageId>
 	  <Product>XExten.Advance</Product>
-	  <Version>1.1.0.5</Version>
+	  <Version>1.1.0.6</Version>
 	  <AssemblyVersion>1.1.0.5</AssemblyVersion>
 	  <PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
 	  <FileVersion>1.1.0.5</FileVersion>
-	  <PackageReleaseNotes>【优化部分功能】-&gt;1.1.0.5</PackageReleaseNotes>
+	  <PackageReleaseNotes>【新增高性能对象映射组件】-&gt;1.1.0.6</PackageReleaseNotes>
 	  <AssemblyName>XExten.Advance</AssemblyName>
 	  <RootNamespace>XExten.Advance</RootNamespace>
   </PropertyGroup>
@@ -32,6 +32,7 @@
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Chinese" Version="0.4.6" />
     <PackageReference Include="DryIoc.dll" Version="4.8.1" />
+    <PackageReference Include="Mapster" Version="7.2.0" />
     <PackageReference Include="MessagePack" Version="2.3.75" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
