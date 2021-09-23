@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using XExten.Advance.LinqFramework;
 
 namespace XExten.Advance.CacheFramework.MongoDbCache
 {
@@ -102,7 +103,12 @@ namespace XExten.Advance.CacheFramework.MongoDbCache
         /// <returns></returns>
         public static int UpdateMany<T>(Expression<Func<T, bool>> filter, T Entity)
         {
-            return (int)Instance.GetCollection<T>(Entity.GetType().Name).UpdateMany(filter, Builders<T>.Update.Combine(new List<UpdateDefinition<T>>())).ModifiedCount;
+            var define = new List<UpdateDefinition<T>>();
+            Entity.GetType().GetProperties().ForEnumerEach(t =>
+            {
+                define.Add(Builders<T>.Update.Set(t.Name, t.GetValue(Entity)));
+            });
+            return (int)Instance.GetCollection<T>(Entity.GetType().Name).UpdateMany(filter, Builders<T>.Update.Combine(define)).ModifiedCount;
         }
 
         /// <summary>
