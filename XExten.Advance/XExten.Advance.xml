@@ -362,6 +362,16 @@
             <param name="filter"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.DeleteMany``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},``1[])">
+            <summary>
+            批量删除记录
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TField"></typeparam>
+            <param name="filter"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.GetPage``1(System.Int32,System.Int32)">
             <summary>
             分页查询
