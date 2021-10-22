@@ -52,10 +52,6 @@ namespace XExten.Advance.HttpFramework.MultiOption
         /// </summary>
         internal HttpContent Contents { get; set; }
         /// <summary>
-        /// 请求类型
-        /// </summary>
-        internal MediaTypeHeaderValue MediaTypeHeader { get; set; }
-        /// <summary>
         /// 地址
         /// </summary>
         internal Uri URI { get; set; }
@@ -69,21 +65,21 @@ namespace XExten.Advance.HttpFramework.MultiOption
                 if (!JsonParam.IsNullOrEmpty() && ReqType != MultiType.DELETE && ReqType != MultiType.GET)
                 {
                     Contents = new StringContent(JsonParam);
-                    MediaTypeHeader = new MediaTypeHeaderValue("application/json");
+                    Contents.Headers.ContentType = new MediaTypeHeaderValue("application/json"); 
                 }
                 if (!JsonParam.IsNullOrEmpty() && (ReqType == MultiType.DELETE || ReqType == MultiType.GET))
                     URI = new Uri(NodePath + JsonParam.ToModel<JObject>().ByUri());
                 if (FormParam != null && FormParam != null && FormParam.Count > 0 && ReqType != MultiType.DELETE && ReqType != MultiType.GET)
                 {
                     Contents = new FormUrlEncodedContent(FormParam);
-                    MediaTypeHeader = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+                    Contents.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
                 }
                 if (FormParam != null && FormParam != null && FormParam.Count > 0 && (ReqType == MultiType.DELETE || ReqType == MultiType.GET))
                     URI = new Uri(NodePath + FormParam.ByUri());
                 if (EntityParam != null && ReqType != MultiType.DELETE && ReqType != MultiType.GET)
                 {
                     Contents = new FormUrlEncodedContent(MultiKeyPairs.KeyValuePairs(EntityParam, MapFied));
-                    MediaTypeHeader = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+                    Contents.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
                 }
                 if (EntityParam != null && (ReqType == MultiType.DELETE || ReqType == MultiType.GET))
                     URI = new Uri(NodePath + EntityParam.ByUri());

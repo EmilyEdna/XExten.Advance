@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using XExten.Advance.LinqFramework;
 
 namespace XExten.Advance.CacheFramework.MongoDbCache
 {
@@ -102,7 +103,12 @@ namespace XExten.Advance.CacheFramework.MongoDbCache
         /// <returns></returns>
         public static int UpdateMany<T>(Expression<Func<T, bool>> filter, T Entity)
         {
-            return (int)Instance.GetCollection<T>(Entity.GetType().Name).UpdateMany(filter, Builders<T>.Update.Combine(new List<UpdateDefinition<T>>())).ModifiedCount;
+            var define = new List<UpdateDefinition<T>>();
+            Entity.GetType().GetProperties().ForEnumerEach(t =>
+            {
+                define.Add(Builders<T>.Update.Set(t.Name, t.GetValue(Entity)));
+            });
+            return (int)Instance.GetCollection<T>(Entity.GetType().Name).UpdateMany(filter, Builders<T>.Update.Combine(define)).ModifiedCount;
         }
 
         /// <summary>
@@ -114,6 +120,19 @@ namespace XExten.Advance.CacheFramework.MongoDbCache
         public static int Delete<T>(Expression<Func<T, bool>> filter)
         {
             return (int)Instance.GetCollection<T>(typeof(T).Name).DeleteOne(filter).DeletedCount;
+        }
+
+        /// <summary>
+        /// 批量删除记录
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TField"></typeparam>
+        /// <param name="filter"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public static int DeleteMany<T, TField>(Expression<Func<T, TField>> filter, params TField[] args)
+        {
+            return (int)Instance.GetCollection<T>(typeof(T).Name).DeleteMany(Builders<T>.Filter.In(filter, args)).DeletedCount;
         }
 
         /// <summary>
