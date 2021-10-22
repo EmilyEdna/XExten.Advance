@@ -12,7 +12,8 @@
 		<PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
 		<FileVersion>1.1.0.8</FileVersion>
 		<PackageReleaseNotes>此版本适用xarmarin.form
-【修复415问题】-&gt;1.1.0.8
+【修复415问题】-&gt;1.1.0.8-app-beta
+【新增保留小数非四舍五入】-&gt;1.1.0.8-app-beta
 		</PackageReleaseNotes>
 		<AssemblyName>XExten.Advance</AssemblyName>
 		<RootNamespace>XExten.Advance</RootNamespace>
