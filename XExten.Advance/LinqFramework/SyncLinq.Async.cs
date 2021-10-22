@@ -14,6 +14,17 @@ namespace XExten.Advance.LinqFramework
     {
         #region To
         /// <summary>
+        ///保留小数非四舍五入
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="parrent"></param>
+        /// <returns></returns>
+        public static async Task<decimal> ToRodAsync(this decimal param, int parrent)
+        {
+            return await Task.Factory.StartNew(() => ToRod(param, parrent));
+        }
+
+        /// <summary>
         /// Md5
         /// </summary>
         /// <param name="param"></param>
