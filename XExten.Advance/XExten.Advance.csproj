@@ -12,7 +12,8 @@
 	  <PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
 	  <FileVersion>1.1.0.8</FileVersion>
 	  <PackageReleaseNotes>【修复415问题】-&gt;1.1.0.8
-【新增Mogo批量删除】-&gt;1.1.0.8</PackageReleaseNotes>
+【新增Mogo批量删除】-&gt;1.1.0.8
+【新增保留小数非四舍五入】-&gt;1.1.0.8</PackageReleaseNotes>
 	  <AssemblyName>XExten.Advance</AssemblyName>
 	  <RootNamespace>XExten.Advance</RootNamespace>
   </PropertyGroup>

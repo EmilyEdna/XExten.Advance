@@ -2012,6 +2012,14 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToRodAsync(System.Decimal,System.Int32)">
+             <summary>
+            保留小数非四舍五入
+             </summary>
+             <param name="param"></param>
+             <param name="parrent"></param>
+             <returns></returns>
+        </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMd5Async(System.String,System.Int32)">
             <summary>
             Md5
@@ -2193,6 +2201,14 @@
             </summary>
             <param name="param"></param>
             <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToRod(System.Decimal,System.Int32)">
+             <summary>
+            保留小数非四舍五入
+             </summary>
+             <param name="param"></param>
+             <param name="parrent"></param>
+             <returns></returns>
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMd5(System.String,System.Int32)">
             <summary>
