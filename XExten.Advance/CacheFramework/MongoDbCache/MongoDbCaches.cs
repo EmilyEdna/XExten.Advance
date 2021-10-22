@@ -123,6 +123,19 @@ namespace XExten.Advance.CacheFramework.MongoDbCache
         }
 
         /// <summary>
+        /// 批量删除记录
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TField"></typeparam>
+        /// <param name="filter"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public static int DeleteMany<T, TField>(Expression<Func<T, TField>> filter, params TField[] args)
+        {
+            return (int)Instance.GetCollection<T>(typeof(T).Name).DeleteMany(Builders<T>.Filter.In(filter, args)).DeletedCount;
+        }
+
+        /// <summary>
         /// 分页查询
         /// </summary>
         /// <typeparam name="T"></typeparam>
