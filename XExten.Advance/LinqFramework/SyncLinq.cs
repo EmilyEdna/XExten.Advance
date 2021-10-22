@@ -27,6 +27,20 @@ namespace XExten.Advance.LinqFramework
     public static partial class SyncLinq
     {
         #region To
+
+        /// <summary>
+        ///保留小数非四舍五入
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="parrent"></param>
+        /// <returns></returns>
+        public static decimal ToRod(this decimal param, int parrent)
+        {
+            var pw = (decimal)Math.Pow(10, parrent);
+            var tc = Math.Truncate(param * pw);
+            return tc / pw;
+        }
+
         /// <summary>
         /// Md5
         /// </summary>
@@ -315,9 +329,9 @@ namespace XExten.Advance.LinqFramework
         /// <param name="destinationType"></param>
         /// <param name="config"></param>
         /// <returns></returns>
-        public static object ToMapest(this object param,Type destinationType, TypeAdapterConfig config = null)
+        public static object ToMapest(this object param, Type destinationType, TypeAdapterConfig config = null)
         {
-            return config == null ? param.Adapt(param.GetType(),destinationType) : param.Adapt(param.GetType(), destinationType,config);
+            return config == null ? param.Adapt(param.GetType(), destinationType) : param.Adapt(param.GetType(), destinationType, config);
         }
         #endregion
 
