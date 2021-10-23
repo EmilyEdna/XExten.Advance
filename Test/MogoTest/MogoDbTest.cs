@@ -21,6 +21,8 @@ namespace Test.MogoTest
         public static void DeleteOne()
         {
             SetConn();
+            MongoDbCaches.Instance.GetCollection<ExceptionLog>(nameof(ExceptionLog)).DeleteOne(t => t.Id == Guid.Parse("0cbd2be8-0863-0b45-9bba-0b2af5080e9e"));
+             var x = MongoDbCaches.Delete<ExceptionLog, Guid>(t => t.Id, Guid.Parse("0cbd2be8-0863-0b45-9bba-0b2af5080e9e"));
         }
     }
     public class ExceptionLog
