@@ -179,24 +179,21 @@
             </summary>
             <param name="key"></param>
         </member>
-        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDBCacheRemove``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},``1)">
+        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDBCacheRemove``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             删除MongoDB缓存
             </summary>
             <typeparam name="T"></typeparam>
-            <typeparam name="TField"></typeparam>
             <param name="filter"></param>
-            <param name="value"></param>
         </member>
-        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDbCacheUpdate``2(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,``1}},``1)">
+        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDbCacheUpdate``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.String,System.String)">
             <summary>
             更新MongoDB某个指
             </summary>
             <typeparam name="T"></typeparam>
-            <typeparam name="TField"></typeparam>
             <param name="Filter"></param>
-            <param name="Exp"></param>
-            <param name="value"></param>
+            <param name="Property"></param>
+            <param name="Value"></param>
         </member>
         <member name="M:XExten.Advance.CacheFramework.Caches.RunTimeCacheSetAsync``1(System.String,``0,System.Int32,System.Boolean)">
             <summary>
@@ -271,25 +268,23 @@
             </summary>
             <param name="key"></param>
         </member>
-        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDBCacheRemoveAsync``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},``1)">
+        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDBCacheRemoveAsync``2(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             删除MongoDB缓存
             </summary>
             <typeparam name="T"></typeparam>
             <typeparam name="TField"></typeparam>
             <param name="filter"></param>
-            <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDbCacheUpdateAsync``2(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,``1}},``1)">
+        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDbCacheUpdateAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.String,System.String)">
             <summary>
-             更新MongoDB某个指
+            更新MongoDB某个指
             </summary>
             <typeparam name="T"></typeparam>
-            <typeparam name="TField"></typeparam>
             <param name="Filter"></param>
-            <param name="Exp"></param>
-            <param name="value"></param>
+            <param name="Property"></param>
+            <param name="Value"></param>
             <returns></returns>
         </member>
         <member name="T:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches">
@@ -342,15 +337,14 @@
             <param name="Filter"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.Update``2(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,``1}},``1)">
+        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.Update``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.String,System.String)">
             <summary>
             更新单个
             </summary>
             <typeparam name="T"></typeparam>
-            <typeparam name="TField"></typeparam>
             <param name="Filter"></param>
-            <param name="Exp"></param>
-            <param name="value"></param>
+            <param name="Property"></param>
+            <param name="Value"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.UpdateMany``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},``0)">
@@ -362,24 +356,20 @@
             <param name="Entity"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.Delete``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},``1)">
+        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.Delete``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             删除单条记录
             </summary>
             <typeparam name="T"></typeparam>
-            <typeparam name="TField"></typeparam>
             <param name="filter"></param>
-            <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.DeleteMany``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},``1[])">
+        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.DeleteMany``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             批量删除记录
             </summary>
             <typeparam name="T"></typeparam>
-            <typeparam name="TField"></typeparam>
             <param name="filter"></param>
-            <param name="args"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.GetPage``1(System.Int32,System.Int32)">
