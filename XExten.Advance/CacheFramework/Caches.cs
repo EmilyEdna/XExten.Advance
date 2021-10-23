@@ -185,22 +185,25 @@ namespace XExten.Advance.CacheFramework
         /// 删除MongoDB缓存
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="Exp"></param>
-        public static void MongoDBCacheRemove<T>(Expression<Func<T, bool>> Exp)
+        /// <typeparam name="TField"></typeparam>
+        /// <param name="filter"></param>
+        /// <param name="value"></param>
+        public static void MongoDBCacheRemove<T, TField>(Expression<Func<T, TField>> filter, TField value)
         {
-            MongoDbCaches.Delete<T>(Exp);
+            MongoDbCaches.Delete(filter, value);
         }
 
         /// <summary>
         /// 更新MongoDB某个指
         /// </summary>
         /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TField"></typeparam>
+        /// <param name="Filter"></param>
         /// <param name="Exp"></param>
-        /// <param name="Property"></param>
-        /// <param name="Value"></param>
-        public static void MongoDbCacheUpdate<T>(Expression<Func<T, bool>> Exp, string Property, string Value)
+        /// <param name="value"></param>
+        public static void MongoDbCacheUpdate<T, TField>(Expression<Func<T, bool>> Filter, Expression<Func<T, TField>> Exp, TField value)
         {
-            MongoDbCaches.Update(Exp, Property, Value);
+            MongoDbCaches.Update(Filter, Exp, value);
         }
 
         #endregion Sync
@@ -311,23 +314,27 @@ namespace XExten.Advance.CacheFramework
         /// 删除MongoDB缓存
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="Exp"></param>
-        public static async Task MongoDBCacheRemoveAsync<T>(Expression<Func<T, bool>> Exp)
+        /// <typeparam name="TField"></typeparam>
+        /// <param name="filter"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static async Task MongoDBCacheRemoveAsync<T, TField>(Expression<Func<T, TField>> filter, TField value)
         {
-            await Task.Run(() => MongoDBCacheRemove(Exp));
+            await Task.Run(() => MongoDBCacheRemove(filter, value));
         }
 
         /// <summary>
-        /// 更新MongoDB某个指
+        ///  更新MongoDB某个指
         /// </summary>
         /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TField"></typeparam>
+        /// <param name="Filter"></param>
         /// <param name="Exp"></param>
-        /// <param name="Property"></param>
-        /// <param name="Value"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static async Task MongoDbCacheUpdateAsync<T>(Expression<Func<T, bool>> Exp, string Property, string Value)
+        public static async Task MongoDbCacheUpdateAsync<T, TField>(Expression<Func<T, bool>> Filter, Expression<Func<T, TField>> Exp, TField value)
         {
-            await Task.Run(() => MongoDbCaches.Update(Exp, Property, Value));
+            await Task.Run(() => MongoDbCaches.Update(Filter, Exp, value));
         }
 
         #endregion Async

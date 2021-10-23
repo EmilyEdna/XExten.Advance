@@ -81,17 +81,18 @@ namespace XExten.Advance.CacheFramework.MongoDbCache
             return Instance.GetCollection<T>(typeof(T).Name).Find(Filter).ToList();
         }
 
-        /// <summary>
-        /// 更新单个
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="Filter"></param>
-        /// <param name="name"></param>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        public static int Update<T>(Expression<Func<T, bool>> Filter, string name, string param)
+       /// <summary>
+       /// 更新单个
+       /// </summary>
+       /// <typeparam name="T"></typeparam>
+       /// <typeparam name="TField"></typeparam>
+       /// <param name="Filter"></param>
+       /// <param name="Exp"></param>
+       /// <param name="value"></param>
+       /// <returns></returns>
+        public static int Update<T,TField>(Expression<Func<T, bool>> Filter, Expression<Func<T, TField>> Exp, TField value)
         {
-            return (int)Instance.GetCollection<T>(typeof(T).Name).UpdateOne(Filter, Builders<T>.Update.Set(name, param)).ModifiedCount;
+            return (int)Instance.GetCollection<T>(typeof(T).Name).UpdateOne(Filter, Builders<T>.Update.Set(Exp, value)).ModifiedCount;
         }
 
         /// <summary>
@@ -115,11 +116,13 @@ namespace XExten.Advance.CacheFramework.MongoDbCache
         /// 删除单条记录
         /// </summary>
         /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TField"></typeparam>
         /// <param name="filter"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static int Delete<T>(Expression<Func<T, bool>> filter)
+        public static int Delete<T,TField>(Expression<Func<T, TField>> filter, TField value)
         {
-            return (int)Instance.GetCollection<T>(typeof(T).Name).DeleteOne(filter).DeletedCount;
+            return (int)Instance.GetCollection<T>(typeof(T).Name).DeleteOne(Builders<T>.Filter.Eq(filter, value)).DeletedCount;
         }
 
         /// <summary>

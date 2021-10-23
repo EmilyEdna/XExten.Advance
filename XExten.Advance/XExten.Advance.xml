@@ -186,14 +186,17 @@
             <typeparam name="T"></typeparam>
             <param name="Exp"></param>
         </member>
-        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDbCacheUpdate``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.String,System.String)">
+        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDbCacheUpdate``3(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}},``1,``2)">
             <summary>
             更新MongoDB某个指
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="Exp"></param>
-            <param name="Property"></param>
-            <param name="Value"></param>
+            <typeparam name="TField"></typeparam>
+            <typeparam name="TUpdate"></typeparam>
+            <param name="filter"></param>
+            <param name="upexp"></param>
+            <param name="TF"></param>
+            <param name="TU"></param>
         </member>
         <member name="M:XExten.Advance.CacheFramework.Caches.RunTimeCacheSetAsync``1(System.String,``0,System.Int32,System.Boolean)">
             <summary>
@@ -337,7 +340,7 @@
         </member>
         <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.Update``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.String,System.String)">
             <summary>
-            更新单个
+            
             </summary>
             <typeparam name="T"></typeparam>
             <param name="Filter"></param>

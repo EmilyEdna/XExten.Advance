@@ -7,13 +7,14 @@
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <PackageId>XExten.Advance</PackageId>
 	  <Product>XExten.Advance</Product>
-	  <Version>1.1.0.8</Version>
-	  <AssemblyVersion>1.1.0.8</AssemblyVersion>
+	  <Version>1.1.0.9</Version>
+	  <AssemblyVersion>1.1.0.9</AssemblyVersion>
 	  <PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
-	  <FileVersion>1.1.0.8</FileVersion>
+	  <FileVersion>1.1.0.9</FileVersion>
 	  <PackageReleaseNotes>【修复415问题】-&gt;1.1.0.8
 【新增Mogo批量删除】-&gt;1.1.0.8
-【新增保留小数非四舍五入】-&gt;1.1.0.8</PackageReleaseNotes>
+【新增保留小数非四舍五入】-&gt;1.1.0.8
+【更换Mogo更新删除的实现】-&gt;1.1.0.9</PackageReleaseNotes>
 	  <AssemblyName>XExten.Advance</AssemblyName>
 	  <RootNamespace>XExten.Advance</RootNamespace>
   </PropertyGroup>
