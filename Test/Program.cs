@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using Test.AopTest;
-using Test.MogoTest;
 using XExten.Advance.StaticFramework;
 
 namespace Test
@@ -15,7 +14,7 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            MogoDbTest.DeleteOne();
+            new TestClass().TestMethod();
         }
     }
 }
