@@ -393,11 +393,6 @@
             
              </summary>
         </member>
-        <member name="P:XExten.Advance.CacheFramework.RedisCache.RedisCaches.Options">
-            <summary>
-            配置redis
-            </summary>
-        </member>
         <member name="P:XExten.Advance.CacheFramework.RedisCache.RedisCaches.RedisConnectionString">
             <summary>
             链接字符串
