@@ -9,12 +9,12 @@ namespace Test.AopTest
 {
     public class MyActionAttribute: AopBaseActionAttribute
     {
-        public override void Before(string methodName, object[] parameters)
+        public override void Before(string methodName, string classInfo, string code, object[] parameters)
         {
             Console.WriteLine(methodName);
             Console.WriteLine(string.Join(",", parameters));
         }
-        public override object After(string methodName, object result)
+        public override object After(string methodName, string classInfo, string code, object result)
         {
             Console.WriteLine(methodName);
             Console.WriteLine(result);
