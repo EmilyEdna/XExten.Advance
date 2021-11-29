@@ -39,7 +39,8 @@ namespace XExten.Advance.AopFramework
         /// <param name="ProxyInterface"></param>
         /// <param name="Implement"></param>
         /// <returns></returns>
-        public static object CreateProxyOfRealize(Type ProxyInterface, Type Implement) {
+        public static object CreateProxyOfRealize(Type ProxyInterface, Type Implement)
+        {
             return CreateProxy(ProxyInterface, Implement);
         }
         /// <summary>
@@ -77,7 +78,7 @@ namespace XExten.Advance.AopFramework
 
             return (TProxy)Invoke(TImplement, typeBuilder, methodAttributes);
         }
-        private static object CreateProxy(Type Proxy, Type Implement) 
+        private static object CreateProxy(Type Proxy, Type Implement)
         {
             Type TInterface = Proxy;
             Type TImplement = Implement;
@@ -191,7 +192,10 @@ namespace XExten.Advance.AopFramework
                     ilMethod.Emit(OpCodes.Ldstr, method.DeclaringType.Name);
                     ilMethod.Emit(OpCodes.Stloc_1, className);
                     var codes = method.GetCustomAttributes<AopBaseActionAttribute>().FirstOrDefault();
-                    ilMethod.Emit(OpCodes.Ldstr, string.IsNullOrEmpty(codes.Code)?"":codes.Code);
+                    if (codes == null)
+                        ilMethod.Emit(OpCodes.Ldstr, "");
+                    else
+                        ilMethod.Emit(OpCodes.Ldstr, string.IsNullOrEmpty(codes.Code) ? "" : codes.Code);
                     ilMethod.Emit(OpCodes.Stloc_2, code);
 
                     ilMethod.Emit(OpCodes.Ldc_I4, methodParameterTypes.Length);
