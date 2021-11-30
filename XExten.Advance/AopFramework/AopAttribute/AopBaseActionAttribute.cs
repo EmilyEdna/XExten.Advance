@@ -17,14 +17,16 @@ namespace XExten.Advance.AopFramework.AopAttribute
         /// 执行前
         /// </summary>
         /// <param name="methodName"></param>
+        /// <param name="classInfo"></param>
         /// <param name="parameters"></param>
-        public virtual void Before(string methodName,string classInfo,string code, object[] parameters) { }
+        public virtual void Before(string methodName,string classInfo, object[] parameters) { }
         /// <summary>
-        /// 执行后
+        /// 执行前
         /// </summary>
         /// <param name="methodName"></param>
+        /// <param name="classInfo"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        public virtual object After(string methodName, string classInfo, string code, object result) => result;
+        public virtual object After(string methodName, string classInfo, object result) => result;
     }
 }

@@ -9,7 +9,7 @@ namespace Test.AopTest
     [Interceptor]
     public class MyClass: IMyInterface
     {
-        [MyAction]
+        [MyAction(Code ="asdasdasdasd")]
         public string TestMethod(int age)
         {
             return age.ToString();
