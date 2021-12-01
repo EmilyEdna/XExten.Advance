@@ -9,7 +9,7 @@ namespace Test.AopTest
 {
     public class MyActionAttribute: AopBaseActionAttribute
     {
-        public MyActionAttribute()
+        public MyActionAttribute() : base()
         {
 
         }
