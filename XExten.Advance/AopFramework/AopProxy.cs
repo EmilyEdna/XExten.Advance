@@ -149,11 +149,11 @@ namespace XExten.Advance.AopFramework
                 var result = ilMethod.DeclareLocal(typeof(object));         //instance of result
                 Dictionary<Type, LocalBuilder> actionTypeBuilders = new Dictionary<Type, LocalBuilder>();
 
-                string CodeLine = string.Empty;
+                string CodeType = string.Empty;
                 //attribute init
                 if (method.GetCustomAttributes<AopBaseActionAttribute>().Any() || TImplement.GetCustomAttributes<AopBaseActionAttribute>().Any())
                 {
-                    CodeLine = method.GetCustomAttributes<AopBaseActionAttribute>().FirstOrDefault().Code;
+                    CodeType = method.GetCustomAttributes<AopBaseActionAttribute>().FirstOrDefault().ActionType;
                     //method can override class attrubute
                     if (method.GetCustomAttributes<AopBaseActionAttribute>().Any())
                     {
@@ -179,7 +179,8 @@ namespace XExten.Advance.AopFramework
                     foreach (var item in actionTypeBuilders.Select(t => t.Key).ToArray())
                     {
                         var actionAttributeObj = ilMethod.DeclareLocal(item);
-                        ilMethod.Emit(OpCodes.Newobj, item.GetConstructor(new Type[0]));
+                        ilMethod.Emit(OpCodes.Ldstr, CodeType??"");
+                        ilMethod.Emit(OpCodes.Newobj, item.GetConstructor(new Type[1] { typeof(string) }));
                         ilMethod.Emit(OpCodes.Stloc, actionAttributeObj);
                         actionTypeBuilders[item] = actionAttributeObj;
                     }

@@ -9,6 +9,11 @@
             执行器
             </summary>
         </member>
+        <member name="P:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.ActionType">
+            <summary>
+            自定义执行
+            </summary>
+        </member>
         <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.Before(System.String,System.String,System.Object[])">
             <summary>
             执行前

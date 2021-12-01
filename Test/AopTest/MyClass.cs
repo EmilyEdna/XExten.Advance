@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 namespace Test.AopTest
 {
     [Interceptor]
-    public class MyClass: IMyInterface
+    public class MyClass : IMyInterface
     {
-        [MyAction(Code ="asdasdasdasd")]
+
+        [MyAction("Test")]
         public string TestMethod(int age)
         {
             return age.ToString();
@@ -19,4 +20,5 @@ namespace Test.AopTest
     {
         string TestMethod(int age);
     }
+    
 }
