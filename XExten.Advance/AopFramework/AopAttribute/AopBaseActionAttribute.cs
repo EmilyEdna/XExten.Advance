@@ -10,21 +10,39 @@ namespace XExten.Advance.AopFramework.AopAttribute
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
     public class AopBaseActionAttribute : Attribute
     {
+        /// <summary>
+        /// 自定义执行
+        /// </summary>
+        public string ActionType { get; set; }
+        /// <summary>
+        /// 执行器无参构造
+        /// </summary>
+        public AopBaseActionAttribute()
+        {
 
-        public string Code { get; set; }
-
+        }
+        /// <summary>
+        /// 有参构造
+        /// </summary>
+        /// <param name="ActionType"></param>
+        public AopBaseActionAttribute(string ActionType)
+        {
+            this.ActionType = ActionType;
+        }
         /// <summary>
         /// 执行前
         /// </summary>
         /// <param name="methodName"></param>
+        /// <param name="classInfo"></param>
         /// <param name="parameters"></param>
-        public virtual void Before(string methodName,string classInfo,string code, object[] parameters) { }
+        public virtual void Before(string methodName, string classInfo, object[] parameters) { }
         /// <summary>
-        /// 执行后
+        /// 执行前
         /// </summary>
         /// <param name="methodName"></param>
+        /// <param name="classInfo"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        public virtual object After(string methodName, string classInfo, string code, object result) => result;
+        public virtual object After(string methodName, string classInfo, object result) => result;
     }
 }

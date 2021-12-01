@@ -9,18 +9,25 @@
             执行器
             </summary>
         </member>
-        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.Before(System.String,System.String,System.String,System.Object[])">
+        <member name="P:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.ActionType">
+            <summary>
+            自定义执行
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.Before(System.String,System.String,System.Object[])">
             <summary>
             执行前
             </summary>
             <param name="methodName"></param>
+            <param name="classInfo"></param>
             <param name="parameters"></param>
         </member>
-        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.After(System.String,System.String,System.String,System.Object)">
+        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.After(System.String,System.String,System.Object)">
             <summary>
-            执行后
+            执行前
             </summary>
             <param name="methodName"></param>
+            <param name="classInfo"></param>
             <param name="result"></param>
             <returns></returns>
         </member>

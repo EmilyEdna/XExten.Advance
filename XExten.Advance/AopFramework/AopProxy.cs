@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
+using System.IO;
 
 namespace XExten.Advance.AopFramework
 {
@@ -144,14 +145,15 @@ namespace XExten.Advance.AopFramework
                 //设置字段
                 var methodName = ilMethod.DeclareLocal(typeof(string));     //instance of method name
                 var className = ilMethod.DeclareLocal(typeof(string));     //instance of class name
-                var code = ilMethod.DeclareLocal(typeof(string));     //instance of code name
                 var parameters = ilMethod.DeclareLocal(typeof(object[]));   //instance of parameters
                 var result = ilMethod.DeclareLocal(typeof(object));         //instance of result
                 Dictionary<Type, LocalBuilder> actionTypeBuilders = new Dictionary<Type, LocalBuilder>();
 
+                string CodeType = string.Empty;
                 //attribute init
                 if (method.GetCustomAttributes<AopBaseActionAttribute>().Any() || TImplement.GetCustomAttributes<AopBaseActionAttribute>().Any())
                 {
+                    CodeType = method.GetCustomAttributes<AopBaseActionAttribute>().FirstOrDefault().ActionType;
                     //method can override class attrubute
                     if (method.GetCustomAttributes<AopBaseActionAttribute>().Any())
                     {
@@ -177,7 +179,8 @@ namespace XExten.Advance.AopFramework
                     foreach (var item in actionTypeBuilders.Select(t => t.Key).ToArray())
                     {
                         var actionAttributeObj = ilMethod.DeclareLocal(item);
-                        ilMethod.Emit(OpCodes.Newobj, item.GetConstructor(new Type[0]));
+                        ilMethod.Emit(OpCodes.Ldstr, CodeType??"");
+                        ilMethod.Emit(OpCodes.Newobj, item.GetConstructor(new Type[1] { typeof(string) }));
                         ilMethod.Emit(OpCodes.Stloc, actionAttributeObj);
                         actionTypeBuilders[item] = actionAttributeObj;
                     }
@@ -191,12 +194,6 @@ namespace XExten.Advance.AopFramework
 
                     ilMethod.Emit(OpCodes.Ldstr, method.DeclaringType.Name);
                     ilMethod.Emit(OpCodes.Stloc_1, className);
-                    var codes = method.GetCustomAttributes<AopBaseActionAttribute>().FirstOrDefault();
-                    if (codes == null)
-                        ilMethod.Emit(OpCodes.Ldstr, "");
-                    else
-                        ilMethod.Emit(OpCodes.Ldstr, string.IsNullOrEmpty(codes.Code) ? "" : codes.Code);
-                    ilMethod.Emit(OpCodes.Stloc_2, code);
 
                     ilMethod.Emit(OpCodes.Ldc_I4, methodParameterTypes.Length);
                     ilMethod.Emit(OpCodes.Newarr, typeof(object));
@@ -223,7 +220,6 @@ namespace XExten.Advance.AopFramework
                         ilMethod.Emit(OpCodes.Ldloc, item.Value);
                         ilMethod.Emit(OpCodes.Ldloc, methodName);
                         ilMethod.Emit(OpCodes.Ldloc, className);
-                        ilMethod.Emit(OpCodes.Ldloc, code);
                         ilMethod.Emit(OpCodes.Ldloc, parameters);
                         ilMethod.Emit(OpCodes.Call, item.Key.GetMethod("Before"));
                     }
@@ -277,7 +273,6 @@ namespace XExten.Advance.AopFramework
                         ilMethod.Emit(OpCodes.Ldloc, item.Value);
                         ilMethod.Emit(OpCodes.Ldloc, methodName);
                         ilMethod.Emit(OpCodes.Ldloc, className);
-                        ilMethod.Emit(OpCodes.Ldloc, code);
                         ilMethod.Emit(OpCodes.Ldloc, result);
                         ilMethod.Emit(OpCodes.Callvirt, item.Key.GetMethod("After"));
 
