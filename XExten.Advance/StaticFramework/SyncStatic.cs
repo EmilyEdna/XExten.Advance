@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using Chinese;
@@ -183,6 +184,46 @@ namespace XExten.Advance.StaticFramework
         }
 
         /// <summary>
+        /// 把网页内容转为文本
+        /// </summary>
+        /// <param name="html"></param>
+        /// <returns></returns>
+        public static string HText(string html)
+        {
+            string[] aryReg ={
+            @"<script[^>]*?>.*?</script>",
+            @"<(\/\s*)?!?((\w+:)?\w+)(\w+(\s*=?\s*(([""'])(\\[""'tbnr]|[^\7])*?\7|\w+)|.{0})|\s)*?(\/\s*)?>",
+            @"([\r\n])[\s]+",
+            @"&(quot|#34);",
+            @"&(amp|#38);",
+            @"&(lt|#60);",
+            @"&(gt|#62);",
+            @"&(nbsp|#160);",
+            @"&(iexcl|#161);",
+            @"&(cent|#162);",
+            @"&(pound|#163);",
+            @"&(copy|#169);",
+            @"&#(\d+);",
+            @"-->",
+            @"<!--.*\n"
+            };
+
+            string strOutput = html;
+            for (int i = 0; i < aryReg.Length; i++)
+            {
+                Regex regex = new Regex(aryReg[i], RegexOptions.IgnoreCase);
+                strOutput = regex.Replace(strOutput, string.Empty);
+            }
+
+            strOutput.Replace("<", "");
+            strOutput.Replace(">", "");
+            strOutput.Replace("\r\n", "");
+
+
+            return strOutput;
+        }
+
+        /// <summary>
         /// 读取Xml
         /// </summary>
         /// <param name="NodeItem"></param>
@@ -339,7 +380,7 @@ namespace XExten.Advance.StaticFramework
         /// <param name="stream">流</param>
         /// <param name="action">自定义导出</param>
         /// <param name="footer">页脚内容</param>
-        /// <param name="DateFormat">事件格式</param>
+        /// <param name="DateFormat">时间格式</param>
         public static void ExportExcel<T>(IEnumerable<T> Data, ExcelType Types, string SheetName,
             Action<Stream> action, dynamic footer = null, Stream stream = null, string DateFormat = "yyyy-MM-dd") where T : class, new()
         {

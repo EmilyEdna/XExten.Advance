@@ -14,7 +14,18 @@
             自定义执行
             </summary>
         </member>
-        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.Before(System.String,System.String,System.Object[])">
+        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.#ctor">
+            <summary>
+            执行器无参构造
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.#ctor(System.String)">
+            <summary>
+            有参构造
+            </summary>
+            <param name="ActionType"></param>
+        </member>
+        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.Before(System.String,System.Type,System.Object[])">
             <summary>
             执行前
             </summary>
@@ -22,7 +33,7 @@
             <param name="classInfo"></param>
             <param name="parameters"></param>
         </member>
-        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.After(System.String,System.String,System.Object)">
+        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.After(System.String,System.Type,System.Object)">
             <summary>
             执行前
             </summary>
@@ -2487,6 +2498,13 @@
             <param name="height"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.HText(System.String)">
+            <summary>
+            把网页内容转为文本
+            </summary>
+            <param name="html"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.ReadXml(System.String,System.String,System.String)">
             <summary>
             读取Xml
@@ -2553,7 +2571,7 @@
             <param name="stream">流</param>
             <param name="action">自定义导出</param>
             <param name="footer">页脚内容</param>
-            <param name="DateFormat">事件格式</param>
+            <param name="DateFormat">时间格式</param>
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.ImportExcel``1(System.IO.Stream,XExten.Advance.InternalFramework.Office.Common.ExcelType,System.Boolean,System.Int32)">
             <summary>
