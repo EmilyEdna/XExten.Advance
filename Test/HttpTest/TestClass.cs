@@ -5,7 +5,7 @@ namespace Test.HttpTest
 {
     public class TestClass
     {
-        public string TestMethond()
+        public string TestMethod()
         {
             return IHttpMultiClient.HttpMulti
                 .AddNode(opt =>
@@ -14,7 +14,6 @@ namespace Test.HttpTest
                 })
                 .Build(opt =>
                 {
-                    //opt.UseDnsResolver = true;
                     opt.UseHttps = true;
                     opt.UseZip = true;
                 }).RunString().FirstOrDefault();

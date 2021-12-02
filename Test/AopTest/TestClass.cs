@@ -2,6 +2,7 @@ using XExten.Advance.AopFramework;
 using XExten.Advance.LinqFramework;
 using DryIoc;
 using System;
+using System.Collections.Generic;
 
 namespace Test.AopTest
 {
@@ -9,6 +10,9 @@ namespace Test.AopTest
     {
         public void TestMethod()
         {
+            PriorityQueue<string, int> queue = new PriorityQueue<string, int>(); //优先队列
+            queue.Enqueue("A", 85);
+            queue.Enqueue("B", 11);
 
             var xx = new Container().RegistAop<IMyInterface>();
 

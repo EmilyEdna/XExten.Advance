@@ -1394,6 +1394,13 @@
             <param name="height"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.HText(System.String)">
+            <summary>
+            把网页内容转为文本
+            </summary>
+            <param name="html"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.ReadXml(System.String,System.String,System.String)">
             <summary>
             读取Xml

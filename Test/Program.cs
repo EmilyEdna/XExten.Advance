@@ -5,7 +5,7 @@ using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
-using Test.AopTest;
+using Test.HttpTest;
 using XExten.Advance.StaticFramework;
 
 namespace Test
@@ -14,7 +14,8 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            new TestClass().TestMethod();
+           var html = new TestClass().TestMethod();
+          var  x =  SyncStatic.HText(html);
         }
     }
 }
