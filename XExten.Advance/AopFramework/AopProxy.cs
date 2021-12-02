@@ -144,7 +144,7 @@ namespace XExten.Advance.AopFramework
                 var ilMethod = methodBuilder.GetILGenerator();
                 //设置字段
                 var methodName = ilMethod.DeclareLocal(typeof(string));     //instance of method name
-                var classType = ilMethod.DeclareLocal(typeof(Type));     //instance of class Type
+                var classInfo = ilMethod.DeclareLocal(typeof(Type));     //instance of class info
                 var parameters = ilMethod.DeclareLocal(typeof(object[]));   //instance of parameters
                 var result = ilMethod.DeclareLocal(typeof(object));         //instance of result
                 Dictionary<Type, LocalBuilder> actionTypeBuilders = new Dictionary<Type, LocalBuilder>();
@@ -193,7 +193,7 @@ namespace XExten.Advance.AopFramework
                     ilMethod.Emit(OpCodes.Stloc_0, methodName);
 
                     ilMethod.Emit(OpCodes.Ldtoken, method.DeclaringType);
-                    ilMethod.Emit(OpCodes.Stloc_1, classType);
+                    ilMethod.Emit(OpCodes.Stloc_1, classInfo);
 
                     ilMethod.Emit(OpCodes.Ldc_I4, methodParameterTypes.Length);
                     ilMethod.Emit(OpCodes.Newarr, typeof(object));
@@ -219,7 +219,7 @@ namespace XExten.Advance.AopFramework
                     {
                         ilMethod.Emit(OpCodes.Ldloc, item.Value);
                         ilMethod.Emit(OpCodes.Ldloc, methodName);
-                        ilMethod.Emit(OpCodes.Ldloc, classType);
+                        ilMethod.Emit(OpCodes.Ldloc, classInfo);
                         ilMethod.Emit(OpCodes.Ldloc, parameters);
                         ilMethod.Emit(OpCodes.Call, item.Key.GetMethod("Before"));
                     }
@@ -272,7 +272,7 @@ namespace XExten.Advance.AopFramework
                     {
                         ilMethod.Emit(OpCodes.Ldloc, item.Value);
                         ilMethod.Emit(OpCodes.Ldloc, methodName);
-                        ilMethod.Emit(OpCodes.Ldloc, classType);
+                        ilMethod.Emit(OpCodes.Ldloc, classInfo);
                         ilMethod.Emit(OpCodes.Ldloc, result);
                         ilMethod.Emit(OpCodes.Callvirt, item.Key.GetMethod("After"));
 

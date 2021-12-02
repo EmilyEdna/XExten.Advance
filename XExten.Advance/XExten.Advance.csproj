@@ -7,14 +7,15 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>XExten.Advance</PackageId>
 		<Product>XExten.Advance</Product>
-		<Version>1.1.0.14-beta</Version>
-		<AssemblyVersion>1.1.0.14</AssemblyVersion>
+		<Version>1.1.0.15-beta</Version>
+		<AssemblyVersion>1.1.0.15</AssemblyVersion>
 		<PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
-		<FileVersion>1.1.0.14</FileVersion>
+		<FileVersion>1.1.0.15</FileVersion>
 		<PackageReleaseNotes>此版本适用xarmarin.form
 【修复415问题】-&gt;1.1.0.8-beta
 【新增保留小数非四舍五入】-&gt;1.1.0.8-beta
 【更新Aop拦截器】-&gt;1.1.0.14-beta
+【添加新功能】-&gt;1.1.0.15-beta
 		</PackageReleaseNotes>
 		<AssemblyName>XExten.Advance</AssemblyName>
 		<RootNamespace>XExten.Advance</RootNamespace>
