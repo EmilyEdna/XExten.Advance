@@ -12,6 +12,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using Chinese;
 using Microsoft.Extensions.DependencyModel;
+using Polly;
 using XExten.Advance.InternalFramework.Express;
 using XExten.Advance.InternalFramework.Express.Common;
 using XExten.Advance.InternalFramework.FileWatch;
@@ -447,6 +448,57 @@ namespace XExten.Advance.StaticFramework
         public static Expression<Func<T, bool>> GetExpression<T>(string Property, object Data, QType QueryType)
         {
             return Expsion.GetExpression<T>(Property, Data, QueryType);
+        }
+
+        /// <summary>
+        /// 无返回重试
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="handle"></param>
+        /// <param name="Times"></param>
+        public static void DoRetry(Action action, Action handle = null, int Times = 3)
+        {
+            Policy.Handle<Exception>().Retry(Times, (Ex, Count, Context) =>
+            {
+                handle?.Invoke();
+            }).Execute(action);
+        }
+        /// <summary>
+        /// 有返回重试
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="action"></param>
+        /// <param name="handle"></param>
+        /// <param name="Times"></param>
+        /// <returns></returns>
+        public static T DoRetry<T>(Func<T> action,Action handle=null, int Times = 3)
+        {
+            return Policy.Handle<Exception>().Retry(Times, (Ex, Count, Context) =>
+            {
+                handle?.Invoke();
+            }).Execute(action);
+        }
+        /// <summary>
+        /// 短路由无返回
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="Times"></param>
+        /// <param name="Seconds"></param>
+        public static void DoRetryBreak(Action action, int Times = 3, int Seconds = 60)
+        {
+            Policy.Handle<Exception>().CircuitBreaker(Times, TimeSpan.FromSeconds(Seconds)).Execute(action);
+        }
+        /// <summary>
+        /// 短路由有返回
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="action"></param>
+        /// <param name="Times"></param>
+        /// <param name="Seconds"></param>
+        /// <returns></returns>
+        public static T DoRetryBreak<T>(Func<T> action, int Times = 3, int Seconds = 60)
+        {
+            return Policy.Handle<Exception>().CircuitBreaker(Times, TimeSpan.FromSeconds(Seconds)).Execute(action);
         }
     }
 }
