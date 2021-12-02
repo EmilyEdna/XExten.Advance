@@ -2616,6 +2616,42 @@
             <param name="QueryType"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.DoRetry(System.Action,System.Action,System.Int32)">
+            <summary>
+            无返回重试
+            </summary>
+            <param name="action"></param>
+            <param name="handle"></param>
+            <param name="Times"></param>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.DoRetry``1(System.Func{``0},System.Action,System.Int32)">
+            <summary>
+            有返回重试
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="action"></param>
+            <param name="handle"></param>
+            <param name="Times"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.DoRetryBreak(System.Action,System.Int32,System.Int32)">
+            <summary>
+            短路由无返回
+            </summary>
+            <param name="action"></param>
+            <param name="Times"></param>
+            <param name="Seconds"></param>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.DoRetryBreak``1(System.Func{``0},System.Int32,System.Int32)">
+            <summary>
+            短路由有返回
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="action"></param>
+            <param name="Times"></param>
+            <param name="Seconds"></param>
+            <returns></returns>
+        </member>
         <member name="T:XExten.Advance.ValidataFramework.Enum.ValitionEnum">
             <summary>
             验证类型
