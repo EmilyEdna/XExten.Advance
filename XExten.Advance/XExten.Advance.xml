@@ -14,7 +14,18 @@
             自定义执行
             </summary>
         </member>
-        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.Before(System.String,System.String,System.Object[])">
+        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.#ctor">
+            <summary>
+            执行器无参构造
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.#ctor(System.String)">
+            <summary>
+            有参构造
+            </summary>
+            <param name="ActionType"></param>
+        </member>
+        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.Before(System.String,System.Type,System.Object[])">
             <summary>
             执行前
             </summary>
@@ -22,7 +33,7 @@
             <param name="classInfo"></param>
             <param name="parameters"></param>
         </member>
-        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.After(System.String,System.String,System.Object)">
+        <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.After(System.String,System.Type,System.Object)">
             <summary>
             执行前
             </summary>

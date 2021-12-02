@@ -35,7 +35,7 @@ namespace XExten.Advance.AopFramework.AopAttribute
         /// <param name="methodName"></param>
         /// <param name="classInfo"></param>
         /// <param name="parameters"></param>
-        public virtual void Before(string methodName, string classInfo, object[] parameters) { }
+        public virtual void Before(string methodName, Type classInfo, object[] parameters) { }
         /// <summary>
         /// 执行前
         /// </summary>
@@ -43,6 +43,6 @@ namespace XExten.Advance.AopFramework.AopAttribute
         /// <param name="classInfo"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        public virtual object After(string methodName, string classInfo, object result) => result;
+        public virtual object After(string methodName, Type classInfo, object result) => result;
     }
 }

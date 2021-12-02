@@ -16,12 +16,12 @@ namespace Test.AopTest
         public MyActionAttribute(string Code):base(Code)
         {
         }
-        public override void Before(string methodName, string classInfo,  object[] parameters)
+        public override void Before(string methodName, Type classInfo,  object[] parameters)
         {
             Console.WriteLine(methodName);
             Console.WriteLine(string.Join(",", parameters));
         }
-        public override object After(string methodName, string classInfo,  object result)
+        public override object After(string methodName, Type classInfo,  object result)
         {
             Console.WriteLine(methodName);
             Console.WriteLine(result);
