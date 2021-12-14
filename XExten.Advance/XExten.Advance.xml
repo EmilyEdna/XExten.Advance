@@ -842,18 +842,48 @@
             </summary>
             <param name="Module"></param>
         </member>
-        <member name="T:XExten.Advance.InternalFramework.Md5">
+        <member name="T:XExten.Advance.InternalFramework.Securities.Common.SecurityType">
+            <summary>
+            加解密类型
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.InternalFramework.Securities.Common.SecurityType.Base64">
+            <summary>
+            Base64
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.InternalFramework.Securities.Common.SecurityType.UTF16">
+            <summary>
+            UTF16
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.InternalFramework.Securities.Common.SecurityType.EncodedURI">
+            <summary>
+            EncodedURI
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.InternalFramework.Securities.Common.SecurityType.Uint8">
+            <summary>
+            Uint8
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.InternalFramework.Securities.Common.SecurityType.Normal">
+            <summary>
+            Normal
+            </summary>
+        </member>
+        <member name="T:XExten.Advance.InternalFramework.Securities.Md5">
             <summary>
             md5
             </summary>
         </member>
-        <member name="M:XExten.Advance.InternalFramework.Md5.Md5By32(System.String)">
+        <member name="M:XExten.Advance.InternalFramework.Securities.Md5.Md5By32(System.String)">
             <summary>
             32bit
             </summary>
             <param name="param"></param>
         </member>
-        <member name="M:XExten.Advance.InternalFramework.Md5.Md5By16(System.String)">
+        <member name="M:XExten.Advance.InternalFramework.Securities.Md5.Md5By16(System.String)">
             <summary>
             16bit
             </summary>
@@ -1522,6 +1552,22 @@
             <param name="action"></param>
             <param name="Times"></param>
             <param name="Seconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.Compress(System.String,XExten.Advance.InternalFramework.Securities.Common.SecurityType)">
+            <summary>
+            lz加密
+            </summary>
+            <param name="input"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.Decompress(System.String,XExten.Advance.InternalFramework.Securities.Common.SecurityType)">
+            <summary>
+            lz解密
+            </summary>
+            <param name="input"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="T:XExten.Advance.ValidataFramework.Enum.ValitionEnum">
