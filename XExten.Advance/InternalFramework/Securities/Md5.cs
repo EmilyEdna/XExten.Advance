@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XExten.Advance.InternalFramework
+namespace XExten.Advance.InternalFramework.Securities
 {
     /// <summary>
     /// md5
