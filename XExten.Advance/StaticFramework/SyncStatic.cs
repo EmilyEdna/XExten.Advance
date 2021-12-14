@@ -463,6 +463,7 @@ namespace XExten.Advance.StaticFramework
                 handle?.Invoke();
             }).Execute(action);
         }
+
         /// <summary>
         /// 有返回重试
         /// </summary>
@@ -471,13 +472,14 @@ namespace XExten.Advance.StaticFramework
         /// <param name="handle"></param>
         /// <param name="Times"></param>
         /// <returns></returns>
-        public static T DoRetry<T>(Func<T> action,Action handle=null, int Times = 3)
+        public static T DoRetry<T>(Func<T> action, Action handle = null, int Times = 3)
         {
             return Policy.Handle<Exception>().Retry(Times, (Ex, Count, Context) =>
             {
                 handle?.Invoke();
             }).Execute(action);
         }
+
         /// <summary>
         /// 短路由无返回
         /// </summary>
@@ -488,6 +490,7 @@ namespace XExten.Advance.StaticFramework
         {
             Policy.Handle<Exception>().CircuitBreaker(Times, TimeSpan.FromSeconds(Seconds)).Execute(action);
         }
+
         /// <summary>
         /// 短路由有返回
         /// </summary>
@@ -499,6 +502,58 @@ namespace XExten.Advance.StaticFramework
         public static T DoRetryBreak<T>(Func<T> action, int Times = 3, int Seconds = 60)
         {
             return Policy.Handle<Exception>().CircuitBreaker(Times, TimeSpan.FromSeconds(Seconds)).Execute(action);
+        }
+
+        /// <summary>
+        /// lz加密
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static string Compress(string input, SecurityType type = SecurityType.Normal)
+        {
+            switch (type)
+            {
+                case SecurityType.Base64:
+                    return LzString.CompressToBase64(input);
+                case SecurityType.UTF16:
+                    return LzString.CompressToUTF16(input);
+                case SecurityType.EncodedURI:
+                    return LzString.CompressToEncodedURIComponent(input);
+                case SecurityType.Uint8:
+                    return Encoding.UTF8.GetString(LzString.CompressToUint8Array(input));
+                case SecurityType.Normal:
+                  return  LzString.Compress(input);
+                default:
+                    return LzString.Compress(input);
+            }
+           
+        }
+
+        /// <summary>
+        /// lz解密
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static string Decompress(string input, SecurityType type = SecurityType.Normal)
+        {
+            switch (type)
+            {
+                case SecurityType.Base64:
+                    return LzString.DecompressFromBase64(input);
+                case SecurityType.UTF16:
+                    return LzString.DecompressFromUTF16(input);
+                case SecurityType.EncodedURI:
+                    return LzString.DecompressFromEncodedURIComponent(input);
+                case SecurityType.Uint8:
+                    return LzString.DecompressFromUint8Array(Encoding.UTF8.GetBytes(input));
+                case SecurityType.Normal:
+                    return LzString.Decompress(input);
+                default:
+                    return LzString.Decompress(input);
+            }
+
         }
     }
 }

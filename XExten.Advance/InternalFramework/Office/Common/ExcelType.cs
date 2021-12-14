@@ -12,8 +12,14 @@ namespace XExten.Advance.InternalFramework.Office.Common
     /// </summary>
     public enum ExcelType
     {
+        /// <summary>
+        /// Excel2003
+        /// </summary>
         [Description("Excel2003")]
         xls = 2003,
+        /// <summary>
+        /// Excel2007+
+        /// </summary>
         [Description("Excel2007+")]
         xlsx = 2007
     }
