@@ -105,8 +105,10 @@ namespace XExten.Advance.CacheFramework
         /// <param name="UseSecond"></param>
         public static void RedisCacheSet<T>(string key, T value, int MinutesOrSecond = 5, bool UseSecond = false)
         {
-            RedisCaches.StringSet<T>(key, value, (UseSecond ? (DateTime.Now.AddSeconds(MinutesOrSecond) - DateTime.Now) : (DateTime.Now.AddMinutes(MinutesOrSecond) - DateTime.Now)));
+            TimeSpan? exp = (UseSecond ? (DateTime.Now.AddSeconds(MinutesOrSecond) - DateTime.Now) : (DateTime.Now.AddMinutes(MinutesOrSecond) - DateTime.Now));
+            RedisCaches.StringSet<T>(key, value, MinutesOrSecond==0?null:exp);
         }
+
 
         /// <summary>
         /// 添加MongoDB缓存
@@ -231,7 +233,8 @@ namespace XExten.Advance.CacheFramework
         /// <returns></returns>
         public static async Task RedisCacheSetAsync<T>(string key, T value, int MinutesOrSecond = 5, bool UseSecond = false)
         {
-            await RedisCaches.StringSetAsync<T>(key, value, (UseSecond ? (DateTime.Now.AddSeconds(MinutesOrSecond) - DateTime.Now) : (DateTime.Now.AddMinutes(MinutesOrSecond) - DateTime.Now)));
+            TimeSpan? exp = (UseSecond ? (DateTime.Now.AddSeconds(MinutesOrSecond) - DateTime.Now) : (DateTime.Now.AddMinutes(MinutesOrSecond) - DateTime.Now));
+            await RedisCaches.StringSetAsync<T>(key, value, MinutesOrSecond == 0 ? null : exp);
         }
 
         /// <summary>

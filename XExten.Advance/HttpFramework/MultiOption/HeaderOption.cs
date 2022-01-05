@@ -14,7 +14,7 @@ namespace XExten.Advance.HttpFramework.MultiOption
     {
         #region Default Header Name
         public const string Referer = "Referer";
-        public const string UserAgent = "UserAgent";
+        public const string UserAgent = "User-Agent";
         public const string Host = "Host";
         public const string AcceptEncoding = "AcceptEncoding";
         public const string Origin = "Origin";

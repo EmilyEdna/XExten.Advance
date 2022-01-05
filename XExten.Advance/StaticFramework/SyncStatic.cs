@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyModel;
 using Polly;
 using XExten.Advance.InternalFramework.Express;
 using XExten.Advance.InternalFramework.Express.Common;
+using XExten.Advance.InternalFramework.FileHandle;
 using XExten.Advance.InternalFramework.FileWatch;
 using XExten.Advance.InternalFramework.Securities;
 using XExten.Advance.InternalFramework.Securities.Common;
@@ -526,11 +527,11 @@ namespace XExten.Advance.StaticFramework
                 case SecurityType.Uint8:
                     return Encoding.UTF8.GetString(LzString.CompressToUint8Array(input));
                 case SecurityType.Normal:
-                  return  LzString.Compress(input);
+                    return LzString.Compress(input);
                 default:
                     return LzString.Compress(input);
             }
-           
+
         }
 
         /// <summary>
@@ -558,5 +559,54 @@ namespace XExten.Advance.StaticFramework
             }
 
         }
+
+        /// <summary>
+        /// 创建文件
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string CreateFile(string path) => FileManager.CreateFile(path);
+
+        /// <summary>
+        /// 创建文件夹
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string CreateDir(string path) => FileManager.CreateDir(path);
+
+        /// <summary>
+        /// 删除所有文件
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static void DeleteFolder(string path)
+        {
+            FileManager.DeleteFolder(path);
+        }
+
+        /// <summary>
+        /// 删除文件
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static void DeleteFile(string path)
+        {
+            FileManager.DeleteFile(path);
+        }
+
+        /// <summary>
+        /// 写入文件
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string WriteFile(byte[] bytes, string path) => FileManager.WriteFile(bytes, path);
+
+        /// <summary>
+        /// 读取文件
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string ReadFile(string path) => FileManager.ReadFile(path);
     }
 }
