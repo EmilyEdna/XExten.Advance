@@ -1570,6 +1570,49 @@
             <param name="type"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.CreateFile(System.String)">
+            <summary>
+            创建文件
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.CreateDir(System.String)">
+            <summary>
+            创建文件夹
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.DeleteFolder(System.String)">
+            <summary>
+            删除所有文件
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.DeleteFile(System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.WriteFile(System.Byte[],System.String)">
+            <summary>
+            写入文件
+            </summary>
+            <param name="bytes"></param>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.ReadFile(System.String)">
+            <summary>
+            读取文件
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
         <member name="T:XExten.Advance.ValidataFramework.Enum.ValitionEnum">
             <summary>
             验证类型
