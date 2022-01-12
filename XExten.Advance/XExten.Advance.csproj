@@ -10,7 +10,7 @@
 		<Version>1.1.2</Version>
 		<AssemblyVersion>1.1.2</AssemblyVersion>
 		<PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
-		<FileVersion>1.1.1.2</FileVersion>
+		<FileVersion>1.1.2</FileVersion>
 		<PackageReleaseNotes>此版本适用xarmarin.form
 【修复415问题】-&gt;1.1.0.8-beta
 【新增保留小数非四舍五入】-&gt;1.1.0.8-beta
@@ -18,6 +18,7 @@
 【添加新功能】-&gt;1.1.0.15-beta
 【添加lzstring加解密】-&gt;1.1.1.0-beta
 【添加文件基本操作】-&gt;1.1.1.2-beta
+【新增ChanelEventBus】-&gt;1.1.2-beta
 		</PackageReleaseNotes>
 		<AssemblyName>XExten.Advance</AssemblyName>
 		<RootNamespace>XExten.Advance</RootNamespace>
