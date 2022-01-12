@@ -26,14 +26,6 @@
 		<RootNamespace>XExten.Advance</RootNamespace>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp5.0|AnyCPU'">
-		<DocumentationFile>D:\Project\XExten.Advance\XExten.Advance\XExten.Advance.xml</DocumentationFile>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
-		<DocumentationFile>D:\Project\XExten.Advance\XExten.Advance\XExten.Advance.xml</DocumentationFile>
-	</PropertyGroup>
-
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>D:\Project\XExten.Advance\XExten.Advance\XExten.Advance.xml</DocumentationFile>
 	</PropertyGroup>
