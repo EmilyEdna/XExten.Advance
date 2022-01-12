@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.1;net6.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.1;net6</TargetFrameworks>
 		<Authors>EmilyEdna</Authors>
 		<Description>XExten包的优化升级版本，后期只会更新这个包，不在维护XExten包</Description>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>XExten.Advance</PackageId>
 		<Product>XExten.Advance</Product>
-		<Version>1.1.1.2</Version>
-		<AssemblyVersion>1.1.1.2</AssemblyVersion>
+		<Version>1.1.2</Version>
+		<AssemblyVersion>1.1.2</AssemblyVersion>
 		<PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
-		<FileVersion>1.1.1.2</FileVersion>
+		<FileVersion>1.1.2</FileVersion>
 		<PackageReleaseNotes>【修复415问题】-&gt;1.1.0.8
 【新增Mogo批量删除】-&gt;1.1.0.8
 【新增保留小数非四舍五入】-&gt;1.1.0.8
@@ -20,6 +20,7 @@
 【添加新功能】-&gt;1.1.0.15
 【添加lzstring加解密】-&gt;1.1.1.0
 【添加文件基本操作】-&gt;1.1.1.2
+【新增ChanelEventBus】-&gt;1.1.2
 		</PackageReleaseNotes>
 		<AssemblyName>XExten.Advance</AssemblyName>
 		<RootNamespace>XExten.Advance</RootNamespace>
@@ -54,6 +55,7 @@
 		<PackageReference Include="StackExchange.Redis" Version="2.2.88" />
 		<PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
 		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
+		<PackageReference Include="System.Threading.Channels" Version="6.0.0" />
 	</ItemGroup>
 
 </Project>
