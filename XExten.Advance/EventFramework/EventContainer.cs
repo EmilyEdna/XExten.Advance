@@ -34,12 +34,12 @@ namespace XExten.Advance.EventFramework
 
         internal void Regiest(Type serviceType, Type implementationType)
         {
-            Container.Register(serviceType, implementationType, Reuse.Singleton);
+            Container.Register(serviceType, implementationType, Reuse.Singleton, serviceKey: implementationType.Name);
         }
 
-        internal object Resolve(Type serviceType)
+        internal object Resolve(Type serviceType,Type implementationType)
         {
-            return Container.Resolve(serviceType);
+            return Container.Resolve(serviceType, serviceKey: implementationType.Name);
         }
 
         internal TService Resolve<TService>()

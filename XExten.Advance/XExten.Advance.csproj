@@ -7,21 +7,10 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>XExten.Advance</PackageId>
 		<Product>XExten.Advance</Product>
-		<Version>1.1.2</Version>
-		<AssemblyVersion>1.1.2</AssemblyVersion>
+		<Version>1.1.2.1</Version>
+		<AssemblyVersion>1.1.2.1</AssemblyVersion>
 		<PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
-		<FileVersion>1.1.2</FileVersion>
-		<PackageReleaseNotes>【修复415问题】-&gt;1.1.0.8
-【新增Mogo批量删除】-&gt;1.1.0.8
-【新增保留小数非四舍五入】-&gt;1.1.0.8
-【更换Mogo更新删除的实现】-&gt;1.1.0.10
-【更换Redis链接】-&gt;1.1.0.11
-【更新Aop拦截器】-&gt;1.1.0.14
-【添加新功能】-&gt;1.1.0.15
-【添加lzstring加解密】-&gt;1.1.1.0
-【添加文件基本操作】-&gt;1.1.1.2
-【新增ChanelEventBus】-&gt;1.1.2
-		</PackageReleaseNotes>
+		<FileVersion>1.1.2.1</FileVersion>
 		<AssemblyName>XExten.Advance</AssemblyName>
 		<RootNamespace>XExten.Advance</RootNamespace>
 	</PropertyGroup>

@@ -9,6 +9,7 @@ using System.Text;
 using Test.EventTest;
 using Test.HttpTest;
 using XExten.Advance.EventFramework;
+using XExten.Advance.EventFramework.PublishEvent;
 using XExten.Advance.StaticFramework;
 
 namespace Test
@@ -22,6 +23,11 @@ namespace Test
             EventBus.Lancher(Assembly.Load("Test"));
             new Test1().PublishTest();
 
+            Console.ReadKey();
+            IEventPublish.Instance.PublishAsync(t => {
+                t.Payload = "OK";
+                t.EventId = "Test1";
+            });
             Console.ReadKey();
         }
     }

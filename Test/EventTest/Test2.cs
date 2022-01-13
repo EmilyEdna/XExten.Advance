@@ -17,4 +17,13 @@ namespace Test.EventTest
             return Task.CompletedTask;
         }
     }
+    public class Test3 : IEventSubscriber
+    {
+        [EventSubscribe("Test1")]
+        public Task Test33(IEventSource args)
+        {
+            var x = args;
+            return Task.CompletedTask;
+        }
+    }
 }

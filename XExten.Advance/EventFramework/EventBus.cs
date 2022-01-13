@@ -46,7 +46,7 @@ namespace XExten.Advance.EventFramework
 
                 foreach (MethodInfo eventHandlerMethod in eventHandlerMethods)
                 {
-                    var handler = eventHandlerMethod.CreateDelegate(typeof(Func<IEventSource, Task>), EventContainer.Instance.Resolve(typeof(IEventSubscriber)));
+                    var handler = eventHandlerMethod.CreateDelegate(typeof(Func<IEventSource, Task>), EventContainer.Instance.Resolve(typeof(IEventSubscriber), subscriber));
 
                     var eventSubscribeAttributes = eventHandlerMethod.GetCustomAttributes<EventSubscribeAttribute>(false);
 
