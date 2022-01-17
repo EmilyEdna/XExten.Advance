@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test.Mapst
+namespace Test.MapperTest
 {
     public class Traget
     {
