@@ -44,5 +44,29 @@ namespace XExten.Advance.HttpFramework.MultiInterface
         /// <param name="Container"></param>
         /// <returns></returns>
         Task<List<string>> RunStringAsync(Action<CookieContainer, Uri> Container = null);
+        /// <summary>
+        /// 请求
+        /// </summary>
+        /// <param name="Container"></param>
+        /// <returns></returns>
+        Byte[] RunBytesFirst(Action<CookieContainer, Uri> Container = null);
+        /// <summary>
+        /// 请求
+        /// </summary>
+        /// <param name="Container"></param>
+        /// <returns></returns>
+        Task<Byte[]> RunBytesFirstAsync(Action<CookieContainer, Uri> Container = null);
+        /// <summary>
+        /// 请求
+        /// </summary>
+        /// <param name="Container"></param>
+        /// <returns></returns>
+        string RunStringFirst(Action<CookieContainer, Uri> Container = null);
+        /// <summary>
+        /// 请求
+        /// </summary>
+        /// <param name="Container"></param>
+        /// <returns></returns>
+        Task<string> RunStringFirstAsync(Action<CookieContainer, Uri> Container = null);
     }
 }
