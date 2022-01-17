@@ -10,7 +10,7 @@
 		<Version>1.1.2.1-beta</Version>
 		<AssemblyVersion>1.1.2.1</AssemblyVersion>
 		<PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
-		<FileVersion>1.1.2.1</FileVersion>
+		<FileVersion>1.1.2.2</FileVersion>
 		<AssemblyName>XExten.Advance</AssemblyName>
 		<RootNamespace>XExten.Advance</RootNamespace>
 	</PropertyGroup>
