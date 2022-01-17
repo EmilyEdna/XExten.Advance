@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XExten.Advance.LinqFramework;
 
-namespace Test.Mapst
+namespace Test.MapperTest
 {
     public class TestClass
     {
@@ -28,7 +29,7 @@ namespace Test.Mapst
                 Name = "lz",
                 Pwd = "lz"
             };
-            var data = t.Adapt<Traget>();
+            var data = t.ToMapper<Traget>();
         }
     }
 

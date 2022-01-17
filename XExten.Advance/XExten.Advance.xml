@@ -414,13 +414,6 @@
             <param name="Container"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunBytesAsync(System.Action{System.Net.CookieContainer,System.Uri})">
-            <summary>
-            执行 bytes
-            </summary>
-            <param name="Container"></param>
-            <returns></returns>
-        </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunString(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
             执行 default UTF-8
@@ -428,9 +421,44 @@
             <param name="Container"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunStringFirst(System.Action{System.Net.CookieContainer,System.Uri})">
+            <summary>
+            执行 default UTF-8
+            </summary>
+            <param name="Container"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunBytesFirst(System.Action{System.Net.CookieContainer,System.Uri})">
+            <summary>
+            执行 bytes
+            </summary>
+            <param name="Container"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunBytesAsync(System.Action{System.Net.CookieContainer,System.Uri})">
+            <summary>
+            执行 bytes
+            </summary>
+            <param name="Container"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunStringAsync(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
             执行 default UTF-8
+            </summary>
+            <param name="Container"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunStringFirstAsync(System.Action{System.Net.CookieContainer,System.Uri})">
+            <summary>
+            执行 default UTF-8
+            </summary>
+            <param name="Container"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunBytesFirstAsync(System.Action{System.Net.CookieContainer,System.Uri})">
+            <summary>
+            执行 bytes
             </summary>
             <param name="Container"></param>
             <returns></returns>
