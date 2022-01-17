@@ -65,6 +65,8 @@ namespace XExten.Advance.HttpFramework.MultiImplement
             return this;
         }
 
+        #region 同步
+
         /// <summary>
         /// 执行 bytes
         /// </summary>
@@ -91,16 +93,6 @@ namespace XExten.Advance.HttpFramework.MultiImplement
             });
             Dispose();
             return Result;
-        }
-
-        /// <summary>
-        /// 执行 bytes
-        /// </summary>
-        /// <param name="Container"></param>
-        /// <returns></returns>
-        public async Task<List<Byte[]>> RunBytesAsync(Action<CookieContainer, Uri> Container = null)
-        {
-            return await Task.FromResult(RunBytes(Container));
         }
 
         /// <summary>
@@ -136,10 +128,66 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// </summary>
         /// <param name="Container"></param>
         /// <returns></returns>
+        public string RunStringFirst(Action<CookieContainer, Uri> Container = null)
+        {
+            return RunString(Container).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// 执行 bytes
+        /// </summary>
+        /// <param name="Container"></param>
+        /// <returns></returns>
+        public Byte[] RunBytesFirst(Action<CookieContainer, Uri> Container = null)
+        {
+            return RunBytes(Container).FirstOrDefault();
+        }
+        #endregion
+
+        #region 异步
+
+        /// <summary>
+        /// 执行 bytes
+        /// </summary>
+        /// <param name="Container"></param>
+        /// <returns></returns>
+        public async Task<List<Byte[]>> RunBytesAsync(Action<CookieContainer, Uri> Container = null)
+        {
+            return await Task.FromResult(RunBytes(Container));
+        }
+
+        /// <summary>
+        /// 执行 default UTF-8
+        /// </summary>
+        /// <param name="Container"></param>
+        /// <returns></returns>
         public async Task<List<string>> RunStringAsync(Action<CookieContainer, Uri> Container = null)
         {
             return await Task.FromResult(RunString(Container));
         }
+
+        /// <summary>
+        /// 执行 default UTF-8
+        /// </summary>
+        /// <param name="Container"></param>
+        /// <returns></returns>
+        public async Task<string> RunStringFirstAsync(Action<CookieContainer, Uri> Container = null)
+        {
+            return (await RunStringAsync(Container)).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// 执行 bytes
+        /// </summary>
+        /// <param name="Container"></param>
+        /// <returns></returns>
+        public async Task<Byte[]> RunBytesFirstAsync(Action<CookieContainer, Uri> Container = null)
+        {
+            return (await RunBytesAsync(Container)).FirstOrDefault();
+        }
+        #endregion
+
+        #region 私有
 
         /// <summary>
         /// 请求
@@ -197,5 +245,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
             MultiConfig.HeaderOpt.Clear();
             MultiConfig.NodeOpt.Clear();
         }
+
+        #endregion
     }
 }
