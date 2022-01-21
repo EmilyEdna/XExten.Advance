@@ -1351,6 +1351,34 @@
             <param name="Container"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunBytesFirst(System.Action{System.Net.CookieContainer,System.Uri})">
+            <summary>
+            请求
+            </summary>
+            <param name="Container"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunBytesFirstAsync(System.Action{System.Net.CookieContainer,System.Uri})">
+            <summary>
+            请求
+            </summary>
+            <param name="Container"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunStringFirst(System.Action{System.Net.CookieContainer,System.Uri})">
+            <summary>
+            请求
+            </summary>
+            <param name="Container"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunStringFirstAsync(System.Action{System.Net.CookieContainer,System.Uri})">
+            <summary>
+            请求
+            </summary>
+            <param name="Container"></param>
+            <returns></returns>
+        </member>
         <member name="T:XExten.Advance.HttpFramework.MultiInterface.ICookies">
             <summary>
             Cookie
