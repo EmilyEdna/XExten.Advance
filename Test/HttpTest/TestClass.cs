@@ -7,16 +7,21 @@ namespace Test.HttpTest
     {
         public string TestMethod()
         {
-            return IHttpMultiClient.HttpMulti
+            var data = IHttpMultiClient.HttpMulti
+                .AddHeader(t => {
+                    t.HeaderKey = "Host";
+                    t.HeaderValue = "konachan.com";
+                })
                 .AddNode(opt =>
                 {
-                    opt.NodePath = "https://www.bilibili.com";
+                    opt.NodePath = "https://:443104.21.4.105/post.json";
                 })
                 .Build(opt =>
                 {
                     opt.UseHttps = true;
                     opt.UseZip = true;
                 }).RunString().FirstOrDefault();
+            return data;
 
         }
     }

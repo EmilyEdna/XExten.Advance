@@ -21,23 +21,25 @@ namespace Test
             // var html = new TestClass().TestMethod();
             //var  x =  SyncStatic.HText(html);
 
-            EventBus.Lancher(Assembly.Load("Test"));
-            IEventPublish.Instance.PublishAsync(t =>
-            {
-                t.Payload = "1";
-                t.EventId = "Test";
-            });
-            IEventPublish.Instance.PublishAsync(t =>
-            {
-                t.Payload = "2";
-                t.EventId = "Test";
-            });
-            IEventPublish.Instance.PublishAsync(t =>
-            {
-                t.Payload = "3";
-                t.EventId = "Test";
-            });
+            //EventBus.Lancher(Assembly.Load("Test"));
+            //IEventPublish.Instance.PublishAsync(t =>
+            //{
+            //    t.Payload = "1";
+            //    t.EventId = "Test";
+            //});
+            //IEventPublish.Instance.PublishAsync(t =>
+            //{
+            //    t.Payload = "2";
+            //    t.EventId = "Test";
+            //});
+            //IEventPublish.Instance.PublishAsync(t =>
+            //{
+            //    t.Payload = "3";
+            //    t.EventId = "Test";
+            //});
 
+            //new DnsTest.TestClass().TestMethod();
+            new HttpTest.TestClass().TestMethod();
             Console.ReadKey();
             //new TestClass().Test();
         }
