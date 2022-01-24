@@ -14,7 +14,7 @@ namespace Test.HttpTest
                 })
                 .AddNode(opt =>
                 {
-                    opt.NodePath = "https://:443104.21.4.105/post.json";
+                    opt.NodePath = "https://104.21.4.105:443/post.json";
                 })
                 .Build(opt =>
                 {

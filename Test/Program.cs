@@ -38,8 +38,8 @@ namespace Test
             //    t.EventId = "Test";
             //});
 
-            //new DnsTest.TestClass().TestMethod();
-            new HttpTest.TestClass().TestMethod();
+         var x =   SyncStatic.DnsLookup("konachan.com");
+            //new HttpTest.TestClass().TestMethod();
             Console.ReadKey();
             //new TestClass().Test();
         }
