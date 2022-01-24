@@ -7,8 +7,8 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>XExten.Advance</PackageId>
 		<Product>XExten.Advance</Product>
-		<Version>1.1.2.2-beta3</Version>
-		<AssemblyVersion>1.1.2.2</AssemblyVersion>
+		<Version>1.1.2.3-beta</Version>
+		<AssemblyVersion>1.1.2.3</AssemblyVersion>
 		<PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
 		<FileVersion>1.1.2.3</FileVersion>
 		<AssemblyName>XExten.Advance</AssemblyName>
@@ -43,7 +43,7 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="6.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="Polly" Version="7.2.2" />
+		<PackageReference Include="Polly" Version="7.2.3" />
 		<PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
 		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
 		<PackageReference Include="System.Threading.Channels" Version="6.0.0" />
