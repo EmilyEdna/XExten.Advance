@@ -22,16 +22,26 @@ namespace Test
             //var  x =  SyncStatic.HText(html);
 
             //EventBus.Lancher(Assembly.Load("Test"));
-            //new Test1().PublishTest();
-
-            //Console.ReadKey();
-            //IEventPublish.Instance.PublishAsync(t => {
-            //    t.Payload = "OK";
-            //    t.EventId = "Test1";
+            //IEventPublish.Instance.PublishAsync(t =>
+            //{
+            //    t.Payload = "1";
+            //    t.EventId = "Test";
             //});
-            //Console.ReadKey();
+            //IEventPublish.Instance.PublishAsync(t =>
+            //{
+            //    t.Payload = "2";
+            //    t.EventId = "Test";
+            //});
+            //IEventPublish.Instance.PublishAsync(t =>
+            //{
+            //    t.Payload = "3";
+            //    t.EventId = "Test";
+            //});
 
-            new TestClass().Test();
+         var x =   SyncStatic.DnsLookup("konachan.com");
+            //new HttpTest.TestClass().TestMethod();
+            Console.ReadKey();
+            //new TestClass().Test();
         }
     }
 }

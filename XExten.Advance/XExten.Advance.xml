@@ -1541,6 +1541,14 @@
             <param name="ection"></param>
             <param name="final"></param>
         </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.DnsLookup(System.String,System.String)">
+            <summary>
+            查询DNS
+            </summary>
+            <param name="Finder"></param>
+            <param name="Server"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.TryCatch``1(System.Func{``0},System.Func{System.Exception,``0},System.Action)">
             <summary>
             异常处理

@@ -18,6 +18,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
 {
     internal class Builders : IBuilders, IDisposable
     {
+
         private int CacheSecond = 60;
         private HttpClientHandler Handler(BuilderOption Option, Action<HttpClientHandler> action = null)
         {
@@ -60,7 +61,9 @@ namespace XExten.Advance.HttpFramework.MultiImplement
                             Client.DefaultRequestHeaders.Add(KeyValuePair.Key, KeyValuePair.Value);
                         }
                     });
-                MultiConfig.FactoryClient = Client;
+                if (MultiConfig.Instance.ContainsKey(nameof(HttpClient)))
+                    throw new Exception("请等待上一次执行完成后操作");
+                MultiConfig.Instance[nameof(HttpClient)] = Client;
             }, ex => throw ex);
             return this;
         }
@@ -199,13 +202,13 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         {
             byte[] result = null;
             if (Item.ReqType == MultiType.GET)
-                result = MultiConfig.FactoryClient.GetAsync(Item.URI).Result.Content.ReadAsByteArrayAsync().Result;
+                result = MultiConfig.Instance.Values.FirstOrDefault().GetAsync(Item.URI).Result.Content.ReadAsByteArrayAsync().Result;
             else if (Item.ReqType == MultiType.DELETE)
-                result = MultiConfig.FactoryClient.DeleteAsync(Item.URI).Result.Content.ReadAsByteArrayAsync().Result;
+                result = MultiConfig.Instance.Values.FirstOrDefault().DeleteAsync(Item.URI).Result.Content.ReadAsByteArrayAsync().Result;
             else if (Item.ReqType == MultiType.POST)
-                result = MultiConfig.FactoryClient.PostAsync(Item.URI, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
+                result = MultiConfig.Instance.Values.FirstOrDefault().PostAsync(Item.URI, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
             else
-                result = MultiConfig.FactoryClient.PutAsync(Item.URI, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
+                result = MultiConfig.Instance.Values.FirstOrDefault().PutAsync(Item.URI, Item.Contents).Result.Content.ReadAsByteArrayAsync().Result;
             Container?.Invoke(MultiConfig.Container, Item.URI);
             return result;
         }
@@ -220,13 +223,13 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         {
             Stream stream = null;
             if (Item.ReqType == MultiType.GET)
-                stream = MultiConfig.FactoryClient.GetAsync(Item.URI).Result.Content.ReadAsStreamAsync().Result;
+                stream = MultiConfig.Instance.Values.FirstOrDefault().GetAsync(Item.URI).Result.Content.ReadAsStreamAsync().Result;
             else if (Item.ReqType == MultiType.DELETE)
-                stream = MultiConfig.FactoryClient.DeleteAsync(Item.URI).Result.Content.ReadAsStreamAsync().Result;
+                stream = MultiConfig.Instance.Values.FirstOrDefault().DeleteAsync(Item.URI).Result.Content.ReadAsStreamAsync().Result;
             else if (Item.ReqType == MultiType.POST)
-                stream = MultiConfig.FactoryClient.PostAsync(Item.URI, Item.Contents).Result.Content.ReadAsStreamAsync().Result;
+                stream = MultiConfig.Instance.Values.FirstOrDefault().PostAsync(Item.URI, Item.Contents).Result.Content.ReadAsStreamAsync().Result;
             else
-                stream = MultiConfig.FactoryClient.PutAsync(Item.URI, Item.Contents).Result.Content.ReadAsStreamAsync().Result;
+                stream = MultiConfig.Instance.Values.FirstOrDefault().PutAsync(Item.URI, Item.Contents).Result.Content.ReadAsStreamAsync().Result;
             if (stream.Length < 0) return null;
             using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(Item.Encoding));
             string result = reader.ReadToEnd();
@@ -239,7 +242,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
         /// </summary>
         public void Dispose()
         {
-            MultiConfig.FactoryClient.Dispose();
+            MultiConfig.Instance.Clear();
             MultiConfig.Container = null;
             MultiConfig.Proxy = null;
             MultiConfig.HeaderOpt.Clear();

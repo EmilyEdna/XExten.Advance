@@ -68,6 +68,5 @@ namespace XExten.Advance.HttpFramework.MultiInterface
         /// <param name="Container"></param>
         /// <returns></returns>
         Task<string> RunStringFirstAsync(Action<CookieContainer, Uri> Container = null);
-
     }
 }
