@@ -64,7 +64,7 @@ namespace XExten.Advance.HttpFramework.MultiImplement
                 if (MultiConfig.Instance.ContainsKey(nameof(HttpClient)))
                     throw new Exception("请等待上一次执行完成后操作");
                 MultiConfig.Instance[nameof(HttpClient)] = Client;
-            }, ex => throw ex);
+            }, ex => throw ex,()=>Dispose());
             return this;
         }
 
