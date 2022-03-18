@@ -1041,6 +1041,11 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="T:XExten.Advance.InternalFramework.Translate.BaiduTranslate">
+            <summary>
+            百度翻译
+            </summary>
+        </member>
         <member name="T:XExten.Advance.LinqFramework.SyncLinq">
             <summary>
             LinqExtension
@@ -1265,6 +1270,14 @@
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithNamesAsync``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             返回实体中所有的字段名
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithKeyValueAsync``1(``0)">
+            <summary>
+            返回一个实体中所有数据
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
@@ -1498,6 +1511,14 @@
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithNames``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             返回实体中所有的字段名
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithKeyValue``1(``0)">
+            <summary>
+            返回一个实体中所有数据
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
@@ -1770,6 +1791,15 @@
             读取文件
             </summary>
             <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.Translate(System.String,System.String,System.String)">
+            <summary>
+            翻译
+            </summary>
+            <param name="query"></param>
+            <param name="from"></param>
+            <param name="to"></param>
             <returns></returns>
         </member>
         <member name="T:XExten.Advance.ValidataFramework.Enum.ValitionEnum">
