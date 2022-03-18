@@ -18,30 +18,16 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            // var html = new TestClass().TestMethod();
-            //var  x =  SyncStatic.HText(html);
+            Console.WriteLine(SyncStatic.Translate("hello world"));
 
-            //EventBus.Lancher(Assembly.Load("Test"));
-            //IEventPublish.Instance.PublishAsync(t =>
-            //{
-            //    t.Payload = "1";
-            //    t.EventId = "Test";
-            //});
-            //IEventPublish.Instance.PublishAsync(t =>
-            //{
-            //    t.Payload = "2";
-            //    t.EventId = "Test";
-            //});
-            //IEventPublish.Instance.PublishAsync(t =>
-            //{
-            //    t.Payload = "3";
-            //    t.EventId = "Test";
-            //});
+            EventBus.Lancher(Assembly.Load("Test"));
+            IEventPublish.Instance.PublishAsync(t =>
+            {
+                t.Payload = "1";
+                t.EventId = "Test";
+            });
 
-         var x =   SyncStatic.DnsLookup("konachan.com");
-            //new HttpTest.TestClass().TestMethod();
-            Console.ReadKey();
-            //new TestClass().Test();
+            Console.WriteLine();
         }
     }
 }

@@ -24,6 +24,7 @@ using XExten.Advance.InternalFramework.Office;
 using XExten.Advance.InternalFramework.Office.Common;
 using XExten.Advance.InternalFramework.Securities;
 using XExten.Advance.InternalFramework.Securities.Common;
+using XExten.Advance.InternalFramework.Translate;
 using XExten.Advance.LinqFramework;
 
 namespace XExten.Advance.StaticFramework
@@ -623,5 +624,17 @@ namespace XExten.Advance.StaticFramework
         /// <param name="path"></param>
         /// <returns></returns>
         public static string ReadFile(string path) => FileManager.ReadFile(path);
+
+        /// <summary>
+        /// 翻译
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
+        public static string Translate(string query, string from = "auto", string to = "zh")
+        {
+            return BaiduTranslate.Translation(query, from, to);
+        }
     }
 }
