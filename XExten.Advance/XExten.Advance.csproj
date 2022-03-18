@@ -34,12 +34,12 @@
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="11.0.0" />
 		<PackageReference Include="Chinese" Version="0.4.6" />
-		<PackageReference Include="DnsClient" Version="1.5.0" />
-		<PackageReference Include="DryIoc.dll" Version="4.8.6" />
-		<PackageReference Include="Mapster" Version="7.2.0" />
+		<PackageReference Include="DnsClient" Version="1.6.0" />
+		<PackageReference Include="DryIoc.dll" Version="4.8.8" />
+		<PackageReference Include="Mapster" Version="7.3.0" />
 		<PackageReference Include="MessagePack" Version="2.3.85" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1" />
 		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="6.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />

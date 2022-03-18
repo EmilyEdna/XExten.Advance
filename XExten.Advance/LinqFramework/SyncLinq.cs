@@ -441,7 +441,7 @@ namespace XExten.Advance.LinqFramework
         /// <typeparam name="T"></typeparam>
         /// <param name="param"></param>
         /// <returns></returns>
-        public static List<string> WithNames<T>(this IEnumerable<T> param)
+        public static List<string> WithNames<T>(this IEnumerable<T> param) where T : class, new()
         {
             List<String> Names = new List<String>();
             param.FirstOrDefault().GetType().GetProperties().ForEnumerEach(t =>
@@ -449,6 +449,24 @@ namespace XExten.Advance.LinqFramework
                 Names.Add(t.Name);
             });
             return Names;
+        }
+
+        /// <summary>
+        /// 返回一个实体中所有数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static Dictionary<string, object> WithKeyValue<T>(T param) where T : class,new()
+        {
+            var result = new Dictionary<string, object>();
+
+            param.GetType().GetProperties().ForEnumerEach(item =>
+            {
+                result.Add(item.Name, item.GetValue(param));
+            });
+
+            return result;
         }
         #endregion
 

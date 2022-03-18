@@ -236,9 +236,20 @@ namespace XExten.Advance.LinqFramework
         /// <typeparam name="T"></typeparam>
         /// <param name="param"></param>
         /// <returns></returns>
-        public static async Task<List<string>> WithNamesAsync<T>(this IEnumerable<T> param)
+        public static async Task<List<string>> WithNamesAsync<T>(this IEnumerable<T> param) where T : class, new()
         {
             return await Task.Factory.StartNew(() => WithNames(param));
+        }
+
+        /// <summary>
+        /// 返回一个实体中所有数据
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static async Task<Dictionary<string, object>> WithKeyValueAsync<T>(T param) where T : class, new()
+        {
+            return await Task.Factory.StartNew(() => WithKeyValue(param));
         }
         #endregion
     }
