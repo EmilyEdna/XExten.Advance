@@ -1182,6 +1182,22 @@
             PUT
             </summary>
         </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.RequestBytes(XExten.Advance.HttpFramework.MultiOption.NodeOption,System.Action{System.Net.CookieContainer,System.Uri})">
+            <summary>
+            请求
+            </summary>
+            <param name="Item"></param>
+            <param name="Containers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.HttpMultiClient.RequestString(XExten.Advance.HttpFramework.MultiOption.NodeOption,System.Action{System.Net.CookieContainer,System.Uri})">
+            <summary>
+            请求
+            </summary>
+            <param name="Item"></param>
+            <param name="Containers"></param>
+            <returns></returns>
+        </member>
         <member name="T:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient">
             <summary>
             Http
@@ -1191,13 +1207,6 @@
             <summary>
             Instance
             </summary>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.InitWebProxy(System.Action{XExten.Advance.HttpFramework.MultiCommon.MultiProxy})">
-            <summary>
-            使用代理
-            </summary>
-            <param name="action"></param>
-            <returns></returns>
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.InitWebProxy(XExten.Advance.HttpFramework.MultiCommon.MultiProxy)">
             <summary>
@@ -1233,89 +1242,7 @@
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunBytes(System.Action{System.Net.CookieContainer,System.Uri})">
-            <summary>
-            执行 bytes
-            </summary>
-            <param name="Container"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunString(System.Action{System.Net.CookieContainer,System.Uri})">
-            <summary>
-            执行 default UTF-8
-            </summary>
-            <param name="Container"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunStringFirst(System.Action{System.Net.CookieContainer,System.Uri})">
-            <summary>
-            执行 default UTF-8
-            </summary>
-            <param name="Container"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunBytesFirst(System.Action{System.Net.CookieContainer,System.Uri})">
-            <summary>
-            执行 bytes
-            </summary>
-            <param name="Container"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunBytesAsync(System.Action{System.Net.CookieContainer,System.Uri})">
-            <summary>
-            执行 bytes
-            </summary>
-            <param name="Container"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunStringAsync(System.Action{System.Net.CookieContainer,System.Uri})">
-            <summary>
-            执行 default UTF-8
-            </summary>
-            <param name="Container"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunStringFirstAsync(System.Action{System.Net.CookieContainer,System.Uri})">
-            <summary>
-            执行 default UTF-8
-            </summary>
-            <param name="Container"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RunBytesFirstAsync(System.Action{System.Net.CookieContainer,System.Uri})">
-            <summary>
-            执行 bytes
-            </summary>
-            <param name="Container"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RequestBytes(XExten.Advance.HttpFramework.MultiOption.NodeOption,System.Action{System.Net.CookieContainer,System.Uri})">
-            <summary>
-            请求
-            </summary>
-            <param name="Item"></param>
-            <param name="Container"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.RequestString(XExten.Advance.HttpFramework.MultiOption.NodeOption,System.Action{System.Net.CookieContainer,System.Uri})">
-            <summary>
-            请求
-            </summary>
-            <param name="Item"></param>
-            <param name="Container"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiImplement.Builders.Dispose">
-            <summary>
-            释放资源
-            </summary>
-        </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiInterface.IBuilders">
-            <summary>
-            builder
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.Build(System.Action{XExten.Advance.HttpFramework.MultiOption.BuilderOption},System.Action{System.Net.Http.HttpClientHandler})">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.Build(System.Action{XExten.Advance.HttpFramework.MultiOption.BuilderOption},System.Action{System.Net.Http.HttpClientHandler})">
             <summary>
             构建
             </summary>
@@ -1323,162 +1250,52 @@
             <param name="handle"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunBytes(System.Action{System.Net.CookieContainer,System.Uri})">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunString(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
-            请求
+            返回
             </summary>
-            <param name="Container"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunBytesAsync(System.Action{System.Net.CookieContainer,System.Uri})">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunStringFirst(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
-            请求
+            返回
             </summary>
-            <param name="Container"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunString(System.Action{System.Net.CookieContainer,System.Uri})">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunBytes(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
-            请求
+            返回
             </summary>
-            <param name="Container"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunStringAsync(System.Action{System.Net.CookieContainer,System.Uri})">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunBytesFirst(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
-            请求
+            返回
             </summary>
-            <param name="Container"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunBytesFirst(System.Action{System.Net.CookieContainer,System.Uri})">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunStringAsync(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
-            请求
+            返回
             </summary>
-            <param name="Container"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunBytesFirstAsync(System.Action{System.Net.CookieContainer,System.Uri})">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunStringFirstAsync(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
-            请求
+            返回
             </summary>
-            <param name="Container"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunStringFirst(System.Action{System.Net.CookieContainer,System.Uri})">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunBytesAsync(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
-            请求
+            返回
             </summary>
-            <param name="Container"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IBuilders.RunStringFirstAsync(System.Action{System.Net.CookieContainer,System.Uri})">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunBytesFirstAsync(System.Action{System.Net.CookieContainer,System.Uri})">
             <summary>
-            请求
+            返回
             </summary>
-            <param name="Container"></param>
-            <returns></returns>
-        </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiInterface.ICookies">
-            <summary>
-            Cookie
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.Build(System.Action{XExten.Advance.HttpFramework.MultiOption.BuilderOption},System.Action{System.Net.Http.HttpClientHandler})">
-            <summary>
-            Builder
-            </summary>
-            <param name="action"></param>
-            <param name="handle"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.AddCookie(System.Action{XExten.Advance.HttpFramework.MultiOption.CookieOption})">
-            <summary>
-            Cookie
-            </summary>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.AddNode(System.Action{XExten.Advance.HttpFramework.MultiOption.NodeOption})">
-            <summary>
-            Node
-            </summary>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.ICookies.AddHeader(System.Action{XExten.Advance.HttpFramework.MultiOption.HeaderOption})">
-            <summary>
-            Header
-            </summary>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiInterface.IHeaders">
-            <summary>
-            Header
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.Build(System.Action{XExten.Advance.HttpFramework.MultiOption.BuilderOption},System.Action{System.Net.Http.HttpClientHandler})">
-            <summary>
-            Builder
-            </summary>
-            <param name="action"></param>
-            <param name="handle"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.AddCookie(System.Action{XExten.Advance.HttpFramework.MultiOption.CookieOption})">
-            <summary>
-            Cookie
-            </summary>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.AddNode(System.Action{XExten.Advance.HttpFramework.MultiOption.NodeOption})">
-            <summary>
-            Node
-            </summary>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.IHeaders.AddHeader(System.Action{XExten.Advance.HttpFramework.MultiOption.HeaderOption})">
-            <summary>
-            Header
-            </summary>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="T:XExten.Advance.HttpFramework.MultiInterface.INodes">
-            <summary>
-            Node
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INodes.Build(System.Action{XExten.Advance.HttpFramework.MultiOption.BuilderOption},System.Action{System.Net.Http.HttpClientHandler})">
-            <summary>
-            Builder
-            </summary>
-            <param name="action"></param>
-            <param name="handle"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INodes.AddCookie(System.Action{XExten.Advance.HttpFramework.MultiOption.CookieOption})">
-            <summary>
-            Cookie
-            </summary>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INodes.AddNode(System.Action{XExten.Advance.HttpFramework.MultiOption.NodeOption})">
-            <summary>
-            Node
-            </summary>
-            <param name="action"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiInterface.INodes.AddHeader(System.Action{XExten.Advance.HttpFramework.MultiOption.HeaderOption})">
-            <summary>
-            Header
-            </summary>
-            <param name="action"></param>
             <returns></returns>
         </member>
         <member name="T:XExten.Advance.HttpFramework.MultiOption.BuilderOption">
