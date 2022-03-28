@@ -14,7 +14,7 @@ using XExten.Advance.LinqFramework;
 
 namespace XExten.Advance.HttpFramework.MultiFactory
 {
-    internal class HttpMultiClient : IHttpMultiClient
+    internal class HttpMultiClient : IHttpMultiClient,IDisposable
     {
         private WebProxy Proxy;
         private CookieContainer Container;
@@ -24,57 +24,8 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
-        public IHttpMultiClient InitWebProxy(MultiProxy proxy)
-        {
-            if (Client != null) throw new Exception("Client已初始化，不能在初始化代理");
 
-            if (proxy.IP.IsNullOrEmpty() || proxy.Port == -1)
-                return this;
-            Proxy = new WebProxy(proxy.IP, proxy.Port);
-            if (!proxy.UserName.IsNullOrEmpty() && !proxy.PassWord.IsNullOrEmpty())
-                Proxy.Credentials = new NetworkCredential(proxy.UserName, proxy.PassWord);
-            return this;
-        }
-
-        public IHttpMultiClient InitCookie()
-        {
-            if (Client != null) throw new Exception("Client已初始化，不能在初始化认证信息");
-
-            if (Container == null)
-                Container = new CookieContainer();
-            return this;
-        }
-
-        public IHttpMultiClient AddCookie(Action<CookieOption> action)
-        {
-            if (Client != null) throw new Exception("Client已初始化，不能再添加认证信息");
-
-            CookieOption Option = new CookieOption();
-            action(Option);
-            Option.SetCookie(Container);
-            return this;
-        }
-
-        public IHttpMultiClient AddHeader(Action<HeaderOption> action)
-        {
-            if (Client != null) throw new Exception("Client已初始化，不能再添加头");
-
-            HeaderOption Option = new HeaderOption();
-            action(Option);
-            Option.SetHeader();
-            return this;
-        }
-
-        public IHttpMultiClient AddNode(Action<NodeOption> action)
-        {
-            if (Client != null) throw new Exception("Client已初始化，不能再添加节点");
-
-            NodeOption Option = new NodeOption();
-            action(Option);
-            Option.SetNode();
-            return this;
-        }
-
+        #region 私有
         private HttpClientHandler Handler(BuilderOption Option, Action<HttpClientHandler> action = null)
         {
             HttpClientHandler Handler = new HttpClientHandler();
@@ -139,6 +90,58 @@ namespace XExten.Advance.HttpFramework.MultiFactory
             Containers?.Invoke(Container, Item.URI);
             return result;
         }
+        #endregion
+
+        public IHttpMultiClient InitWebProxy(MultiProxy proxy)
+        {
+            if (Client != null) throw new Exception("Client已初始化，不能在初始化代理");
+
+            if (proxy.IP.IsNullOrEmpty() || proxy.Port == -1)
+                return this;
+            Proxy = new WebProxy(proxy.IP, proxy.Port);
+            if (!proxy.UserName.IsNullOrEmpty() && !proxy.PassWord.IsNullOrEmpty())
+                Proxy.Credentials = new NetworkCredential(proxy.UserName, proxy.PassWord);
+            return this;
+        }
+
+        public IHttpMultiClient InitCookie()
+        {
+            if (Client != null) throw new Exception("Client已初始化，不能在初始化认证信息");
+
+            if (Container == null)
+                Container = new CookieContainer();
+            return this;
+        }
+
+        public IHttpMultiClient AddCookie(Action<CookieOption> action)
+        {
+            if (Client != null) throw new Exception("Client已初始化，不能再添加认证信息");
+
+            CookieOption Option = new CookieOption();
+            action(Option);
+            Option.SetCookie(Container);
+            return this;
+        }
+
+        public IHttpMultiClient AddHeader(Action<HeaderOption> action)
+        {
+            if (Client != null) throw new Exception("Client已初始化，不能再添加头");
+
+            HeaderOption Option = new HeaderOption();
+            action(Option);
+            Option.SetHeader();
+            return this;
+        }
+
+        public IHttpMultiClient AddNode(Action<NodeOption> action)
+        {
+            if (Client != null) throw new Exception("Client已初始化，不能再添加节点");
+
+            NodeOption Option = new NodeOption();
+            action(Option);
+            Option.SetNode();
+            return this;
+        }
 
         public IHttpMultiClient Build(Action<BuilderOption> action = null, Action<HttpClientHandler> handle = null)
         {
@@ -181,6 +184,7 @@ namespace XExten.Advance.HttpFramework.MultiFactory
                 else
                     Result.Add(RequestString(item, Container));
             });
+            Dispose();
             return Result;
         }
 
@@ -209,6 +213,7 @@ namespace XExten.Advance.HttpFramework.MultiFactory
                 else
                     Result.Add(RequestBytes(item, Container));
             });
+            Dispose();
             return Result;
         }
 
@@ -239,6 +244,13 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         {
             if (Client == null) throw new NullReferenceException("Client未构建请先调用Build()方法");
             return await Task.Run(() => RunBytesFirst(Container));
+        }
+
+        public void Dispose()
+        {
+            Container = null;
+            MultiConfig.HeaderOpt.Clear();
+            MultiConfig.NodeOpt.Clear();
         }
     }
 }
