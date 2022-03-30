@@ -152,6 +152,7 @@ namespace XExten.Advance.HttpFramework.MultiFactory
             {
                 Timeout = new TimeSpan(0, 0, Option.TimeOut)
             };
+            Client.DefaultRequestHeaders.Clear();
             if (MultiConfig.HeaderOpt.Count != 0)
                 MultiConfig.HeaderOpt.ForEach(item =>
                 {
