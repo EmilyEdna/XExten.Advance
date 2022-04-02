@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Microsoft.Extensions.Caching.Memory;
 
 
@@ -10,10 +13,43 @@ namespace XExten.Advance.CacheFramework.RunTimeCache
     /// </summary>
     public class MemoryCaches
     {
+        private static readonly object locker = new object();
+        private static IMemoryCache _Cache;
         /// <summary>
         /// MemoryCaches
         /// </summary>
-        public static IMemoryCache Cache = new MemoryCache(new MemoryCacheOptions());
+        public static IMemoryCache Cache
+        {
+            get
+            {
+                if (_Cache == null) 
+                {
+                    lock (locker)
+                    {
+                        if (_Cache == null)
+                            _Cache = new MemoryCache(new MemoryCacheOptions());
+                    }
+                }
+                return _Cache;
+            }
+        }
+
+        private static readonly Func<MemoryCache, object> GetEntriesCollection =
+            Delegate.CreateDelegate(typeof(Func<MemoryCache, object>),
+                typeof(MemoryCache).GetProperty("EntriesCollection", BindingFlags.NonPublic | BindingFlags.Instance).GetGetMethod(true), true) as Func<MemoryCache, object>;
+
+        /// <summary>
+        /// 获取所有Key
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable GetKeys() => ((IDictionary)GetEntriesCollection((MemoryCache)Cache)).Keys;
+
+        /// <summary>
+        /// 获取所有Key
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static List<T> GetKeys<T>() => GetKeys().OfType<T>().ToList();
 
         /// <summary>
         /// 添加缓存
@@ -46,6 +82,18 @@ namespace XExten.Advance.CacheFramework.RunTimeCache
         public static void RemoveCache(String Key)
         {
             Cache.Remove(Key);
+        }
+
+        /// <summary>
+        /// 删除所有缓存
+        /// </summary>
+        public static void RemoveAllCache() 
+        {
+            var AllKey = GetKeys<string>();
+            foreach (var item in AllKey)
+            {
+                RemoveCache(item);
+            }
         }
     }
 }

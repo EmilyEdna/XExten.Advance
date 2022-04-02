@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using XExten.Advance.HttpFramework.MultiCommon;
 using XExten.Advance.LinqFramework;
 using XExten.Advance.StaticFramework;
@@ -16,10 +15,11 @@ namespace XExten.Advance.HttpFramework.MultiOption
         public const string Referer = "Referer";
         public const string UserAgent = "User-Agent";
         public const string Host = "Host";
-        public const string AcceptEncoding = "AcceptEncoding";
+        public const string AcceptEncoding = "Accept-Encoding";
         public const string Origin = "Origin";
-        public const string Referrer = "Referrer";
         public const string Authorization = "Authorization";
+        public const string Accept = "Accept";
+        public const string AcceptLanguage = "Accept-Language";
         #endregion
 
         /// <summary>
