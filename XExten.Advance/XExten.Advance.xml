@@ -155,10 +155,23 @@
             
              </summary>
         </member>
-        <member name="F:XExten.Advance.CacheFramework.RunTimeCache.MemoryCaches.Cache">
+        <member name="P:XExten.Advance.CacheFramework.RunTimeCache.MemoryCaches.Cache">
             <summary>
             MemoryCaches
             </summary>
+        </member>
+        <member name="M:XExten.Advance.CacheFramework.RunTimeCache.MemoryCaches.GetKeys">
+            <summary>
+            获取所有Key
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.CacheFramework.RunTimeCache.MemoryCaches.GetKeys``1">
+            <summary>
+            获取所有Key
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
         </member>
         <member name="M:XExten.Advance.CacheFramework.RunTimeCache.MemoryCaches.AddCache``1(System.String,``0,System.Int32,System.Boolean)">
             <summary>
@@ -183,6 +196,11 @@
             删除指定缓存
             </summary>
             <param name="Key"></param>
+        </member>
+        <member name="M:XExten.Advance.CacheFramework.RunTimeCache.MemoryCaches.RemoveAllCache">
+            <summary>
+            删除所有缓存
+            </summary>
         </member>
         <member name="T:XExten.Advance.EventFramework.EventBus">
             <summary>

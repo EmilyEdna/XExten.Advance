@@ -11,10 +11,11 @@ using XExten.Advance.CacheFramework;
 using XExten.Advance.HttpFramework.MultiCommon;
 using XExten.Advance.HttpFramework.MultiOption;
 using XExten.Advance.LinqFramework;
+using XExten.Advance.StaticFramework;
 
 namespace XExten.Advance.HttpFramework.MultiFactory
 {
-    internal class HttpMultiClient : IHttpMultiClient,IDisposable
+    internal class HttpMultiClient : IHttpMultiClient, IDisposable
     {
         private WebProxy Proxy;
         private CookieContainer Container;
@@ -46,6 +47,23 @@ namespace XExten.Advance.HttpFramework.MultiFactory
                 Handler.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
             action?.Invoke(Handler);
             return Handler;
+        }
+        private IHttpMultiClient BuildProvider(BuilderOption Option = null, Action<HttpClientHandler> handle = null)
+        {
+            Client = new HttpClient(Handler(Option, handle))
+            {
+                Timeout = new TimeSpan(0, 0, Option.TimeOut)
+            };
+            Client.DefaultRequestHeaders.Clear();
+            if (MultiConfig.HeaderOpt.Count != 0)
+                MultiConfig.HeaderOpt.ForEach(item =>
+                {
+                    foreach (var KeyValuePair in item)
+                    {
+                        Client.DefaultRequestHeaders.Add(KeyValuePair.Key, KeyValuePair.Value);
+                    }
+                });
+            return this;
         }
         /// <summary>
         /// 请求
@@ -148,45 +166,40 @@ namespace XExten.Advance.HttpFramework.MultiFactory
             BuilderOption Option = new BuilderOption();
             action?.Invoke(Option);
             CacheSecond = Option.CacheTime;
-            Client = new HttpClient(Handler(Option, handle))
-            {
-                Timeout = new TimeSpan(0, 0, Option.TimeOut)
-            };
-            Client.DefaultRequestHeaders.Clear();
-            if (MultiConfig.HeaderOpt.Count != 0)
-                MultiConfig.HeaderOpt.ForEach(item =>
-                {
-                    foreach (var KeyValuePair in item)
-                    {
-                        Client.DefaultRequestHeaders.Add(KeyValuePair.Key, KeyValuePair.Value);
-                    }
-                });
-            return this;
+            return BuildProvider(Option, handle);
         }
 
         public List<string> RunString(Action<CookieContainer, Uri> Container = null)
         {
             if (Client == null) throw new NullReferenceException("Client未构建请先调用Build()方法");
-
-            List<string> Result = new List<string>();
-            MultiConfig.NodeOpt.ForEach(item =>
+           
+            try
             {
-                if (item.CacheNode)
+                List<string> Result = new List<string>();
+                MultiConfig.NodeOpt.ForEach(item =>
                 {
-                    var Data = Caches.RunTimeCacheGet<string>(item.NodePath.ToMd5());
-                    if (Data.IsNullOrEmpty())
+                    if (item.CacheNode)
                     {
-                        Result.Add(RequestString(item, Container));
-                        Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), CacheSecond, true);
+                        var Data = Caches.RunTimeCacheGet<string>(item.NodePath.ToMd5());
+                        if (Data.IsNullOrEmpty())
+                        {
+                            Result.Add(RequestString(item, Container));
+                            Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), CacheSecond, true);
+                        }
+                        else
+                            Result.Add(Data);
                     }
                     else
-                        Result.Add(Data);
-                }
-                else
-                    Result.Add(RequestString(item, Container));
-            });
-            Dispose();
-            return Result;
+                        Result.Add(RequestString(item, Container));
+                });
+                Dispose();
+                return Result;
+            }
+            catch(Exception ex)
+            {
+                Dispose();
+                throw ex;
+            }
         }
 
         public string RunStringFirst(Action<CookieContainer, Uri> Container = null)
@@ -197,25 +210,33 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         public List<byte[]> RunBytes(Action<CookieContainer, Uri> Container = null)
         {
             if (Client == null) throw new NullReferenceException("Client未构建请先调用Build()方法");
-            List<Byte[]> Result = new List<Byte[]>();
-            MultiConfig.NodeOpt.ForEach(item =>
+            try
             {
-                if (item.CacheNode)
+                List<Byte[]> Result = new List<Byte[]>();
+                MultiConfig.NodeOpt.ForEach(item =>
                 {
-                    var Data = Caches.RunTimeCacheGet<Byte[]>(item.NodePath.ToMd5());
-                    if (Data == null)
+                    if (item.CacheNode)
                     {
-                        Result.Add(RequestBytes(item, Container));
-                        Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), CacheSecond, true);
+                        var Data = Caches.RunTimeCacheGet<Byte[]>(item.NodePath.ToMd5());
+                        if (Data == null)
+                        {
+                            Result.Add(RequestBytes(item, Container));
+                            Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), CacheSecond, true);
+                        }
+                        else
+                            Result.Add(Data);
                     }
                     else
-                        Result.Add(Data);
-                }
-                else
-                    Result.Add(RequestBytes(item, Container));
-            });
-            Dispose();
-            return Result;
+                        Result.Add(RequestBytes(item, Container));
+                });
+                Dispose();
+                return Result;
+            }
+            catch (Exception ex)
+            {
+                Dispose();
+                throw ex;
+            }
         }
 
         public byte[] RunBytesFirst(Action<CookieContainer, Uri> Container = null)
@@ -249,6 +270,7 @@ namespace XExten.Advance.HttpFramework.MultiFactory
 
         public void Dispose()
         {
+            Client = null;
             Container = null;
             MultiConfig.HeaderOpt.Clear();
             MultiConfig.NodeOpt.Clear();
