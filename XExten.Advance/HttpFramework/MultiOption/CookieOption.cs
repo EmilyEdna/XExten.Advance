@@ -51,26 +51,31 @@ namespace XExten.Advance.HttpFramework.MultiOption
             {
                 if (Container == null)
                     Container = new CookieContainer();
-                 if (!URI.IsNullOrEmpty() && Cookies != null && Cookies.Count > 0)
-                {
-                    Cookies.ForDicEach((key, val) =>
-                    {
-                        Container.Add(new Uri(URI), new Cookie(key, val));
-                    });
+                if (InstanceCookie)
                     return Container;
-                }
-                else if (!URI.IsNullOrEmpty() && CookieColl != null && CookieColl.Count > 0)
-                {
-                    Container.Add(new Uri(URI), CookieColl);
-                    return Container;
-                }
-                else if (!CookieName.IsNullOrEmpty() && !CookieValue.IsNullOrEmpty() && !CookiePath.IsNullOrEmpty())
-                {
-                    Container.Add(new Cookie(CookieName, CookieValue, CookiePath, CookieDomain));
-                    return Container;
-                }
                 else
-                    throw new Exception("Cookie配置不满足!");
+                {
+                    if (!URI.IsNullOrEmpty() && Cookies != null && Cookies.Count > 0)
+                    {
+                        Cookies.ForDicEach((key, val) =>
+                        {
+                            Container.Add(new Uri(URI), new Cookie(key, val));
+                        });
+                        return Container;
+                    }
+                    else if (!URI.IsNullOrEmpty() && CookieColl != null && CookieColl.Count > 0)
+                    {
+                        Container.Add(new Uri(URI), CookieColl);
+                        return Container;
+                    }
+                    else if (!CookieName.IsNullOrEmpty() && !CookieValue.IsNullOrEmpty() && !CookiePath.IsNullOrEmpty())
+                    {
+                        Container.Add(new Cookie(CookieName, CookieValue, CookiePath, CookieDomain));
+                        return Container;
+                    }
+                    else
+                        throw new Exception("Cookie配置不满足!");
+                }
             }, ex => throw ex);
         }
     }
