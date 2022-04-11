@@ -11,7 +11,6 @@ using XExten.Advance.CacheFramework;
 using XExten.Advance.HttpFramework.MultiCommon;
 using XExten.Advance.HttpFramework.MultiOption;
 using XExten.Advance.LinqFramework;
-using XExten.Advance.StaticFramework;
 
 namespace XExten.Advance.HttpFramework.MultiFactory
 {
@@ -122,22 +121,14 @@ namespace XExten.Advance.HttpFramework.MultiFactory
             return this;
         }
 
-        public IHttpMultiClient InitCookie()
-        {
-            if (Client != null) throw new Exception("Client已初始化，不能在初始化认证信息");
-
-            if (Container == null)
-                Container = new CookieContainer();
-            return this;
-        }
-
         public IHttpMultiClient AddCookie(Action<CookieOption> action)
         {
             if (Client != null) throw new Exception("Client已初始化，不能再添加认证信息");
 
             CookieOption Option = new CookieOption();
             action(Option);
-            Option.SetCookie(Container);
+            Container = Option.SetCookie(Container);
+            if(Container==null) throw new Exception("Cookie异常，认证信息不能为空");
             return this;
         }
 

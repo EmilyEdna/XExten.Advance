@@ -18,6 +18,26 @@ namespace XExten.Advance.LinqFramework
             return result;
         }
         /// <summary>
+        /// To Float
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static float AsFloat(this string param)
+        {
+            float.TryParse(param, out float result);
+            return result;
+        }
+        /// <summary>
+        /// To Double
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static double AsDouble(this string param)
+        {
+            double.TryParse(param, out double result);
+            return result;
+        }
+        /// <summary>
         /// To Long
         /// </summary>
         /// <param name="param"></param>
