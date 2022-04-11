@@ -7,8 +7,8 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>XExten.Advance</PackageId>
 		<Product>XExten.Advance</Product>
-		<Version>1.1.2.9-beta</Version>
-		<AssemblyVersion>1.1.2.9</AssemblyVersion>
+		<Version>1.1.3.1-beta</Version>
+		<AssemblyVersion>1.1.3.1</AssemblyVersion>
 		<PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
 		<FileVersion>1.1.3.1</FileVersion>
 		<AssemblyName>XExten.Advance</AssemblyName>
