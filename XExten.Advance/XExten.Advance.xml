@@ -549,6 +549,11 @@
             CookieColl
             </summary>
         </member>
+        <member name="P:XExten.Advance.HttpFramework.MultiOption.CookieOption.InstanceCookie">
+            <summary>
+            只是初始化不做任何操作
+            </summary>
+        </member>
         <member name="T:XExten.Advance.HttpFramework.MultiOption.HeaderOption">
             <summary>
             HeaderOption
