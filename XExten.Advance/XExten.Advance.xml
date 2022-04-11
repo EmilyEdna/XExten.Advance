@@ -1233,12 +1233,6 @@
             <param name="proxy"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.InitCookie">
-            <summary>
-            初始化Cookie
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.AddHeader(System.Action{XExten.Advance.HttpFramework.MultiOption.HeaderOption})">
             <summary>
             Header
@@ -2003,6 +1997,20 @@
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsInt(System.String)">
             <summary>
             To Int
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsFloat(System.String)">
+            <summary>
+            To Float
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsDouble(System.String)">
+            <summary>
+            To Double
             </summary>
             <param name="param"></param>
             <returns></returns>

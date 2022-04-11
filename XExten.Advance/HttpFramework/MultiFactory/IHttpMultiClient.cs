@@ -17,18 +17,13 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         /// <summary>
         /// Instance
         /// </summary>
-        static IHttpMultiClient HttpMulti => new HttpMultiClient();
+        static IHttpMultiClient HttpMulti => new Lazy<HttpMultiClient>().Value;
         /// <summary>
         /// 使用代理
         /// </summary>
         /// <param name="proxy"></param>
         /// <returns></returns>
         IHttpMultiClient InitWebProxy(MultiProxy proxy);
-        /// <summary>
-        /// 初始化Cookie
-        /// </summary>
-        /// <returns></returns>
-        IHttpMultiClient InitCookie();
         /// <summary>
         /// Header
         /// </summary>
