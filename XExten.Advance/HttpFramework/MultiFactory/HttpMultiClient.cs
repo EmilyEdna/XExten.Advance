@@ -128,8 +128,6 @@ namespace XExten.Advance.HttpFramework.MultiFactory
             CookieOption Option = new CookieOption();
             action(Option);
             Container = Option.SetCookie(Container);
-            if (Option.InstanceCookie)
-                Container = new CookieContainer();
             if (Container==null) throw new Exception("Cookie异常，认证信息不能为空");
             return this;
         }
