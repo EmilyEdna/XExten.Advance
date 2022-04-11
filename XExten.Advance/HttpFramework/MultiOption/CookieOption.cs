@@ -41,14 +41,17 @@ namespace XExten.Advance.HttpFramework.MultiOption
         /// CookieColl
         /// </summary>
         public CookieCollection CookieColl { get; set; }
-
+        /// <summary>
+        /// 只是初始化不做任何操作
+        /// </summary>
+        public bool InstanceCookie { get; set; } = false;
         internal CookieContainer SetCookie(CookieContainer Container)
         {
           return  SyncStatic.TryCatch(() =>
             {
                 if (Container == null)
                     Container = new CookieContainer();
-                if (!URI.IsNullOrEmpty() && Cookies != null && Cookies.Count > 0)
+                 if (!URI.IsNullOrEmpty() && Cookies != null && Cookies.Count > 0)
                 {
                     Cookies.ForDicEach((key, val) =>
                     {
