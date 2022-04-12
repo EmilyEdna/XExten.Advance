@@ -17,7 +17,7 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         /// <summary>
         /// Instance
         /// </summary>
-        static IHttpMultiClient HttpMulti => new Lazy<HttpMultiClient>().Value;
+        static IHttpMultiClient HttpMulti => new HttpMultiClient();
         /// <summary>
         /// 使用代理
         /// </summary>
