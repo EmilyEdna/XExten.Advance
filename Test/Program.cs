@@ -30,8 +30,8 @@ namespace Test
             //Console.WriteLine(SyncStatic.Translate("hello world"));
             //EventTest.EventTestClassMethod();
             //AopTestClass.AopTestClassMethod();
-            //HttpTestClass.HttpTestClassMethod();
-            NormalTestClass.NormalTestClassMethod();
+            HttpTestClass.HttpTestClassMethod();
+            //NormalTestClass.NormalTestClassMethod();
         }
     }
 
