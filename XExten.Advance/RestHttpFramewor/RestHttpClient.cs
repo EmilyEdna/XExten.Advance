@@ -268,7 +268,9 @@ namespace XExten.Advance.RestHttpFramewor
                     break;
             }
 
-            var response = await client.ExecuteAsync(this.Request);
+            var waitRes = client.ExecuteAsync(this.Request);
+            waitRes.Wait();
+            var response = await waitRes;
             action?.Invoke(response);
             return response.RawBytes;
         }
