@@ -275,9 +275,9 @@ namespace XExten.Advance.RestHttpFramewor
 
         private void Dispose()
         {
-            OptionBuilder.Nodes = null;
-            OptionBuilder.Header = null;
-            OptionBuilder.Cookies = null;
+            OptionBuilder.Nodes = new List<RestNode>();
+            OptionBuilder.Header = new Dictionary<string, string>();
+            OptionBuilder.Cookies = new CookieContainer();
             this.Request = null;
         }
     }
