@@ -42,6 +42,10 @@ namespace XExten.Advance.RestHttpFramewor.Options
         /// 参数
         /// </summary>
         public object Param { get; set; }
+        /// <summary>
+        /// 等待多久完成单位毫秒
+        /// </summary>
+        public int TaskWait { get; set; } = 1500;
         internal void SetNode(RestNode input)
         {
             OptionBuilder.Nodes.Add(input);
