@@ -20,6 +20,8 @@ using XExten.Advance.HttpFramework.MultiFactory;
 using System.Linq;
 using XExten.Advance.CacheFramework;
 using XExten.Advance.CacheFramework.RunTimeCache;
+using XExten.Advance.RestHttpFramewor;
+using XExten.Advance.RestHttpFramewor.Options;
 
 namespace Test
 {
@@ -30,10 +32,28 @@ namespace Test
             //Console.WriteLine(SyncStatic.Translate("hello world"));
             //EventTest.EventTestClassMethod();
             //AopTestClass.AopTestClassMethod();
-            HttpTestClass.HttpTestClassMethod();
+            //HttpTestClass.HttpTestClassMethod();
+            RestTestClass.RestTestMethod();
             //NormalTestClass.NormalTestClassMethod();
         }
     }
+    #region HttpRest
+    public class RestTestClass
+    {
+        public static  void RestTestMethod()
+        {
+            var data = IRestHttpClient.Rest.UseHeader(opt =>
+            {
+                opt.HeaderKey = RestConstProvider.UserAgent;
+                opt.HeaderValue = RestConstProvider.UserAgentWindows;
+            }).UseNode(opt =>
+            {
+                opt.Route = "https://baidu.com";
+            }).Build().RunStringAsync().Result;
+            Console.WriteLine(data.FirstOrDefault());
+        }
+    }
+    #endregion
 
     #region EventTest
 

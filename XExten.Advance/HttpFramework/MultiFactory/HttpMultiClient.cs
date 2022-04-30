@@ -191,9 +191,13 @@ namespace XExten.Advance.HttpFramework.MultiFactory
                     if (count == tiems) Dispose();
                 }, RetryTimes,IntervalTime);
             }
-            catch (Exception)
+            catch
             {
                 return new List<string>();
+            }
+            finally
+            {
+                Dispose();
             }
         }
 
@@ -232,9 +236,13 @@ namespace XExten.Advance.HttpFramework.MultiFactory
                     if (count == tiems) Dispose();
                 }, RetryTimes, IntervalTime);
             }
-            catch (Exception)
+            catch
             {
                 return new List<byte[]>();
+            }
+            finally
+            {
+                Dispose();
             }
         }
 

@@ -7,9 +7,8 @@ namespace XExten.Advance.RestHttpFramewor.Options
 {
     internal sealed class OptionBuilder
     {
-        public static Dictionary<string, string> Header { get; set; } = Header ?? new Dictionary<string, string>();
-
-        public static CookieContainer Cookies { get; set; } = Cookies ?? new CookieContainer();
-
+        internal static Dictionary<string, string> Header { get; set; } = Header ?? new Dictionary<string, string>();
+        internal static CookieContainer Cookies { get; set; } = Cookies ?? new CookieContainer();
+        internal static List<RestNode> Nodes { get; set; } = Nodes ?? new List<RestNode>();
     }
 }
