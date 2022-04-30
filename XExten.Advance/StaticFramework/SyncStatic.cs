@@ -472,17 +472,38 @@ namespace XExten.Advance.StaticFramework
         }
 
         /// <summary>
+        /// 等待重试无返回
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="exhandle"></param>
+        /// <param name="Times"></param>
+        /// <param name="WaitSpan"></param>
+        public static void DoRetryWait(Action action, Action<Exception, int, int> exhandle = null, int Times = 3, int WaitSpan = 10)
+        {
+            Policy.Handle<Exception>().WaitAndRetry(Times, (span) => TimeSpan.FromSeconds(WaitSpan), (ex, span, count, context) => exhandle?.Invoke(ex, count, Times)).Execute(action);
+        }
+
+        /// <summary>
+        /// 等待重试有返回
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="exhandle"></param>
+        /// <param name="Times"></param>
+        /// <param name="WaitSpan"></param>
+        public static T DoRetryWait<T>(Func<T> action, Action<Exception,int,int> exhandle = null, int Times = 3, int WaitSpan = 10)
+        {
+            return Policy.Handle<Exception>().WaitAndRetry(Times, (span) => TimeSpan.FromSeconds(WaitSpan), (ex, span,count, context) => exhandle?.Invoke(ex,count,Times)).Execute(action);
+        }
+
+        /// <summary>
         /// 无返回重试
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="handle"></param>
+        /// <param name="exhandle"></param>
         /// <param name="Times"></param>
-        public static void DoRetry(Action action, Action handle = null, int Times = 3)
+        public static void DoRetry(Action action, Action<Exception,int,int> exhandle = null, int Times = 3)
         {
-            Policy.Handle<Exception>().Retry(Times, (Ex, Count, Context) =>
-            {
-                handle?.Invoke();
-            }).Execute(action);
+            Policy.Handle<Exception>().Retry(Times, (ex, count, context) => exhandle?.Invoke(ex, count, Times)).Execute(action);
         }
 
         /// <summary>
@@ -490,26 +511,24 @@ namespace XExten.Advance.StaticFramework
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="action"></param>
-        /// <param name="handle"></param>
+        /// <param name="exhandle"></param>
         /// <param name="Times"></param>
         /// <returns></returns>
-        public static T DoRetry<T>(Func<T> action, Action handle = null, int Times = 3)
+        public static T DoRetry<T>(Func<T> action, Action<Exception, int, int> exhandle = null, int Times = 3)
         {
-            return Policy.Handle<Exception>().Retry(Times, (Ex, Count, Context) =>
-            {
-                handle?.Invoke();
-            }).Execute(action);
+            return Policy.Handle<Exception>().Retry(Times, (ex, count, context) => exhandle?.Invoke(ex, count, Times)).Execute(action);
         }
 
         /// <summary>
         /// 短路由无返回
         /// </summary>
         /// <param name="action"></param>
+        /// <param name="exhandle"></param>
         /// <param name="Times"></param>
         /// <param name="Seconds"></param>
-        public static void DoRetryBreak(Action action, int Times = 3, int Seconds = 60)
+        public static void DoRetryBreak(Action action, Action<Exception> exhandle = null, int Times = 3, int Seconds = 60)
         {
-            Policy.Handle<Exception>().CircuitBreaker(Times, TimeSpan.FromSeconds(Seconds)).Execute(action);
+            Policy.Handle<Exception>().CircuitBreaker(Times, TimeSpan.FromSeconds(Seconds), (ex, time) => exhandle?.Invoke(ex), null).Execute(action);
         }
 
         /// <summary>
@@ -517,12 +536,13 @@ namespace XExten.Advance.StaticFramework
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="action"></param>
+        /// <param name="exhandle"></param>
         /// <param name="Times"></param>
         /// <param name="Seconds"></param>
         /// <returns></returns>
-        public static T DoRetryBreak<T>(Func<T> action, int Times = 3, int Seconds = 60)
+        public static T DoRetryBreak<T>(Func<T> action, Action<Exception> exhandle = null, int Times = 3, int Seconds = 60)
         {
-            return Policy.Handle<Exception>().CircuitBreaker(Times, TimeSpan.FromSeconds(Seconds)).Execute(action);
+            return Policy.Handle<Exception>().CircuitBreaker(Times, TimeSpan.FromSeconds(Seconds), (ex, time) => exhandle?.Invoke(ex), null).Execute(action);
         }
 
         /// <summary>

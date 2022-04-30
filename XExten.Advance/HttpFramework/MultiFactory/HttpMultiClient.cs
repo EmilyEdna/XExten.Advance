@@ -11,6 +11,7 @@ using XExten.Advance.CacheFramework;
 using XExten.Advance.HttpFramework.MultiCommon;
 using XExten.Advance.HttpFramework.MultiOption;
 using XExten.Advance.LinqFramework;
+using XExten.Advance.StaticFramework;
 
 namespace XExten.Advance.HttpFramework.MultiFactory
 {
@@ -128,7 +129,7 @@ namespace XExten.Advance.HttpFramework.MultiFactory
             CookieOption Option = new CookieOption();
             action(Option);
             Container = Option.SetCookie(Container);
-            if (Container==null) throw new Exception("Cookie异常，认证信息不能为空");
+            if (Container == null) throw new Exception("Cookie异常，认证信息不能为空");
             return this;
         }
 
@@ -160,103 +161,118 @@ namespace XExten.Advance.HttpFramework.MultiFactory
             return BuildProvider(Option, handle);
         }
 
-        public List<string> RunString(Action<CookieContainer, Uri> Container = null)
+        public List<string> RunString(Action<CookieContainer, Uri> Container = null,int RetryTimes=3,int IntervalTime=10)
         {
             if (Client == null) throw new NullReferenceException("Client未构建请先调用Build()方法");
-           
             try
             {
-                List<string> Result = new List<string>();
-                MultiConfig.NodeOpt.ForEach(item =>
+                return SyncStatic.DoRetryWait(() =>
                 {
-                    if (item.CacheNode)
+                    List<string> Result = new List<string>();
+                    MultiConfig.NodeOpt.ForEach(item =>
                     {
-                        var Data = Caches.RunTimeCacheGet<string>(item.NodePath.ToMd5());
-                        if (Data.IsNullOrEmpty())
+                        if (item.CacheNode)
                         {
+                            var Data = Caches.RunTimeCacheGet<string>(item.NodePath.ToMd5());
+                            if (Data.IsNullOrEmpty())
+                            {
+                                Result.Add(RequestString(item, Container));
+                                Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), CacheSecond, true);
+                            }
+                            else
+                                Result.Add(Data);
+                        }
+                        else
                             Result.Add(RequestString(item, Container));
-                            Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), CacheSecond, true);
-                        }
-                        else
-                            Result.Add(Data);
-                    }
-                    else
-                        Result.Add(RequestString(item, Container));
-                });
-                Dispose();
-                return Result;
+                    });
+                    return Result;
+                }, (ex, count, tiems) =>
+                {
+                    if (count == tiems) Dispose();
+                }, RetryTimes,IntervalTime);
             }
-            catch(Exception ex)
+            catch
+            {
+                return new List<string>();
+            }
+            finally
             {
                 Dispose();
-                throw ex;
             }
         }
 
-        public string RunStringFirst(Action<CookieContainer, Uri> Container = null)
+        public string RunStringFirst(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10)
         {
-            return RunString(Container).FirstOrDefault();
+            return RunString(Container, RetryTimes, IntervalTime).FirstOrDefault();
         }
 
-        public List<byte[]> RunBytes(Action<CookieContainer, Uri> Container = null)
+        public List<byte[]> RunBytes(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10)
         {
             if (Client == null) throw new NullReferenceException("Client未构建请先调用Build()方法");
             try
             {
-                List<Byte[]> Result = new List<Byte[]>();
-                MultiConfig.NodeOpt.ForEach(item =>
+                return SyncStatic.DoRetryWait(() =>
                 {
-                    if (item.CacheNode)
+                    List<Byte[]> Result = new List<Byte[]>();
+                    MultiConfig.NodeOpt.ForEach(item =>
                     {
-                        var Data = Caches.RunTimeCacheGet<Byte[]>(item.NodePath.ToMd5());
-                        if (Data == null)
+                        if (item.CacheNode)
                         {
-                            Result.Add(RequestBytes(item, Container));
-                            Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), CacheSecond, true);
+                            var Data = Caches.RunTimeCacheGet<Byte[]>(item.NodePath.ToMd5());
+                            if (Data == null)
+                            {
+                                Result.Add(RequestBytes(item, Container));
+                                Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), CacheSecond, true);
+                            }
+                            else
+                                Result.Add(Data);
                         }
                         else
-                            Result.Add(Data);
-                    }
-                    else
-                        Result.Add(RequestBytes(item, Container));
-                });
-                Dispose();
-                return Result;
+                            Result.Add(RequestBytes(item, Container));
+                    });
+                    return Result;
+                }, (ex, count, tiems) =>
+                {
+                    if (count == tiems) Dispose();
+                }, RetryTimes, IntervalTime);
             }
-            catch (Exception ex)
+            catch
+            {
+                return new List<byte[]>();
+            }
+            finally
             {
                 Dispose();
-                throw ex;
             }
         }
 
-        public byte[] RunBytesFirst(Action<CookieContainer, Uri> Container = null)
+        public byte[] RunBytesFirst(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10)
         {
-            return RunBytes(Container).FirstOrDefault();
+            return RunBytes(Container, RetryTimes, IntervalTime).FirstOrDefault();
         }
 
-        public async Task<List<string>> RunStringAsync(Action<CookieContainer, Uri> Container = null)
+        public async Task<List<string>> RunStringAsync(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10)
         {
             if (Client == null) throw new NullReferenceException("Client未构建请先调用Build()方法");
-            return await Task.Run(() => RunString(Container));
+            return await Task.Run(() => RunString(Container, RetryTimes, IntervalTime));
         }
 
-        public async Task<string> RunStringFirstAsync(Action<CookieContainer, Uri> Container = null)
+        public async Task<string> RunStringFirstAsync(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10)
         {
             if (Client == null) throw new NullReferenceException("Client未构建请先调用Build()方法");
-            return await Task.Run(() => RunStringFirst(Container));
+            return await Task.Run(() => RunStringFirst(Container, RetryTimes, IntervalTime));
         }
 
-        public async Task<List<byte[]>> RunBytesAsync(Action<CookieContainer, Uri> Container = null)
+        public async Task<List<byte[]>> RunBytesAsync(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10)
         {
             if (Client == null) throw new NullReferenceException("Client未构建请先调用Build()方法");
-            return await Task.Run(() => RunBytes(Container));
+            return await Task.Run(() => RunBytes(Container, RetryTimes, IntervalTime));
         }
 
-        public async Task<byte[]> RunBytesFirstAsync(Action<CookieContainer, Uri> Container = null)
+        public async Task<byte[]> RunBytesFirstAsync(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10)
         {
             if (Client == null) throw new NullReferenceException("Client未构建请先调用Build()方法");
-            return await Task.Run(() => RunBytesFirst(Container));
+            return await Task.Run(() => RunBytesFirst(Container, RetryTimes, IntervalTime));
         }
 
         public void Dispose()
