@@ -50,7 +50,7 @@ namespace XExten.Advance.RestHttpFramewor
         /// <returns></returns>
         public IRestHttpClient UseHttps()
         {
-            this.Options.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => { return true; };
+            this.Options.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
             return this;
         }
         /// <summary>
@@ -201,7 +201,8 @@ namespace XExten.Advance.RestHttpFramewor
                             else
                                 Result.Add(result);
                         }
-                        else {
+                        else
+                        {
                             var response = await ConfigRequest(client, node, action);
                             Result.Add(response);
                         }
@@ -267,12 +268,18 @@ namespace XExten.Advance.RestHttpFramewor
                 default:
                     break;
             }
-
+       
             var waitRes = client.ExecuteAsync(this.Request);
-            waitRes.Wait();
+            Wait(waitRes, Node.TaskWait);
             var response = await waitRes;
             action?.Invoke(response);
             return response.RawBytes;
+        }
+
+        private bool Wait(Task<RestResponse> response, int TaskWait)
+        {
+            if (response.Wait(TaskWait)) return true;
+            else return Wait(response, TaskWait);
         }
 
         private void Dispose()
