@@ -118,7 +118,7 @@ namespace XExten.Advance.RestHttpFramewor
         /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        public async Task<List<string>> RunStringAsync(Action<RestResponse> action=null, int RetryTimes = 3, int IntervalTime = 10)
+        public async Task<List<string>> RunStringAsync(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
         {
             try
             {
@@ -128,19 +128,30 @@ namespace XExten.Advance.RestHttpFramewor
                     List<string> Result = new List<string>();
                     foreach (RestNode node in OptionBuilder.Nodes)
                     {
-                        var key = node.Route.ToMd5();
-                        var result = Caches.RunTimeCacheGet<string>(key);
-                        if (result.IsNullOrEmpty())
+                        if (node.UseCache)
+                        {
+                            var key = node.Route.ToMd5();
+                            var result = Caches.RunTimeCacheGet<string>(key);
+                            if (result.IsNullOrEmpty())
+                            {
+                                var response = await ConfigRequest(client, node, action);
+                                var stream = new MemoryStream(response);
+                                using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(node.Encoding));
+                                result = reader.ReadToEnd();
+                                await Caches.RunTimeCacheSetAsync(key, result, node.CacheSpan);
+                                Result.Add(result);
+                            }
+                            else
+                                Result.Add(result);
+                        }
+                        else
                         {
                             var response = await ConfigRequest(client, node, action);
                             var stream = new MemoryStream(response);
                             using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(node.Encoding));
-                            result = reader.ReadToEnd();
-                            await Caches.RunTimeCacheSetAsync(key, result, node.CacheSpan);
+                            var result = reader.ReadToEnd();
                             Result.Add(result);
                         }
-                        else
-                            Result.Add(result);
                     }
 
                     return Result;
@@ -167,7 +178,7 @@ namespace XExten.Advance.RestHttpFramewor
         /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        public async Task<List<byte[]>> RunByteAsync(Action<RestResponse> action = null,int RetryTimes = 3, int IntervalTime = 10)
+        public async Task<List<byte[]>> RunByteAsync(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
         {
             try
             {
@@ -177,16 +188,23 @@ namespace XExten.Advance.RestHttpFramewor
                     List<byte[]> Result = new List<byte[]>();
                     foreach (RestNode node in OptionBuilder.Nodes)
                     {
-                        var key = node.Route.ToMd5();
-                        var result = Caches.RunTimeCacheGet<byte[]>(key);
-                        if (result == null)
+                        if (node.UseCache)
                         {
-                            var response = await ConfigRequest(client,node,action);
-                            await Caches.RunTimeCacheSetAsync(key, response, node.CacheSpan);
-                            Result.Add(result);
+                            var key = node.Route.ToMd5();
+                            var result = Caches.RunTimeCacheGet<byte[]>(key);
+                            if (result == null)
+                            {
+                                var response = await ConfigRequest(client, node, action);
+                                await Caches.RunTimeCacheSetAsync(key, response, node.CacheSpan);
+                                Result.Add(result);
+                            }
+                            else
+                                Result.Add(result);
                         }
-                        else
-                            Result.Add(result);
+                        else {
+                            var response = await ConfigRequest(client, node, action);
+                            Result.Add(response);
+                        }
                     }
                     return Result;
                 }, (ex, count, span) =>
@@ -216,7 +234,7 @@ namespace XExten.Advance.RestHttpFramewor
                 case RestProviderMethod.POST:
                     this.Request.Resource = Node.Route;
                     this.Request.Method = Method.Post;
-                    if(Node.ProviderType== RestProviderType.JSON)
+                    if (Node.ProviderType == RestProviderType.JSON)
                         this.Request.AddJsonBody(Node.Param);
                     if (Node.ProviderType == RestProviderType.XML)
                         this.Request.AddXmlBody(Node.Param);
