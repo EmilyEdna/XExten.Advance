@@ -30,6 +30,76 @@ namespace XExten.Advance.RestHttpFramewor
             this.Request = new RestRequest();
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
+
+        #region  私有
+        private async Task<byte[]> ConfigRequest(RestClient client, RestNode Node, Action<RestResponse> action = null)
+        {
+            switch (Node.Provider)
+            {
+                case RestProviderMethod.GET:
+                    this.Request.RequestFormat = DataFormat.None;
+                    this.Request.Resource = Node.Route;
+                    this.Request.Method = Method.Get;
+                    break;
+                case RestProviderMethod.POST:
+                    this.Request.Resource = Node.Route;
+                    this.Request.Method = Method.Post;
+                    if (Node.ProviderType == RestProviderType.JSON)
+                        this.Request.AddJsonBody(Node.Param);
+                    if (Node.ProviderType == RestProviderType.XML)
+                        this.Request.AddXmlBody(Node.Param);
+                    if (Node.ProviderType == RestProviderType.FORM)
+                        Node.PropertyNames.ForEnumerEach(item =>
+                        {
+                            var value = Node.Param.GetType().GetProperty(item, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance).GetValue(Node.Param).ToString();
+                            this.Request.AddParameter(item, value);
+                        });
+                    break;
+                case RestProviderMethod.PUT:
+                    this.Request.Resource = Node.Route;
+                    this.Request.Method = Method.Put;
+                    if (Node.ProviderType == RestProviderType.JSON)
+                        this.Request.AddJsonBody(Node.Param);
+                    if (Node.ProviderType == RestProviderType.XML)
+                        this.Request.AddXmlBody(Node.Param);
+                    if (Node.ProviderType == RestProviderType.FORM)
+                        Node.PropertyNames.ForEnumerEach(item =>
+                        {
+                            var value = Node.Param.GetType().GetProperty(item, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance).GetValue(Node.Param).ToString();
+                            this.Request.AddParameter(item, value);
+                        });
+                    break;
+                case RestProviderMethod.DELETE:
+                    this.Request.RequestFormat = DataFormat.None;
+                    this.Request.Resource = Node.Route;
+                    this.Request.Method = Method.Delete;
+                    break;
+                default:
+                    break;
+            }
+
+            var waitRes = client.ExecuteAsync(this.Request);
+            Wait(waitRes, Node.TaskWait);
+            var response = await waitRes;
+            action?.Invoke(response);
+            return response.RawBytes;
+        }
+
+        private bool Wait(Task<RestResponse> response, int TaskWait)
+        {
+            if (response.Wait(TaskWait)) return true;
+            else return Wait(response, TaskWait);
+        }
+
+        private void Dispose()
+        {
+            OptionBuilder.Nodes = new List<RestNode>();
+            OptionBuilder.Header = new Dictionary<string, string>();
+            OptionBuilder.Cookies = new CookieContainer();
+            this.Request = null;
+        }
+        #endregion
+
         /// <summary>
         /// 使用代理
         /// </summary>
@@ -161,9 +231,9 @@ namespace XExten.Advance.RestHttpFramewor
                     if (RetryTimes == count) Dispose();
                 }, RetryTimes, IntervalTime);
             }
-            catch
+            catch (Exception ex)
             {
-                return new List<string>();
+                throw ex;
             }
             finally
             {
@@ -213,81 +283,36 @@ namespace XExten.Advance.RestHttpFramewor
                     if (RetryTimes == count) Dispose();
                 }, RetryTimes, IntervalTime);
             }
-            catch
+            catch (Exception ex)
             {
-                return new List<byte[]>();
+                throw ex;
             }
             finally
             {
                 Dispose();
             }
         }
-
-        private async Task<byte[]> ConfigRequest(RestClient client, RestNode Node, Action<RestResponse> action = null)
+        /// <summary>
+        /// 返回单个string
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="RetryTimes"></param>
+        /// <param name="IntervalTime"></param>
+        /// <returns></returns>
+        public async Task<string> RunStringFirstAsync(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
         {
-            switch (Node.Provider)
-            {
-                case RestProviderMethod.GET:
-                    this.Request.RequestFormat = DataFormat.None;
-                    this.Request.Resource = Node.Route;
-                    this.Request.Method = Method.Get;
-                    break;
-                case RestProviderMethod.POST:
-                    this.Request.Resource = Node.Route;
-                    this.Request.Method = Method.Post;
-                    if (Node.ProviderType == RestProviderType.JSON)
-                        this.Request.AddJsonBody(Node.Param);
-                    if (Node.ProviderType == RestProviderType.XML)
-                        this.Request.AddXmlBody(Node.Param);
-                    if (Node.ProviderType == RestProviderType.FORM)
-                        Node.PropertyNames.ForEnumerEach(item =>
-                        {
-                            var value = Node.Param.GetType().GetProperty(item, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance).GetValue(Node.Param).ToString();
-                            this.Request.AddParameter(item, value);
-                        });
-                    break;
-                case RestProviderMethod.PUT:
-                    this.Request.Resource = Node.Route;
-                    this.Request.Method = Method.Put;
-                    if (Node.ProviderType == RestProviderType.JSON)
-                        this.Request.AddJsonBody(Node.Param);
-                    if (Node.ProviderType == RestProviderType.XML)
-                        this.Request.AddXmlBody(Node.Param);
-                    if (Node.ProviderType == RestProviderType.FORM)
-                        Node.PropertyNames.ForEnumerEach(item =>
-                        {
-                            var value = Node.Param.GetType().GetProperty(item, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance).GetValue(Node.Param).ToString();
-                            this.Request.AddParameter(item, value);
-                        });
-                    break;
-                case RestProviderMethod.DELETE:
-                    this.Request.RequestFormat = DataFormat.None;
-                    this.Request.Resource = Node.Route;
-                    this.Request.Method = Method.Delete;
-                    break;
-                default:
-                    break;
-            }
-       
-            var waitRes = client.ExecuteAsync(this.Request);
-            Wait(waitRes, Node.TaskWait);
-            var response = await waitRes;
-            action?.Invoke(response);
-            return response.RawBytes;
+                return (await RunStringAsync(action, RetryTimes, IntervalTime)).FirstOrDefault();
         }
-
-        private bool Wait(Task<RestResponse> response, int TaskWait)
+        /// <summary>
+        /// 返回单个byte
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="RetryTimes"></param>
+        /// <param name="IntervalTime"></param>
+        /// <returns></returns>
+        public async Task<byte[]> RunByteFirstAsync(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
         {
-            if (response.Wait(TaskWait)) return true;
-            else return Wait(response, TaskWait);
-        }
-
-        private void Dispose()
-        {
-            OptionBuilder.Nodes = new List<RestNode>();
-            OptionBuilder.Header = new Dictionary<string, string>();
-            OptionBuilder.Cookies = new CookieContainer();
-            this.Request = null;
+                return (await RunByteAsync(action, RetryTimes, IntervalTime)).FirstOrDefault();
         }
     }
 }
