@@ -19,7 +19,7 @@ namespace XExten.Advance.HttpFramework.MultiFactory
     {
         private WebProxy Proxy;
         private CookieContainer Container;
-        private int CacheSecond = 60;
+        private int Cache = 5;
         private HttpClient Client;
         public HttpMultiClient()
         {
@@ -157,7 +157,7 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         {
             BuilderOption Option = new BuilderOption();
             action?.Invoke(Option);
-            CacheSecond = Option.CacheTime;
+            Cache = Option.CacheTime;
             return BuildProvider(Option, handle);
         }
 
@@ -177,7 +177,7 @@ namespace XExten.Advance.HttpFramework.MultiFactory
                             if (Data.IsNullOrEmpty())
                             {
                                 Result.Add(RequestString(item, Container));
-                                Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), CacheSecond, true);
+                                Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), Cache);
                             }
                             else
                                 Result.Add(Data);
@@ -222,7 +222,7 @@ namespace XExten.Advance.HttpFramework.MultiFactory
                             if (Data == null)
                             {
                                 Result.Add(RequestBytes(item, Container));
-                                Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), CacheSecond, true);
+                                Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), Cache, false);
                             }
                             else
                                 Result.Add(Data);
