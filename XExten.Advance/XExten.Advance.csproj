@@ -10,7 +10,7 @@
 		<Version>1.2.2-beta2</Version>
 		<AssemblyVersion>1.2.2</AssemblyVersion>
 		<PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
-		<FileVersion>1.2.2</FileVersion>
+		<FileVersion>1.2.3</FileVersion>
 		<AssemblyName>XExten.Advance</AssemblyName>
 		<RootNamespace>XExten.Advance</RootNamespace>
 	</PropertyGroup>
@@ -33,7 +33,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="11.0.1" />
-		<PackageReference Include="Chinese" Version="0.4.6" />
+		<PackageReference Include="Chinese" Version="0.5.0" />
 		<PackageReference Include="DnsClient" Version="1.6.0" />
 		<PackageReference Include="DryIoc.dll" Version="4.8.8" />
 		<PackageReference Include="Mapster" Version="7.3.0" />
@@ -42,6 +42,7 @@
 		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1" />
 		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="6.0.0" />
+		<PackageReference Include="MongoDB.Driver" Version="2.15.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="Polly" Version="7.2.3" />
 		<PackageReference Include="RestSharp" Version="107.3.0" />
