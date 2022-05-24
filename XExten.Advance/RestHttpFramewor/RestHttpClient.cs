@@ -78,19 +78,11 @@ namespace XExten.Advance.RestHttpFramewor
                     break;
             }
 
-            var waitRes = client.ExecuteAsync(this.Request);
-            Wait(waitRes, Node.TaskWait);
-            var response = await waitRes;
+            var response = client.ExecuteAsync(this.Request).Result;
+
             action?.Invoke(response);
-            return response.RawBytes;
+            return await Task.FromResult(response.RawBytes);
         }
-
-        private bool Wait(Task<RestResponse> response, int TaskWait)
-        {
-            if (response.Wait(TaskWait)) return true;
-            else return Wait(response, TaskWait);
-        }
-
         private void Dispose()
         {
             OptionBuilder.Nodes = new List<RestNode>();
@@ -412,7 +404,7 @@ namespace XExten.Advance.RestHttpFramewor
                             {
                                 var response = ConfigRequest(client, node, action).Result;
                                 Caches.RunTimeCacheSet(key, response, node.CacheSpan);
-                                Result.Add(result);
+                                Result.Add(response);
                             }
                             else
                                 Result.Add(result);
