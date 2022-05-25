@@ -29,7 +29,7 @@ namespace XExten.Advance.RestHttpFramewor.Options
         /// <summary>
         /// 参数名称
         /// </summary>
-        public List<string> PropertyNames { get; set; }
+        public List<string> PropertyNames { get; set; } = new List<string>();
         /// <summary>
         /// 编码
         /// </summary>

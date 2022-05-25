@@ -49,11 +49,18 @@ namespace XExten.Advance.RestHttpFramewor
                     if (Node.ProviderType == RestProviderType.XML)
                         this.Request.AddXmlBody(Node.Param);
                     if (Node.ProviderType == RestProviderType.FORM)
-                        Node.PropertyNames.ForEnumerEach(item =>
-                        {
-                            var value = Node.Param.GetType().GetProperty(item, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance).GetValue(Node.Param).ToString();
-                            this.Request.AddParameter(item, value);
-                        });
+                        if (Node.Param is List<KeyValuePair<string, string>> kv)
+                            foreach (var item in kv)
+                            {
+                                this.Request.AddParameter(item.Key, item.Value);
+                            }
+                        else
+                            Node.PropertyNames.ForEnumerEach(item =>
+                            {
+                                var value = Node.Param.GetType().GetProperty(item, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance).GetValue(Node.Param).ToString();
+                                this.Request.AddParameter(item, value);
+                            });
+                        
                     break;
                 case RestProviderMethod.PUT:
                     this.Request.Resource = Node.Route;
@@ -293,7 +300,7 @@ namespace XExten.Advance.RestHttpFramewor
         /// <returns></returns>
         public async Task<string> RunStringFirstAsync(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
         {
-                return (await RunStringAsync(action, RetryTimes, IntervalTime)).FirstOrDefault();
+            return (await RunStringAsync(action, RetryTimes, IntervalTime)).FirstOrDefault();
         }
         /// <summary>
         /// 返回单个byte
@@ -304,7 +311,7 @@ namespace XExten.Advance.RestHttpFramewor
         /// <returns></returns>
         public async Task<byte[]> RunByteFirstAsync(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
         {
-                return (await RunByteAsync(action, RetryTimes, IntervalTime)).FirstOrDefault();
+            return (await RunByteAsync(action, RetryTimes, IntervalTime)).FirstOrDefault();
         }
         #endregion
 
@@ -316,11 +323,11 @@ namespace XExten.Advance.RestHttpFramewor
         /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-       public List<string> RunString(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
+        public List<string> RunString(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
         {
             try
             {
-                return  SyncStatic.DoRetryWait(() =>
+                return SyncStatic.DoRetryWait(() =>
                 {
                     RestClient client = new RestClient(this.Options);
                     List<string> Result = new List<string>();
@@ -332,11 +339,11 @@ namespace XExten.Advance.RestHttpFramewor
                             var result = Caches.RunTimeCacheGet<string>(key);
                             if (result.IsNullOrEmpty())
                             {
-                                var response =  ConfigRequest(client, node, action).Result;
+                                var response = ConfigRequest(client, node, action).Result;
                                 var stream = new MemoryStream(response);
                                 using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(node.Encoding));
                                 result = reader.ReadToEnd();
-                                 Caches.RunTimeCacheSet(key, result, node.CacheSpan);
+                                Caches.RunTimeCacheSet(key, result, node.CacheSpan);
                                 Result.Add(result);
                             }
                             else
@@ -344,7 +351,7 @@ namespace XExten.Advance.RestHttpFramewor
                         }
                         else
                         {
-                            var response =  ConfigRequest(client, node, action).Result;
+                            var response = ConfigRequest(client, node, action).Result;
                             var stream = new MemoryStream(response);
                             using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(node.Encoding));
                             var result = reader.ReadToEnd();
