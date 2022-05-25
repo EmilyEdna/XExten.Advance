@@ -1631,11 +1631,6 @@
             参数
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestNode.TaskWait">
-            <summary>
-            等待多久完成单位毫秒
-            </summary>
-        </member>
         <member name="T:XExten.Advance.RestHttpFramewor.Options.RestProviderMethod">
             <summary>
             请求方式
