@@ -13,13 +13,13 @@ namespace XExten.Advance.HttpFramework.MultiOption
     {
         #region Default Header Name
         public const string Referer = "Referer";
-        public const string UserAgent = "User-Agent";
+        public const string UserAgent = "UserAgent";
         public const string Host = "Host";
-        public const string AcceptEncoding = "Accept-Encoding";
+        public const string AcceptEncoding = "AcceptEncoding";
         public const string Origin = "Origin";
         public const string Authorization = "Authorization";
         public const string Accept = "Accept";
-        public const string AcceptLanguage = "Accept-Language";
+        public const string AcceptLanguage = "AcceptLanguage";
         #endregion
 
         /// <summary>
