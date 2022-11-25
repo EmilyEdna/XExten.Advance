@@ -189,7 +189,7 @@ namespace XExten.Advance.InternalFramework.Office
         /// <returns></returns>
         internal Excel WriteExportStream(Stream st, Action<Stream> action = null)
         {
-            Workbook.Write(st);
+            Workbook.Write(st,false);
             action?.Invoke(st);
             return this;
         }
