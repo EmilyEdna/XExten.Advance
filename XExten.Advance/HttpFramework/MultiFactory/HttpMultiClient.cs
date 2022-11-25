@@ -161,38 +161,33 @@ namespace XExten.Advance.HttpFramework.MultiFactory
             return BuildProvider(Option, handle);
         }
 
-        public List<string> RunString(Action<CookieContainer, Uri> Container = null,int RetryTimes=3,int IntervalTime=10)
+        public List<string> RunString(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10)
         {
             if (Client == null) throw new NullReferenceException("Client未构建请先调用Build()方法");
             try
             {
-                return SyncStatic.DoRetryWait(() =>
+                List<string> Result = new List<string>();
+                MultiConfig.NodeOpt.ForEach(item =>
                 {
-                    List<string> Result = new List<string>();
-                    MultiConfig.NodeOpt.ForEach(item =>
+                    if (item.CacheNode)
                     {
-                        if (item.CacheNode)
+                        var Data = Caches.RunTimeCacheGet<string>(item.NodePath.ToMd5());
+                        if (Data.IsNullOrEmpty())
                         {
-                            var Data = Caches.RunTimeCacheGet<string>(item.NodePath.ToMd5());
-                            if (Data.IsNullOrEmpty())
-                            {
-                                Result.Add(RequestString(item, Container));
-                                Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), Cache);
-                            }
-                            else
-                                Result.Add(Data);
+                            Result.Add(RequestString(item, Container));
+                            Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), Cache);
                         }
                         else
-                            Result.Add(RequestString(item, Container));
-                    });
-                    return Result;
-                }, (ex, count, tiems) =>
-                {
-                    if (count == tiems) Dispose();
-                }, RetryTimes,IntervalTime);
+                            Result.Add(Data);
+                    }
+                    else
+                        Result.Add(RequestString(item, Container));
+                });
+                return Result;
             }
-            catch
+            catch(Exception ex)
             {
+                HttpEvent.HttpActionEvent?.Invoke(Client, ex);
                 return new List<string>();
             }
             finally
@@ -201,43 +196,38 @@ namespace XExten.Advance.HttpFramework.MultiFactory
             }
         }
 
-        public string RunStringFirst(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10)
+        public string RunStringFirst(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10)
         {
-            return RunString(Container, RetryTimes, IntervalTime).FirstOrDefault();
+            return RunString(Container, IntervalTime).FirstOrDefault();
         }
 
-        public List<byte[]> RunBytes(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10)
+        public List<byte[]> RunBytes(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10)
         {
             if (Client == null) throw new NullReferenceException("Client未构建请先调用Build()方法");
             try
             {
-                return SyncStatic.DoRetryWait(() =>
+                List<Byte[]> Result = new List<Byte[]>();
+                MultiConfig.NodeOpt.ForEach(item =>
                 {
-                    List<Byte[]> Result = new List<Byte[]>();
-                    MultiConfig.NodeOpt.ForEach(item =>
+                    if (item.CacheNode)
                     {
-                        if (item.CacheNode)
+                        var Data = Caches.RunTimeCacheGet<Byte[]>(item.NodePath.ToMd5());
+                        if (Data == null)
                         {
-                            var Data = Caches.RunTimeCacheGet<Byte[]>(item.NodePath.ToMd5());
-                            if (Data == null)
-                            {
-                                Result.Add(RequestBytes(item, Container));
-                                Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), Cache, false);
-                            }
-                            else
-                                Result.Add(Data);
+                            Result.Add(RequestBytes(item, Container));
+                            Caches.RunTimeCacheSet(item.NodePath.ToMd5(), Result.FirstOrDefault(), Cache, false);
                         }
                         else
-                            Result.Add(RequestBytes(item, Container));
-                    });
-                    return Result;
-                }, (ex, count, tiems) =>
-                {
-                    if (count == tiems) Dispose();
-                }, RetryTimes, IntervalTime);
+                            Result.Add(Data);
+                    }
+                    else
+                        Result.Add(RequestBytes(item, Container));
+                });
+                return Result;
             }
-            catch
+            catch (Exception ex)
             {
+                HttpEvent.HttpActionEvent?.Invoke(Client, ex);
                 return new List<byte[]>();
             }
             finally
@@ -246,33 +236,33 @@ namespace XExten.Advance.HttpFramework.MultiFactory
             }
         }
 
-        public byte[] RunBytesFirst(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10)
+        public byte[] RunBytesFirst(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10)
         {
-            return RunBytes(Container, RetryTimes, IntervalTime).FirstOrDefault();
+            return RunBytes(Container, IntervalTime).FirstOrDefault();
         }
 
-        public async Task<List<string>> RunStringAsync(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10)
+        public async Task<List<string>> RunStringAsync(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10)
         {
             if (Client == null) throw new NullReferenceException("Client未构建请先调用Build()方法");
-            return await Task.Run(() => RunString(Container, RetryTimes, IntervalTime));
+            return await Task.Run(() => RunString(Container, IntervalTime));
         }
 
-        public async Task<string> RunStringFirstAsync(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10)
+        public async Task<string> RunStringFirstAsync(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10)
         {
             if (Client == null) throw new NullReferenceException("Client未构建请先调用Build()方法");
-            return await Task.Run(() => RunStringFirst(Container, RetryTimes, IntervalTime));
+            return await Task.Run(() => RunStringFirst(Container, IntervalTime));
         }
 
-        public async Task<List<byte[]>> RunBytesAsync(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10)
+        public async Task<List<byte[]>> RunBytesAsync(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10)
         {
             if (Client == null) throw new NullReferenceException("Client未构建请先调用Build()方法");
-            return await Task.Run(() => RunBytes(Container, RetryTimes, IntervalTime));
+            return await Task.Run(() => RunBytes(Container, IntervalTime));
         }
 
-        public async Task<byte[]> RunBytesFirstAsync(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10)
+        public async Task<byte[]> RunBytesFirstAsync(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10)
         {
             if (Client == null) throw new NullReferenceException("Client未构建请先调用Build()方法");
-            return await Task.Run(() => RunBytesFirst(Container, RetryTimes, IntervalTime));
+            return await Task.Run(() => RunBytesFirst(Container, IntervalTime));
         }
 
         public void Dispose()

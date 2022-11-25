@@ -60,7 +60,7 @@ namespace XExten.Advance.RestHttpFramewor
                                 var value = Node.Param.GetType().GetProperty(item, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance).GetValue(Node.Param).ToString();
                                 this.Request.AddParameter(item, value);
                             });
-                        
+
                     break;
                 case RestProviderMethod.PUT:
                     this.Request.Resource = Node.Route;
@@ -185,55 +185,47 @@ namespace XExten.Advance.RestHttpFramewor
         /// 返回string
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        public async Task<List<string>> RunStringAsync(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
+        public async Task<List<string>> RunStringAsync(Action<RestResponse> action = null,  int IntervalTime = 10)
         {
             try
             {
-                return await SyncStatic.DoRetryWait(async () =>
+                RestClient client = new RestClient(this.Options);
+                List<string> Result = new List<string>();
+                foreach (RestNode node in OptionBuilder.Nodes)
                 {
-                    RestClient client = new RestClient(this.Options);
-                    List<string> Result = new List<string>();
-                    foreach (RestNode node in OptionBuilder.Nodes)
+                    if (node.UseCache)
                     {
-                        if (node.UseCache)
-                        {
-                            var key = node.Route.ToMd5();
-                            var result = Caches.RunTimeCacheGet<string>(key);
-                            if (result.IsNullOrEmpty())
-                            {
-                                var response = await ConfigRequest(client, node, action);
-                                var stream = new MemoryStream(response);
-                                using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(node.Encoding));
-                                result = reader.ReadToEnd();
-                                await Caches.RunTimeCacheSetAsync(key, result, node.CacheSpan);
-                                Result.Add(result);
-                            }
-                            else
-                                Result.Add(result);
-                        }
-                        else
+                        var key = node.Route.ToMd5();
+                        var result = Caches.RunTimeCacheGet<string>(key);
+                        if (result.IsNullOrEmpty())
                         {
                             var response = await ConfigRequest(client, node, action);
                             var stream = new MemoryStream(response);
                             using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(node.Encoding));
-                            var result = reader.ReadToEnd();
+                            result = reader.ReadToEnd();
+                            await Caches.RunTimeCacheSetAsync(key, result, node.CacheSpan);
                             Result.Add(result);
                         }
+                        else
+                            Result.Add(result);
                     }
+                    else
+                    {
+                        var response = await ConfigRequest(client, node, action);
+                        var stream = new MemoryStream(response);
+                        using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(node.Encoding));
+                        var result = reader.ReadToEnd();
+                        Result.Add(result);
+                    }
+                }
 
-                    return Result;
-
-                }, (ex, count, span) =>
-                {
-                    if (RetryTimes == count) Dispose();
-                }, RetryTimes, IntervalTime);
+                return Result;
             }
             catch (Exception ex)
             {
-                throw ex;
+                return new List<string>();
             }
             finally
             {
@@ -244,47 +236,40 @@ namespace XExten.Advance.RestHttpFramewor
         /// 返回Byte
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        public async Task<List<byte[]>> RunByteAsync(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
+        public async Task<List<byte[]>> RunByteAsync(Action<RestResponse> action = null,  int IntervalTime = 10)
         {
             try
             {
-                return await SyncStatic.DoRetryWait(async () =>
+                RestClient client = new RestClient(this.Options);
+                List<byte[]> Result = new List<byte[]>();
+                foreach (RestNode node in OptionBuilder.Nodes)
                 {
-                    RestClient client = new RestClient(this.Options);
-                    List<byte[]> Result = new List<byte[]>();
-                    foreach (RestNode node in OptionBuilder.Nodes)
+                    if (node.UseCache)
                     {
-                        if (node.UseCache)
-                        {
-                            var key = node.Route.ToMd5();
-                            var result = Caches.RunTimeCacheGet<byte[]>(key);
-                            if (result == null)
-                            {
-                                var response = await ConfigRequest(client, node, action);
-                                await Caches.RunTimeCacheSetAsync(key, response, node.CacheSpan);
-                                Result.Add(result);
-                            }
-                            else
-                                Result.Add(result);
-                        }
-                        else
+                        var key = node.Route.ToMd5();
+                        var result = Caches.RunTimeCacheGet<byte[]>(key);
+                        if (result == null)
                         {
                             var response = await ConfigRequest(client, node, action);
-                            Result.Add(response);
+                            await Caches.RunTimeCacheSetAsync(key, response, node.CacheSpan);
+                            Result.Add(result);
                         }
+                        else
+                            Result.Add(result);
                     }
-                    return Result;
-                }, (ex, count, span) =>
-                {
-                    if (RetryTimes == count) Dispose();
-                }, RetryTimes, IntervalTime);
+                    else
+                    {
+                        var response = await ConfigRequest(client, node, action);
+                        Result.Add(response);
+                    }
+                }
+                return Result;
             }
             catch (Exception ex)
             {
-                throw ex;
+                return new List<byte[]>();
             }
             finally
             {
@@ -295,80 +280,72 @@ namespace XExten.Advance.RestHttpFramewor
         /// 返回单个string
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        public async Task<string> RunStringFirstAsync(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
+        public async Task<string> RunStringFirstAsync(Action<RestResponse> action = null,  int IntervalTime = 10)
         {
-            return (await RunStringAsync(action, RetryTimes, IntervalTime)).FirstOrDefault();
+            return (await RunStringAsync(action, IntervalTime)).FirstOrDefault();
         }
         /// <summary>
         /// 返回单个byte
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        public async Task<byte[]> RunByteFirstAsync(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
+        public async Task<byte[]> RunByteFirstAsync(Action<RestResponse> action = null,  int IntervalTime = 10)
         {
-            return (await RunByteAsync(action, RetryTimes, IntervalTime)).FirstOrDefault();
+            return (await RunByteAsync(action, IntervalTime)).FirstOrDefault();
         }
         #endregion
 
-        #region 异步
+        #region 同步
         /// <summary>
         /// 返回集合
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        public List<string> RunString(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
+        public List<string> RunString(Action<RestResponse> action = null,  int IntervalTime = 10)
         {
+            RestClient client = null;
             try
             {
-                return SyncStatic.DoRetryWait(() =>
+                client = new RestClient(this.Options);
+                List<string> Result = new List<string>();
+                foreach (RestNode node in OptionBuilder.Nodes)
                 {
-                    RestClient client = new RestClient(this.Options);
-                    List<string> Result = new List<string>();
-                    foreach (RestNode node in OptionBuilder.Nodes)
+                    if (node.UseCache)
                     {
-                        if (node.UseCache)
-                        {
-                            var key = node.Route.ToMd5();
-                            var result = Caches.RunTimeCacheGet<string>(key);
-                            if (result.IsNullOrEmpty())
-                            {
-                                var response = ConfigRequest(client, node, action).Result;
-                                var stream = new MemoryStream(response);
-                                using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(node.Encoding));
-                                result = reader.ReadToEnd();
-                                Caches.RunTimeCacheSet(key, result, node.CacheSpan);
-                                Result.Add(result);
-                            }
-                            else
-                                Result.Add(result);
-                        }
-                        else
+                        var key = node.Route.ToMd5();
+                        var result = Caches.RunTimeCacheGet<string>(key);
+                        if (result.IsNullOrEmpty())
                         {
                             var response = ConfigRequest(client, node, action).Result;
                             var stream = new MemoryStream(response);
                             using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(node.Encoding));
-                            var result = reader.ReadToEnd();
+                            result = reader.ReadToEnd();
+                            Caches.RunTimeCacheSet(key, result, node.CacheSpan);
                             Result.Add(result);
                         }
+                        else
+                            Result.Add(result);
                     }
+                    else
+                    {
+                        var response = ConfigRequest(client, node, action).Result;
+                        var stream = new MemoryStream(response);
+                        using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(node.Encoding));
+                        var result = reader.ReadToEnd();
+                        Result.Add(result);
+                    }
+                }
 
-                    return Result;
-
-                }, (ex, count, span) =>
-                {
-                    if (RetryTimes == count) Dispose();
-                }, RetryTimes, IntervalTime);
+                return Result;
             }
             catch (Exception ex)
             {
-                throw ex;
+                HttpEvent.RestActionEvent?.Invoke(client, ex);
+                return new List<string>();
             }
             finally
             {
@@ -379,58 +356,52 @@ namespace XExten.Advance.RestHttpFramewor
         /// 返回单个
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        public string RunStringFirst(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
+        public string RunStringFirst(Action<RestResponse> action = null,  int IntervalTime = 10)
         {
-            return RunString(action, RetryTimes, IntervalTime).FirstOrDefault();
+            return RunString(action, IntervalTime).FirstOrDefault();
         }
         /// <summary>
         /// 返回集合
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        public List<byte[]> RunByte(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
+        public List<byte[]> RunByte(Action<RestResponse> action = null,  int IntervalTime = 10)
         {
+            RestClient client = null;
             try
             {
-                return SyncStatic.DoRetryWait(() =>
+                client = new RestClient(this.Options);
+                List<byte[]> Result = new List<byte[]>();
+                foreach (RestNode node in OptionBuilder.Nodes)
                 {
-                    RestClient client = new RestClient(this.Options);
-                    List<byte[]> Result = new List<byte[]>();
-                    foreach (RestNode node in OptionBuilder.Nodes)
+                    if (node.UseCache)
                     {
-                        if (node.UseCache)
-                        {
-                            var key = node.Route.ToMd5();
-                            var result = Caches.RunTimeCacheGet<byte[]>(key);
-                            if (result == null)
-                            {
-                                var response = ConfigRequest(client, node, action).Result;
-                                Caches.RunTimeCacheSet(key, response, node.CacheSpan);
-                                Result.Add(response);
-                            }
-                            else
-                                Result.Add(result);
-                        }
-                        else
+                        var key = node.Route.ToMd5();
+                        var result = Caches.RunTimeCacheGet<byte[]>(key);
+                        if (result == null)
                         {
                             var response = ConfigRequest(client, node, action).Result;
+                            Caches.RunTimeCacheSet(key, response, node.CacheSpan);
                             Result.Add(response);
                         }
+                        else
+                            Result.Add(result);
                     }
-                    return Result;
-                }, (ex, count, span) =>
-                {
-                    if (RetryTimes == count) Dispose();
-                }, RetryTimes, IntervalTime);
+                    else
+                    {
+                        var response = ConfigRequest(client, node, action).Result;
+                        Result.Add(response);
+                    }
+                }
+                return Result;
             }
             catch (Exception ex)
             {
-                throw ex;
+                HttpEvent.RestActionEvent?.Invoke(client, ex);
+                return new List<byte[]>();
             }
             finally
             {
@@ -441,12 +412,11 @@ namespace XExten.Advance.RestHttpFramewor
         /// 返回单个
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        public byte[] RunByteFirst(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10)
+        public byte[] RunByteFirst(Action<RestResponse> action = null,  int IntervalTime = 10)
         {
-            return RunByte(action, RetryTimes, IntervalTime).FirstOrDefault();
+            return RunByte(action, IntervalTime).FirstOrDefault();
         }
         #endregion
     }

@@ -64,7 +64,7 @@ namespace XExten.Advance.RestHttpFramewor
         /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        Task<List<string>> RunStringAsync(Action<RestResponse> action = null,int RetryTimes = 3, int IntervalTime = 10);
+        Task<List<string>> RunStringAsync(Action<RestResponse> action = null, int IntervalTime = 10);
         /// <summary>
         /// 返回单个
         /// </summary>
@@ -72,7 +72,7 @@ namespace XExten.Advance.RestHttpFramewor
         /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        Task<string> RunStringFirstAsync(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10);
+        Task<string> RunStringFirstAsync(Action<RestResponse> action = null, int IntervalTime = 10);
         /// <summary>
         /// 返回集合
         /// </summary>
@@ -80,7 +80,7 @@ namespace XExten.Advance.RestHttpFramewor
         /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        Task<List<byte[]>> RunByteAsync(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10);
+        Task<List<byte[]>> RunByteAsync(Action<RestResponse> action = null, int IntervalTime = 10);
         /// <summary>
         /// 返回单个
         /// </summary>
@@ -88,7 +88,7 @@ namespace XExten.Advance.RestHttpFramewor
         /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        Task<byte[]> RunByteFirstAsync(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10);
+        Task<byte[]> RunByteFirstAsync(Action<RestResponse> action = null, int IntervalTime = 10);
         #endregion
         #region 同步
         /// <summary>
@@ -98,7 +98,7 @@ namespace XExten.Advance.RestHttpFramewor
         /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        List<string> RunString(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10);
+        List<string> RunString(Action<RestResponse> action = null, int IntervalTime = 10);
         /// <summary>
         /// 返回单个
         /// </summary>
@@ -106,7 +106,7 @@ namespace XExten.Advance.RestHttpFramewor
         /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        string RunStringFirst(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10);
+        string RunStringFirst(Action<RestResponse> action = null, int IntervalTime = 10);
         /// <summary>
         /// 返回集合
         /// </summary>
@@ -114,7 +114,7 @@ namespace XExten.Advance.RestHttpFramewor
         /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        List<byte[]> RunByte(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10);
+        List<byte[]> RunByte(Action<RestResponse> action = null, int IntervalTime = 10);
         /// <summary>
         /// 返回单个
         /// </summary>
@@ -122,7 +122,7 @@ namespace XExten.Advance.RestHttpFramewor
         /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
-        byte[] RunByteFirst(Action<RestResponse> action = null, int RetryTimes = 3, int IntervalTime = 10);
+        byte[] RunByteFirst(Action<RestResponse> action = null, int IntervalTime = 10);
         #endregion
     }
 }
