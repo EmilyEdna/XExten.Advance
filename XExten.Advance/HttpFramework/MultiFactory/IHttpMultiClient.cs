@@ -55,22 +55,22 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         /// 返回
         /// </summary>
         /// <returns></returns>
-        List<string> RunString(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10);
+        List<string> RunString(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10);
         /// <summary>
         /// 返回
         /// </summary>
         /// <returns></returns>
-        string RunStringFirst(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10);
+        string RunStringFirst(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10);
         /// <summary>
         /// 返回
         /// </summary>
         /// <returns></returns>
-        List<Byte[]> RunBytes(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10);
+        List<Byte[]> RunBytes(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10);
         /// <summary>
         /// 返回
         /// </summary>
         /// <returns></returns>
-        Byte[] RunBytesFirst(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10);
+        Byte[] RunBytesFirst(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10);
         #endregion
 
         #region 异步执行
@@ -78,22 +78,22 @@ namespace XExten.Advance.HttpFramework.MultiFactory
         /// 返回
         /// </summary>
         /// <returns></returns>
-       Task<List<string>> RunStringAsync(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10);
+        Task<List<string>> RunStringAsync(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10);
         /// <summary>
         /// 返回
         /// </summary>
         /// <returns></returns>
-        Task<string> RunStringFirstAsync(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10);
+        Task<string> RunStringFirstAsync(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10);
         /// <summary>
         /// 返回
         /// </summary>
         /// <returns></returns>
-        Task<List<Byte[]>> RunBytesAsync(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10);
+        Task<List<Byte[]>> RunBytesAsync(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10);
         /// <summary>
         /// 返回
         /// </summary>
         /// <returns></returns>
-        Task<Byte[]> RunBytesFirstAsync(Action<CookieContainer, Uri> Container = null, int RetryTimes = 3, int IntervalTime = 10);
+        Task<Byte[]> RunBytesFirstAsync(Action<CookieContainer, Uri> Container = null, int IntervalTime = 10);
         #endregion
     }
 }
