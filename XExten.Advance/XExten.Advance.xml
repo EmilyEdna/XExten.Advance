@@ -160,12 +160,6 @@
             MemoryCaches
             </summary>
         </member>
-        <member name="M:XExten.Advance.CacheFramework.RunTimeCache.MemoryCaches.GetKeys">
-            <summary>
-            获取所有Key
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:XExten.Advance.CacheFramework.RunTimeCache.MemoryCaches.GetKeys``1">
             <summary>
             获取所有Key

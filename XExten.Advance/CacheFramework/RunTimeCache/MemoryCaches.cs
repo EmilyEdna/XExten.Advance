@@ -22,7 +22,7 @@ namespace XExten.Advance.CacheFramework.RunTimeCache
         {
             get
             {
-                if (_Cache == null) 
+                if (_Cache == null)
                 {
                     lock (locker)
                     {
@@ -34,22 +34,18 @@ namespace XExten.Advance.CacheFramework.RunTimeCache
             }
         }
 
-        private static readonly Func<MemoryCache, object> GetEntriesCollection =
-            Delegate.CreateDelegate(typeof(Func<MemoryCache, object>),
-                typeof(MemoryCache).GetProperty("EntriesCollection", BindingFlags.NonPublic | BindingFlags.Instance).GetGetMethod(true), true) as Func<MemoryCache, object>;
-
-        /// <summary>
-        /// 获取所有Key
-        /// </summary>
-        /// <returns></returns>
-        public static IEnumerable GetKeys() => ((IDictionary)GetEntriesCollection((MemoryCache)Cache)).Keys;
-
         /// <summary>
         /// 获取所有Key
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static List<T> GetKeys<T>() => GetKeys().OfType<T>().ToList();
+        public static List<T> GetKeys<T>()
+        {
+            BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
+            var Field = Cache.GetType().GetField("_coherentState", flags).GetValue(Cache);
+            var Keys = (Field.GetType().GetProperty("EntriesCollection", flags).GetValue(Field) as IDictionary).Keys.OfType<T>().ToList();
+            return Keys;
+        }
 
         /// <summary>
         /// 添加缓存
@@ -87,7 +83,7 @@ namespace XExten.Advance.CacheFramework.RunTimeCache
         /// <summary>
         /// 删除所有缓存
         /// </summary>
-        public static void RemoveAllCache() 
+        public static void RemoveAllCache()
         {
             var AllKey = GetKeys<string>();
             foreach (var item in AllKey)
