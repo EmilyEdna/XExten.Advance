@@ -1123,6 +1123,21 @@
             订阅者标识接口
             </summary>
         </member>
+        <member name="T:XExten.Advance.HttpEvent">
+            <summary>
+            事件中心
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpEvent.HttpActionEvent">
+            <summary>
+            请求异常事件
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.HttpEvent.RestActionEvent">
+            <summary>
+            请求异常事件
+            </summary>
+        </member>
         <member name="T:XExten.Advance.HttpFramework.MultiCommon.MultiKeyPairs">
             <summary>
             封装数据
@@ -1262,49 +1277,49 @@
             <param name="handle"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunString(System.Action{System.Net.CookieContainer,System.Uri},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunString(System.Action{System.Net.CookieContainer,System.Uri},System.Int32)">
             <summary>
             返回
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunStringFirst(System.Action{System.Net.CookieContainer,System.Uri},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunStringFirst(System.Action{System.Net.CookieContainer,System.Uri},System.Int32)">
             <summary>
             返回
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunBytes(System.Action{System.Net.CookieContainer,System.Uri},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunBytes(System.Action{System.Net.CookieContainer,System.Uri},System.Int32)">
             <summary>
             返回
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunBytesFirst(System.Action{System.Net.CookieContainer,System.Uri},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunBytesFirst(System.Action{System.Net.CookieContainer,System.Uri},System.Int32)">
             <summary>
             返回
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunStringAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunStringAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Int32)">
             <summary>
             返回
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunStringFirstAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunStringFirstAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Int32)">
             <summary>
             返回
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunBytesAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunBytesAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Int32)">
             <summary>
             返回
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunBytesFirstAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.HttpFramework.MultiFactory.IHttpMultiClient.RunBytesFirstAsync(System.Action{System.Net.CookieContainer,System.Uri},System.Int32)">
             <summary>
             返回
             </summary>
@@ -2567,7 +2582,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunStringAsync(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunStringAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回集合
             </summary>
@@ -2576,7 +2591,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunStringFirstAsync(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunStringFirstAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个
             </summary>
@@ -2585,7 +2600,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunByteAsync(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunByteAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回集合
             </summary>
@@ -2594,7 +2609,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunByteFirstAsync(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunByteFirstAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个
             </summary>
@@ -2603,7 +2618,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunString(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunString(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回集合
             </summary>
@@ -2612,7 +2627,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunStringFirst(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunStringFirst(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个
             </summary>
@@ -2621,7 +2636,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunByte(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunByte(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回集合
             </summary>
@@ -2630,7 +2645,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunByteFirst(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunByteFirst(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个
             </summary>
@@ -2871,75 +2886,67 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunStringAsync(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunStringAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回string
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunByteAsync(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunByteAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回Byte
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunStringFirstAsync(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunStringFirstAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个string
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunByteFirstAsync(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunByteFirstAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个byte
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunString(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunString(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回集合
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunStringFirst(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunStringFirst(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunByte(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunByte(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回集合
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunByteFirst(System.Action{RestSharp.RestResponse},System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunByteFirst(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
