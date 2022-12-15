@@ -1891,7 +1891,7 @@
             Excel工厂
             </summary>
         </member>
-        <member name="M:XExten.Advance.InternalFramework.Office.ExcelFactory.ExportExcel``1(System.Collections.Generic.IEnumerable{``0},XExten.Advance.InternalFramework.Office.Common.ExcelType,System.String,System.Object,System.Action{System.IO.Stream},System.IO.Stream,System.String)">
+        <member name="M:XExten.Advance.InternalFramework.Office.ExcelFactory.ExportExcel``1(System.Collections.Generic.IEnumerable{``0},XExten.Advance.InternalFramework.Office.Common.ExcelType,System.String,System.Action{System.IO.Stream},System.Object,System.IO.Stream,System.String)">
             <summary>
             导出EXCEL
             </summary>
@@ -1899,9 +1899,9 @@
             <param name="Data">需要被导出的数据</param>
             <param name="Types">Excel类型</param>
             <param name="SheetName">工作表名称</param>
-            <param name="Footer">页脚内容</param>
-            <param name="stream">流</param>
             <param name="action">自定义导出</param>
+            <param name="stream">流</param>
+            <param name="Footer">页脚内容</param>
             <param name="DateFormat">事件格式</param>
         </member>
         <member name="M:XExten.Advance.InternalFramework.Office.ExcelFactory.ImportExcel``1(System.IO.Stream,XExten.Advance.InternalFramework.Office.Common.ExcelType,System.Boolean,System.Int32)">
