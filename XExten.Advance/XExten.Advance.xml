@@ -6,28 +6,28 @@
     <members>
         <member name="T:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute">
             <summary>
-            执行器
+            执行�?
             </summary>
         </member>
         <member name="P:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.ActionType">
             <summary>
-            自定义执行
+            自定义执�?
             </summary>
         </member>
         <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.#ctor">
             <summary>
-            执行器无参构造
+            执行器无参构�?
             </summary>
         </member>
         <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.#ctor(System.String)">
             <summary>
-            有参构造
+            有参构�?
             </summary>
             <param name="ActionType"></param>
         </member>
         <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.Before(System.String,System.Type,System.Object[])">
             <summary>
-            执行前
+            执行�?
             </summary>
             <param name="methodName"></param>
             <param name="classInfo"></param>
@@ -35,7 +35,7 @@
         </member>
         <member name="M:XExten.Advance.AopFramework.AopAttribute.AopBaseActionAttribute.After(System.String,System.Type,System.Object)">
             <summary>
-            执行前
+            执行�?
             </summary>
             <param name="methodName"></param>
             <param name="classInfo"></param>
@@ -44,12 +44,12 @@
         </member>
         <member name="T:XExten.Advance.AopFramework.AopAttribute.InterceptorBaseAttribute">
             <summary>
-            拦截器
+            拦截�?
             </summary>
         </member>
         <member name="M:XExten.Advance.AopFramework.AopAttribute.InterceptorBaseAttribute.Invoke(System.Object,System.String,System.Object[])">
             <summary>
-            执行器
+            执行�?
             </summary>
             <param name="obj"></param>
             <param name="methodName"></param>
@@ -160,6 +160,18 @@
             MemoryCaches
             </summary>
         </member>
+        <member name="M:XExten.Advance.CacheFramework.RunTimeCache.MemoryCaches.GetKeys">
+            <summary>
+            获取所有Key
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.CacheFramework.RunTimeCache.MemoryCaches.GetKeys">
+            <summary>
+            获取所有Key
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.CacheFramework.RunTimeCache.MemoryCaches.GetKeys``1">
             <summary>
             获取所有Key
@@ -193,7 +205,7 @@
         </member>
         <member name="M:XExten.Advance.CacheFramework.RunTimeCache.MemoryCaches.RemoveAllCache">
             <summary>
-            删除所有缓存
+            删除所有缓�?
             </summary>
         </member>
         <member name="T:XExten.Advance.EventFramework.EventBus">
@@ -203,7 +215,7 @@
         </member>
         <member name="M:XExten.Advance.EventFramework.EventBus.Lancher(System.Reflection.Assembly[])">
             <summary>
-            初始化加载
+            初始化加�?
             </summary>
             <param name="inputs"></param>
             <returns></returns>
@@ -227,7 +239,7 @@
         </member>
         <member name="T:XExten.Advance.EventFramework.EventSources.IEventSource">
             <summary>
-            事件源
+            事件�?
             </summary>
         </member>
         <member name="P:XExten.Advance.EventFramework.EventSources.IEventSource.EventId">
@@ -247,7 +259,7 @@
         </member>
         <member name="T:XExten.Advance.EventFramework.PublishEvent.IEventPublish">
             <summary>
-            发布者
+            发布�?
             </summary>
         </member>
         <member name="P:XExten.Advance.EventFramework.PublishEvent.IEventPublish.Instance">
@@ -272,7 +284,7 @@
         </member>
         <member name="T:XExten.Advance.EventFramework.SubscriptEvent.EventSubscribeAttribute">
             <summary>
-            订阅者
+            订阅�?
             </summary>
         </member>
         <member name="P:XExten.Advance.EventFramework.SubscriptEvent.EventSubscribeAttribute.EventId">
@@ -282,13 +294,13 @@
         </member>
         <member name="M:XExten.Advance.EventFramework.SubscriptEvent.EventSubscribeAttribute.#ctor(System.String)">
             <summary>
-            构造
+            构�?
             </summary>
             <param name="EventId"></param>
         </member>
         <member name="T:XExten.Advance.EventFramework.SubscriptEvent.IEventSubscriber">
             <summary>
-            订阅者标识接口
+            订阅者标识接�?
             </summary>
         </member>
         <member name="T:XExten.Advance.HttpEvent">
@@ -313,7 +325,7 @@
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiCommon.MultiKeyPairs.KeyValuePairs(System.Object,System.Collections.Generic.IDictionary{System.String,System.String})">
             <summary>
-            创建一个key-value格式的表单数据(Making form data to KeyValuePairs)
+            创建一个key-value格式的表单数�?Making form data to KeyValuePairs)
             </summary>
             <param name="Entity"></param>
             <param name="Map"></param>
@@ -321,7 +333,7 @@
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiCommon.MultiKeyPairs.KeyValuePairs``1(``0,System.Collections.Generic.IDictionary{System.String,System.String})">
             <summary>
-            创建一个key-value格式的表单数据(Making form data to KeyValuePairs)
+            创建一个key-value格式的表单数�?Making form data to KeyValuePairs)
             </summary>
             <param name="Entity"></param>
             <param name="Map"></param>
@@ -329,7 +341,7 @@
         </member>
         <member name="M:XExten.Advance.HttpFramework.MultiCommon.MultiKeyPairs.RetrunEnumValue``1(System.Reflection.PropertyInfo,``0)">
             <summary>
-            返回枚举值
+            返回枚举�?
             </summary>
             <returns></returns>
         </member>
@@ -560,7 +572,7 @@
         </member>
         <member name="P:XExten.Advance.HttpFramework.MultiOption.CookieOption.InstanceCookie">
             <summary>
-            只是初始化不做任何操作
+            只是初始化不做任何操�?
             </summary>
         </member>
         <member name="T:XExten.Advance.HttpFramework.MultiOption.HeaderOption">
@@ -660,17 +672,17 @@
         </member>
         <member name="P:XExten.Advance.InternalFramework.Email.EmailSettting.SendTitle">
             <summary>
-            发送标题
+            发送标�?
             </summary>
         </member>
         <member name="T:XExten.Advance.InternalFramework.Email.EmailUtil">
             <summary>
-            邮箱工具类
+            邮箱工具�?
             </summary>
         </member>
         <member name="M:XExten.Advance.InternalFramework.Email.EmailUtil.SendMail(XExten.Advance.InternalFramework.Email.EmailViewModel)">
             <summary>
-             发送邮件
+             发送邮�?
             </summary>
             <param name="View"></param>
             <returns></returns>
@@ -682,12 +694,12 @@
         </member>
         <member name="P:XExten.Advance.InternalFramework.Email.EmailViewModel.AcceptedAddress">
             <summary>
-            收件人邮箱
+            收件人邮�?
             </summary>
         </member>
         <member name="P:XExten.Advance.InternalFramework.Email.EmailViewModel.Title">
             <summary>
-            发送标题
+            发送标�?
             </summary>
         </member>
         <member name="P:XExten.Advance.InternalFramework.Email.EmailViewModel.Content">
@@ -742,7 +754,7 @@
         </member>
         <member name="M:XExten.Advance.InternalFramework.Express.Expsion.SetProptertiesValue``1(System.Collections.Generic.Dictionary{System.String,System.Object},``0)">
             <summary>
-            设置属性值
+            设置属性�?
             </summary>
             <typeparam name="T"></typeparam>
             <param name="JsonValue"></param>
@@ -750,7 +762,7 @@
         </member>
         <member name="M:XExten.Advance.InternalFramework.Express.Expsion.GetExpression``1(System.String[])">
             <summary>
-             返回一个new表达式
+             返回一个new表达�?
             </summary>
             <typeparam name="T"></typeparam>
             <param name="PropertyName"></param>
@@ -758,7 +770,7 @@
         </member>
         <member name="M:XExten.Advance.InternalFramework.Express.Expsion.GetExpression``1(System.String,System.Object,XExten.Advance.InternalFramework.Express.Common.QType)">
             <summary>
-             返回一个bool表达式
+             返回一个bool表达�?
             </summary>
             <typeparam name="T"></typeparam>
             <param name="Property"></param>
@@ -768,7 +780,7 @@
         </member>
         <member name="M:XExten.Advance.InternalFramework.Express.Expsion.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
-            合并表达式 ExprOne AND ExprTwo
+            合并表达�?ExprOne AND ExprTwo
             </summary>
             <typeparam name="T"></typeparam>
             <param name="ExprOne"></param>
@@ -777,7 +789,7 @@
         </member>
         <member name="M:XExten.Advance.InternalFramework.Express.Expsion.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
-            合并表达式 ExprOne or ExprTwo
+            合并表达�?ExprOne or ExprTwo
             </summary>
             <typeparam name="T"></typeparam>
             <param name="ExprOne"></param>
@@ -801,17 +813,17 @@
         </member>
         <member name="P:XExten.Advance.InternalFramework.FileWatch.FileModule.IsInclude">
             <summary>
-            是否包含文件夹
+            是否包含文件�?
             </summary>
         </member>
         <member name="P:XExten.Advance.InternalFramework.FileWatch.FileModule.Module">
             <summary>
-            false 只是监听文件,true 监听并读取
+            false 只是监听文件,true 监听并读�?
             </summary>
         </member>
         <member name="P:XExten.Advance.InternalFramework.FileWatch.FileModule.Action">
             <summary>
-            监听并读取
+            监听并读�?
             </summary>
         </member>
         <member name="P:XExten.Advance.InternalFramework.FileWatch.FileModule.Events">
@@ -832,13 +844,301 @@
         </member>
         <member name="M:XExten.Advance.InternalFramework.FileWatch.FileMonitor.MonitorInit(XExten.Advance.InternalFramework.FileWatch.FileModule)">
             <summary>
-            文件监听(不读取)
+            文件监听(不读�?
             </summary>
             <param name="Module"></param>
         </member>
+        <member name="T:XExten.Advance.InternalFramework.Office.Common.ExcelBoolType">
+            <summary>
+            bool类型映射�?
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.InternalFramework.Office.Common.ExcelBoolType.TRUE">
+            <summary>
+            �?
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.InternalFramework.Office.Common.ExcelBoolType.FALSE">
+            <summary>
+            �?
+            </summary>
+        </member>
+        <member name="T:XExten.Advance.InternalFramework.Office.Common.ExcelType">
+            <summary>
+            Excel 类型
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.InternalFramework.Office.Common.ExcelType.xls">
+            <summary>
+            Excel2003
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.InternalFramework.Office.Common.ExcelType.xlsx">
+            <summary>
+            Excel2007+
+            </summary>
+        </member>
+        <member name="T:XExten.Advance.InternalFramework.Office.Common.OfficeAttribute">
+            <summary>
+            文档特�?
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.InternalFramework.Office.Common.OfficeAttribute.IngoreField">
+            <summary>
+            忽略导出
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.InternalFramework.Office.Common.OfficeAttribute.MapperField">
+            <summary>
+            映射字段
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.InternalFramework.Office.Common.OfficeAttribute.BoolEnum">
+            <summary>
+            bool类型映射枚举
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.InternalFramework.Office.Common.OfficeAttribute.Enum">
+            <summary>
+            是否枚举
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.GetWorkbook">
+            <summary>
+            获取工作�?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.GetSheet">
+            <summary>
+            获取工作�?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.GetRow">
+            <summary>
+            获取�?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.GetCell">
+            <summary>
+            获取�?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.#ctor(XExten.Advance.InternalFramework.Office.Common.ExcelType,System.String)">
+            <summary>
+            导出构�?
+            </summary>
+            <param name="type"></param>
+            <param name="Format"></param>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.CreateExportWorkBook">
+            <summary>
+            创建工作�?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.CreateExportSheet(System.String)">
+            <summary>
+            创建工作�?
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.CreateExportRows(System.Int32)">
+            <summary>
+            创建�?
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.CreateExportCells(System.Int32,System.Object)">
+            <summary>
+            创建单元�?
+            </summary>
+            <param name="index"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.HeadExportStyle(System.Int32)">
+            <summary>
+            表头样式
+            </summary>
+            <param name="EndCol"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.BodyExportStyle(System.Int32,System.Int32)">
+            <summary>
+            内容样式
+            </summary>
+            <param name="EndRow"></param>
+            <param name="EndCol"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.FootExportStyle(System.Int32,System.Int32)">
+            <summary>
+            页脚样式
+            </summary>
+            <param name="EndRow"></param>
+            <param name="EndCol"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.MergeExportCell(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            合并单元�?
+            </summary>
+            <param name="SRI">起始�?/param>
+            <param name="ERI">结束�?/param>
+            <param name="SCI">起始�?/param>
+            <param name="ECI">结束�?/param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.WriteExportStream(System.IO.Stream,System.Action{System.IO.Stream})">
+            <summary>
+             写入文件�?
+            </summary>
+            <param name="st"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.#ctor(System.IO.Stream,XExten.Advance.InternalFramework.Office.Common.ExcelType,System.Boolean)">
+            <summary>
+            导入构�?
+            </summary>
+            <param name="st"></param>
+            <param name="type"></param>
+            <param name="HasPageFooter"></param>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.CreateImportWorkBook">
+            <summary>
+            创建导入工作�?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.CreateImportSheet(System.Int32)">
+            <summary>
+            获取导入的工作表
+            </summary>
+            <param name="Index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.CreateImportHead``1">
+            <summary>
+            获取导入表格�?
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.CreateImportBody``1">
+            <summary>
+            创建导入内容
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.CheckWorkBook">
+            <summary>
+            检查工作薄是否被创�?
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.SetBorderColor(NPOI.SS.UserModel.ICellStyle,System.Boolean)">
+            <summary>
+            创建边框颜色
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.SetAlignment(NPOI.SS.UserModel.ICellStyle)">
+            <summary>
+            创建布局方式
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.SetBorder(NPOI.SS.UserModel.ICellStyle)">
+            <summary>
+            创建边框
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.SetFont(NPOI.SS.UserModel.ICellStyle,System.Boolean)">
+            <summary>
+            设置字体
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.Excel.SetStyle(System.Int32,System.Int32,System.Int32,System.Int32,NPOI.SS.UserModel.ICellStyle)">
+            <summary>
+            为当前行设置样式
+            </summary>
+            <param name="StartRowIndex">起始行索�?/param>
+            <param name="EndRowIndex">结束行索�?/param>
+            <param name="StartColIndex">起始列索�?/param>
+            <param name="EndColIndex">结束列索�?/param>
+            <param name="Style">单元格样�?/param>
+        </member>
+        <member name="T:XExten.Advance.InternalFramework.Office.ExcelFactory">
+            <summary>
+            Excel工厂
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.ExcelFactory.ExportExcel``1(System.Collections.Generic.IEnumerable{``0},XExten.Advance.InternalFramework.Office.Common.ExcelType,System.String,System.Object,System.Action{System.IO.Stream},System.IO.Stream,System.String)">
+            <summary>
+            导出EXCEL
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Data">需要被导出的数�?/param>
+            <param name="Types">Excel类型</param>
+            <param name="SheetName">工作表名�?/param>
+            <param name="Footer">页脚内容</param>
+            <param name="stream">�?/param>
+            <param name="action">自定义导�?/param>
+            <param name="DateFormat">事件格式</param>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.ExcelFactory.ImportExcel``1(System.IO.Stream,XExten.Advance.InternalFramework.Office.Common.ExcelType,System.Boolean,System.Int32)">
+            <summary>
+            导入EXCEL
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="fs">�?/param>
+            <param name="Types">类型</param>
+            <param name="HasPageFooter">文档是否有页�?/param>
+            <param name="SheetIndex">数据表索�?/param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.ExcelFactory.GetDatas(System.Reflection.PropertyInfo)">
+            <summary>
+            获取下拉值映�?
+            </summary>
+            <param name="Info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.ExcelFactory.CreateDropDwonListForXLSX(NPOI.XSSF.UserModel.XSSFSheet,System.Collections.Generic.List{System.String},System.Int32,System.Int32)">
+            <summary>
+            EXCEL2007下拉�?
+            </summary>
+            <param name="sheet"></param>
+            <param name="data"></param>
+            <param name="StarCol"></param>
+            <param name="EndCol"></param>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.ExcelFactory.CreateDropDwonListForXLS(NPOI.HSSF.UserModel.HSSFSheet,System.Collections.Generic.List{System.String},System.Int32,System.Int32)">
+            <summary>
+            EXCEL2003下拉�?
+            </summary>
+            <param name="sheet"></param>
+            <param name="data"></param>
+            <param name="StarCol"></param>
+            <param name="EndCol"></param>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Office.ExcelFactory.CreateDropDwonData(XExten.Advance.InternalFramework.Office.Excel,XExten.Advance.InternalFramework.Office.Common.ExcelType,System.Reflection.PropertyInfo,System.Int32,System.Int32)">
+            <summary>
+            创建下拉�?
+            </summary>
+            <param name="excel"></param>
+            <param name="type"></param>
+            <param name="info"></param>
+            <param name="StarCol"></param>
+            <param name="EndCol"></param>
+        </member>
         <member name="T:XExten.Advance.InternalFramework.Securities.Common.SecurityType">
             <summary>
-            加解密类型
+            加解密类�?
             </summary>
         </member>
         <member name="F:XExten.Advance.InternalFramework.Securities.Common.SecurityType.Base64">
@@ -966,7 +1266,7 @@
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToRodAsync(System.Decimal,System.Int32)">
              <summary>
-            保留小数非四舍五入
+            保留小数非四舍五�?
              </summary>
              <param name="param"></param>
              <param name="parrent"></param>
@@ -982,13 +1282,13 @@
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToFmtDateAsync(System.DateTime,System.Int32,System.String)">
             <summary>
-            时间格式化
+            时间格式�?
             </summary>
             <param name="param"></param>
             <param name="fmtType">
             0 : default
             1 : yyyy-MM-dd HH:mm:ss:ffff
-            2 : yyyy年MM月dd日
+            2 : yyyy年MM月dd�?
             </param>
             <param name="fmt"></param>
             <returns></returns>
@@ -1003,7 +1303,7 @@
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToJsonAsync``1(``0,Newtonsoft.Json.JsonSerializerSettings)">
             <summary>
-            序列化 JsonNet
+            序列�?JsonNet
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
@@ -1021,7 +1321,7 @@
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToDesAsync(System.Enum)">
             <summary>
-            返回指定的枚举描述值
+            返回指定的枚举描述�?
             </summary>
             <param name="Param"></param>
             <returns>枚举描叙</returns>
@@ -1040,15 +1340,15 @@
             获取指定字段的Attribute
             </summary>
             <typeparam name="TSource">指定实体</typeparam>
-            <typeparam name="TAttribute">特性</typeparam>
+            <typeparam name="TAttribute">特�?/typeparam>
             <param name="Param">指定实体</param>
-            <param name="FieldName">字段名</param>
-            <param name="IsProperty">是否获取属性</param>
+            <param name="FieldName">字段�?/param>
+            <param name="IsProperty">是否获取属�?/param>
             <returns>Attribute</returns>
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToTablesAsync``1(System.Collections.Generic.IList{``0})">
             <summary>
-            将集合转换为数据表并返回数据表
+            将集合转换为数据表并返回数据�?
             </summary>
             <typeparam name="T"></typeparam>
             <param name="queryable"></param>
@@ -1126,7 +1426,7 @@
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithNamesAsync``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
-            返回实体中所有的字段名
+            返回实体中所有的字段�?
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
@@ -1134,7 +1434,7 @@
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithKeyValueAsync``1(``0)">
             <summary>
-            返回一个实体中所有数据
+            返回一个实体中所有数�?
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
@@ -1142,14 +1442,14 @@
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.IsNullOrEmpty(System.String)">
              <summary>
-            检查字符
+            检查字�?
              </summary>
              <param name="param"></param>
              <returns></returns>
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
-            检查集合
+            检查集�?
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
@@ -1157,14 +1457,14 @@
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.IsIDCard(System.String)">
             <summary>
-            是否身份证
+            是否身份�?
             </summary>
             <param name="param"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToRod(System.Decimal,System.Int32)">
              <summary>
-            保留小数非四舍五入
+            保留小数非四舍五�?
              </summary>
              <param name="param"></param>
              <param name="parrent"></param>
@@ -1180,13 +1480,13 @@
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToFmtDate(System.DateTime,System.Int32,System.String)">
             <summary>
-            时间格式化
+            时间格式�?
             </summary>
             <param name="param"></param>
             <param name="fmtType">
             0 : default
             1 : yyyy-MM-dd HH:mm:ss:ffff
-            2 : yyyy年MM月dd日
+            2 : yyyy年MM月dd�?
             </param>
             <param name="fmt"></param>
             <returns></returns>
@@ -1201,7 +1501,7 @@
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToJson``1(``0,Newtonsoft.Json.JsonSerializerSettings)">
             <summary>
-            序列化 JsonNet
+            序列�?JsonNet
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
@@ -1238,7 +1538,7 @@
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToDes(System.Enum)">
             <summary>
-            返回指定的枚举描述值
+            返回指定的枚举描述�?
             </summary>
             <param name="Param"></param>
             <returns>枚举描叙</returns>
@@ -1257,15 +1557,15 @@
             获取指定字段的Attribute
             </summary>
             <typeparam name="TSource">指定实体</typeparam>
-            <typeparam name="TAttribute">特性</typeparam>
+            <typeparam name="TAttribute">特�?/typeparam>
             <param name="Param">指定实体</param>
-            <param name="FieldName">字段名</param>
-            <param name="IsProperty">是否获取属性</param>
+            <param name="FieldName">字段�?/param>
+            <param name="IsProperty">是否获取属�?/param>
             <returns>Attribute</returns>
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToTables``1(System.Collections.Generic.IList{``0})">
             <summary>
-            将集合转换为数据表并返回数据表
+            将集合转换为数据表并返回数据�?
             </summary>
             <typeparam name="T"></typeparam>
             <param name="queryable"></param>
@@ -1367,7 +1667,7 @@
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithNames``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
-            返回实体中所有的字段名
+            返回实体中所有的字段�?
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
@@ -1375,7 +1675,7 @@
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithKeyValue``1(``0)">
             <summary>
-            返回一个实体中所有数据
+            返回一个实体中所有数�?
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
@@ -1383,7 +1683,7 @@
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
-            合并表达式 ExprOne AND ExprTwo
+            合并表达�?ExprOne AND ExprTwo
             </summary>
             <typeparam name="T"></typeparam>
             <param name="ExprOne"></param>
@@ -1392,7 +1692,7 @@
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
-            合并表达式 ExprOne or ExprTwo
+            合并表达�?ExprOne or ExprTwo
             </summary>
             <typeparam name="T"></typeparam>
             <param name="ExprOne"></param>
@@ -1444,7 +1744,7 @@
         </member>
         <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.UseHeader(System.Action{XExten.Advance.RestHttpFramewor.Options.RestHeader})">
             <summary>
-            使用头
+            使用�?
             </summary>
             <param name="action"></param>
             <returns></returns>
@@ -1576,7 +1876,7 @@
         </member>
         <member name="T:XExten.Advance.RestHttpFramewor.Options.RestHeader">
             <summary>
-            头
+            �?
             </summary>
         </member>
         <member name="P:XExten.Advance.RestHttpFramewor.Options.RestHeader.HeaderKey">
@@ -1717,7 +2017,7 @@
         </member>
         <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.#ctor">
             <summary>
-            构造
+            构�?
             </summary>
         </member>
         <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.UseProxy(XExten.Advance.RestHttpFramewor.Options.RestProxy)">
@@ -1748,7 +2048,7 @@
         </member>
         <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.UseHeader(System.Action{XExten.Advance.RestHttpFramewor.Options.RestHeader})">
             <summary>
-            使用头
+            使用�?
             </summary>
             <param name="action"></param>
             <returns></returns>
@@ -1878,7 +2178,7 @@
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.BarHtml(System.String,System.Int32,System.Int32)">
             <summary>
-            返回条形码
+            返回条形�?
             </summary>
             <param name="param"></param>
             <param name="width"></param>
@@ -1887,7 +2187,7 @@
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.HText(System.String)">
             <summary>
-            把网页内容转为文本
+            把网页内容转为文�?
             </summary>
             <param name="html"></param>
             <returns></returns>
@@ -1913,13 +2213,13 @@
             时间转时间戳
             </summary>
             <param name="TimeStamp"></param>
-            <param name="RtSecond">True 返回秒 False 返回毫秒</param>
+            <param name="RtSecond">True 返回�?False 返回毫秒</param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.XmlSerializer``1(``0)">
             <summary>
             将对象序列化为XML(XmlSerializer)
-            说明：此方法序列化复杂类，如果没有声明XmlInclude等特性，可能会引发“使用 XmlInclude 或 SoapInclude 特性静态指定非已知的类型。”的错误。
+            说明：此方法序列化复杂类，如果没有声明XmlInclude等特性，可能会引发“使�?XmlInclude �?SoapInclude 特性静态指定非已知的类型。”的错误�?
             (Description: This method serializes complex classes. If you do not declare features such as XmlInclude, you may get an error "Use the XmlInclude or SoapInclude feature to statically specify a non-known type.")
             </summary>
             <typeparam name="T"></typeparam>
@@ -1949,7 +2249,7 @@
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.SetProptertiesValue``1(System.Collections.Generic.Dictionary{System.String,System.Object},``0)">
             <summary>
-            设置属性值
+            设置属性�?
             </summary>
             <typeparam name="T"></typeparam>
             <param name="JsonValue"></param>
@@ -1963,7 +2263,7 @@
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.GetExpression``1(System.String[])">
             <summary>
-             返回一个new表达式
+             返回一个new表达�?
             </summary>
             <typeparam name="T"></typeparam>
             <param name="PropertyName"></param>
@@ -1971,7 +2271,7 @@
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.GetExpression``1(System.String,System.Object,XExten.Advance.InternalFramework.Express.Common.QType)">
             <summary>
-             返回一个bool表达式
+             返回一个bool表达�?
             </summary>
             <typeparam name="T"></typeparam>
             <param name="Property"></param>
@@ -1981,7 +2281,7 @@
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.DoRetryWait(System.Action,System.Action{System.Exception,System.Int32,System.Int32},System.Int32,System.Int32)">
             <summary>
-            等待重试无返回
+            等待重试无返�?
             </summary>
             <param name="action"></param>
             <param name="exhandle"></param>
@@ -1990,7 +2290,7 @@
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.DoRetryWait``1(System.Func{``0},System.Action{System.Exception,System.Int32,System.Int32},System.Int32,System.Int32)">
             <summary>
-            等待重试有返回
+            等待重试有返�?
             </summary>
             <param name="action"></param>
             <param name="exhandle"></param>
@@ -1999,7 +2299,7 @@
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.DoRetry(System.Action,System.Action{System.Exception,System.Int32,System.Int32},System.Int32)">
             <summary>
-            无返回重试
+            无返回重�?
             </summary>
             <param name="action"></param>
             <param name="exhandle"></param>
@@ -2007,7 +2307,7 @@
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.DoRetry``1(System.Func{``0},System.Action{System.Exception,System.Int32,System.Int32},System.Int32)">
             <summary>
-            有返回重试
+            有返回重�?
             </summary>
             <typeparam name="T"></typeparam>
             <param name="action"></param>
@@ -2060,14 +2360,14 @@
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.CreateDir(System.String)">
             <summary>
-            创建文件夹
+            创建文件�?
             </summary>
             <param name="path"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.DeleteFolder(System.String)">
             <summary>
-            删除所有文件
+            删除所有文�?
             </summary>
             <param name="path"></param>
             <returns></returns>
@@ -2125,7 +2425,7 @@
         </member>
         <member name="F:XExten.Advance.ValidataFramework.Enum.ValitionEnum.Customer">
             <summary>
-            自定义验证
+            自定义验�?
             </summary>
         </member>
         <member name="T:XExten.Advance.ValidataFramework.Enum.ValitionModuleEnum">
@@ -2160,7 +2460,7 @@
         </member>
         <member name="P:XExten.Advance.ValidataFramework.ValitionAttribute.RegexStr">
             <summary>
-            正在表达式
+            正在表达�?
             </summary>
         </member>
         <member name="P:XExten.Advance.ValidataFramework.ValitionAttribute.UsageAppendField">
@@ -2170,19 +2470,19 @@
         </member>
         <member name="P:XExten.Advance.ValidataFramework.ValitionAttribute.CustomerValition">
             <summary>
-            自定义验证 需要自行实现ValitionBaseCustomer
+            自定义验�?需要自行实现ValitionBaseCustomer
             </summary>
         </member>
         <member name="T:XExten.Advance.ValidataFramework.ValitionBaseCustomer">
             <summary>
-            自定义验证父类
+            自定义验证父�?
             </summary>
         </member>
         <member name="M:XExten.Advance.ValidataFramework.ValitionBaseCustomer.UserCustomerValition(System.String,System.String)">
             <summary>
-            自定义验证
+            自定义验�?
             </summary>
-            <param name="propertyName">属性名称</param>
+            <param name="propertyName">属性名�?/param>
             <param name="requestParam">请求参数</param>
             <returns>T1 是否符合要求,T2 验证信息</returns>
         </member>
@@ -2223,12 +2523,12 @@
         </member>
         <member name="T:XExten.Advance.ValidataFramework.ValitionMiddleWare">
             <summary>
-            验证中间件
+            验证中间�?
             </summary>
         </member>
         <member name="M:XExten.Advance.ValidataFramework.ValitionMiddleWare.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
             <summary>
-            初始化
+            初始�?
             </summary>
             <param name="RequestDelegates"></param>
         </member>

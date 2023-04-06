@@ -26,11 +26,11 @@ namespace XExten.Advance.InternalFramework.Office
         /// <param name="Data">需要被导出的数据</param>
         /// <param name="Types">Excel类型</param>
         /// <param name="SheetName">工作表名称</param>
-        /// <param name="Footer">页脚内容</param>
-        /// <param name="stream">流</param>
         /// <param name="action">自定义导出</param>
+        /// <param name="stream">流</param>
+        /// <param name="Footer">页脚内容</param>
         /// <param name="DateFormat">事件格式</param>
-        internal static void ExportExcel<T>(IEnumerable<T> Data, ExcelType Types, string SheetName,dynamic Footer=null, Action<Stream> action = null, Stream stream = null, string DateFormat = "yyyy-MM-dd") where T : class, new()
+        internal static void ExportExcel<T>(IEnumerable<T> Data, ExcelType Types, string SheetName, Action<Stream> action = null, dynamic Footer = null, Stream stream = null, string DateFormat = "yyyy-MM-dd") where T : class, new()
         {
             int Rows = Data.Count();//数据行
             var PropNames = Data.WithNames();
@@ -90,8 +90,9 @@ namespace XExten.Advance.InternalFramework.Office
                     //Bool映射
                     else if (Entity.PropertyType == typeof(bool))
                     {
-                        var result = ((DescriptionAttribute)(Entity.GetCustomAttribute(typeof(OfficeAttribute), false) as OfficeAttribute).BoolEnum
-                             .GetField(data.ToString().ToUpper()).GetCustomAttribute(typeof(DescriptionAttribute), false)).Description;
+                        var BoolEnum = (Entity.GetCustomAttribute(typeof(OfficeAttribute), false) as OfficeAttribute).BoolEnum;
+                        var Attr = BoolEnum.GetField(data.ToString().ToUpper()).GetCustomAttribute(typeof(DescriptionAttribute), false);
+                        var result = ((DescriptionAttribute)Attr).Description;
                         excel.CreateExportCells(Col, result).BodyExportStyle(Row, Cols - 1);
                     }
                     else
@@ -113,7 +114,7 @@ namespace XExten.Advance.InternalFramework.Office
                     excel.FootExportStyle(Rows + 1, LastCol);
             }
             #endregion
-            excel.WriteExportStream(stream ?? new MemoryStream(), action);
+            excel.WriteExportStream(stream??new MemoryStream(), action);
         }
         /// <summary>
         /// 导入EXCEL
