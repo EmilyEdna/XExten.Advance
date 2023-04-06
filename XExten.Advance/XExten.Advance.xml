@@ -1998,9 +1998,9 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="T:XExten.Advance.InternalFramework.Translate.BaiduTranslate">
+        <member name="T:XExten.Advance.InternalFramework.Translate.Translation">
             <summary>
-            百度翻译
+            翻译
             </summary>
         </member>
         <member name="T:XExten.Advance.LinqFramework.SyncLinq">
