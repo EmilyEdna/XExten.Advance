@@ -652,9 +652,9 @@ namespace XExten.Advance.StaticFramework
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <returns></returns>
-        public static string Translate(string query, string from = "auto", string to = "zh")
+        public static string Translate(string query, string from = "auto", string to = "zh-CN")
         {
-            return BaiduTranslate.Translation(query, from, to);
+            return Translation.Translatate(query, from, to);
         }
     }
 }
