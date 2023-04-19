@@ -7,10 +7,10 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>XExten.Advance</PackageId>
 		<Product>XExten.Advance</Product>
-		<Version>1.2.4.6-preview</Version>
-		<AssemblyVersion>1.2.4.6</AssemblyVersion>
+		<Version>1.2.5</Version>
+		<AssemblyVersion>1.2.5</AssemblyVersion>
 		<PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
-		<FileVersion>1.2.4.6</FileVersion>
+		<FileVersion>1.2.5</FileVersion>
 		<AssemblyName>XExten.Advance</AssemblyName>
 		<RootNamespace>XExten.Advance</RootNamespace>
 	</PropertyGroup>
@@ -37,7 +37,7 @@
 		<PackageReference Include="DnsClient" Version="1.7.0" />
 		<PackageReference Include="DryIoc.dll" Version="4.8.8" />
 		<PackageReference Include="Mapster" Version="7.3.0" />
-		<PackageReference Include="MessagePack" Version="2.4.59" />
+		<PackageReference Include="MessagePack" Version="2.5.108" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="7.0.0" />

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 
-namespace XExten.Advance.RestHttpFramewor.Options
+namespace XExten.Advance.RestHttpFramework.Options
 {
     internal sealed class OptionBuilder
     {

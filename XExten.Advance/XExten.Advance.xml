@@ -1406,63 +1406,63 @@
             <param name="container"></param>
             <returns></returns>
         </member>
-        <member name="T:XExten.Advance.RestHttpFramewor.IRestHttpClient">
+        <member name="T:XExten.Advance.RestHttpFramework.IRestHttpClient">
             <summary>
             RestClient
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.IRestHttpClient.Rest">
+        <member name="P:XExten.Advance.RestHttpFramework.IRestHttpClient.Rest">
             <summary>
             创建实例
             </summary>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.UseProxy(XExten.Advance.RestHttpFramewor.Options.RestProxy)">
+        <member name="M:XExten.Advance.RestHttpFramework.IRestHttpClient.UseProxy(XExten.Advance.RestHttpFramework.Options.RestProxy)">
             <summary>
             使用代理
             </summary>
             <param name="Proxy"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.UseHttps">
+        <member name="M:XExten.Advance.RestHttpFramework.IRestHttpClient.UseHttps">
             <summary>
             忽略HTTPS证书
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.UseZip">
+        <member name="M:XExten.Advance.RestHttpFramework.IRestHttpClient.UseZip">
             <summary>
             启用数据压缩
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.UseCookie(System.Action{XExten.Advance.RestHttpFramewor.Options.RestCookie})">
+        <member name="M:XExten.Advance.RestHttpFramework.IRestHttpClient.UseCookie(System.Action{XExten.Advance.RestHttpFramework.Options.RestCookie})">
             <summary>
             使用Cookie
             </summary>
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.UseHeader(System.Action{XExten.Advance.RestHttpFramewor.Options.RestHeader})">
+        <member name="M:XExten.Advance.RestHttpFramework.IRestHttpClient.UseHeader(System.Action{XExten.Advance.RestHttpFramework.Options.RestHeader})">
             <summary>
             使用头
             </summary>
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.UseNode(System.Action{XExten.Advance.RestHttpFramewor.Options.RestNode})">
+        <member name="M:XExten.Advance.RestHttpFramework.IRestHttpClient.UseNode(System.Action{XExten.Advance.RestHttpFramework.Options.RestNode})">
             <summary>
             创建节点
             </summary>
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.Build">
+        <member name="M:XExten.Advance.RestHttpFramework.IRestHttpClient.Build">
             <summary>
             构建
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunStringAsync(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.IRestHttpClient.RunStringAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回集合
             </summary>
@@ -1471,7 +1471,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunStringFirstAsync(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.IRestHttpClient.RunStringFirstAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个
             </summary>
@@ -1480,7 +1480,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunByteAsync(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.IRestHttpClient.RunByteAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回集合
             </summary>
@@ -1489,7 +1489,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunByteFirstAsync(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.IRestHttpClient.RunByteFirstAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个
             </summary>
@@ -1498,7 +1498,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunString(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.IRestHttpClient.RunString(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回集合
             </summary>
@@ -1507,7 +1507,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunStringFirst(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.IRestHttpClient.RunStringFirst(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个
             </summary>
@@ -1516,7 +1516,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunByte(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.IRestHttpClient.RunByte(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回集合
             </summary>
@@ -1525,7 +1525,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.IRestHttpClient.RunByteFirst(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.IRestHttpClient.RunByteFirst(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个
             </summary>
@@ -1534,239 +1534,239 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="T:XExten.Advance.RestHttpFramewor.Options.RestCookie">
+        <member name="T:XExten.Advance.RestHttpFramework.Options.RestCookie">
             <summary>
             Cookie
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestCookie.URI">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestCookie.URI">
             <summary>
             URI
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestCookie.CookieName">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestCookie.CookieName">
             <summary>
             CookieName
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestCookie.CookieValue">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestCookie.CookieValue">
             <summary>
             CookieValue
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestCookie.CookiePath">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestCookie.CookiePath">
             <summary>
             CookiePath
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestCookie.CookieDomain">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestCookie.CookieDomain">
             <summary>
             CookieDomain
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestCookie.Cookies">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestCookie.Cookies">
             <summary>
             Cookies
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestCookie.CookieColl">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestCookie.CookieColl">
             <summary>
             CookieColl
             </summary>
         </member>
-        <member name="T:XExten.Advance.RestHttpFramewor.Options.RestHeader">
+        <member name="T:XExten.Advance.RestHttpFramework.Options.RestHeader">
             <summary>
             头
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestHeader.HeaderKey">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestHeader.HeaderKey">
             <summary>
             HeaderKey
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestHeader.HeaderValue">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestHeader.HeaderValue">
             <summary>
             HeaderValue
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestHeader.Headers">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestHeader.Headers">
             <summary>
             Headers
             </summary>
         </member>
-        <member name="T:XExten.Advance.RestHttpFramewor.Options.RestNode">
+        <member name="T:XExten.Advance.RestHttpFramework.Options.RestNode">
             <summary>
             节点
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestNode.Route">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestNode.Route">
             <summary>
             请求地址
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestNode.UseCache">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestNode.UseCache">
             <summary>
             是否启用缓存默认启用
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestNode.Provider">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestNode.Provider">
             <summary>
             请求方式
-            <see cref="T:XExten.Advance.RestHttpFramewor.Options.RestProviderMethod"/>
+            <see cref="T:XExten.Advance.RestHttpFramework.Options.RestProviderMethod"/>
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestNode.ProviderType">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestNode.ProviderType">
             <summary>
             方式
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestNode.PropertyNames">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestNode.PropertyNames">
             <summary>
             参数名称
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestNode.Encoding">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestNode.Encoding">
             <summary>
             编码
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestNode.CacheSpan">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestNode.CacheSpan">
             <summary>
             缓存时常默认5分钟
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestNode.Param">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestNode.Param">
             <summary>
             参数
             </summary>
         </member>
-        <member name="T:XExten.Advance.RestHttpFramewor.Options.RestProviderMethod">
+        <member name="T:XExten.Advance.RestHttpFramework.Options.RestProviderMethod">
             <summary>
             请求方式
             </summary>
         </member>
-        <member name="F:XExten.Advance.RestHttpFramewor.Options.RestProviderMethod.GET">
+        <member name="F:XExten.Advance.RestHttpFramework.Options.RestProviderMethod.GET">
             <summary>
             
             </summary>
         </member>
-        <member name="F:XExten.Advance.RestHttpFramewor.Options.RestProviderMethod.POST">
+        <member name="F:XExten.Advance.RestHttpFramework.Options.RestProviderMethod.POST">
             <summary>
             
             </summary>
         </member>
-        <member name="F:XExten.Advance.RestHttpFramewor.Options.RestProviderMethod.PUT">
+        <member name="F:XExten.Advance.RestHttpFramework.Options.RestProviderMethod.PUT">
             <summary>
             
             </summary>
         </member>
-        <member name="F:XExten.Advance.RestHttpFramewor.Options.RestProviderMethod.DELETE">
+        <member name="F:XExten.Advance.RestHttpFramework.Options.RestProviderMethod.DELETE">
             <summary>
             
             </summary>
         </member>
-        <member name="T:XExten.Advance.RestHttpFramewor.Options.RestProviderType">
+        <member name="T:XExten.Advance.RestHttpFramework.Options.RestProviderType">
             <summary>
             
             </summary>
         </member>
-        <member name="F:XExten.Advance.RestHttpFramewor.Options.RestProviderType.JSON">
+        <member name="F:XExten.Advance.RestHttpFramework.Options.RestProviderType.JSON">
             <summary>
             
             </summary>
         </member>
-        <member name="F:XExten.Advance.RestHttpFramewor.Options.RestProviderType.XML">
+        <member name="F:XExten.Advance.RestHttpFramework.Options.RestProviderType.XML">
             <summary>
             
             </summary>
         </member>
-        <member name="F:XExten.Advance.RestHttpFramewor.Options.RestProviderType.FORM">
+        <member name="F:XExten.Advance.RestHttpFramework.Options.RestProviderType.FORM">
             <summary>
             
             </summary>
         </member>
-        <member name="T:XExten.Advance.RestHttpFramewor.Options.RestProxy">
+        <member name="T:XExten.Advance.RestHttpFramework.Options.RestProxy">
             <summary>
             代理
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestProxy.IP">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestProxy.IP">
             <summary>
             IP
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestProxy.Port">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestProxy.Port">
             <summary>
             端口
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestProxy.UserName">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestProxy.UserName">
             <summary>
             用户
             </summary>
         </member>
-        <member name="P:XExten.Advance.RestHttpFramewor.Options.RestProxy.PassWord">
+        <member name="P:XExten.Advance.RestHttpFramework.Options.RestProxy.PassWord">
             <summary>
             密码
             </summary>
         </member>
-        <member name="T:XExten.Advance.RestHttpFramewor.RestHttpClient">
+        <member name="T:XExten.Advance.RestHttpFramework.RestHttpClient">
             <summary>
             RestHttpClient
             </summary>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.#ctor">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.#ctor">
             <summary>
             构造
             </summary>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.UseProxy(XExten.Advance.RestHttpFramewor.Options.RestProxy)">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.UseProxy(XExten.Advance.RestHttpFramework.Options.RestProxy)">
             <summary>
             使用代理
             </summary>
             <param name="Proxy"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.UseHttps">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.UseHttps">
             <summary>
             忽略HTTPS证书
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.UseZip">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.UseZip">
             <summary>
             启用数据压缩
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.UseCookie(System.Action{XExten.Advance.RestHttpFramewor.Options.RestCookie})">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.UseCookie(System.Action{XExten.Advance.RestHttpFramework.Options.RestCookie})">
             <summary>
             使用Cookie
             </summary>
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.UseHeader(System.Action{XExten.Advance.RestHttpFramewor.Options.RestHeader})">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.UseHeader(System.Action{XExten.Advance.RestHttpFramework.Options.RestHeader})">
             <summary>
             使用头
             </summary>
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.UseNode(System.Action{XExten.Advance.RestHttpFramewor.Options.RestNode})">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.UseNode(System.Action{XExten.Advance.RestHttpFramework.Options.RestNode})">
             <summary>
             创建节点
             </summary>
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.Build">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.Build">
             <summary>
             构建
             </summary>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunStringAsync(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.RunStringAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回string
             </summary>
@@ -1774,7 +1774,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunByteAsync(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.RunByteAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回Byte
             </summary>
@@ -1782,7 +1782,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunStringFirstAsync(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.RunStringFirstAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个string
             </summary>
@@ -1790,7 +1790,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunByteFirstAsync(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.RunByteFirstAsync(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个byte
             </summary>
@@ -1798,7 +1798,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunString(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.RunString(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回集合
             </summary>
@@ -1806,7 +1806,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunStringFirst(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.RunStringFirst(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个
             </summary>
@@ -1814,7 +1814,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunByte(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.RunByte(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回集合
             </summary>
@@ -1822,7 +1822,7 @@
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.RestHttpFramewor.RestHttpClient.RunByteFirst(System.Action{RestSharp.RestResponse},System.Int32)">
+        <member name="M:XExten.Advance.RestHttpFramework.RestHttpClient.RunByteFirst(System.Action{RestSharp.RestResponse},System.Int32)">
             <summary>
             返回单个
             </summary>

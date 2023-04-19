@@ -19,8 +19,8 @@ using XExten.Advance.HttpFramework.MultiFactory;
 using System.Linq;
 using XExten.Advance.CacheFramework;
 using XExten.Advance.CacheFramework.RunTimeCache;
-using XExten.Advance.RestHttpFramewor;
-using XExten.Advance.RestHttpFramewor.Options;
+using XExten.Advance.RestHttpFramework;
+using XExten.Advance.RestHttpFramework.Options;
 
 namespace Test
 {
