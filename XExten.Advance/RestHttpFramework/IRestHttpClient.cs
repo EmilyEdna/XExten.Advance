@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using XExten.Advance.RestHttpFramewor.Options;
+using XExten.Advance.RestHttpFramework.Options;
 
-namespace XExten.Advance.RestHttpFramewor
+namespace XExten.Advance.RestHttpFramework
 {
     /// <summary>
     /// RestClient

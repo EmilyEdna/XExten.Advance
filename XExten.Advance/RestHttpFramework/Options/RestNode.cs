@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace XExten.Advance.RestHttpFramewor.Options
+namespace XExten.Advance.RestHttpFramework.Options
 {
     /// <summary>
     /// 节点

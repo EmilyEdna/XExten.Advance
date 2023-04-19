@@ -7,12 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using XExten.Advance.CacheFramework;
 using XExten.Advance.LinqFramework;
-using XExten.Advance.RestHttpFramewor.Options;
+using XExten.Advance.RestHttpFramework.Options;
 using XExten.Advance.StaticFramework;
 using System.Linq;
 using System.Reflection;
 
-namespace XExten.Advance.RestHttpFramewor
+namespace XExten.Advance.RestHttpFramework
 {
     /// <summary>
     /// RestHttpClient

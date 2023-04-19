@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using XExten.Advance.LinqFramework;
 
-namespace XExten.Advance.RestHttpFramewor.Options
+namespace XExten.Advance.RestHttpFramework.Options
 {
     /// <summary>
     /// 头

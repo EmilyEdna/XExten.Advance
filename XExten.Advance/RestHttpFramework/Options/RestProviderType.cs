@@ -2,28 +2,24 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace XExten.Advance.RestHttpFramewor.Options
+namespace XExten.Advance.RestHttpFramework.Options
 {
     /// <summary>
-    /// 请求方式
+    /// 
     /// </summary>
-    public enum RestProviderMethod
+    public enum RestProviderType
     {
         /// <summary>
         /// 
         /// </summary>
-        GET,
+        JSON,
         /// <summary>
         /// 
         /// </summary>
-        POST,
+        XML,
         /// <summary>
         /// 
         /// </summary>
-        PUT,
-        /// <summary>
-        /// 
-        /// </summary>
-        DELETE
+        FORM
     }
 }

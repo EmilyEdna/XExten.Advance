@@ -5,7 +5,7 @@ using System.Text;
 using XExten.Advance.LinqFramework;
 using XExten.Advance.StaticFramework;
 
-namespace XExten.Advance.RestHttpFramewor.Options
+namespace XExten.Advance.RestHttpFramework.Options
 {
     /// <summary>
     /// Cookie
