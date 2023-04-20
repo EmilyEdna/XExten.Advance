@@ -10,7 +10,6 @@ using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
 using XExten.Advance.CacheFramework;
-using XExten.Advance.HttpFramework.MultiCommon;
 using XExten.Advance.LinqFramework;
 using XExten.Advance.NetFramework.Enums;
 using XExten.Advance.NetFramework.Options;
@@ -56,6 +55,50 @@ namespace XExten.Advance.NetFramework
             return this;
         }
 
+        public INetFactory AddHeader(List<DefaultHeader> action)
+        {
+            if (action != null)
+                foreach (var item in action)
+                {
+                    this.AddHeader(t =>
+                    {
+                        t.Key = item.Key;
+                        t.Value = item.Value;
+                    });
+                }
+            return this;
+        }
+
+        public INetFactory AddNode(List<DefaultNodes> action)
+        {
+            if (action != null)
+                foreach (var item in action)
+                {
+                    this.AddNode(t =>
+                    {
+                        t.Node = item.Node;
+                        t.Method = item.Method;
+                        t.MapFied= item.MapFied;
+                        t.Parameter=item.Parameter;
+                        t.Category=item.Category;
+                        t.Encoding=item.Encoding;
+                    });
+                }
+            return this;
+        }
+
+        public INetFactory AddWhereHeader(bool condition, Action<DefaultHeader> action)
+        {
+            if (condition)
+            {
+                DefaultHeader head = new DefaultHeader();
+                action.Invoke(head);
+                if (!head.Key.IsNullOrEmpty())
+                    Headers.Add(head);
+            }
+            return this;
+        }
+
         public INetFactory AddNode(Action<DefaultNodes> action)
         {
             DefaultNodes node = new DefaultNodes();
@@ -70,10 +113,10 @@ namespace XExten.Advance.NetFramework
             return this;
         }
 
-        public INetFactory Build(Action<DefaultBuilder> action)
+        public INetFactory Build(Action<DefaultBuilder> action=null)
         {
             DefaultBuilder builder = new DefaultBuilder();
-            action.Invoke(builder);
+            action?.Invoke(builder);
             Client.Timeout = Builder.Timeout;
             Builder = builder;
             BuildClient();

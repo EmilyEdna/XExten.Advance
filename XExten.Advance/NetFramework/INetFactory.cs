@@ -20,11 +20,30 @@ namespace XExten.Advance.NetFramework
         /// <returns></returns>
         INetFactory AddNode(Action<DefaultNodes> action);
         /// <summary>
+        /// 添加请求地址
+        /// </summary>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        INetFactory AddNode(List<DefaultNodes> action);
+        /// <summary>
         /// 添加请求头
         /// </summary>
         /// <param name="action"></param>
         /// <returns></returns>
         INetFactory AddHeader(Action<DefaultHeader> action);
+        /// <summary>
+        /// 添加请求头
+        /// </summary>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        INetFactory AddHeader(List<DefaultHeader> action);
+        /// <summary>
+        /// 添加请求头
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        INetFactory AddWhereHeader(bool condition,Action<DefaultHeader> action);
         /// <summary>
         /// 添加认证
         /// </summary>
@@ -42,7 +61,7 @@ namespace XExten.Advance.NetFramework
         /// </summary>
         /// <param name="action"></param>
         /// <returns></returns>
-        INetFactory Build(Action<DefaultBuilder> action);
+        INetFactory Build(Action<DefaultBuilder> action = null);
         /// <summary>
         /// 获取Cookie
         /// </summary>

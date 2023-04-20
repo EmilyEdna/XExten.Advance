@@ -50,8 +50,7 @@ namespace XExten.Advance.NetFramework
         /// </summary>
         public static void RegisterNetFramework()
         {
-            var head = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 Edg/112.0.1722.48";
-            _Services.AddHttpClient(string.Empty, opt => opt.DefaultRequestHeaders.UserAgent.ParseAdd(head))
+            _Services.AddHttpClient(string.Empty, opt => opt.DefaultRequestHeaders.UserAgent.ParseAdd(ConstDefault.UserAgentValue))
                 .SetHandlerLifetime(TimeSpan.FromMinutes(5));
             _Services.AddTransient<INetFactory, RestFactory>();
             _Services.AddTransient<INetFactory, HttpFactory>();
