@@ -1108,6 +1108,23 @@
             <param name="config"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToRandomAsync``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            随机数组
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToDisorderAsync``1(System.Collections.Generic.List{``0})">
+            <summary>
+            乱序列表
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ByUriAsync``1(``0,System.Collections.Generic.IDictionary{System.String,System.String})">
             <summary>
             将实体转为URL参数
@@ -1322,6 +1339,23 @@
             <param name="param"></param>
             <param name="destinationType"></param>
             <param name="config"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToRandom``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            随机数组
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToDisorder``1(System.Collections.Generic.List{``0})">
+            <summary>
+            乱序列表
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ByUri``1(``0,System.Collections.Generic.IDictionary{System.String,System.String})">

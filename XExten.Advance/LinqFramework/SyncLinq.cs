@@ -18,6 +18,7 @@ using Newtonsoft.Json.Linq;
 using XExten.Advance.AopFramework;
 using DryIoc;
 using Mapster;
+using NPOI.SS.Formula.Functions;
 
 namespace XExten.Advance.LinqFramework
 {
@@ -332,6 +333,52 @@ namespace XExten.Advance.LinqFramework
         public static object ToMapest(this object param, Type destinationType, TypeAdapterConfig config = null)
         {
             return config == null ? param.Adapt(param.GetType(), destinationType) : param.Adapt(param.GetType(), destinationType, config);
+        }
+
+        /// <summary>
+        /// 随机数组
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public static List<T> ToRandom<T>(this List<T> param, int index)
+        {
+            if (param.Count <= index) return param;
+
+            List<T> newArray = new List<T>(index);
+            Random random = new Random(Guid.NewGuid().GetHashCode());
+            int temp = 0;//接收产生的随机数
+            ArrayList list = new ArrayList();
+            for (int i = 1; i <= index; i++)
+            {
+                temp = random.Next(param.Count - 1);//将产生的随机数作为被抽数组的索引
+                if (!list.Contains(temp))
+                {
+                    newArray.Add(param[temp]);
+                    list.Add(temp);
+                }
+                else
+                    i--;
+            }
+            return newArray;
+        }
+
+        /// <summary>
+        /// 乱序列表
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static List<T> ToDisorder<T>(this List<T> param)
+        {
+            List<T> NewList = new List<T>();
+            Random Rand = new Random(Guid.NewGuid().GetHashCode());
+            foreach (var item in param)
+            {
+                NewList.Insert(Rand.Next(NewList.Count()), item);
+            }
+            return NewList;
         }
         #endregion
 
