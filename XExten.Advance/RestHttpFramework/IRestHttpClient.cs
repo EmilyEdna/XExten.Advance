@@ -61,7 +61,6 @@ namespace XExten.Advance.RestHttpFramework
         /// 返回集合
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
         Task<List<string>> RunStringAsync(Action<RestResponse> action = null, int IntervalTime = 10);
@@ -69,7 +68,6 @@ namespace XExten.Advance.RestHttpFramework
         /// 返回单个
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
         Task<string> RunStringFirstAsync(Action<RestResponse> action = null, int IntervalTime = 10);
@@ -77,7 +75,6 @@ namespace XExten.Advance.RestHttpFramework
         /// 返回集合
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
         Task<List<byte[]>> RunByteAsync(Action<RestResponse> action = null, int IntervalTime = 10);
@@ -85,7 +82,6 @@ namespace XExten.Advance.RestHttpFramework
         /// 返回单个
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
         Task<byte[]> RunByteFirstAsync(Action<RestResponse> action = null, int IntervalTime = 10);
@@ -95,7 +91,6 @@ namespace XExten.Advance.RestHttpFramework
         /// 返回集合
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
         List<string> RunString(Action<RestResponse> action = null, int IntervalTime = 10);
@@ -103,7 +98,6 @@ namespace XExten.Advance.RestHttpFramework
         /// 返回单个
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
         string RunStringFirst(Action<RestResponse> action = null, int IntervalTime = 10);
@@ -111,7 +105,6 @@ namespace XExten.Advance.RestHttpFramework
         /// 返回集合
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
         List<byte[]> RunByte(Action<RestResponse> action = null, int IntervalTime = 10);
@@ -119,7 +112,6 @@ namespace XExten.Advance.RestHttpFramework
         /// 返回单个
         /// </summary>
         /// <param name="action"></param>
-        /// <param name="RetryTimes"></param>
         /// <param name="IntervalTime"></param>
         /// <returns></returns>
         byte[] RunByteFirst(Action<RestResponse> action = null, int IntervalTime = 10);

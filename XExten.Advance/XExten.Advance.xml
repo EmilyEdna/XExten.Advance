@@ -2554,6 +2554,204 @@
             <param name="container"></param>
             <returns></returns>
         </member>
+        <member name="T:XExten.Advance.NetFramework.Enums.Category">
+            <summary>
+            请求类型
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.NetFramework.Enums.Category.None">
+            <summary>
+            空
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.NetFramework.Enums.Category.Json">
+            <summary>
+            Json
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.NetFramework.Enums.Category.Form">
+            <summary>
+            表单
+            </summary>
+        </member>
+        <member name="T:XExten.Advance.NetFramework.Enums.Method">
+            <summary>
+            请求方式
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.NetFramework.Enums.Method.GET">
+            <summary>
+            GET
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.NetFramework.Enums.Method.POST">
+            <summary>
+            POST
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.NetFramework.Enums.Method.DELETE">
+            <summary>
+            DELETE
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.NetFramework.Enums.Method.PUT">
+            <summary>
+            PUT
+            </summary>
+        </member>
+        <member name="T:XExten.Advance.NetFramework.INetFactory">
+            <summary>
+            网络请求工厂
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.NetFramework.INetFactory.AddNode(System.Action{XExten.Advance.NetFramework.Options.DefaultNodes})">
+            <summary>
+            添加请求地址
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.NetFramework.INetFactory.AddHeader(System.Action{XExten.Advance.NetFramework.Options.DefaultHeader})">
+            <summary>
+            添加请求头
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.NetFramework.INetFactory.AddCookie(System.Action{XExten.Advance.NetFramework.Options.DefaultCookie})">
+            <summary>
+            添加认证
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.NetFramework.INetFactory.SetBaseUri(System.String)">
+            <summary>
+            设置顶级Uri
+            </summary>
+            <param name="Uri"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.NetFramework.INetFactory.Build(System.Action{XExten.Advance.NetFramework.Options.DefaultBuilder})">
+            <summary>
+            构建
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.NetFramework.INetFactory.RunBytes">
+            <summary>
+            返回Bytes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.NetFramework.INetFactory.RunString">
+            <summary>
+            返回字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.NetFramework.INetFactory.RunStream">
+            <summary>
+            返回流
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:XExten.Advance.NetFramework.NetFactoryExtension">
+            <summary>
+            网络请求
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.Resolve``1">
+            <summary>
+            限定获取实例
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.GetService``1">
+            <summary>
+            通用获取实例
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.RegisterNetFramework">
+            <summary>
+            注入限定类
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.RegisterService(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
+            <summary>
+            注册服务
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="T:XExten.Advance.NetFramework.Options.DefaultBuilder">
+            <summary>
+            构建
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.NetFramework.Options.DefaultBuilder.Timeout">
+            <summary>
+            超时
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.NetFramework.Options.DefaultBuilder.CacheSpan">
+            <summary>
+            缓存
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.NetFramework.Options.DefaultBuilder.Gzip">
+            <summary>
+            压缩
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.NetFramework.Options.DefaultBuilder.IgnoreHttps">
+            <summary>
+            https验证
+            </summary>
+        </member>
+        <member name="T:XExten.Advance.NetFramework.Options.DefaultHeader">
+            <summary>
+            头
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.NetFramework.Options.DefaultHeader.Key">
+            <summary>
+            键
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.NetFramework.Options.DefaultHeader.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="T:XExten.Advance.NetFramework.Options.DefaultNodes">
+            <summary>
+            节点
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.NetFramework.Options.DefaultNodes.Node">
+            <summary>
+            请求地址
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.NetFramework.Options.DefaultNodes.Method">
+            <summary>
+            请求方法
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.NetFramework.Options.DefaultNodes.Category">
+            <summary>
+            请求类型
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.NetFramework.Options.DefaultNodes.Parameter">
+            <summary>
+            参数
+            </summary>
+        </member>
         <member name="T:XExten.Advance.RestHttpFramework.IRestHttpClient">
             <summary>
             RestClient
@@ -2615,7 +2813,6 @@
             返回集合
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
@@ -2624,7 +2821,6 @@
             返回单个
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
@@ -2633,7 +2829,6 @@
             返回集合
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
@@ -2642,7 +2837,6 @@
             返回单个
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
@@ -2651,7 +2845,6 @@
             返回集合
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
@@ -2660,7 +2853,6 @@
             返回单个
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
@@ -2669,7 +2861,6 @@
             返回集合
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
@@ -2678,7 +2869,6 @@
             返回单个
             </summary>
             <param name="action"></param>
-            <param name="RetryTimes"></param>
             <param name="IntervalTime"></param>
             <returns></returns>
         </member>
