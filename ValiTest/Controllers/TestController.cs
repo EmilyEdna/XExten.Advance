@@ -26,7 +26,11 @@ namespace ValiTest.Controllers
                     Name="张三"
                  }
             };
-            SyncStatic.ExportExcel(d, ExcelType.xls, "test", stream => {
+            SyncStatic.ExportExcel(d, ExcelType.xlsx, "test", stream =>
+            {
+                //using FileStream fs = new FileStream("D:\\Test.xls", FileMode.Create);
+
+                //stream.CopyTo(fs);
 
                 // 把 Stream 转换成 byte[]
                 stream.Seek(0, SeekOrigin.Begin);
@@ -40,8 +44,8 @@ namespace ValiTest.Controllers
                 stream.Seek(0, SeekOrigin.Begin);
 
                 // 把 byte[] 写入文件
+                FileStream fs = new FileStream("D:\\Test.xlsx", FileMode.Create);
 
-                FileStream fs = new FileStream("D:\\Test.xls", FileMode.Create);
 
                 BinaryWriter bw = new BinaryWriter(fs);
 

@@ -3,9 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace XExten.Advance.LinqFramework
@@ -202,6 +200,29 @@ namespace XExten.Advance.LinqFramework
         public static async Task<object> ToMapestAsync(this object param, Type destinationType, TypeAdapterConfig config = null)
         {
             return await Task.Factory.StartNew(() => ToMapest(param, destinationType, config));
+        }
+
+        /// <summary>
+        /// 随机数组
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public static async Task<List<T>> ToRandomAsync<T>(this List<T> param, int index)
+        {
+            return await Task.Factory.StartNew(() => ToRandom(param, index));
+        }
+
+        /// <summary>
+        /// 乱序列表
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static async Task<List<T>> ToDisorderAsync<T>(this List<T> param)
+        {
+            return await Task.Factory.StartNew(() => ToDisorder(param));
         }
         #endregion
 

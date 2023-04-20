@@ -102,6 +102,20 @@ namespace XExten.Advance.ThreadFramework
         }
 
         /// <summary>
+        /// 停止指定任务
+        /// </summary>
+        /// <param name="key">任务名</param>
+        /// <param name="ExitCallback">任务结束的回调</param>
+        public void StopTask(string key, Action ExitCallback = null)
+        {
+            if (Threads.ContainsKey(key))
+            {
+                Actions.TryAdd(key, ExitCallback);
+                Threads[key].Token?.Cancel();
+            }
+        }
+
+        /// <summary>
         /// 释放所有线程资源
         /// </summary>
         public void Dispose()
