@@ -43,6 +43,13 @@ namespace XExten.Advance.NetFramework
         /// <param name="condition"></param>
         /// <param name="action"></param>
         /// <returns></returns>
+        INetFactory AddWhereHeader(bool condition, List<DefaultHeader> action);
+        /// <summary>
+        /// 添加请求头
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
         INetFactory AddWhereHeader(bool condition,Action<DefaultHeader> action);
         /// <summary>
         /// 添加认证

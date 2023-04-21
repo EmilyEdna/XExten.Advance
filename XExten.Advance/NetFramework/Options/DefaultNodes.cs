@@ -49,12 +49,14 @@ namespace XExten.Advance.NetFramework.Options
                     throw new Exception("请求地址不能为空!");
                 if (Category == Category.Json && (Method == Method.PUT || Method == Method.POST))
                 {
-                    Contents = new StringContent(Parameter == null ? "" : Parameter.ToJson());
+                    Contents = new StringContent(Parameter == null ? "" : ((Parameter is string) ? Parameter.ToString() : Parameter.ToJson()));
                     Contents.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 }
                 if (Category == Category.Form && (Method == Method.PUT || Method == Method.POST))
                 {
-                    Contents = new FormUrlEncodedContent(MultiKeyPairs.KeyValuePairs(Parameter,MapFied));
+                    if (Parameter is List<KeyValuePair<String, String>> Target)
+                        Contents = new FormUrlEncodedContent(Target);
+                    else Contents = new FormUrlEncodedContent(MultiKeyPairs.KeyValuePairs(Parameter, MapFied));
                     Contents.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
                 }
             }, ex => throw ex);

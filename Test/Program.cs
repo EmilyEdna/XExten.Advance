@@ -14,13 +14,11 @@ using XExten.Advance.EventFramework.PublishEvent;
 using XExten.Advance.EventFramework.SubscriptEvent;
 using XExten.Advance.StaticFramework;
 using XExten.Advance.LinqFramework;
-using XExten.Advance.HttpFramework.MultiFactory;
-using System.Linq;
 using XExten.Advance.CacheFramework;
 using XExten.Advance.CacheFramework.RunTimeCache;
-using XExten.Advance.RestHttpFramework;
-using XExten.Advance.RestHttpFramework.Options;
 using DryIoc;
+using XExten.Advance.NetFramework;
+using System.Linq;
 
 namespace Test
 {
@@ -28,31 +26,17 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            //Console.WriteLine(SyncStatic.Translate("hello world"));
+            Console.WriteLine(SyncStatic.Translate("hello world"));
+
+            NetFactoryExtension.RegisterNetFramework();
+            var data = NetFactoryExtension.GetService<INetFactory>().AddNode(t => t.Node = "https://www.baidu.com").Build().RunString().Result;
+            Console.WriteLine(data.FirstOrDefault());
             //EventTest.EventTestClassMethod();
             //AopTestClass.AopTestClassMethod();
-            //HttpTestClass.HttpTestClassMethod();
-            RestTestClass.RestTestMethod();
             //NormalTestClass.NormalTestClassMethod();
+            Console.ReadKey();
         }
     }
-    #region HttpRest
-    public class RestTestClass
-    {
-        public static  void RestTestMethod()
-        {
-            var data = IRestHttpClient.Rest.UseHeader(opt =>
-            {
-                opt.HeaderKey = RestConstProvider.UserAgent;
-                opt.HeaderValue = RestConstProvider.UserAgentWindows;
-            }).UseNode(opt =>
-            {
-                opt.Route = "https://baidu.com";
-            }).Build().RunStringAsync().Result;
-            Console.WriteLine(data.FirstOrDefault());
-        }
-    }
-    #endregion
 
     #region EventTest
 
@@ -134,30 +118,6 @@ namespace Test
     }
     #endregion
 
-    #region HttpTest
-    public class HttpTestClass
-    {
-        public static void HttpTestClassMethod()
-        {
-            var data = IHttpMultiClient.HttpMulti
-             .AddHeader(t =>
-             {
-                 t.HeaderKey = "Host";
-                 t.HeaderValue = "konachan.com";
-             })
-             .AddNode(opt =>
-             {
-                 opt.NodePath = "https://104.21.4.105:443/post.json";
-             })
-             .Build(opt =>
-             {
-                 opt.UseHttps = true;
-                 opt.UseZip = true;
-             }).RunString().FirstOrDefault();
-            Console.WriteLine(data);
-        }
-    }
-    #endregion
 
     #region NormalTest
     public class NormalTestClass

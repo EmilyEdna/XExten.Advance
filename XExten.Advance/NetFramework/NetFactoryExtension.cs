@@ -51,7 +51,7 @@ namespace XExten.Advance.NetFramework
         public static void RegisterNetFramework()
         {
             _Services.AddHttpClient(string.Empty, opt => opt.DefaultRequestHeaders.UserAgent.ParseAdd(ConstDefault.UserAgentValue))
-                .SetHandlerLifetime(TimeSpan.FromMinutes(5));
+                .SetHandlerLifetime(TimeSpan.FromSeconds(1));
             _Services.AddTransient<INetFactory, RestFactory>();
             _Services.AddTransient<INetFactory, HttpFactory>();
             _Provider = _Services.BuildServiceProvider();

@@ -1,15 +1,10 @@
 ﻿using ImTools;
-using Microsoft.Extensions.Http;
-using Microsoft.Extensions.Options;
-using NStandard.Evaluators;
 using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Reflection;
-using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
 using XExten.Advance.CacheFramework;
@@ -35,7 +30,7 @@ namespace XExten.Advance.NetFramework
             Nodes = new List<DefaultNodes>();
             Builder = new DefaultBuilder();
             CookieContainer = new CookieContainer();
-            Client = new RestClient();
+            Options = new RestClientOptions();
             Request = new RestRequest();
         }
 
@@ -58,6 +53,23 @@ namespace XExten.Advance.NetFramework
             action.Invoke(head);
             if (!head.Key.IsNullOrEmpty())
                 Headers.Add(head);
+            return this;
+        }
+
+        public INetFactory AddWhereHeader(bool condition, List<DefaultHeader> action)
+        {
+            if (condition)
+            {
+                if (action != null)
+                    foreach (var item in action)
+                    {
+                        this.AddHeader(t =>
+                        {
+                            t.Key = item.Key;
+                            t.Value = item.Value;
+                        });
+                    }
+            }
             return this;
         }
 
@@ -122,7 +134,6 @@ namespace XExten.Advance.NetFramework
         {
             DefaultBuilder builder = new DefaultBuilder();
             action?.Invoke(builder);
-            Options.MaxTimeout = (int)Builder.Timeout.TotalSeconds;
             Builder = builder;
             BuildClient();
             return this;
@@ -130,7 +141,7 @@ namespace XExten.Advance.NetFramework
 
         public INetFactory GetCookie(Action<CookieContainer, Uri> action)
         {
-            CookieHandler = action;        
+            CookieHandler = action;
             return this;
         }
 
@@ -138,7 +149,6 @@ namespace XExten.Advance.NetFramework
         {
             try
             {
-                RestClient client = new RestClient(this.Options);
                 List<byte[]> Result = new List<byte[]>();
                 foreach (var node in Nodes)
                 {
@@ -146,11 +156,11 @@ namespace XExten.Advance.NetFramework
                     {
                         var key = node.Node.ToMd5();
                         var result = Caches.RunTimeCacheGet<byte[]>(key);
-                        if (result== null)
+                        if (result == null)
                         {
                             var response = await ConfigRequest(node);
-                            Caches.RunTimeCacheSet(key, response, Builder.CacheSpan);
-                            Result.Add(response);
+                            Caches.RunTimeCacheSet(key, response.RawBytes, Builder.CacheSpan);
+                            Result.Add(response.RawBytes);
                         }
                         else
                             Result.Add(result);
@@ -158,8 +168,7 @@ namespace XExten.Advance.NetFramework
                     else
                     {
                         var response = await ConfigRequest(node);
-           
-                        Result.Add(response);
+                        Result.Add(response.RawBytes);
                     }
                 }
 
@@ -175,8 +184,7 @@ namespace XExten.Advance.NetFramework
         public async Task<List<string>> RunString()
         {
             try
-            {
-                RestClient client = new RestClient(this.Options);
+            {      
                 List<string> Result = new List<string>();
                 foreach (var node in Nodes)
                 {
@@ -187,9 +195,7 @@ namespace XExten.Advance.NetFramework
                         if (result.IsNullOrEmpty())
                         {
                             var response = await ConfigRequest(node);
-                            var stream = new MemoryStream(response);
-                            using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(node.Encoding));
-                            result = reader.ReadToEnd();
+                            result = response.Content;
                             await Caches.RunTimeCacheSetAsync(key, result, Builder.CacheSpan);
                             Result.Add(result);
                         }
@@ -199,10 +205,7 @@ namespace XExten.Advance.NetFramework
                     else
                     {
                         var response = await ConfigRequest(node);
-                        var stream = new MemoryStream(response);
-                        using StreamReader reader = new StreamReader(stream, Encoding.GetEncoding(node.Encoding));
-                        var result = reader.ReadToEnd();
-                        Result.Add(result);
+                        Result.Add(response.Content);
                     }
                 }
 
@@ -219,7 +222,6 @@ namespace XExten.Advance.NetFramework
         {
             try
             {
-                RestClient client = new RestClient(this.Options);
                 List<Stream> Result = new List<Stream>();
                 foreach (var node in Nodes)
                 {
@@ -230,7 +232,7 @@ namespace XExten.Advance.NetFramework
                         if (result == null)
                         {
                             var response = await ConfigRequest(node);
-                            var stream = new MemoryStream(response);
+                            var stream = new MemoryStream(response.RawBytes);
                             Caches.RunTimeCacheSet(key, stream, Builder.CacheSpan);
                             Result.Add(stream);
                         }
@@ -240,7 +242,7 @@ namespace XExten.Advance.NetFramework
                     else
                     {
                         var response = await ConfigRequest(node);
-                        var stream = new MemoryStream(response);
+                        var stream = new MemoryStream(response.RawBytes);
                         Result.Add(stream);
                     }
                 }
@@ -257,6 +259,7 @@ namespace XExten.Advance.NetFramework
         #region  私有方法
         private void BuildClient()
         {
+           
             if (Builder.UseCookie)
                 Options.CookieContainer = CookieContainer;
             if (Builder.UseBaseUri)
@@ -270,6 +273,7 @@ namespace XExten.Advance.NetFramework
                 HttpEvent.RestActionEvent?.Invoke(Client, new ArgumentNullException("未调用AddNode"));
                 return;
             }
+            Request.Timeout = (int)Builder.Timeout.TotalSeconds*1000;
             Request.AddHeader(ConstDefault.UserAgent, ConstDefault.UserAgentValue);
             if (Headers.Count > 0)
                 Headers.ForEach(item =>
@@ -278,53 +282,68 @@ namespace XExten.Advance.NetFramework
                 });
         }
 
-        private async Task<byte[]> ConfigRequest(DefaultNodes Node)
+        private async Task<RestResponse> ConfigRequest(DefaultNodes Node)
         {
+            Options.Encoding = Encoding.GetEncoding(Node.Encoding);
+            Client = new RestClient(this.Options);
             switch (Node.Method)
             {
                 case Enums.Method.GET:
-                    this.Request.RequestFormat = DataFormat.None;
-                    this.Request.Resource = Node.Node;
-                    this.Request.Method = Method.Get;
+                    Request.RequestFormat = DataFormat.None;
+                    Request.Resource = Node.Node;
+                    Request.Method = Method.Get;
                     break;
                 case Enums.Method.POST:
-                    this.Request.Resource = Node.Node;
-                    this.Request.Method = Method.Post;
+                   Request.Resource = Node.Node;
+                   Request.Method = Method.Post;
                     if (Node.Category == Enums.Category.Json)
-                        this.Request.AddJsonBody(Node.Parameter);
+                       Request.AddJsonBody(Node.Parameter);
                     if (Node.Category == Enums.Category.Form)
-                        Node.Parameter.GetType().GetProperties().ForEnumerEach(item =>
-                        {
-                            var value = Node.Parameter.GetType().GetProperty(item.Name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance).GetValue(Node.Parameter).ToString();
-                            this.Request.AddParameter(item.Name, value);
-                        });
+                        if (Node.Parameter is List<KeyValuePair<String, String>> Target)
+                            Target.ForEach(item =>
+                            {
+                               Request.AddParameter(item.Key, item.Value);
+                            });
+                        else
+                            Node.Parameter.GetType().GetProperties().ForEnumerEach(item =>
+                            {
+                                var value = Node.Parameter.GetType().GetProperty(item.Name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance).GetValue(Node.Parameter).ToString();
+                                Request.AddParameter(item.Name, value);
+                            });
                     break;
                 case Enums.Method.PUT:
-                    this.Request.Resource = Node.Node;
-                    this.Request.Method = Method.Put;
+                   Request.Resource = Node.Node;
+                   Request.Method = Method.Put;
                     if (Node.Category == Enums.Category.Json)
-                        this.Request.AddJsonBody(Node.Parameter);
+                       Request.AddJsonBody(Node.Parameter);
                     if (Node.Category == Enums.Category.Form)
-                        Node.Parameter.GetType().GetProperties().ForEnumerEach(item =>
-                        {
-                            var value = Node.Parameter.GetType().GetProperty(item.Name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance).GetValue(Node.Parameter).ToString();
-                            this.Request.AddParameter(item.Name, value);
-                        });
+                        if (Node.Parameter is List<KeyValuePair<String, String>> Target)
+                            Target.ForEach(item =>
+                            {
+                               Request.AddParameter(item.Key, item.Value);
+                            });
+                        else
+                            Node.Parameter.GetType().GetProperties().ForEnumerEach(item =>
+                            {
+                                var value = Node.Parameter.GetType().GetProperty(item.Name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance).GetValue(Node.Parameter).ToString();
+                            });
                     break;
                 case Enums.Method.DELETE:
-                    this.Request.RequestFormat = DataFormat.None;
-                    this.Request.Resource = Node.Node;
-                    this.Request.Method = Method.Delete;
+                   Request.RequestFormat = DataFormat.None;
+                   Request.Resource = Node.Node;
+                   Request.Method = Method.Delete;
                     break;
                 default:
                     break;
             }
-
-            var response = await Client.ExecuteAsync(this.Request);
-            var Container = new CookieContainer();
-            Container.Add(response.Cookies);
-            CookieHandler.Invoke(Container, new Uri(Node.Node));
-            return response.RawBytes;
+            var response =await  Client.ExecuteAsync(Request);
+            if (CookieHandler != null)
+            {
+                var Container = new CookieContainer();
+                Container.Add(response.Cookies);
+                CookieHandler.Invoke(Container, new Uri(Node.Node));
+            }
+            return response;
         }
         #endregion
     }

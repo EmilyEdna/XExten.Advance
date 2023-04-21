@@ -31,7 +31,6 @@ namespace XExten.Advance.NetFramework
             Nodes = new List<DefaultNodes>();
             Builder = new DefaultBuilder();
             CookieContainer = new CookieContainer();
-            Client = NetFactoryExtension.GetService<IHttpClientFactory>().CreateClient();
         }
         public INetFactory AddCookie(Action<DefaultCookie> action)
         {
@@ -69,21 +68,20 @@ namespace XExten.Advance.NetFramework
             return this;
         }
 
-        public INetFactory AddNode(List<DefaultNodes> action)
+        public INetFactory AddWhereHeader(bool condition, List<DefaultHeader> action)
         {
-            if (action != null)
-                foreach (var item in action)
-                {
-                    this.AddNode(t =>
+            if (condition)
+            {
+                if (action != null)
+                    foreach (var item in action)
                     {
-                        t.Node = item.Node;
-                        t.Method = item.Method;
-                        t.MapFied= item.MapFied;
-                        t.Parameter=item.Parameter;
-                        t.Category=item.Category;
-                        t.Encoding=item.Encoding;
-                    });
-                }
+                        this.AddHeader(t =>
+                        {
+                            t.Key = item.Key;
+                            t.Value = item.Value;
+                        });
+                    }
+            }
             return this;
         }
 
@@ -99,10 +97,29 @@ namespace XExten.Advance.NetFramework
             return this;
         }
 
+        public INetFactory AddNode(List<DefaultNodes> action)
+        {
+            if (action != null)
+                foreach (var item in action)
+                {
+                    this.AddNode(t =>
+                    {
+                        t.Node = item.Node;
+                        t.Method = item.Method;
+                        t.MapFied = item.MapFied;
+                        t.Parameter = item.Parameter;
+                        t.Category = item.Category;
+                        t.Encoding = item.Encoding;
+                    });
+                }
+            return this;
+        }
+
         public INetFactory AddNode(Action<DefaultNodes> action)
         {
             DefaultNodes node = new DefaultNodes();
             action.Invoke(node);
+            node.SetNode();
             Nodes.Add(node);
             return this;
         }
@@ -113,11 +130,10 @@ namespace XExten.Advance.NetFramework
             return this;
         }
 
-        public INetFactory Build(Action<DefaultBuilder> action=null)
+        public INetFactory Build(Action<DefaultBuilder> action = null)
         {
             DefaultBuilder builder = new DefaultBuilder();
             action?.Invoke(builder);
-            Client.Timeout = Builder.Timeout;
             Builder = builder;
             BuildClient();
             return this;
@@ -198,8 +214,10 @@ namespace XExten.Advance.NetFramework
         #region  私有方法
         private void BuildClient()
         {
-            NetFactoryExtension.GetService<IOptionsMonitor<HttpClientFactoryOptions>>()
-                .Get(string.Empty).HttpMessageHandlerBuilderActions.Add(opt =>
+            var MessageHandle = NetFactoryExtension.GetService<IOptionsMonitor<HttpClientFactoryOptions>>()
+                .Get(string.Empty).HttpMessageHandlerBuilderActions;
+            MessageHandle.Clear();
+            MessageHandle.Add(opt =>
                 {
                     if (Builder.UseHandle)
                     {
@@ -218,6 +236,8 @@ namespace XExten.Advance.NetFramework
                         opt.PrimaryHandler = Handler;
                     }
                 });
+            Client = NetFactoryExtension.GetService<IHttpClientFactory>().CreateClient();
+            Client.Timeout = Builder.Timeout;
             if (Nodes.Count <= 0)
             {
                 HttpEvent.HttpActionEvent?.Invoke(Client, new ArgumentNullException("未调用AddNode"));
