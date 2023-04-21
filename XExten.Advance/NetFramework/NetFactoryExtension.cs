@@ -48,7 +48,8 @@ namespace XExten.Advance.NetFramework
         /// <summary>
         /// 注入限定类
         /// </summary>
-        public static void RegisterNetFramework()
+        /// <param name="Lifespan">Httpclient生命周期 默认1秒钟</param>
+        public static void RegisterNetFramework(int Lifespan=1)
         {
             _Services.AddHttpClient(string.Empty, opt => opt.DefaultRequestHeaders.UserAgent.ParseAdd(ConstDefault.UserAgentValue))
                 .SetHandlerLifetime(TimeSpan.FromSeconds(1));

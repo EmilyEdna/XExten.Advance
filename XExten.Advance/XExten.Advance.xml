@@ -2441,10 +2441,11 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.RegisterNetFramework">
+        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.RegisterNetFramework(System.Int32)">
             <summary>
             注入限定类
             </summary>
+            <param name="Lifespan">Httpclient生命周期 默认1秒钟</param>
         </member>
         <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.RegisterService(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
             <summary>
