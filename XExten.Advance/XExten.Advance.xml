@@ -101,11 +101,6 @@
             redis
             </summary>
         </member>
-        <member name="P:XExten.Advance.CacheFramework.Caches.Mongo">
-            <summary>
-            mongodb
-            </summary>
-        </member>
         <member name="P:XExten.Advance.CacheFramework.Caches.Memory">
             <summary>
             memoryCache
@@ -114,16 +109,6 @@
         <member name="P:XExten.Advance.CacheFramework.Caches.RedisConnectionString">
             <summary>
             Redis链接字符串
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.CacheFramework.Caches.MongoDBConnectionString">
-            <summary>
-            MongoDB链接字符串
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.CacheFramework.Caches.DbName">
-            <summary>
-            缓存类型为MongoDB是必填
             </summary>
         </member>
         <member name="M:XExten.Advance.CacheFramework.Caches.RunTimeCacheSet``1(System.String,``0,System.Int32,System.Boolean)">
@@ -146,13 +131,6 @@
             <param name="MinutesOrSecond"></param>
             <param name="UseSecond"></param>
         </member>
-        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDBCacheSet``1(``0)">
-            <summary>
-            添加MongoDB缓存
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-        </member>
         <member name="M:XExten.Advance.CacheFramework.Caches.RunTimeCacheGet``1(System.Object)">
             <summary>
             获取Memory缓存
@@ -169,22 +147,6 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDBCacheGet``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
-            <summary>
-            获取MongoDB缓存
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Exp"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDBCachesGet``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
-            <summary>
-            获取MongoDB缓存列表
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Express">Exp</param>
-            <returns></returns>
-        </member>
         <member name="M:XExten.Advance.CacheFramework.Caches.RunTimeCacheRemove(System.Object)">
             <summary>
              删除Memory缓存
@@ -196,22 +158,6 @@
             删除Redis缓存
             </summary>
             <param name="key"></param>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDBCacheRemove``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
-            <summary>
-            删除MongoDB缓存
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="filter"></param>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDbCacheUpdate``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.String,System.String)">
-            <summary>
-            更新MongoDB某个指
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Filter"></param>
-            <param name="Property"></param>
-            <param name="Value"></param>
         </member>
         <member name="M:XExten.Advance.CacheFramework.Caches.RunTimeCacheSetAsync``1(System.String,``0,System.Int32,System.Boolean)">
             <summary>
@@ -235,13 +181,6 @@
             <param name="UseSecond"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDBCacheSetAsync``1(``0)">
-            <summary>
-            添加MongoDB缓存
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-        </member>
         <member name="M:XExten.Advance.CacheFramework.Caches.RunTimeCacheGetAsync``1(System.Object)">
             <summary>
             获取Memory缓存
@@ -258,22 +197,6 @@
             <param name="key"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDBCacheGetAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
-            <summary>
-            获取MongoDB缓存
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Exp"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDBCachesGetAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
-            <summary>
-            获取MongoDB缓存列表
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Express"></param>
-            <returns></returns>
-        </member>
         <member name="M:XExten.Advance.CacheFramework.Caches.RunTimeCacheRemoveAsync(System.Object)">
             <summary>
              删除Memory缓存
@@ -285,126 +208,6 @@
             删除Redis缓存
             </summary>
             <param name="key"></param>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDBCacheRemoveAsync``2(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
-            <summary>
-            删除MongoDB缓存
-            </summary>
-            <typeparam name="T"></typeparam>
-            <typeparam name="TField"></typeparam>
-            <param name="filter"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.Caches.MongoDbCacheUpdateAsync``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.String,System.String)">
-            <summary>
-            更新MongoDB某个指
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Filter"></param>
-            <param name="Property"></param>
-            <param name="Value"></param>
-            <returns></returns>
-        </member>
-        <member name="T:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches">
-             <summary>
-            
-             </summary>
-        </member>
-        <member name="P:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.MongoDBConnectionString">
-            <summary>
-            链接字符串
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.MongoDBName">
-            <summary>
-            库名
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.Instance">
-            <summary>
-            获取实例
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.Insert``1(``0)">
-            <summary>
-            插入单条记录
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="t"></param>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.InsertMany``1(System.Collections.Generic.IList{``0})">
-            <summary>
-            批量插入
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="t"></param>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.Search``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
-            <summary>
-            查询单个记录
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Filter"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.SearchMany``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
-            <summary>
-            查询集合
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Filter"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.Update``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.String,System.String)">
-            <summary>
-            更新单个
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Filter"></param>
-            <param name="Property"></param>
-            <param name="Value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.UpdateMany``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},``0)">
-            <summary>
-            批量更新
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="filter"></param>
-            <param name="Entity"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.Delete``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
-            <summary>
-            删除单条记录
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="filter"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.DeleteMany``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
-            <summary>
-            批量删除记录
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="filter"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.GetPage``1(System.Int32,System.Int32)">
-            <summary>
-            分页查询
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="PageIndex"></param>
-            <param name="PageSize"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.CacheFramework.MongoDbCache.MongoDbCaches.Query``1">
-            <summary>
-            返回查询
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
         </member>
         <member name="T:XExten.Advance.CacheFramework.RedisCache.RedisCaches">
              <summary>
@@ -2612,14 +2415,6 @@
             <param name="action"></param>
             <param name="ection"></param>
             <param name="final"></param>
-        </member>
-        <member name="M:XExten.Advance.StaticFramework.SyncStatic.DnsLookup(System.String,System.String)">
-            <summary>
-            查询DNS
-            </summary>
-            <param name="Finder"></param>
-            <param name="Server"></param>
-            <returns></returns>
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.TryCatch``1(System.Func{``0},System.Func{System.Exception,``0},System.Action)">
             <summary>

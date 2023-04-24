@@ -12,8 +12,6 @@ using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using Chinese;
-using DnsClient;
-using DnsClient.Protocol;
 using Microsoft.Extensions.DependencyModel;
 using Polly;
 using XExten.Advance.InternalFramework.Express;
@@ -54,19 +52,6 @@ namespace XExten.Advance.StaticFramework
             {
                 final?.Invoke();
             }
-        }
-
-        /// <summary>
-        /// 查询DNS
-        /// </summary>
-        /// <param name="Finder"></param>
-        /// <param name="Server"></param>
-        /// <returns></returns>
-        public static List<string> DnsLookup(string Finder, string Server = "1.0.0.1")
-        {
-            LookupClient Client = new LookupClient();
-            return Client.Query(Finder, QueryType.A).AllRecords.ToList()
-                   .Select(t => (t as ARecord).Address.ToString()).ToList();
         }
 
         /// <summary>
