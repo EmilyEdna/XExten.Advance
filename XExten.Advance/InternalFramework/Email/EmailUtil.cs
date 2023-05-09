@@ -10,7 +10,7 @@ namespace XExten.Advance.InternalFramework.Email
     /// <summary>
     /// 邮箱工具类
     /// </summary>
-    internal class EmailUtil
+    internal class EmailUtile
     {
         /// <summary>
         ///  发送邮件
@@ -19,17 +19,17 @@ namespace XExten.Advance.InternalFramework.Email
         /// <returns></returns>
         internal static void SendMail(EmailViewModel View)
         {
-            if (EmailSettting.EmailAccount.IsNullOrEmpty() || EmailSettting.EmailAccount.IsNullOrEmpty() ||
-                EmailSettting.EmailPassWord.IsNullOrEmpty() || EmailSettting.SendTitle.IsNullOrEmpty())
-                throw new Exception($"Please check mail setting,There has some  error in the setting at ：{typeof(EmailSettting).FullName}");
+            if (EmailSetting.EmailAccount.IsNullOrEmpty() || EmailSetting.EmailAccount.IsNullOrEmpty() ||
+                EmailSetting.EmailPassWord.IsNullOrEmpty() || EmailSetting.SendTitle.IsNullOrEmpty())
+                throw new Exception($"Please check mail setting,There has some  error in the setting at ：{typeof(EmailSetting).FullName}");
             SmtpClient Client = new SmtpClient
             {
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                Host = EmailSettting.EmailAccount,
+                Host = EmailSetting.EmailAccount,
                 UseDefaultCredentials = true,
-                Credentials = new NetworkCredential(EmailSettting.EmailAccount, EmailSettting.EmailPassWord)
+                Credentials = new NetworkCredential(EmailSetting.EmailAccount, EmailSetting.EmailPassWord)
             };
-            MailAddress From = new MailAddress(EmailSettting.EmailAccount, EmailSettting.SendTitle);
+            MailAddress From = new MailAddress(EmailSetting.EmailAccount, EmailSetting.SendTitle);
             MailAddress To = new MailAddress(View.AcceptedAddress);
             MailMessage Msg = new MailMessage(From, To)
             {

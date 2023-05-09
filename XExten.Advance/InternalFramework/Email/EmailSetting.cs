@@ -7,7 +7,7 @@ namespace XExten.Advance.InternalFramework.Email
     /// <summary>
     /// 邮箱配置
     /// </summary>
-    public class EmailSettting
+    public class EmailSetting
     {
         /// <summary>
         /// 邮箱地址

@@ -935,37 +935,37 @@
             请求异常事件
             </summary>
         </member>
-        <member name="T:XExten.Advance.InternalFramework.Email.EmailSettting">
+        <member name="T:XExten.Advance.InternalFramework.Email.EmailSetting">
             <summary>
             邮箱配置
             </summary>
         </member>
-        <member name="P:XExten.Advance.InternalFramework.Email.EmailSettting.SmtpHost">
+        <member name="P:XExten.Advance.InternalFramework.Email.EmailSetting.SmtpHost">
             <summary>
             邮箱地址
             </summary>
         </member>
-        <member name="P:XExten.Advance.InternalFramework.Email.EmailSettting.EmailAccount">
+        <member name="P:XExten.Advance.InternalFramework.Email.EmailSetting.EmailAccount">
             <summary>
             邮箱账号
             </summary>
         </member>
-        <member name="P:XExten.Advance.InternalFramework.Email.EmailSettting.EmailPassWord">
+        <member name="P:XExten.Advance.InternalFramework.Email.EmailSetting.EmailPassWord">
             <summary>
             邮箱密码
             </summary>
         </member>
-        <member name="P:XExten.Advance.InternalFramework.Email.EmailSettting.SendTitle">
+        <member name="P:XExten.Advance.InternalFramework.Email.EmailSetting.SendTitle">
             <summary>
             发送标题
             </summary>
         </member>
-        <member name="T:XExten.Advance.InternalFramework.Email.EmailUtil">
+        <member name="T:XExten.Advance.InternalFramework.Email.EmailUtile">
             <summary>
             邮箱工具类
             </summary>
         </member>
-        <member name="M:XExten.Advance.InternalFramework.Email.EmailUtil.SendMail(XExten.Advance.InternalFramework.Email.EmailViewModel)">
+        <member name="M:XExten.Advance.InternalFramework.Email.EmailUtile.SendMail(XExten.Advance.InternalFramework.Email.EmailViewModel)">
             <summary>
              发送邮件
             </summary>
@@ -2035,6 +2035,16 @@
             UserAgentValue
             </summary>
         </member>
+        <member name="F:XExten.Advance.NetFramework.ConstDefault.UserAgentValueAndroid">
+             <summary>
+            UserAgentValueAndroid
+             </summary>
+        </member>
+        <member name="F:XExten.Advance.NetFramework.ConstDefault.UserAgentValueIPhone">
+            <summary>
+            UserAgentValueIPhone
+            </summary>
+        </member>
         <member name="F:XExten.Advance.NetFramework.ConstDefault.UserAgent">
             <summary>
             UserAgent
@@ -2128,6 +2138,26 @@
         <member name="F:XExten.Advance.NetFramework.Enums.Method.PUT">
             <summary>
             PUT
+            </summary>
+        </member>
+        <member name="T:XExten.Advance.NetFramework.Enums.Platform">
+            <summary>
+            平台
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.NetFramework.Enums.Platform.Windows">
+            <summary>
+            Windows
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.NetFramework.Enums.Platform.IOS">
+            <summary>
+            IOS
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.NetFramework.Enums.Platform.Android">
+            <summary>
+            Android
             </summary>
         </member>
         <member name="T:XExten.Advance.NetFramework.INetFactory">
@@ -2237,18 +2267,19 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.RegisterNetFramework(System.Int32,XExten.Advance.NetFramework.Enums.Platform)">
+            <summary>
+            注入限定类
+            </summary>
+            <param name="Lifespan">HttpClient生命周期 默认1秒钟</param>
+            <param name="platform">使用平台</param>
+        </member>
         <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.GetService``1">
             <summary>
             通用获取实例
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.RegisterNetFramework(System.Int32)">
-            <summary>
-            注入限定类
-            </summary>
-            <param name="Lifespan">Httpclient生命周期 默认1秒钟</param>
         </member>
         <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.RegisterService(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
             <summary>
@@ -2405,7 +2436,7 @@
         </member>
         <member name="T:XExten.Advance.StaticFramework.SyncStatic">
             <summary>
-            StaticUtil
+            StaticUtile
             </summary>
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.TryCatch(System.Action,System.Action{System.Exception},System.Action)">
@@ -2536,7 +2567,7 @@
             <param name="SheetIndex">数据表索引</param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.StaticFramework.SyncStatic.SetProptertiesValue``1(System.Collections.Generic.Dictionary{System.String,System.Object},``0)">
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.SetPropertiesValue``1(System.Collections.Generic.Dictionary{System.String,System.Object},``0)">
             <summary>
             设置属性值
             </summary>

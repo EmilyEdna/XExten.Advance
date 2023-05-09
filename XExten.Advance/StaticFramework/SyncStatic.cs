@@ -1,19 +1,18 @@
-﻿using System;
+﻿using Chinese;
+using Microsoft.Extensions.DependencyModel;
+using Polly;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Net;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using Chinese;
-using Microsoft.Extensions.DependencyModel;
-using Polly;
 using XExten.Advance.InternalFramework.Express;
 using XExten.Advance.InternalFramework.Express.Common;
 using XExten.Advance.InternalFramework.FileHandle;
@@ -28,7 +27,7 @@ using XExten.Advance.LinqFramework;
 namespace XExten.Advance.StaticFramework
 {
     /// <summary>
-    /// StaticUtil
+    /// StaticUtile
     /// </summary>
     public static class SyncStatic
     {
@@ -414,7 +413,7 @@ namespace XExten.Advance.StaticFramework
         /// <typeparam name="T"></typeparam>
         /// <param name="JsonValue"></param>
         /// <param name="Param"></param>
-        public static void SetProptertiesValue<T>(Dictionary<string, object> JsonValue, T Param) where T : class, new()
+        public static void SetPropertiesValue<T>(Dictionary<string, object> JsonValue, T Param) where T : class, new()
         {
             Expsion.SetProptertiesValue(JsonValue, Param);
         }

@@ -29,7 +29,7 @@ namespace Test
             Console.WriteLine(SyncStatic.Translate("hello world"));
 
             NetFactoryExtension.RegisterNetFramework();
-            var data = NetFactoryExtension.GetService<INetFactory>().AddNode(t => t.Node = "https://www.baidu.com").Build().RunString().Result;
+            var data = NetFactoryExtension.Resolve<INetFactory>().AddNode(t => t.Node = "https://www.baidu.com").Build().RunString().Result;
             Console.WriteLine(data.FirstOrDefault());
             //EventTest.EventTestClassMethod();
             //AopTestClass.AopTestClassMethod();

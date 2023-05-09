@@ -16,7 +16,9 @@ namespace XExten.Advance.InternalFramework.Translate
         internal static string Translatate(string query, string from, string to)
         {
             string Host = $"https://translate.appworlds.cn?text={query}&from=auto&to={to}";
-            HttpClient Client = new HttpClient();
+            HttpClientHandler httpHandler = new HttpClientHandler();
+            httpHandler.ServerCertificateCustomValidationCallback += delegate { return true; };
+            HttpClient Client = new HttpClient(httpHandler);
             var result = Client.GetStringAsync(Host).Result.ToModel<JObject>();
             return result["data"].ToString();
         }
