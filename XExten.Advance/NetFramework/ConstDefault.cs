@@ -73,5 +73,15 @@ namespace XExten.Advance.NetFramework
                 _ => UserAgentValue,
             };
         }
+        internal static string GetPlatformAgentValue(Platform platform)
+        {
+            return platform switch
+            {
+                Platform.Windows => UserAgentValue,
+                Platform.IOS => UserAgentValueIPhone,
+                Platform.Android => UserAgentValueAndroid,
+                _ => UserAgentValue,
+            };
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using XExten.Advance.NetFramework.Enums;
 
 namespace XExten.Advance.NetFramework.Options
 {
@@ -41,5 +42,13 @@ namespace XExten.Advance.NetFramework.Options
         /// 启用认证
         /// </summary>
         public bool UseCookie { get; set; } = false;
+        /// <summary>
+        /// 指定平台请求头
+        /// </summary>
+        public Platform PlatformHeader { get; set; } = Platform.Windows;
+        /// <summary>
+        /// 是否清除默认平台Header
+        /// </summary>
+        public bool DelDefHeader { get; set; }=false;
     }
 }

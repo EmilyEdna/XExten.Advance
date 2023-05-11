@@ -243,6 +243,12 @@ namespace XExten.Advance.NetFramework
                 HttpEvent.HttpActionEvent?.Invoke(Client, new ArgumentNullException("未调用AddNode"));
                 return;
             }
+            if (Builder.DelDefHeader)
+            {
+                Client.DefaultRequestHeaders.Clear();
+                var Value = ConstDefault.GetPlatformAgentValue(Builder.PlatformHeader);
+                Client.DefaultRequestHeaders.Add(ConstDefault.UserAgent, Value);
+            }
             if (Headers.Count > 0)
                 Headers.ForEach(item =>
                 {

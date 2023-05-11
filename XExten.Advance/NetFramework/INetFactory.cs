@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using XExten.Advance.NetFramework.Enums;
 using XExten.Advance.NetFramework.Options;
 
 namespace XExten.Advance.NetFramework

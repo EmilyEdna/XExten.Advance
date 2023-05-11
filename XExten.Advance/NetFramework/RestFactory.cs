@@ -275,6 +275,11 @@ namespace XExten.Advance.NetFramework
             }
             Request.Timeout = (int)Builder.Timeout.TotalSeconds*1000;
             Request.AddHeader(ConstDefault.UserAgent, ConstDefault.GetPlatformAgentValue());
+            if (Builder.DelDefHeader)
+            {
+                var Value = ConstDefault.GetPlatformAgentValue(Builder.PlatformHeader);
+                Request.AddOrUpdateHeader(ConstDefault.UserAgent, Value);
+            }
             if (Headers.Count > 0)
                 Headers.ForEach(item =>
                 {
