@@ -52,6 +52,22 @@ namespace XExten.Advance.IocFramework
             _Provider = _Services.BuildServiceProvider();
         }
 
+        /// <summary>
+        ///  注册
+        /// </summary>
+        /// <param name="serviceType"></param>
+        /// <param name="Module">1 瞬时 2 单例 3 作用域</param>
+        public static void Register(Type serviceType, int Module = 2)
+        {
+            if (Module == 1)
+                _Services.AddTransient(serviceType);
+            else if (Module == 2)
+                _Services.AddSingleton(serviceType);
+            else
+                _Services.AddScoped(serviceType);
+
+            _Provider = _Services.BuildServiceProvider();
+        }
 
         /// <summary>
         /// 取出实例

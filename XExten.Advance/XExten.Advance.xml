@@ -1516,6 +1516,13 @@
             <param name="implementationType"></param>
             <param name="Module">1 瞬时 2 单例 3 作用域</param>
         </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.Register(System.Type,System.Int32)">
+            <summary>
+             注册
+            </summary>
+            <param name="serviceType"></param>
+            <param name="Module">1 瞬时 2 单例 3 作用域</param>
+        </member>
         <member name="M:XExten.Advance.IocFramework.IocDependency.Resolve``1">
             <summary>
             取出实例

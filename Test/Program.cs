@@ -18,6 +18,8 @@ namespace Test
     {
         public static void Main(string[] args)
         {
+            IocDependency.Register(typeof(A));
+            ((A)IocDependency.Resolve(typeof(A))).Test();
             //Console.WriteLine(SyncStatic.Translate("hello world"));
             //RSAHelper.RsaTest();
             //NetFactoryExtension.RegisterNetFramework();
@@ -30,6 +32,13 @@ namespace Test
         }
     }
 
+    public class A
+    {
+        public void Test()
+        {
+            Console.WriteLine("123");
+        }
+    }
 
     #region RSA
     public class RSAHelper
