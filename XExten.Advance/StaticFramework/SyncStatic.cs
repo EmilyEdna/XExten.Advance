@@ -13,6 +13,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using XExten.Advance.AopFramework;
 using XExten.Advance.InternalFramework.Express;
 using XExten.Advance.InternalFramework.Express.Common;
 using XExten.Advance.InternalFramework.FileHandle;
@@ -22,6 +23,7 @@ using XExten.Advance.InternalFramework.Office.Common;
 using XExten.Advance.InternalFramework.Securities;
 using XExten.Advance.InternalFramework.Securities.Common;
 using XExten.Advance.InternalFramework.Translate;
+using XExten.Advance.IocFramework;
 using XExten.Advance.LinqFramework;
 
 namespace XExten.Advance.StaticFramework
@@ -639,6 +641,46 @@ namespace XExten.Advance.StaticFramework
         public static string Translate(string query, string from = "auto", string to = "zh-CN")
         {
             return Translation.Translatate(query, from, to);
+        }
+
+        /// <summary>
+        /// 注册代理
+        /// </summary>
+        /// <returns></returns>
+        public static void RegistAop<T>()
+        {
+            var Class = typeof(T);
+            Class.Assembly.GetTypes()
+               .Where(t => t.IsClass)
+               .Where(t => t.GetInterfaces().Contains(Class))
+               .ForEnumerEach(item =>
+               {
+                   IocDependency.Register(Class, AopProxy.CreateProxyOfRealize(Class, item).GetType());
+               });
+        }
+
+        /// <summary>
+        /// 创建RSAKey
+        /// </summary>
+        /// <param name="savePath"></param>
+        /// <param name="multiple"></param>
+        public static void GenerateRSAKey(string savePath, int multiple = 2)
+        {
+            RSAGenerate.GenerateKey(savePath, multiple);
+        }
+
+        /// <summary>
+        /// RSA加解密
+        /// </summary>
+        /// <param name="input">输入的数据</param>
+        /// <param name="type">0 表示解密 1表示加密</param>
+        /// <returns></returns>
+        public static string RSA(string input,bool type) 
+        { 
+            if(type)
+             return   RSAGenerate.RSAEncrypt(input);
+            else
+                return RSAGenerate.RSADecrypt(input);
         }
     }
 }

@@ -1,24 +1,16 @@
 ﻿using System;
-using System.IO;
-using System.Net;
-using System.Net.Sockets;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 using XExten.Advance.AopFramework.AopAttribute;
+using XExten.Advance.CacheFramework;
+using XExten.Advance.CacheFramework.RunTimeCache;
 using XExten.Advance.EventFramework;
 using XExten.Advance.EventFramework.EventSources;
 using XExten.Advance.EventFramework.PublishEvent;
 using XExten.Advance.EventFramework.SubscriptEvent;
-using XExten.Advance.StaticFramework;
+using XExten.Advance.IocFramework;
 using XExten.Advance.LinqFramework;
-using XExten.Advance.CacheFramework;
-using XExten.Advance.CacheFramework.RunTimeCache;
-using DryIoc;
-using XExten.Advance.NetFramework;
-using System.Linq;
+using XExten.Advance.StaticFramework;
 
 namespace Test
 {
@@ -26,17 +18,30 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine(SyncStatic.Translate("hello world"));
-
-            NetFactoryExtension.RegisterNetFramework();
-            var data = NetFactoryExtension.Resolve<INetFactory>().AddNode(t => t.Node = "https://www.baidu.com").Build().RunString().Result;
-            Console.WriteLine(data.FirstOrDefault());
+            //Console.WriteLine(SyncStatic.Translate("hello world"));
+            //RSAHelper.RsaTest();
+            //NetFactoryExtension.RegisterNetFramework();
+            //var data = NetFactoryExtension.Resolve<INetFactory>().AddNode(t => t.Node = "https://www.baidu.com").Build().RunString().Result;
+            //Console.WriteLine(data.FirstOrDefault());
             //EventTest.EventTestClassMethod();
-            //AopTestClass.AopTestClassMethod();
+            AopTestClass.AopTestClassMethod();
             //NormalTestClass.NormalTestClassMethod();
             Console.ReadKey();
         }
     }
+
+
+    #region RSA
+    public class RSAHelper
+    {
+        public static void RsaTest()
+        {
+            SyncStatic.GenerateRSAKey("D:\\Project");
+            var p = SyncStatic.RSA("你好", true);
+            var m = SyncStatic.RSA(p, false);
+        }
+    }
+    #endregion
 
     #region EventTest
 
@@ -53,7 +58,7 @@ namespace Test
             });
         }
     }
-    public class EventSubTest : XExten.Advance.EventFramework.SubscriptEvent.IEventSubscriber
+    public class EventSubTest : IEventSubscriber
     {
         [EventSubscribe("Json")]
         public Task Tests(IEventSource args)
@@ -112,12 +117,11 @@ namespace Test
     {
         public static void AopTestClassMethod()
         {
-            var container = new Container().RegistAop<IAopTest>();
-            container.Resolve<IAopTest>().AopTestMethod();
+            SyncStatic.RegistAop<IAopTest>();
+            IocDependency.Resolve<IAopTest>().AopTestMethod();
         }
     }
     #endregion
-
 
     #region NormalTest
     public class NormalTestClass

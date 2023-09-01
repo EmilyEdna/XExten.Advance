@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XExten.Advance.EventFramework.EventContext;
 using XExten.Advance.EventFramework.EventSources;
+using XExten.Advance.IocFramework;
 
 namespace XExten.Advance.EventFramework.PublishEvent
 {
@@ -18,7 +19,7 @@ namespace XExten.Advance.EventFramework.PublishEvent
              {
                  await Task.Delay(TimeSpan.FromMilliseconds(delay));
 
-                 await EventContainer.Instance.Resolve<IEventChangeStore>().WriteAsync(eventSource);
+                 await IocDependency.Resolve<IEventChangeStore>().WriteAsync(eventSource);
              });
         }
 
@@ -26,7 +27,7 @@ namespace XExten.Advance.EventFramework.PublishEvent
         {
             IEventSource eventSource = new EventSource();
             source.Invoke(eventSource);
-            return EventContainer.Instance.Resolve<IEventChangeStore>().WriteAsync(eventSource);
+            return IocDependency.Resolve<IEventChangeStore>().WriteAsync(eventSource);
         }
     }
 }

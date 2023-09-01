@@ -9,6 +9,7 @@ using XExten.Advance.EventFramework.EventContext;
 using XExten.Advance.EventFramework.EventSources;
 using XExten.Advance.EventFramework.PublishEvent;
 using XExten.Advance.EventFramework.SubscriptEvent;
+using XExten.Advance.IocFramework;
 
 namespace XExten.Advance.EventFramework
 {
@@ -29,8 +30,8 @@ namespace XExten.Advance.EventFramework
 
         private static Task OnLancher(params Assembly[] inputs)
         {
-            EventContainer.Instance.Regiest<IEventChangeStore, EventChangeStore>();
-            EventContainer.Instance.Regiest<IEventPublish, EventPublish>();
+            IocDependency.Register<IEventChangeStore, EventChangeStore>();
+            IocDependency.Register<IEventPublish, EventPublish>();
 
             var subscribers = inputs.SelectMany(x => x.GetExportedTypes().Where(t => t.IsPublic && t.IsClass && !t.IsInterface && !t.IsAbstract && typeof(IEventSubscriber).IsAssignableFrom(t)));
             var bindingAttr = BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly;
@@ -39,14 +40,14 @@ namespace XExten.Advance.EventFramework
 
             foreach (Type subscriber in subscribers)
             {
-                EventContainer.Instance.Regiest(typeof(IEventSubscriber), subscriber);
+                IocDependency.Register(typeof(IEventSubscriber), subscriber);
 
                 var eventHandlerMethods = subscriber.GetMethods(bindingAttr)
                     .Where(u => u.IsDefined(typeof(EventSubscribeAttribute), false));
 
                 foreach (MethodInfo eventHandlerMethod in eventHandlerMethods)
                 {
-                    var handler = eventHandlerMethod.CreateDelegate(typeof(Func<IEventSource, Task>), EventContainer.Instance.Resolve(typeof(IEventSubscriber), subscriber));
+                    var handler = eventHandlerMethod.CreateDelegate(typeof(Func<IEventSource, Task>), IocDependency.Resolve(subscriber));
 
                     var eventSubscribeAttributes = eventHandlerMethod.GetCustomAttributes<EventSubscribeAttribute>(false);
 
@@ -62,7 +63,7 @@ namespace XExten.Advance.EventFramework
 
             Timer timer = new Timer(async _ =>
             {
-                var source = await EventContainer.Instance.Resolve<IEventChangeStore>().ReadAsync();
+                var source = await IocDependency.Resolve<IEventChangeStore>().ReadAsync();
                 var runs = eventHandler.Where(t => t.ShouldRun(source.EventId));
 
                 if (!runs.Any())

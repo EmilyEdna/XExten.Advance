@@ -1,24 +1,19 @@
-﻿using XExten.Advance.InternalFramework.Securities;
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using Newtonsoft.Json;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Reflection;
-using System.Collections;
-using AutoMapper;
 using System.Linq.Expressions;
+using System.Reflection;
+using AutoMapper;
+using Mapster;
 using MessagePack;
 using MessagePack.Resolvers;
-using XExten.Advance.InternalFramework.Express;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using XExten.Advance.AopFramework;
-using DryIoc;
-using Mapster;
-using NPOI.SS.Formula.Functions;
+using XExten.Advance.InternalFramework.Express;
+using XExten.Advance.InternalFramework.Securities;
 
 namespace XExten.Advance.LinqFramework
 {
@@ -540,26 +535,6 @@ namespace XExten.Advance.LinqFramework
         public static Expression<Func<T, bool>> Or<T>(this Expression<Func<T, bool>> ExprOne, Expression<Func<T, bool>> ExprTwo)
         {
             return Expsion.Or(ExprOne, ExprTwo);
-        }
-        #endregion
-
-        #region Aop
-        /// <summary>
-        /// 注册代理
-        /// </summary>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        public static DryIoc.IContainer RegistAop<T>(this DryIoc.IContainer container)
-        {
-            var Class = typeof(T);
-            Class.Assembly.GetTypes()
-               .Where(t => t.IsClass)
-               .Where(t => t.GetInterfaces().Contains(Class))
-               .ForEnumerEach(item =>
-               {
-                   container.Register(Class, AopProxy.CreateProxyOfRealize(Class, item).GetType(), Reuse.Singleton);
-               });
-            return container;
         }
         #endregion
     }

@@ -10,6 +10,7 @@ using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
 using XExten.Advance.CacheFramework;
+using XExten.Advance.IocFramework;
 using XExten.Advance.LinqFramework;
 using XExten.Advance.NetFramework.Enums;
 using XExten.Advance.NetFramework.Options;
@@ -214,7 +215,8 @@ namespace XExten.Advance.NetFramework
         #region  私有方法
         private void BuildClient()
         {
-            var MessageHandle = NetFactoryExtension.GetService<IOptionsMonitor<HttpClientFactoryOptions>>()
+
+            var MessageHandle = IocDependency.Resolve<IOptionsMonitor<HttpClientFactoryOptions>>()
                 .Get(string.Empty).HttpMessageHandlerBuilderActions;
             MessageHandle.Clear();
             MessageHandle.Add(opt =>
@@ -236,7 +238,7 @@ namespace XExten.Advance.NetFramework
                         opt.PrimaryHandler = Handler;
                     }
                 });
-            Client = NetFactoryExtension.GetService<IHttpClientFactory>().CreateClient();
+            Client = IocDependency.Resolve<IHttpClientFactory>().CreateClient();
             Client.Timeout = Builder.Timeout;
             if (Nodes.Count <= 0)
             {

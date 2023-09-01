@@ -1469,10 +1469,80 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.InternalFramework.Securities.RSAGenerate.GenerateKey(System.String,System.Int32)">
+            <summary>
+            生成RSA私钥和公钥
+            </summary>
+            <param name="savePath"></param>
+            <param name="multiple"></param>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Securities.RSAGenerate.RSAEncrypt(System.String)">
+            <summary>
+            RSA加密
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.InternalFramework.Securities.RSAGenerate.RSADecrypt(System.String)">
+            <summary>
+            RSA解密
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="T:XExten.Advance.InternalFramework.Translate.Translation">
             <summary>
             翻译
             </summary>
+        </member>
+        <member name="T:XExten.Advance.IocFramework.IocDependency">
+            <summary>
+            Ioc
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.Register``2(System.Int32)">
+            <summary>
+             注册
+            </summary>
+            <typeparam name="TService"></typeparam>
+            <typeparam name="TImplementation"></typeparam>
+            <param name="Module">1 瞬时 2 单例 3 作用域</param>
+        </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.Register(System.Type,System.Type,System.Int32)">
+            <summary>
+             注册
+            </summary>
+            <param name="serviceType"></param>
+            <param name="implementationType"></param>
+            <param name="Module">1 瞬时 2 单例 3 作用域</param>
+        </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.Resolve``1">
+            <summary>
+            取出实例
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.Resolves``1">
+            <summary>
+            取出实例集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.Resolve(System.Type)">
+            <summary>
+            取出实例
+            </summary>
+            <param name="serviceType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.Resolves(System.Type)">
+            <summary>
+            取出实例集合
+            </summary>
+            <param name="serviceType"></param>
+            <returns></returns>
         </member>
         <member name="T:XExten.Advance.LinqFramework.SyncLinq">
             <summary>
@@ -2018,13 +2088,6 @@
             <param name="ExprTwo"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.RegistAop``1(DryIoc.IContainer)">
-            <summary>
-            注册代理
-            </summary>
-            <param name="container"></param>
-            <returns></returns>
-        </member>
         <member name="T:XExten.Advance.NetFramework.ConstDefault">
             <summary>
             头常量
@@ -2260,13 +2323,6 @@
             网络请求
             </summary>
         </member>
-        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.Resolve``1">
-            <summary>
-            限定获取实例
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
         <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.RegisterNetFramework(System.Int32,XExten.Advance.NetFramework.Enums.Platform)">
             <summary>
             注入限定类
@@ -2274,18 +2330,12 @@
             <param name="Lifespan">HttpClient生命周期 默认1秒钟</param>
             <param name="platform">使用平台</param>
         </member>
-        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.GetService``1">
+        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.Resolve``1">
             <summary>
-            通用获取实例
+            限定获取实例
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.RegisterService(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
-            <summary>
-            注册服务
-            </summary>
-            <param name="action"></param>
         </member>
         <member name="T:XExten.Advance.NetFramework.Options.DefaultBuilder">
             <summary>
@@ -2330,6 +2380,16 @@
         <member name="P:XExten.Advance.NetFramework.Options.DefaultBuilder.UseCookie">
             <summary>
             启用认证
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.NetFramework.Options.DefaultBuilder.PlatformHeader">
+            <summary>
+            指定平台请求头
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.NetFramework.Options.DefaultBuilder.DelDefHeader">
+            <summary>
+            是否清除默认平台Header
             </summary>
         </member>
         <member name="T:XExten.Advance.NetFramework.Options.DefaultCookie">
@@ -2721,6 +2781,27 @@
             <param name="query"></param>
             <param name="from"></param>
             <param name="to"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.RegistAop``1">
+            <summary>
+            注册代理
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.GenerateRSAKey(System.String,System.Int32)">
+            <summary>
+            创建RSAKey
+            </summary>
+            <param name="savePath"></param>
+            <param name="multiple"></param>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.RSA(System.String,System.Boolean)">
+            <summary>
+            RSA加解密
+            </summary>
+            <param name="input">输入的数据</param>
+            <param name="type">0 表示解密 1表示加密</param>
             <returns></returns>
         </member>
         <member name="P:XExten.Advance.ThreadFramework.TaskModel.ThreadTask">
