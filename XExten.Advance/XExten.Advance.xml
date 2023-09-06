@@ -2243,6 +2243,15 @@
             <param name="Port"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.NetFramework.INetFactory.AddWhreProxy(System.Boolean,System.String,System.Int32)">
+            <summary>
+             添加代理
+            </summary>
+            <param name="condition"></param>
+            <param name="IP"></param>
+            <param name="Port"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.NetFramework.INetFactory.AddNode(System.Action{XExten.Advance.NetFramework.Options.DefaultNodes})">
             <summary>
             添加请求地址
