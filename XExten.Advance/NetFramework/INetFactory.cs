@@ -20,6 +20,14 @@ namespace XExten.Advance.NetFramework
         /// <returns></returns>
         INetFactory AddProxy(string IP, int Port);
         /// <summary>
+        ///  添加代理
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <param name="IP"></param>
+        /// <param name="Port"></param>
+        /// <returns></returns>
+        INetFactory AddWhreProxy(bool condition, string IP, int Port);
+        /// <summary>
         /// 添加请求地址
         /// </summary>
         /// <param name="action"></param>
@@ -56,7 +64,7 @@ namespace XExten.Advance.NetFramework
         /// <param name="condition"></param>
         /// <param name="action"></param>
         /// <returns></returns>
-        INetFactory AddWhereHeader(bool condition,Action<DefaultHeader> action);
+        INetFactory AddWhereHeader(bool condition, Action<DefaultHeader> action);
         /// <summary>
         /// 添加认证
         /// </summary>

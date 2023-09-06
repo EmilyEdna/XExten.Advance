@@ -40,6 +40,13 @@ namespace XExten.Advance.NetFramework
             return this;
         }
 
+        public INetFactory AddWhreProxy(bool condition, string IP, int Port)
+        {
+            if (condition)
+                Proxy = new WebProxy(IP, Port);
+            return this;
+        }
+
         public INetFactory AddCookie(Action<DefaultCookie> action)
         {
             DefaultCookie cookie = new DefaultCookie();
