@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Http;
-using Microsoft.Extensions.Options;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +7,8 @@ using System.Net.Http;
 using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Http;
+using Microsoft.Extensions.Options;
 using XExten.Advance.CacheFramework;
 using XExten.Advance.IocFramework;
 using XExten.Advance.LinqFramework;
@@ -26,6 +26,7 @@ namespace XExten.Advance.NetFramework
         private string BaseUri;
         private Action<CookieContainer, Uri> CookieHandler;
         private HttpClient Client;
+        private WebProxy Proxy;
         public HttpFactory()
         {
             Headers = new List<DefaultHeader>();
@@ -33,6 +34,13 @@ namespace XExten.Advance.NetFramework
             Builder = new DefaultBuilder();
             CookieContainer = new CookieContainer();
         }
+
+        public INetFactory AddProxy(string IP, int Port)
+        {
+            Proxy = new WebProxy(IP, Port);
+            return this;
+        }
+
         public INetFactory AddCookie(Action<DefaultCookie> action)
         {
             DefaultCookie cookie = new DefaultCookie();
@@ -215,29 +223,28 @@ namespace XExten.Advance.NetFramework
         #region  私有方法
         private void BuildClient()
         {
-
             var MessageHandle = IocDependency.Resolve<IOptionsMonitor<HttpClientFactoryOptions>>()
                 .Get(string.Empty).HttpMessageHandlerBuilderActions;
             MessageHandle.Clear();
             MessageHandle.Add(opt =>
+            {
+                var Handler = new HttpClientHandler();
+                if (Builder.UseCookie)
                 {
-                    if (Builder.UseHandle)
-                    {
-                        var Handler = new HttpClientHandler
-                        {
-                            UseCookies = Builder.UseCookie,
-                            CookieContainer = CookieContainer
-                        };
-                        if (Builder.IgnoreHttps)
-                        {
-                            Handler.SslProtocols = SslProtocols.Tls | SslProtocols.Tls11 | SslProtocols.Tls12;
-                            Handler.ServerCertificateCustomValidationCallback = delegate { return true; };
-                        }
-                        if (Builder.Gzip)
-                            Handler.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-                        opt.PrimaryHandler = Handler;
-                    }
-                });
+                    Handler.UseCookies = true;
+                    Handler.CookieContainer = CookieContainer;
+                }
+                if (Builder.IgnoreHttps)
+                {
+                    Handler.SslProtocols = SslProtocols.Tls | SslProtocols.Tls11 | SslProtocols.Tls12;
+                    Handler.ServerCertificateCustomValidationCallback = delegate { return true; };
+                }
+                if (Builder.Gzip)
+                    Handler.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+                if (Proxy != null)
+                    Handler.Proxy = Proxy;
+                opt.PrimaryHandler = Handler;
+            });
             Client = IocDependency.Resolve<IHttpClientFactory>().CreateClient();
             Client.Timeout = Builder.Timeout;
             if (Nodes.Count <= 0)

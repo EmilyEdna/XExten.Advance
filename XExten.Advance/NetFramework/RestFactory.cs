@@ -1,11 +1,11 @@
-﻿using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using RestSharp;
 using XExten.Advance.CacheFramework;
 using XExten.Advance.LinqFramework;
 using XExten.Advance.NetFramework.Options;
@@ -23,6 +23,7 @@ namespace XExten.Advance.NetFramework
         private Action<CookieContainer, Uri> CookieHandler;
         private RestClient Client;
         private RestRequest Request;
+        private WebProxy Proxy;
         public RestFactory()
         {
             Headers = new List<DefaultHeader>();
@@ -31,6 +32,12 @@ namespace XExten.Advance.NetFramework
             CookieContainer = new CookieContainer();
             Options = new RestClientOptions();
             Request = new RestRequest();
+        }
+
+        public INetFactory AddProxy(string IP, int Port)
+        {
+            Proxy = new WebProxy(IP, Port);
+            return this;
         }
 
         public INetFactory AddCookie(Action<DefaultCookie> action)
@@ -183,7 +190,7 @@ namespace XExten.Advance.NetFramework
         public async Task<List<string>> RunString()
         {
             try
-            {      
+            {
                 List<string> Result = new List<string>();
                 foreach (var node in Nodes)
                 {
@@ -258,7 +265,7 @@ namespace XExten.Advance.NetFramework
         #region  私有方法
         private void BuildClient()
         {
-           
+
             if (Builder.UseCookie)
                 Options.CookieContainer = CookieContainer;
             if (Builder.UseBaseUri)
@@ -267,12 +274,14 @@ namespace XExten.Advance.NetFramework
                 Options.RemoteCertificateValidationCallback = delegate { return true; };
             if (Builder.Gzip)
                 Options.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            if (Proxy != null)
+                Options.Proxy = Proxy;
             if (Nodes.Count <= 0)
             {
                 HttpEvent.RestActionEvent?.Invoke(Client, new ArgumentNullException("未调用AddNode"));
                 return;
             }
-            Request.Timeout = (int)Builder.Timeout.TotalSeconds*1000;
+            Request.Timeout = (int)Builder.Timeout.TotalSeconds * 1000;
             Request.AddHeader(ConstDefault.UserAgent, ConstDefault.GetPlatformAgentValue());
             if (Builder.DelDefHeader)
             {
@@ -298,15 +307,15 @@ namespace XExten.Advance.NetFramework
                     Request.Method = Method.Get;
                     break;
                 case Enums.Method.POST:
-                   Request.Resource = Node.Node;
-                   Request.Method = Method.Post;
+                    Request.Resource = Node.Node;
+                    Request.Method = Method.Post;
                     if (Node.Category == Enums.Category.Json)
-                       Request.AddJsonBody(Node.Parameter);
+                        Request.AddJsonBody(Node.Parameter);
                     if (Node.Category == Enums.Category.Form)
                         if (Node.Parameter is List<KeyValuePair<String, String>> Target)
                             Target.ForEach(item =>
                             {
-                               Request.AddParameter(item.Key, item.Value);
+                                Request.AddParameter(item.Key, item.Value);
                             });
                         else
                             Node.Parameter.GetType().GetProperties().ForEnumerEach(item =>
@@ -316,15 +325,15 @@ namespace XExten.Advance.NetFramework
                             });
                     break;
                 case Enums.Method.PUT:
-                   Request.Resource = Node.Node;
-                   Request.Method = Method.Put;
+                    Request.Resource = Node.Node;
+                    Request.Method = Method.Put;
                     if (Node.Category == Enums.Category.Json)
-                       Request.AddJsonBody(Node.Parameter);
+                        Request.AddJsonBody(Node.Parameter);
                     if (Node.Category == Enums.Category.Form)
                         if (Node.Parameter is List<KeyValuePair<String, String>> Target)
                             Target.ForEach(item =>
                             {
-                               Request.AddParameter(item.Key, item.Value);
+                                Request.AddParameter(item.Key, item.Value);
                             });
                         else
                             Node.Parameter.GetType().GetProperties().ForEnumerEach(item =>
@@ -333,14 +342,14 @@ namespace XExten.Advance.NetFramework
                             });
                     break;
                 case Enums.Method.DELETE:
-                   Request.RequestFormat = DataFormat.None;
-                   Request.Resource = Node.Node;
-                   Request.Method = Method.Delete;
+                    Request.RequestFormat = DataFormat.None;
+                    Request.Resource = Node.Node;
+                    Request.Method = Method.Delete;
                     break;
                 default:
                     break;
             }
-            var response =await  Client.ExecuteAsync(Request);
+            var response = await Client.ExecuteAsync(Request);
             if (CookieHandler != null)
             {
                 var Container = new CookieContainer();

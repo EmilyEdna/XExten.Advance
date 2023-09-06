@@ -617,12 +617,30 @@ namespace XExten.Advance.StaticFramework
         }
 
         /// <summary>
+        /// 删除目录下所有文件
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="condition">保留文件排除条件</param>
+        public static void DeleteDirFile(string path, params string[] condition)
+        {
+            FileManager.DeleteDirFile(path, condition);
+        }
+
+        /// <summary>
         /// 写入文件
         /// </summary>
         /// <param name="bytes"></param>
         /// <param name="path"></param>
         /// <returns></returns>
         public static string WriteFile(byte[] bytes, string path) => FileManager.WriteFile(bytes, path);
+
+        /// <summary>
+        /// 写入目录文件
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static  string WriteDirFile(byte[] bytes, string path) => FileManager.WriteDirFile(bytes, path);
 
         /// <summary>
         /// 读取文件

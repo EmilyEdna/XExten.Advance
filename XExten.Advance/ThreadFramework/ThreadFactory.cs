@@ -76,6 +76,35 @@ namespace XExten.Advance.ThreadFramework
         }
 
         /// <summary>
+        /// 自动重启并完成任务的线程
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="action"></param>
+        /// <param name="RunComplete"></param>
+        public void StartWithRestart(string key, Action action, Action RunComplete=null)
+        {
+            if (!Threads.ContainsKey(key))
+            {
+                Threads.TryAdd(key, new TaskModel());
+                Threads[key].RunTask = action;
+                Threads[key].ThreadTask = Task.Factory.StartNew(() =>
+                {
+                    Thread.CurrentThread.Name = key;
+                    while (!Threads[key].Token.IsCancellationRequested)
+                    {
+                        Threads[key].RunTask?.Invoke();
+                        Threads[key].Token.Cancel();
+                    }
+                }, Threads[key].Token.Token).ContinueWith((task, obj) =>
+                {
+                    ThreadStatus(task, obj.ToString());
+                    if (RunComplete != null) RunComplete();
+                    StartWithRestart(key,action, RunComplete);
+                }, key);
+            }
+        }
+
+        /// <summary>
         /// 启动任务
         /// </summary>
         /// <param name="action"></param>

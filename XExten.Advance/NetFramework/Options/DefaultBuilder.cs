@@ -15,10 +15,6 @@ namespace XExten.Advance.NetFramework.Options
         /// </summary>
         public bool UseBaseUri { get; set; }
         /// <summary>
-        /// 启用控制
-        /// </summary>
-        public bool UseHandle { get; set; } = false;
-        /// <summary>
         /// 超时
         /// </summary>
         public TimeSpan Timeout { get; set; } = TimeSpan.FromSeconds(30);

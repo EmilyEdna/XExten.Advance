@@ -2235,6 +2235,14 @@
             网络请求工厂
             </summary>
         </member>
+        <member name="M:XExten.Advance.NetFramework.INetFactory.AddProxy(System.String,System.Int32)">
+            <summary>
+            添加代理
+            </summary>
+            <param name="IP"></param>
+            <param name="Port"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.NetFramework.INetFactory.AddNode(System.Action{XExten.Advance.NetFramework.Options.DefaultNodes})">
             <summary>
             添加请求地址
@@ -2295,7 +2303,7 @@
         </member>
         <member name="M:XExten.Advance.NetFramework.INetFactory.Build(System.Action{XExten.Advance.NetFramework.Options.DefaultBuilder})">
             <summary>
-            构建
+            构建请求
             </summary>
             <param name="action"></param>
             <returns></returns>
@@ -2352,11 +2360,6 @@
         <member name="P:XExten.Advance.NetFramework.Options.DefaultBuilder.UseBaseUri">
             <summary>
             使用顶级路径
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.NetFramework.Options.DefaultBuilder.UseHandle">
-            <summary>
-            启用控制
             </summary>
         </member>
         <member name="P:XExten.Advance.NetFramework.Options.DefaultBuilder.Timeout">
@@ -2766,9 +2769,24 @@
             <param name="path"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.DeleteDirFile(System.String,System.String[])">
+            <summary>
+            删除目录下所有文件
+            </summary>
+            <param name="path"></param>
+            <param name="condition">保留文件排除条件</param>
+        </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.WriteFile(System.Byte[],System.String)">
             <summary>
             写入文件
+            </summary>
+            <param name="bytes"></param>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.WriteDirFile(System.Byte[],System.String)">
+            <summary>
+            写入目录文件
             </summary>
             <param name="bytes"></param>
             <param name="path"></param>
@@ -2843,6 +2861,14 @@
             <param name="action"></param>
             <param name="key"></param>
             <param name="isRestart"></param>
+            <param name="RunComplete"></param>
+        </member>
+        <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.StartWithRestart(System.String,System.Action,System.Action)">
+            <summary>
+            自动重启并完成任务的线程
+            </summary>
+            <param name="key"></param>
+            <param name="action"></param>
             <param name="RunComplete"></param>
         </member>
         <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.Start(System.Action,System.String)">

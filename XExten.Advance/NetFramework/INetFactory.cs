@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
-using XExten.Advance.NetFramework.Enums;
 using XExten.Advance.NetFramework.Options;
 
 namespace XExten.Advance.NetFramework
@@ -14,6 +12,13 @@ namespace XExten.Advance.NetFramework
     /// </summary>
     public interface INetFactory
     {
+        /// <summary>
+        /// 添加代理
+        /// </summary>
+        /// <param name="IP"></param>
+        /// <param name="Port"></param>
+        /// <returns></returns>
+        INetFactory AddProxy(string IP, int Port);
         /// <summary>
         /// 添加请求地址
         /// </summary>
@@ -65,7 +70,7 @@ namespace XExten.Advance.NetFramework
         /// <returns></returns>
         INetFactory SetBaseUri(string Uri);
         /// <summary>
-        /// 构建
+        /// 构建请求
         /// </summary>
         /// <param name="action"></param>
         /// <returns></returns>
