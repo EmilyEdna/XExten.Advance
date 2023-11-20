@@ -955,9 +955,9 @@
             邮箱密码
             </summary>
         </member>
-        <member name="P:XExten.Advance.InternalFramework.Email.EmailSetting.SendTitle">
+        <member name="M:XExten.Advance.InternalFramework.Email.EmailSetting.SetOption(System.String,System.String,System.String)">
             <summary>
-            发送标题
+            设置
             </summary>
         </member>
         <member name="T:XExten.Advance.InternalFramework.Email.EmailUtile">
