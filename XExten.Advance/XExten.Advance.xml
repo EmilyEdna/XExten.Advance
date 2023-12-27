@@ -1556,13 +1556,21 @@
             JsonDb上下文
             </summary>
         </member>
-        <member name="M:XExten.Advance.JsonDbFramework.JsonDbContext.#ctor(System.String)">
+        <member name="M:XExten.Advance.JsonDbFramework.JsonDbContext.#ctor(System.String,System.Boolean)">
             <summary>
             构造
             </summary>
             <param name="DbFile"></param>
+            <param name="LoadOnce"></param>
         </member>
-        <member name="M:XExten.Advance.JsonDbFramework.JsonDbContext.LoadInMemory``1">
+        <member name="M:XExten.Advance.JsonDbFramework.JsonDbContext.RuntimeLoad``1">
+            <summary>
+            实时数据到内存
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.JsonDbFramework.JsonDbContext.LoadInMonery``1">
             <summary>
             加载数据到内存
             </summary>
@@ -1575,6 +1583,18 @@
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.JsonDbFramework.JsonDbContext.SaveChange">
+            <summary>
+            保存数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.JsonDbFramework.JsonDbContext.SaveChange(System.Action{System.String,System.String})">
+            <summary>
+            保存数据
+            </summary>
+            <param name="action"></param>
         </member>
         <member name="T:XExten.Advance.JsonDbFramework.JsonDbHandle`1">
             <summary>
