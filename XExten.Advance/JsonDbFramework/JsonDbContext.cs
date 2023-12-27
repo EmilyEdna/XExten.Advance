@@ -24,7 +24,7 @@ namespace XExten.Advance.JsonDbFramework
         {
             this.DbFile = DbFile;
             if (LoadOnce && LoadDbFile())
-                LoadInMonery();
+                LoadInMemory();
         }
 
         private bool LoadDbFile()
@@ -44,7 +44,7 @@ namespace XExten.Advance.JsonDbFramework
             }
         }
 
-        private void LoadInMonery()
+        private void LoadInMemory()
         {
             FileStream fileStream = new FileStream(DbFile, FileMode.Open, FileAccess.Read);
             byte[] array = new byte[fileStream.Length];
@@ -76,7 +76,7 @@ namespace XExten.Advance.JsonDbFramework
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public JsonDbHandle<T> LoadInMonery<T>() 
+        public JsonDbHandle<T> LoadInMemory<T>() 
         {
             List<T> Res = new List<T>();
             if (!CurrentJson.IsNullOrEmpty())
