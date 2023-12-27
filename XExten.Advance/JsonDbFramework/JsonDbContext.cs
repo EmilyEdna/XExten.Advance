@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+using XExten.Advance.LinqFramework;
 
 namespace XExten.Advance.JsonDbFramework
 {
@@ -48,13 +45,13 @@ namespace XExten.Advance.JsonDbFramework
             fileStream.Close();
             List<T> Res= new List<T>();
             if (array.Length != 0)
-                Res = JsonSerializer.Deserialize<List<T>>(Encoding.UTF8.GetString(array));
+                Res = Encoding.UTF8.GetString(array).ToModel<List<T>>();
             return new JsonDbHandle<T>(Res, this);
         }
 
         internal void SetString<T>(List<T> JsonData)
         {
-            WaitWrite = JsonSerializer.Serialize(JsonData);
+            WaitWrite = JsonData.ToJson();
         }
         /// <summary>
         /// 保存数据
@@ -74,7 +71,7 @@ namespace XExten.Advance.JsonDbFramework
                 fs.Close();
                 stream.Close();
                 stream.Dispose();
-                return JsonSerializer.Deserialize<List<T>>(WaitWrite);
+                return WaitWrite.ToModel<List<T>>();
             }
             catch (Exception)
             {
