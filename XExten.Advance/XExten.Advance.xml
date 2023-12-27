@@ -1625,11 +1625,25 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.JsonDbFramework.JsonDbHandle`1.Insert(System.Collections.Generic.List{`0})">
+            <summary>
+            多条插入
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.JsonDbFramework.JsonDbHandle`1.Delete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
             删除
             </summary>
             <param name="columns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.JsonDbFramework.JsonDbHandle`1.Delete(`0)">
+            <summary>
+            删除单个
+            </summary>
+            <param name="input"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.JsonDbFramework.JsonDbHandle`1.GetAll">

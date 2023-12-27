@@ -31,6 +31,7 @@ namespace XExten.Advance.JsonDbFramework
             if (!File.Exists(DbFile))
                 File.Create(DbFile).Dispose();
         }
+
         /// <summary>
         /// 加载数据到内存
         /// </summary>
@@ -38,7 +39,6 @@ namespace XExten.Advance.JsonDbFramework
         /// <returns></returns>
         public JsonDbHandle<T> LoadInMemory<T>()
         {
-            string Key = string.Empty;
             FileStream fileStream = new FileStream(DbFile, FileMode.Open, FileAccess.Read);
             byte[] array = new byte[fileStream.Length];
             fileStream.Read(array, 0, array.Length);
@@ -60,6 +60,7 @@ namespace XExten.Advance.JsonDbFramework
         /// <returns></returns>
         public List<T> SaveChange<T>()
         {
+            if (WaitWrite.IsNullOrEmpty()) return null;
             try
             {
                 var bytes = Encoding.UTF8.GetBytes(WaitWrite);

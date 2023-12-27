@@ -83,6 +83,16 @@ namespace XExten.Advance.JsonDbFramework
             return this;
         }
         /// <summary>
+        /// 多条插入
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public JsonDbHandle<T> Insert(List<T> input)
+        {
+            JsonData.AddRange(input);
+            return this;
+        }
+        /// <summary>
         /// 删除
         /// </summary>
         /// <param name="columns"></param>
@@ -91,6 +101,16 @@ namespace XExten.Advance.JsonDbFramework
         {
             var func = columns.Compile();
             JsonData.RemoveAll(t => func(t));
+            return this;
+        }
+        /// <summary>
+        /// 删除单个
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public JsonDbHandle<T> Delete(T input)
+        {
+            JsonData.Remove(input);
             return this;
         }
         /// <summary>
