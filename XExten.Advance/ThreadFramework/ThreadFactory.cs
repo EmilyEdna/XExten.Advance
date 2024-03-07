@@ -157,6 +157,23 @@ namespace XExten.Advance.ThreadFramework
         }
 
         /// <summary>
+        /// 释放所有线程资源排除特定的线程
+        /// </summary>
+        /// <param name="excludeKey"></param>
+        public void Dispose(string excludeKey)
+        {
+            for (int i = 0; i < Threads.Count; i++)
+            {
+                var data = Threads.ElementAt(i);
+                if (!data.Key.Equals(excludeKey))
+                {
+                    Threads.ElementAt(i).Value.Token.Cancel();
+                    Threads.ElementAt(i).Value.RunTask = null;
+                }
+            }
+        }
+
+        /// <summary>
         /// 判断指定线程是否完成
         /// </summary>
         /// <param name="key"></param>
