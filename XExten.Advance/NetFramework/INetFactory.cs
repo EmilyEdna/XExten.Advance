@@ -36,9 +36,23 @@ namespace XExten.Advance.NetFramework
         /// <summary>
         /// 添加请求地址
         /// </summary>
+        /// <param name="condition"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        INetFactory AddWhereNode(bool condition, Action<DefaultNodes> action);
+        /// <summary>
+        /// 添加请求地址
+        /// </summary>
         /// <param name="action"></param>
         /// <returns></returns>
         INetFactory AddNode(List<DefaultNodes> action);
+        /// <summary>
+        /// 添加请求地址
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        INetFactory AddWhereNode(bool condition,List<DefaultNodes> action);
         /// <summary>
         /// 添加请求头
         /// </summary>

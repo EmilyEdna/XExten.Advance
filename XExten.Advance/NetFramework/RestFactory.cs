@@ -129,6 +129,18 @@ namespace XExten.Advance.NetFramework
             return this;
         }
 
+        public INetFactory AddWhereNode(bool condition, List<DefaultNodes> action)
+        {
+            if (condition) this.AddNode(action);
+            return this;
+        }
+
+        public INetFactory AddWhereNode(bool condition, Action<DefaultNodes> action)
+        {
+            if (condition) this.AddNode(action);
+            return this;
+        }
+
         public INetFactory AddNode(Action<DefaultNodes> action)
         {
             DefaultNodes node = new DefaultNodes();

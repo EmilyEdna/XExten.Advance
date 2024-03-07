@@ -12,10 +12,10 @@ namespace XExten.Advance.NetFramework
     /// 网络请求
     /// </summary>
     public static class NetFactoryExtension
-    {      
+    {
         static NetFactoryExtension()
         {
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);         
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
 
         /// <summary>
@@ -37,13 +37,18 @@ namespace XExten.Advance.NetFramework
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static T Resolve<T>() where T : INetFactory
+        public static T Resolve<T>(ImpMode mode = ImpMode.None) where T : INetFactory
         {
             var Service = IocDependency.Resolves<T>();
             if (!Service.Any()) return default;
-            var index = new Random().Next(2);
-            if (index == 0) return Service.FirstOrDefault();
-            else return Service.LastOrDefault();
+            if (mode == ImpMode.Http) return Service.LastOrDefault();
+            else if (mode == ImpMode.Reset) return Service.FirstOrDefault();
+            else
+            {
+                var index = new Random().Next(2);
+                if (index == 0) return Service.FirstOrDefault();
+                else return Service.LastOrDefault();
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using Polly;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -475,9 +476,9 @@ namespace XExten.Advance.StaticFramework
         /// <param name="exhandle"></param>
         /// <param name="Times"></param>
         /// <param name="WaitSpan"></param>
-        public static T DoRetryWait<T>(Func<T> action, Action<Exception,int,int> exhandle = null, int Times = 3, int WaitSpan = 10)
+        public static T DoRetryWait<T>(Func<T> action, Action<Exception, int, int> exhandle = null, int Times = 3, int WaitSpan = 10)
         {
-            return Policy.Handle<Exception>().WaitAndRetry(Times, (span) => TimeSpan.FromSeconds(WaitSpan), (ex, span,count, context) => exhandle?.Invoke(ex,count,Times)).Execute(action);
+            return Policy.Handle<Exception>().WaitAndRetry(Times, (span) => TimeSpan.FromSeconds(WaitSpan), (ex, span, count, context) => exhandle?.Invoke(ex, count, Times)).Execute(action);
         }
 
         /// <summary>
@@ -486,7 +487,7 @@ namespace XExten.Advance.StaticFramework
         /// <param name="action"></param>
         /// <param name="exhandle"></param>
         /// <param name="Times"></param>
-        public static void DoRetry(Action action, Action<Exception,int,int> exhandle = null, int Times = 3)
+        public static void DoRetry(Action action, Action<Exception, int, int> exhandle = null, int Times = 3)
         {
             Policy.Handle<Exception>().Retry(Times, (ex, count, context) => exhandle?.Invoke(ex, count, Times)).Execute(action);
         }
@@ -640,7 +641,7 @@ namespace XExten.Advance.StaticFramework
         /// <param name="bytes"></param>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static  string WriteDirFile(byte[] bytes, string path) => FileManager.WriteDirFile(bytes, path);
+        public static string WriteDirFile(byte[] bytes, string path) => FileManager.WriteDirFile(bytes, path);
 
         /// <summary>
         /// 读取文件
@@ -693,12 +694,20 @@ namespace XExten.Advance.StaticFramework
         /// <param name="input">输入的数据</param>
         /// <param name="type">0 表示解密 1表示加密</param>
         /// <returns></returns>
-        public static string RSA(string input,bool type) 
-        { 
-            if(type)
-             return   RSAGenerate.RSAEncrypt(input);
+        public static string RSA(string input, bool type)
+        {
+            if (type)
+                return RSAGenerate.RSAEncrypt(input);
             else
                 return RSAGenerate.RSADecrypt(input);
         }
+
+        /// <summary>
+        ///程序多开检测
+        /// </summary>
+        /// <returns></returns>
+        public static bool MultiOpenCheck() =>
+            Process.GetProcessesByName(Path.GetFileNameWithoutExtension(Process.GetCurrentProcess().MainModule.ModuleName)).Length > 1;
+
     }
 }
