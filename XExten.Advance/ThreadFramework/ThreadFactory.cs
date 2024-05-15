@@ -2,7 +2,6 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,165 +23,13 @@ namespace XExten.Advance.ThreadFramework
                 if (_Instance != null) return _Instance;
                 else
                 {
-                    _Instance = new ThreadFactory();
+                    _Instance = new Lazy<ThreadFactory>().Value;
                     return _Instance;
                 }
             }
         }
-        /// <summary>
-        /// 等待时间
-        /// </summary>
-        public int RestartInterval { get; set; } = 2000;
-        ConcurrentDictionary<string, TaskModel> Threads = new ConcurrentDictionary<string, TaskModel>();
-        ConcurrentDictionary<string, Action> Actions = new ConcurrentDictionary<string, Action>();
 
-        /// <summary>
-        /// 带重启的线程循环任务
-        /// </summary>
-        /// <param name="action"></param>
-        /// <param name="key"></param>
-        /// <param name="isRestart"></param>
-        /// <param name="RunComplete"></param>
-        public void StartWithRestart(Action action, string key, bool isRestart = false, Action RunComplete = null)
-        {
-            if (!Threads.ContainsKey(key))
-            {
-                Threads.TryAdd(key, new TaskModel());
-                Threads[key].RunTask = action;
-                Threads[key].ThreadTask = Task.Factory.StartNew(() =>
-                {
-                    Thread.CurrentThread.Name = key;
-                    while (!Threads[key].Token.IsCancellationRequested)
-                    {
-                        if (isRestart)
-                        {
-                            try
-                            {
-                                Threads[key].RunTask?.Invoke();
-                            }
-                            catch
-                            {
-                                if (isRestart) Thread.Sleep(RestartInterval);
-                            }
-                        }
-                        else Threads[key].RunTask?.Invoke();
-                    }
-                }, Threads[key].Token.Token).ContinueWith((task, obj) =>
-                {
-                    ThreadStatus(task, obj.ToString());
-                    if (RunComplete != null) RunComplete();
-                }, key);
-            }
-        }
-
-        /// <summary>
-        /// 自动重启并完成任务的线程
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="action"></param>
-        /// <param name="RunComplete"></param>
-        public void StartWithRestart(string key, Action action, Action RunComplete=null)
-        {
-            if (!Threads.ContainsKey(key))
-            {
-                Threads.TryAdd(key, new TaskModel());
-                Threads[key].RunTask = action;
-                Threads[key].ThreadTask = Task.Factory.StartNew(() =>
-                {
-                    Thread.CurrentThread.Name = key;
-                    while (!Threads[key].Token.IsCancellationRequested)
-                    {
-                        Threads[key].RunTask?.Invoke();
-                        Threads[key].Token.Cancel();
-                    }
-                }, Threads[key].Token.Token).ContinueWith((task, obj) =>
-                {
-                    ThreadStatus(task, obj.ToString());
-                    if (RunComplete != null) RunComplete();
-                    StartWithRestart(key,action, RunComplete);
-                }, key);
-            }
-        }
-
-        /// <summary>
-        /// 启动任务
-        /// </summary>
-        /// <param name="action"></param>
-        /// <param name="key"></param>
-        public void Start(Action action, string key)
-        {
-            if (!Threads.ContainsKey(key))
-            {
-                Threads.TryAdd(key, new TaskModel());
-                Threads[key].RunTask = action;
-                Threads[key].ThreadTask = Task.Factory.StartNew(() =>
-                {
-                    Thread.CurrentThread.Name = key;
-                    while (!Threads[key].Token.IsCancellationRequested)
-                    {
-                        Threads[key].RunTask?.Invoke();
-                        break;
-                    }
-                }, Threads[key].Token.Token).ContinueWith((task, obj) =>
-                {
-                    ThreadStatus(task, obj.ToString());
-                }, key);
-            }
-        }
-
-        /// <summary>
-        /// 停止指定任务
-        /// </summary>
-        /// <param name="key">任务名</param>
-        /// <param name="ExitCallback">任务结束的回调</param>
-        public void StopTask(string key, Action ExitCallback = null)
-        {
-            if (Threads.ContainsKey(key))
-            {
-                Actions.TryAdd(key, ExitCallback);
-                Threads[key].Token?.Cancel();
-            }
-        }
-
-        /// <summary>
-        /// 释放所有线程资源
-        /// </summary>
-        public void Dispose()
-        {
-            for (int i = 0; i < Threads.Count; i++)
-            {
-                Threads.ElementAt(i).Value.Token.Cancel();
-                Threads.ElementAt(i).Value.RunTask = null;
-            }
-        }
-
-        /// <summary>
-        /// 释放所有线程资源排除特定的线程
-        /// </summary>
-        /// <param name="excludeKey"></param>
-        public void Dispose(string excludeKey)
-        {
-            for (int i = 0; i < Threads.Count; i++)
-            {
-                var data = Threads.ElementAt(i);
-                if (!data.Key.Equals(excludeKey))
-                {
-                    Threads.ElementAt(i).Value.Token.Cancel();
-                    Threads.ElementAt(i).Value.RunTask = null;
-                }
-            }
-        }
-
-        /// <summary>
-        /// 判断指定线程是否完成
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public bool IsComplete(string key)
-        {
-            if (Threads.ContainsKey(key)) return Threads[key].ThreadTask.IsCompleted;
-            return false;
-        }
+        private ConcurrentDictionary<string, TaskModel> Threads = new ConcurrentDictionary<string, TaskModel>();
 
         private void ThreadStatus(Task task, string key)
         {
@@ -205,12 +52,122 @@ namespace XExten.Advance.ThreadFramework
             if (IsRemove)
             {
                 if (Threads.ContainsKey(key)) Threads.TryRemove(key, out _);
-                if (Actions.ContainsKey(key))
-                {
-                    Actions[key]?.Invoke();
-                    Actions.TryRemove(key, out _);
-                }
+            }
+        }
 
+
+        /// <summary>
+        /// 启动任务
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="key"></param>
+        /// <param name="err"></param>
+        /// <param name="restart"></param>
+        public async void StartWithRestart(Func<Task> action, string key, Action<Exception> err = null,bool restart=true)
+        {
+            if (!Threads.ContainsKey(key))
+            {
+                Threads.TryAdd(key, new TaskModel());
+                Threads[key].RunAsync = action;
+                Threads[key].ThreadTask = (await Task.Factory.StartNew(async () =>
+                {
+                    while (!Threads[key].Token.IsCancellationRequested)
+                    {
+                        try
+                        {
+                            await action();
+                        }
+                        catch (Exception ex)
+                        {
+                            err?.Invoke(ex);
+                        }
+                    }
+                }, Threads[key].Token.Token, TaskCreationOptions.LongRunning, TaskScheduler.Current))
+                .ContinueWith((task, obj) => {
+                    ThreadStatus(task, obj.ToString());
+                    if (restart) StartWithRestart(action, key, err, restart);
+                }, key);
+            }
+        }
+
+        /// <summary>
+        /// 启动任务
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="key"></param>
+        /// <param name="err"></param>
+        /// <param name="restart"></param>
+        public void StartWithRestart(Action action, string key, Action<Exception> err = null, bool restart = true)
+        {
+            if (!Threads.ContainsKey(key))
+            {
+                Threads.TryAdd(key, new TaskModel());
+                Threads[key].Run = action;
+                Threads[key].ThreadTask = Task.Factory.StartNew(() =>
+                {
+                    while (!Threads[key].Token.IsCancellationRequested)
+                    {
+                        try
+                        {
+                            action();
+                        }
+                        catch (Exception ex)
+                        {
+                            err?.Invoke(ex);
+                        }
+                    }
+                }, Threads[key].Token.Token, TaskCreationOptions.LongRunning, TaskScheduler.Current)
+                    .ContinueWith((task, obj) => {
+                        ThreadStatus(task, obj.ToString());
+                        if (restart) StartWithRestart(action, key, err, restart);
+                    }, key);
+            }
+        }
+
+        /// <summary>
+        /// 获取所有的线程Key
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetTaskKey() => Threads.Keys.ToList();
+
+        /// <summary>
+        /// 停止指定任务
+        /// </summary>
+        /// <param name="key">任务名</param>
+        public void StopTask(string key)
+        {
+            if (Threads.ContainsKey(key))
+            {
+                Threads[key].Token?.Cancel();
+            }
+        }
+
+        /// <summary>
+        /// 释放所有线程资源
+        /// </summary>
+        public void Dispose()
+        {
+            for (int i = 0; i < Threads.Count; i++)
+            {
+                Threads.ElementAt(i).Value.Token.Cancel();
+                Threads.ElementAt(i).Value.Run = null;
+            }
+        }
+
+        /// <summary>
+        /// 释放所有线程资源排除特定的线程
+        /// </summary>
+        /// <param name="excludeKey"></param>
+        public void Dispose(string excludeKey)
+        {
+            for (int i = 0; i < Threads.Count; i++)
+            {
+                var data = Threads.ElementAt(i);
+                if (!data.Key.Equals(excludeKey))
+                {
+                    Threads.ElementAt(i).Value.Token.Cancel();
+                    Threads.ElementAt(i).Value.Run = null;
+                }
             }
         }
     }
