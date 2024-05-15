@@ -29,6 +29,11 @@ namespace XExten.Advance.ThreadFramework
             }
         }
 
+        /// <summary>
+        /// 是否重启
+        /// </summary>
+        private bool IsRestar;
+
         private ConcurrentDictionary<string, TaskModel> Threads = new ConcurrentDictionary<string, TaskModel>();
 
         private void ThreadStatus(Task task, string key)
@@ -67,6 +72,7 @@ namespace XExten.Advance.ThreadFramework
         {
             if (!Threads.ContainsKey(key))
             {
+                IsRestar = true;
                 Threads.TryAdd(key, new TaskModel());
                 Threads[key].RunAsync = action;
                 Threads[key].ThreadTask = (await Task.Factory.StartNew(async () =>
@@ -85,7 +91,10 @@ namespace XExten.Advance.ThreadFramework
                 }, Threads[key].Token.Token, TaskCreationOptions.LongRunning, TaskScheduler.Current))
                 .ContinueWith((task, obj) => {
                     ThreadStatus(task, obj.ToString());
-                    if (restart) StartWithRestart(action, key, err, restart);
+                    if (IsRestar)
+                    {
+                        if (restart) StartWithRestart(action, key, err, restart);
+                    }
                 }, key);
             }
         }
@@ -101,6 +110,7 @@ namespace XExten.Advance.ThreadFramework
         {
             if (!Threads.ContainsKey(key))
             {
+                IsRestar=true;
                 Threads.TryAdd(key, new TaskModel());
                 Threads[key].Run = action;
                 Threads[key].ThreadTask = Task.Factory.StartNew(() =>
@@ -119,7 +129,10 @@ namespace XExten.Advance.ThreadFramework
                 }, Threads[key].Token.Token, TaskCreationOptions.LongRunning, TaskScheduler.Current)
                     .ContinueWith((task, obj) => {
                         ThreadStatus(task, obj.ToString());
-                        if (restart) StartWithRestart(action, key, err, restart);
+                        if (IsRestar)
+                        {
+                            if (restart) StartWithRestart(action, key, err, restart);
+                        }
                     }, key);
             }
         }
@@ -151,7 +164,9 @@ namespace XExten.Advance.ThreadFramework
             {
                 Threads.ElementAt(i).Value.Token.Cancel();
                 Threads.ElementAt(i).Value.Run = null;
+                Threads.ElementAt(i).Value.RunAsync = null;
             }
+            IsRestar = false;
         }
 
         /// <summary>
@@ -167,8 +182,10 @@ namespace XExten.Advance.ThreadFramework
                 {
                     Threads.ElementAt(i).Value.Token.Cancel();
                     Threads.ElementAt(i).Value.Run = null;
+                    Threads.ElementAt(i).Value.RunAsync = null;
                 }
             }
+            IsRestar = false;
         }
     }
 }
