@@ -2,8 +2,6 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using XExten.Advance.AopFramework.AopAttribute;
-using XExten.Advance.CacheFramework;
-using XExten.Advance.CacheFramework.RunTimeCache;
 using XExten.Advance.EventFramework;
 using XExten.Advance.EventFramework.EventSources;
 using XExten.Advance.EventFramework.PublishEvent;
@@ -18,25 +16,12 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            IocDependency.Register(typeof(A));
-            ((A)IocDependency.Resolve(typeof(A))).Test();
-            //Console.WriteLine(SyncStatic.Translate("hello world"));
+            string json = "{\"bb\":[{\"a\":\"12\"8888dfs\"3\",\"b\":[\"xx\",\"xx1\"],\"c\":\"pp\"}],\"aa\":[{\"a\":\"8888\"88\"8888\"},{\"mm\":\"888\"888\"8888\"}]}";
+            Console.WriteLine(json.AsOkJson());
             //RSAHelper.RsaTest();
-            //NetFactoryExtension.RegisterNetFramework();
-            //var data = NetFactoryExtension.Resolve<INetFactory>().AddNode(t => t.Node = "https://www.baidu.com").Build().RunString().Result;
-            //Console.WriteLine(data.FirstOrDefault());
             //EventTest.EventTestClassMethod();
-            AopTestClass.AopTestClassMethod();
-            //NormalTestClass.NormalTestClassMethod();
+            //AopTestClass.AopTestClassMethod();
             Console.ReadKey();
-        }
-    }
-
-    public class A
-    {
-        public void Test()
-        {
-            Console.WriteLine("123");
         }
     }
 
@@ -128,20 +113,6 @@ namespace Test
         {
             SyncStatic.RegistAop<IAopTest>();
             IocDependency.Resolve<IAopTest>().AopTestMethod();
-        }
-    }
-    #endregion
-
-    #region NormalTest
-    public class NormalTestClass
-    {
-        public static void NormalTestClassMethod()
-        {
-            Caches.RunTimeCacheSet("1", "1", 600, true);
-            Caches.RunTimeCacheSet("2", "2", 600, true);
-            MemoryCaches.RemoveAllCache();
-            var ret = Caches.RunTimeCacheGet<string>("1");
-            Console.WriteLine();
         }
     }
     #endregion

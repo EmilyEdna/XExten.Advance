@@ -21,6 +21,13 @@ namespace XExten.Advance.InternalFramework.FileHandle
             return path;
         }
 
+        internal static string CreateFull(string path)
+        {
+            var dir = Path.GetDirectoryName(path);
+            CreateDir(dir);
+            return CreateFile(path);
+        }
+
         internal static void DeleteFolder(string path)
         {
             if (Directory.Exists(path))

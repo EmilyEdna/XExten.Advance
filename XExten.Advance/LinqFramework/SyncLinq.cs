@@ -1,4 +1,10 @@
-﻿using System;
+﻿using AutoMapper;
+using Mapster;
+using MessagePack;
+using MessagePack.Resolvers;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,12 +12,6 @@ using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using AutoMapper;
-using Mapster;
-using MessagePack;
-using MessagePack.Resolvers;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using XExten.Advance.InternalFramework.Express;
 using XExten.Advance.InternalFramework.Securities;
 
@@ -124,41 +124,33 @@ namespace XExten.Advance.LinqFramework
                 return JsonConvert.SerializeObject(param, Option);
         }
 
+        private static MessagePackSerializerOptions MsgOption(bool isPublic) => isPublic ? MessagePackSerializerOptions.Standard.WithResolver(ContractlessStandardResolver.Instance) :
+            MessagePackSerializerOptions.Standard.WithResolver(DynamicObjectResolverAllowPrivate.Instance);
+
         /// <summary>
         /// 序列化对象MsgPack
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="param"></param>
         /// <param name="isPublic"></param>
         /// <returns></returns>
-        public static string ToJsonLight<T>(this T param, bool isPublic = true)
-        {
-            MessagePackSerializerOptions Options;
-            if (isPublic)
-                Options = MessagePackSerializerOptions.Standard.WithResolver(ContractlessStandardResolver.Instance);
-            else
-                Options = MessagePackSerializerOptions.Standard.WithResolver(DynamicObjectResolverAllowPrivate.Instance);
-            return MessagePackSerializer.SerializeToJson(param, Options);
-        }
+        public static byte[] ToBytes<T>(this T param, bool isPublic = true) => MessagePackSerializer.Serialize(param, MsgOption(isPublic));
+
+        /// <summary>
+        /// 序列化Bytes为Json
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="isPublic"></param>
+        /// <returns></returns>
+        public static string ToJsonLight(this byte[] param, bool isPublic = true) => MessagePackSerializer.ConvertToJson(param, MsgOption(isPublic));
 
         /// <summary>
         /// 反序列化对象MsgPack
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="param"></param>
-        /// <param name="bytes"></param>
         /// <param name="isPublic"></param>
         /// <returns></returns>
-        public static T ToModelLight<T>(this T param, out byte[] bytes, bool isPublic = true)
-        {
-            MessagePackSerializerOptions Options;
-            if (isPublic)
-                Options = MessagePackSerializerOptions.Standard.WithResolver(ContractlessStandardResolver.Instance);
-            else
-                Options = MessagePackSerializerOptions.Standard.WithResolver(DynamicObjectResolverAllowPrivate.Instance);
-            bytes = MessagePackSerializer.Serialize(param, Options);
-            return MessagePackSerializer.Deserialize<T>(bytes, Options);
-        }
+        public static T ToModelLight<T>(this byte[] param, bool isPublic = true) => MessagePackSerializer.Deserialize<T>(param, MsgOption(isPublic));
 
         /// <summary>
         /// 反序列化 JsonNet
@@ -360,6 +352,25 @@ namespace XExten.Advance.LinqFramework
         }
 
         /// <summary>
+        /// 根据系数间隔获取集合
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <param name="factor"></param>
+        /// <returns></returns>
+        public static List<T> ToFactor<T>(this List<T> param, double factor)
+        {
+            var len = (int)Math.Floor(param.Count / factor);
+            List<T> copy = new List<T>();
+
+            for (int index = 0; index <= len; index++)
+            {
+                copy.Add(param.ElementAtOrDefault((int)(index * factor)));
+            }
+            return copy.Where(t => t != null).ToList();
+        }
+
+        /// <summary>
         /// 乱序列表
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -499,7 +510,7 @@ namespace XExten.Advance.LinqFramework
         /// <typeparam name="T"></typeparam>
         /// <param name="param"></param>
         /// <returns></returns>
-        public static Dictionary<string, object> WithKeyValue<T>(T param) where T : class,new()
+        public static Dictionary<string, object> WithKeyValue<T>(T param) where T : class, new()
         {
             var result = new Dictionary<string, object>();
 

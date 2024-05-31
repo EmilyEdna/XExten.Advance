@@ -416,10 +416,7 @@ namespace XExten.Advance.StaticFramework
         /// <typeparam name="T"></typeparam>
         /// <param name="JsonValue"></param>
         /// <param name="Param"></param>
-        public static void SetPropertiesValue<T>(Dictionary<string, object> JsonValue, T Param) where T : class, new()
-        {
-            Expsion.SetProptertiesValue(JsonValue, Param);
-        }
+        public static void SetPropertiesValue<T>(Dictionary<string, object> JsonValue, T Param) where T : class, new() => Expsion.SetProptertiesValue(JsonValue, Param);
 
         /// <summary>
         /// 文件监听
@@ -439,10 +436,8 @@ namespace XExten.Advance.StaticFramework
         /// <typeparam name="T"></typeparam>
         /// <param name="PropertyName"></param>
         /// <returns></returns>
-        public static Expression<Func<T, object>> GetExpression<T>(params string[] PropertyName) where T : class, new()
-        {
-            return Expsion.GetExpression<T>(PropertyName);
-        }
+        public static Expression<Func<T, object>> GetExpression<T>(params string[] PropertyName) where T : class, new() => Expsion.GetExpression<T>(PropertyName);
+
 
         /// <summary>
         ///  返回一个bool表达式
@@ -452,10 +447,7 @@ namespace XExten.Advance.StaticFramework
         /// <param name="Data"></param>
         /// <param name="QueryType"></param>
         /// <returns></returns>
-        public static Expression<Func<T, bool>> GetExpression<T>(string Property, object Data, QType QueryType)
-        {
-            return Expsion.GetExpression<T>(Property, Data, QueryType);
-        }
+        public static Expression<Func<T, bool>> GetExpression<T>(string Property, object Data, QType QueryType) => Expsion.GetExpression<T>(Property, Data, QueryType);
 
         /// <summary>
         /// 等待重试无返回
@@ -598,34 +590,32 @@ namespace XExten.Advance.StaticFramework
         public static string CreateDir(string path) => FileManager.CreateDir(path);
 
         /// <summary>
+        /// 创建文件夹下文件
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string CreateFull(string path) => FileManager.CreateFull(path);
+
+        /// <summary>
         /// 删除所有文件
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static void DeleteFolder(string path)
-        {
-            FileManager.DeleteFolder(path);
-        }
+        public static void DeleteFolder(string path) => FileManager.DeleteFolder(path);
 
         /// <summary>
         /// 删除文件
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static void DeleteFile(string path)
-        {
-            FileManager.DeleteFile(path);
-        }
+        public static void DeleteFile(string path)=> FileManager.DeleteFile(path);
 
         /// <summary>
         /// 删除目录下所有文件
         /// </summary>
         /// <param name="path"></param>
         /// <param name="condition">保留文件排除条件</param>
-        public static void DeleteDirFile(string path, params string[] condition)
-        {
-            FileManager.DeleteDirFile(path, condition);
-        }
+        public static void DeleteDirFile(string path, params string[] condition) => FileManager.DeleteDirFile(path, condition);
 
         /// <summary>
         /// 写入文件
@@ -657,10 +647,7 @@ namespace XExten.Advance.StaticFramework
         /// <param name="from"></param>
         /// <param name="to"></param>
         /// <returns></returns>
-        public static string Translate(string query, string from = "auto", string to = "zh-CN")
-        {
-            return Translation.Translatate(query, from, to);
-        }
+        public static string Translate(string query, string from = "auto", string to = "zh-CN")=> Translation.Translatate(query, from, to);
 
         /// <summary>
         /// 注册代理
@@ -683,10 +670,7 @@ namespace XExten.Advance.StaticFramework
         /// </summary>
         /// <param name="savePath"></param>
         /// <param name="multiple"></param>
-        public static void GenerateRSAKey(string savePath, int multiple = 2)
-        {
-            RSAGenerate.GenerateKey(savePath, multiple);
-        }
+        public static void GenerateRSAKey(string savePath, int multiple = 2)=> RSAGenerate.GenerateKey(savePath, multiple);
 
         /// <summary>
         /// RSA加解密

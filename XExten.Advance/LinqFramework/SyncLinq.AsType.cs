@@ -105,6 +105,25 @@ namespace XExten.Advance.LinqFramework
             decimal.TryParse(param, out decimal result);
             return result;
         }
+
+        /// <summary>
+        /// 将错误的JSON转为正确结果
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static string AsOkJson(this string param)
+        {
+            var temp = param.Replace("\"", "").Replace("{", "{\"").Replace(":", "\":\"").Replace(",", "\",\"").Replace("}", "\"}");
+            if (temp.Contains("[") || temp.Contains("]"))
+                temp = temp.Replace("\"[", "[\"").Replace("]\"", "\"]");
+            if (temp.Contains("{\"[") || temp.Contains("]\"}"))
+                temp = temp.Replace("{\"[", "{[").Replace("]\"}", "]}");
+            if(temp.Contains("[\"{")||temp.Contains("}\"]"))
+                temp = temp.Replace("[\"{", "[{").Replace("}\"]", "}]");
+            if (temp.Contains("}\",\"{"))
+                temp = temp.Replace("}\",\"{", "},{");
+            return temp;
+        }
         #endregion
     }
 }
