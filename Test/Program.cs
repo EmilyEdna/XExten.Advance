@@ -7,7 +7,6 @@ using XExten.Advance.EventFramework.EventSources;
 using XExten.Advance.EventFramework.PublishEvent;
 using XExten.Advance.EventFramework.SubscriptEvent;
 using XExten.Advance.IocFramework;
-using XExten.Advance.LinqFramework;
 using XExten.Advance.StaticFramework;
 
 namespace Test
@@ -16,14 +15,23 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            string json = "{\"bb\":[{\"a\":\"12\"8888dfs\"3\",\"b\":[\"xx\",\"xx1\"],\"c\":\"pp\"}],\"aa\":[{\"a\":\"8888\"88\"8888\"},{\"mm\":\"888\"888\"8888\"}]}";
-            Console.WriteLine(json.AsOkJson());
-            //RSAHelper.RsaTest();
-            //EventTest.EventTestClassMethod();
-            //AopTestClass.AopTestClassMethod();
-            Console.ReadKey();
+            EventBus.Lancher(Assembly.Load(typeof(EventTest).Assembly.GetName().Name));
+            while (true)
+            {
+                Console.WriteLine("1【RSA】2【EVENT】3【Aop】`【退出】");
+                var input = Console.ReadLine();
+                if (input == "`") break;
+                if (input == "1")
+                    RSAHelper.RsaTest();
+                if (input == "2")
+                    EventTest.EventTestClassMethod();
+                if (input == "3")
+                    AopTestClass.AopTestClassMethod();
+            }
+
         }
     }
+
 
     #region RSA
     public class RSAHelper
@@ -43,8 +51,6 @@ namespace Test
     {
         public static void EventTestClassMethod()
         {
-            EventBus.Lancher(Assembly.Load(typeof(EventTest).Assembly.GetName().Name));
-
             IEventPublish.Instance.PublishAsync(t =>
             {
                 t.Payload = new { Name = "张三", Age = 20 };

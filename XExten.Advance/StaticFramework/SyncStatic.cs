@@ -531,22 +531,15 @@ namespace XExten.Advance.StaticFramework
         /// <returns></returns>
         public static string Compress(string input, SecurityType type = SecurityType.Normal)
         {
-            switch (type)
+            return type switch
             {
-                case SecurityType.Base64:
-                    return LzString.CompressToBase64(input);
-                case SecurityType.UTF16:
-                    return LzString.CompressToUTF16(input);
-                case SecurityType.EncodedURI:
-                    return LzString.CompressToEncodedURIComponent(input);
-                case SecurityType.Uint8:
-                    return Encoding.UTF8.GetString(LzString.CompressToUint8Array(input));
-                case SecurityType.Normal:
-                    return LzString.Compress(input);
-                default:
-                    return LzString.Compress(input);
-            }
-
+                SecurityType.Base64 => LzString.CompressToBase64(input),
+                SecurityType.UTF16 => LzString.CompressToUTF16(input),
+                SecurityType.EncodedURI => LzString.CompressToEncodedURIComponent(input),
+                SecurityType.Uint8 => Encoding.UTF8.GetString(LzString.CompressToUint8Array(input)),
+                SecurityType.Normal => LzString.Compress(input),
+                _ => LzString.Compress(input),
+            };
         }
 
         /// <summary>
@@ -557,22 +550,15 @@ namespace XExten.Advance.StaticFramework
         /// <returns></returns>
         public static string Decompress(string input, SecurityType type = SecurityType.Normal)
         {
-            switch (type)
+            return type switch
             {
-                case SecurityType.Base64:
-                    return LzString.DecompressFromBase64(input);
-                case SecurityType.UTF16:
-                    return LzString.DecompressFromUTF16(input);
-                case SecurityType.EncodedURI:
-                    return LzString.DecompressFromEncodedURIComponent(input);
-                case SecurityType.Uint8:
-                    return LzString.DecompressFromUint8Array(Encoding.UTF8.GetBytes(input));
-                case SecurityType.Normal:
-                    return LzString.Decompress(input);
-                default:
-                    return LzString.Decompress(input);
-            }
-
+                SecurityType.Base64 => LzString.DecompressFromBase64(input),
+                SecurityType.UTF16 => LzString.DecompressFromUTF16(input),
+                SecurityType.EncodedURI => LzString.DecompressFromEncodedURIComponent(input),
+                SecurityType.Uint8 => LzString.DecompressFromUint8Array(Encoding.UTF8.GetBytes(input)),
+                SecurityType.Normal => LzString.Decompress(input),
+                _ => LzString.Decompress(input),
+            };
         }
 
         /// <summary>
@@ -650,7 +636,7 @@ namespace XExten.Advance.StaticFramework
         public static string Translate(string query, string from = "auto", string to = "zh-CN")=> Translation.Translatate(query, from, to);
 
         /// <summary>
-        /// 注册代理
+        /// 注册Aop代理
         /// </summary>
         /// <returns></returns>
         public static void RegistAop<T>()
@@ -678,13 +664,7 @@ namespace XExten.Advance.StaticFramework
         /// <param name="input">输入的数据</param>
         /// <param name="type">0 表示解密 1表示加密</param>
         /// <returns></returns>
-        public static string RSA(string input, bool type)
-        {
-            if (type)
-                return RSAGenerate.RSAEncrypt(input);
-            else
-                return RSAGenerate.RSADecrypt(input);
-        }
+        public static string RSA(string input, bool type) => type ? RSAGenerate.RSAEncrypt(input) : RSAGenerate.RSADecrypt(input);
 
         /// <summary>
         ///程序多开检测

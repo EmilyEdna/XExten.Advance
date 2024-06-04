@@ -223,7 +223,7 @@ namespace XExten.Advance.IocFramework
         /// <typeparam name="T"></typeparam>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static bool IsExistsByNamed<T>(object name) => _Provider.GetKeyedService<T>(name) == null;
+        public static bool IsExistsByNamed<T>(object name) => _Provider.GetKeyedService<T>(name) != null;
 
         /// <summary>
         /// 判断实例是否存在
@@ -231,20 +231,20 @@ namespace XExten.Advance.IocFramework
         /// <param name="serviceType"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static bool IsExistsByNamed(Type serviceType,object name) => _Provider.GetRequiredKeyedService(serviceType, name) == null;
+        public static bool IsExistsByNamed(Type serviceType,object name) => _Provider.GetRequiredKeyedService(serviceType, name) != null;
 
         /// <summary>
         /// 判断实例是否存在
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static bool IsExists<T>() => _Provider.GetService<T>() == null;
+        public static bool IsExists<T>() => _Provider.GetService<T>() != null;
 
         /// <summary>
         /// 判断实例是否存在
         /// </summary>
         /// <param name="serviceType"></param>
         /// <returns></returns>
-        public static bool IsExists(Type serviceType) => _Provider.GetService(serviceType) == null;
+        public static bool IsExists(Type serviceType) => _Provider.GetService(serviceType) != null;
     }
 }
