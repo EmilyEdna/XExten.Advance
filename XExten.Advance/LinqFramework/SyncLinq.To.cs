@@ -3,7 +3,6 @@ using Mapster;
 using MessagePack;
 using MessagePack.Resolvers;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,18 +11,14 @@ using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using XExten.Advance.InternalFramework.Express;
+using System.Threading.Tasks;
 using XExten.Advance.InternalFramework.Securities;
 
 namespace XExten.Advance.LinqFramework
 {
-    /// <summary>
-    /// LinqExtension
-    /// </summary>
-    public static partial class SyncLinq
+    public static partial  class SyncLinq
     {
         #region To
-
         /// <summary>
         ///保留小数非四舍五入
         /// </summary>
@@ -388,165 +383,201 @@ namespace XExten.Advance.LinqFramework
         }
         #endregion
 
-        #region By
+        #region Async
         /// <summary>
-        /// 将实体转为URL参数
+        ///保留小数非四舍五入
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="parrent"></param>
+        /// <returns></returns>
+        public static async Task<decimal> ToRodAsync(this decimal param, int parrent) => await Task.Run(() => ToRod(param, parrent));
+
+        /// <summary>
+        /// Md5
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="bit"></param>
+        /// <returns></returns>
+        public static async Task<string> ToMd5Async(this string param, int bit = 32) => await Task.Run(() => ToMd5(param, bit));
+
+        /// <summary>
+        /// 时间格式化
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="fmtType">
+        /// 0 : default
+        /// 1 : yyyy-MM-dd HH:mm:ss:ffff
+        /// 2 : yyyy年MM月dd日
+        /// </param>
+        /// <param name="fmt"></param>
+        /// <returns></returns>
+        public static async Task<string> ToFmtDateAsync(this DateTime param, int fmtType = 0, string fmt = null)=> await Task.Run(() => ToFmtDate(param, fmtType,fmt));
+
+        /// <summary>
+        /// DataTable 2 Entity
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="param"></param>
-        /// <param name="MapFied"></param>
         /// <returns></returns>
-        public static string ByUri<T>(this T param, IDictionary<string, string> MapFied = null)
-        {
-            List<string> result = new List<string>();
-            if (param is JObject)
-            {
-                var NEW = param as JObject;
-                NEW.Properties().ForEnumerEach(t =>
-                {
-                    if (MapFied != null)
-                    {
-                        MapFied.TryGetValue(t.Name, out string value);
-                        if (value.IsNullOrEmpty())
-                            result.Add($"{t.Name.ToLower()}={t.Value}");
-                        else
-                            result.Add($"{value.ToLower()}={t.Value}");
-                    }
-                    else
-                        result.Add($"{t.Name.ToLower()}={t.Value}");
-                });
-                return $"?{string.Join("&", result)}";
-            }
-            param.GetType().GetProperties().ForEnumerEach(t =>
-            {
-                if (MapFied != null)
-                {
-                    MapFied.TryGetValue(t.Name, out string value);
-                    if (value.IsNullOrEmpty())
-                        result.Add($"{t.Name.ToLower()}={t.GetValue(param)}");
-                    else
-                        result.Add($"{value.ToLower()}={t.GetValue(param)}");
-                }
-                result.Add($"{t.Name.ToLower()}={t.GetValue(param)}");
-            });
-            return $"?{string.Join("&", result)}";
-        }
+        public static async Task<List<T>> ToEntityAsync<T>(this DataTable param) where T : new() => await Task.Run(() => ToEntity<T>(param));
 
         /// <summary>
-        /// 将键值对转为URL参数
-        /// </summary>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        public static string ByUri(this List<KeyValuePair<string, string>> param)
-        {
-            List<string> result = new List<string>();
-            param.ForEach(t =>
-            {
-                result.Add($"{t.Key.ToLower()}={t.Value}");
-            });
-            return $"?{string.Join("&", result)}";
-        }
-        #endregion
-
-        #region  For
-        /// <summary>
-        /// 遍历字典
+        /// 序列化 JsonNet
         /// </summary>
         /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <param name="Option"></param>
+        /// <returns></returns>
+        public static async Task<string> ToJsonAsync<T>(this T param, JsonSerializerSettings Option = null) => await Task.Run(() => ToJson(param, Option));
+
+        /// <summary>
+        /// 序列化对象MsgPack
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="isPublic"></param>
+        /// <returns></returns>
+        public static async Task<byte[]> ToBytesAsync<T>(this T param, bool isPublic = true) => await Task.Run(() => ToBytes(param, isPublic));
+
+        /// <summary>
+        /// 序列化Bytes为Json
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="isPublic"></param>
+        /// <returns></returns>
+        public static async Task<string> ToJsonLightAsync(this byte[] param, bool isPublic = true) => await Task.Run(() => ToJsonLight(param, isPublic));
+
+        /// <summary>
+        /// 反序列化对象MsgPack
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <param name="isPublic"></param>
+        /// <returns></returns>
+        public static async Task<T> ToModelLightAsync<T>(this byte[] param, bool isPublic = true) => await Task.Run(() => ToModelLight<T>(param, isPublic));
+
+        /// <summary>
+        /// 反序列化 JsonNet
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <param name="Option"></param>
+        /// <returns></returns>
+        public static async Task<T> ToModelAsync<T>(this string param, JsonSerializerSettings Option = null) => await Task.Run(() => ToModel<T>(param, Option));
+
+        /// <summary>
+        /// 返回指定的枚举描述值
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns>枚举描叙</returns>
+        public static async Task<string> ToDesAsync(this Enum param) => await Task.Run(() => ToDes(param));
+
+        /// <summary>
+        ///  返回具有标记为描述属性字段的属性值的实体
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Param"></param>
+        /// <param name="Expres"></param>
+        /// <returns></returns>
+        public static async Task<string> ToDesAsync<T>(this T Param, Expression<Func<T, object>> Expres)=> await Task.Run(() => ToDes(Param, Expres));
+
+        /// <summary>
+        /// 获取指定字段的Attribute
+        /// </summary>
+        /// <typeparam name="TSource">指定实体</typeparam>
+        /// <typeparam name="TAttribute">特性</typeparam>
+        /// <param name="Param">指定实体</param>
+        /// <param name="FieldName">字段名</param>
+        /// <param name="IsProperty">是否获取属性</param>
+        /// <returns>Attribute</returns>
+        public static async Task<TAttribute> ToAttrAsync<TSource, TAttribute>(this TSource Param, string FieldName, bool IsProperty = false) where TAttribute : Attribute 
+            => await Task.Run(() => ToAttr<TSource, TAttribute>(Param, FieldName, IsProperty));
+
+        /// <summary>
+        /// 将集合转换为数据表并返回数据表
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="queryable"></param>
+        /// <returns></returns>
+        public static async Task<DataTable> ToTablesAsync<T>(this IList<T> queryable) => await Task.Run(() => ToTables(queryable));
+
+        /// <summary>
+        /// 映射对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static async Task<T> ToMapperAsync<T>(this object param) => await Task.Run(() => ToMapper<T>(param));
+
+        /// <summary>
+        /// 映射对象
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static async Task<object> ToMapperAsync(this object param, Type target) => await Task.Run(() => ToMapper(param, target));
+
+        /// <summary>
+        /// 映射集合
+        /// </summary>
         /// <typeparam name="K"></typeparam>
+        /// <typeparam name="T"></typeparam>
         /// <param name="param"></param>
-        /// <param name="action"></param>
-        public static void ForDicEach<T, K>(this IDictionary<T, K> param, Action<T, K> action)
-        {
-            foreach (KeyValuePair<T, K> item in param)
-                action(item.Key, item.Value);
-        }
+        /// <returns></returns>
+        public static async Task<List<T>> ToMapperAsync<K, T>(this object param) => await Task.Run(() => ToMapper<K,T>(param));
 
         /// <summary>
-        /// 遍历数组
+        /// 映射对象
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="source"></param>
+        /// <param name="target"></param>
+        /// <param name="targets"></param>
+        /// <returns></returns>
+        public static async Task<object> ToMapperAsync(this object param, Type source, Type target, Type targets) => await Task.Run(() => ToMapper(param, source, target, targets));
+
+        /// <summary>
+        /// 映射对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="param"></param>
-        /// <param name="action"></param>
-        public static void ForArrayEach<T>(this Array param, Action<T> action)
-        {
-            foreach (var item in param)
-                action((T)item);
-        }
+        /// <param name="config"></param>
+        /// <returns></returns>
+        public static async Task<T> ToMapestAsync<T>(this object param, TypeAdapterConfig config = null) => await Task.Run(() => ToMapest<T>(param, config));
 
         /// <summary>
-        /// 遍历集合
+        /// 映射对象
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="destinationType"></param>
+        /// <param name="config"></param>
+        /// <returns></returns>
+        public static async Task<object> ToMapestAsync(this object param, Type destinationType, TypeAdapterConfig config = null) => await Task.Run(() => ToMapest(param, destinationType, config));
+
+        /// <summary>
+        /// 随机数组
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="param"></param>
-        /// <param name="action"></param>
-        public static void ForEnumerEach<T>(this IEnumerable<T> param, Action<T> action)
-        {
-            foreach (var item in param)
-                action(item);
-        }
-        #endregion
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public static async Task<List<T>> ToRandomAsync<T>(this List<T> param, int index) => await Task.Run(() =>ToRandom(param,index)) ;
 
-        #region With
         /// <summary>
-        /// 返回实体中所有的字段名
+        /// 根据系数间隔获取集合
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="param"></param>
+        /// <param name="factor"></param>
+        /// <returns></returns>
+        public static async Task<List<T>> ToFactorAsync<T>(this List<T> param, double factor)=> await Task.Run(() => ToFactor(param, factor));
+
+        /// <summary>
+        /// 乱序列表
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="param"></param>
         /// <returns></returns>
-        public static List<string> WithNames<T>(this IEnumerable<T> param) where T : class, new()
-        {
-            List<String> Names = new List<String>();
-            param.FirstOrDefault().GetType().GetProperties().ForEnumerEach(t =>
-            {
-                Names.Add(t.Name);
-            });
-            return Names;
-        }
-
-        /// <summary>
-        /// 返回一个实体中所有数据
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        public static Dictionary<string, object> WithKeyValue<T>(T param) where T : class, new()
-        {
-            var result = new Dictionary<string, object>();
-
-            param.GetType().GetProperties().ForEnumerEach(item =>
-            {
-                result.Add(item.Name, item.GetValue(param));
-            });
-
-            return result;
-        }
-        #endregion
-
-        #region Other
-        /// <summary>
-        /// 合并表达式 ExprOne AND ExprTwo
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="ExprOne"></param>
-        /// <param name="ExprTwo"></param>
-        /// <returns></returns>
-        public static Expression<Func<T, bool>> And<T>(this Expression<Func<T, bool>> ExprOne, Expression<Func<T, bool>> ExprTwo)
-        {
-            return Expsion.And(ExprOne, ExprTwo);
-        }
-
-        /// <summary>
-        /// 合并表达式 ExprOne or ExprTwo
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="ExprOne"></param>
-        /// <param name="ExprTwo"></param>
-        /// <returns></returns>
-        public static Expression<Func<T, bool>> Or<T>(this Expression<Func<T, bool>> ExprOne, Expression<Func<T, bool>> ExprTwo)
-        {
-            return Expsion.Or(ExprOne, ExprTwo);
-        }
+        public static async Task<List<T>> ToDisorderAsync<T>(this List<T> param) => await Task.Run(() => ToDisorder(param));
         #endregion
     }
 }

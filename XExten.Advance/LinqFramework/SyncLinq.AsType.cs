@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace XExten.Advance.LinqFramework
 {
@@ -118,12 +119,92 @@ namespace XExten.Advance.LinqFramework
                 temp = temp.Replace("\"[", "[\"").Replace("]\"", "\"]");
             if (temp.Contains("{\"[") || temp.Contains("]\"}"))
                 temp = temp.Replace("{\"[", "{[").Replace("]\"}", "]}");
-            if(temp.Contains("[\"{")||temp.Contains("}\"]"))
+            if (temp.Contains("[\"{") || temp.Contains("}\"]"))
                 temp = temp.Replace("[\"{", "[{").Replace("}\"]", "}]");
             if (temp.Contains("}\",\"{"))
                 temp = temp.Replace("}\",\"{", "},{");
             return temp;
         }
+        #endregion
+
+        #region Async
+        /// <summary>
+        /// To Int
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static async Task<int> AsIntAsync(this string param) => await Task.Run(() => AsInt(param));
+
+        /// <summary>
+        /// To Float
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static async Task<float> AsFloatAsync(this string param) => await Task.Run(() => AsFloat(param));
+
+        /// <summary>
+        /// To Double
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static async Task<double> AsDoubleAsync(this string param) => await Task.Run(() => AsDouble(param));
+
+        /// <summary>
+        /// To Long
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static async Task< long> AsLongAsync(this string param) => await Task.Run(() => AsLong(param));
+
+        /// <summary>
+        /// To DateTime
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static async Task<DateTime> AsDateTimeAsync(this string param) => await Task.Run(() => AsDateTime(param));
+
+        /// <summary>
+        /// To String
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static async Task<string> AsStringAsync(this object param) => await Task.Run(() => AsString(param));
+
+        /// <summary>
+        /// To Bool
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static async Task<bool> AsBoolAsync(this string param) => await Task.Run(() => AsBool(param));
+
+        /// <summary>
+        /// To Bool
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static async Task<bool> AsBoolAsync(this int param) => await Task.Run(() => AsBool(param));
+
+        /// <summary>
+        /// To Bytes
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static async Task<byte[]> AsBytesAsync(this string param) => await Task.Run(() => AsBytes(param));
+
+        /// <summary>
+        /// To Decimal
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static async Task<decimal> AsDecimalAsync(this string param) => await Task.Run(() => AsDecimal(param));
+
+        /// <summary>
+        /// 将错误的JSON转为正确结果
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static async Task<string> AsOkJsonAsync(this string param) => await Task.Run(() => AsOkJson(param));
+
         #endregion
     }
 }
