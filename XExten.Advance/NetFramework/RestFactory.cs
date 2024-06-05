@@ -300,7 +300,7 @@ namespace XExten.Advance.NetFramework
                 HttpEvent.RestActionEvent?.Invoke(Client, new ArgumentNullException("未调用AddNode"));
                 return;
             }
-            Request.Timeout = (int)Builder.Timeout.TotalSeconds * 1000;
+            Request.Timeout = new TimeSpan(0,0,(int)Builder.Timeout.TotalSeconds);
             Request.AddHeader(ConstDefault.UserAgent, ConstDefault.GetPlatformAgentValue());
             if (Builder.DelDefHeader)
             {
