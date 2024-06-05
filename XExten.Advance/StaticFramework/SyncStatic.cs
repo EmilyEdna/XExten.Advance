@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyModel;
 using Polly;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -11,7 +10,6 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using XExten.Advance.AopFramework;
@@ -81,18 +79,6 @@ namespace XExten.Advance.StaticFramework
         }
 
         /// <summary>
-        /// 随机手机
-        /// </summary>
-        /// <returns></returns>
-        public static string RandomPho()
-        {
-            string[] phos = "134,135,136,137,138,139,150,151,152,157,158,159,130,131,132,155,156,133,153,180,181,182,183,185,186,176,187,188,189,177,178".Split(',');
-            Random random = new Random();
-            int index = random.Next(0, phos.Length - 1);
-            return phos[index] + (random.Next(100, 888) + 10000).ToString().Substring(1) + (random.Next(1, 9100) + 10000).ToString().Substring(1);
-        }
-
-        /// <summary>
         /// 获取中文拼音
         /// </summary>
         /// <param name="Chinese"></param>
@@ -102,133 +88,6 @@ namespace XExten.Advance.StaticFramework
         public static string CHNPinYin(string Chinese, PinyinFormat format, ChineseTypes chineseType = ChineseTypes.Simplified)
         {
             return Pinyin.GetString(chineseType, Chinese, format);
-        }
-
-        /// <summary>
-        /// 返回条形码
-        /// </summary>
-        /// <param name="param"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <returns></returns>
-        public static string BarHtml(string param, int width, int height)
-        {
-            Hashtable Has = new Hashtable();
-
-            #region 39码 12位
-
-            Has.Add('A', "110101001011");
-            Has.Add('B', "101101001011");
-            Has.Add('C', "110110100101");
-            Has.Add('D', "101011001011");
-            Has.Add('E', "110101100101");
-            Has.Add('F', "101101100101");
-            Has.Add('G', "101010011011");
-            Has.Add('H', "110101001101");
-            Has.Add('I', "101101001101");
-            Has.Add('J', "101011001101");
-            Has.Add('K', "110101010011");
-            Has.Add('L', "101101010011");
-            Has.Add('M', "110110101001");
-            Has.Add('N', "101011010011");
-            Has.Add('O', "110101101001");
-            Has.Add('P', "101101101001");
-            Has.Add('Q', "101010110011");
-            Has.Add('R', "110101011001");
-            Has.Add('S', "101101011001");
-            Has.Add('T', "101011011001");
-            Has.Add('U', "110010101011");
-            Has.Add('V', "100110101011");
-            Has.Add('W', "110011010101");
-            Has.Add('X', "100101101011");
-            Has.Add('Y', "110010110101");
-            Has.Add('Z', "100110110101");
-            Has.Add('0', "101001101101");
-            Has.Add('1', "110100101011");
-            Has.Add('2', "101100101011");
-            Has.Add('3', "110110010101");
-            Has.Add('4', "101001101011");
-            Has.Add('5', "110100110101");
-            Has.Add('6', "101100110101");
-            Has.Add('7', "101001011011");
-            Has.Add('8', "110100101101");
-            Has.Add('9', "101100101101");
-            Has.Add('+', "100101001001");
-            Has.Add('-', "100101011011");
-            Has.Add('*', "100101101101");
-            Has.Add('/', "100100101001");
-            Has.Add('%', "101001001001");
-            Has.Add('$', "100100100101");
-            Has.Add('.', "110010101101");
-            Has.Add(' ', "100110101101");
-
-            #endregion 39码 12位
-
-            param = "*" + param.ToUpper() + "*";
-            string Result = "";
-            TryCatch(() =>
-            {
-                foreach (char ch in param)
-                {
-                    Result += Has[ch].ToString();
-                    Result += "0";
-                }
-            }, ex => throw new Exception("not supported char!"));
-            string Html = "";
-            string Color;
-            foreach (char res in Result)
-            {
-                Color = res == '0' ? "#FFFFFF" : "#000000";
-                Html += $"<div style=\"width:{width}px;height:{height}px;float:left;background:{Color}\"></div>";
-            }
-            Html += @"<div style='clear:both'></div>";
-            int Len = Has['*'].ToString().Length;
-            foreach (char item in param)
-            {
-                Html += $"<div style=\"width:{(width * (Len + 1))}px;float:left;color:#000000;text-align:center;\">{item}</div>";
-            }
-            Html += @"<div style=clear:both></div>";
-            return $"<div style=\"background:#FFFFFF;padding:5px;font-size:{(width * 5)}px;font-family:楷体;\">{Html}</div>";
-        }
-
-        /// <summary>
-        /// 把网页内容转为文本
-        /// </summary>
-        /// <param name="html"></param>
-        /// <returns></returns>
-        public static string HText(string html)
-        {
-            string[] aryReg ={
-            @"<script[^>]*?>.*?</script>",
-            @"<(\/\s*)?!?((\w+:)?\w+)(\w+(\s*=?\s*(([""'])(\\[""'tbnr]|[^\7])*?\7|\w+)|.{0})|\s)*?(\/\s*)?>",
-            @"([\r\n])[\s]+",
-            @"&(quot|#34);",
-            @"&(amp|#38);",
-            @"&(lt|#60);",
-            @"&(gt|#62);",
-            @"&(nbsp|#160);",
-            @"&(iexcl|#161);",
-            @"&(cent|#162);",
-            @"&(pound|#163);",
-            @"&(copy|#169);",
-            @"&#(\d+);",
-            @"-->",
-            @"<!--.*\n"
-            };
-
-            string strOutput = html;
-            for (int i = 0; i < aryReg.Length; i++)
-            {
-                Regex regex = new Regex(aryReg[i], RegexOptions.IgnoreCase);
-                strOutput = regex.Replace(strOutput, string.Empty);
-            }
-
-            strOutput.Replace("<", "");
-            strOutput.Replace(">", "");
-            strOutput.Replace("\r\n", "");
-
-
-            return strOutput;
         }
 
         /// <summary>
@@ -337,27 +196,6 @@ namespace XExten.Advance.StaticFramework
             {
                 return (T)new XmlSerializer(typeof(T)).Deserialize(reader);
             }
-        }
-
-        /// <summary>
-        /// 创建一个验证吗
-        /// </summary>
-        /// <returns></returns>
-        public static string VerifyCode()
-        {
-            char[] CharArray ={
-                '1','2','3','4','5','6','7','8','9',
-                'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
-                'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
-            };
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < 4; i++)
-            {
-                Random rand = new Random(Guid.NewGuid().GetHashCode());
-                var index = rand.Next(60);
-                sb.Append(CharArray[index]);
-            }
-            return sb.ToString();
         }
 
         /// <summary>
