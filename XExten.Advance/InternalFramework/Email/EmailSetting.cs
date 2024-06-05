@@ -7,7 +7,7 @@ namespace XExten.Advance.InternalFramework.Email
     /// <summary>
     /// 邮箱配置
     /// </summary>
-    public class EmailSettting
+    public class EmailSetting
     {
         /// <summary>
         /// 邮箱地址
@@ -22,8 +22,13 @@ namespace XExten.Advance.InternalFramework.Email
         /// </summary>
         public static string EmailPassWord { get; set; }
         /// <summary>
-        /// 发送标题
+        /// 设置
         /// </summary>
-        public static string SendTitle { get; set; }
+        public static void SetOption(string Host,string Account,string Pwd) 
+        {
+            SmtpHost = Host;
+            EmailAccount = Account;
+            EmailPassWord = Pwd;
+        }
     }
 }

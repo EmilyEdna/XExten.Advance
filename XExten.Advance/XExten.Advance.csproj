@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.1;net7</TargetFrameworks>
+		<TargetFrameworks>netstandard2.1;net8</TargetFrameworks>
 		<Authors>EmilyEdna</Authors>
 		<Description>XExten包的优化升级版本，后期只会更新这个包，不在维护XExten包</Description>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -10,7 +10,7 @@
 		<Version>1.2.5.1-preview</Version>
 		<AssemblyVersion>1.2.5.1</AssemblyVersion>
 		<PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
-		<FileVersion>1.2.5.1</FileVersion>
+		<FileVersion>2.2.2.1</FileVersion>
 		<AssemblyName>XExten.Advance</AssemblyName>
 		<RootNamespace>XExten.Advance</RootNamespace>
 	</PropertyGroup>
@@ -34,8 +34,6 @@
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="12.0.1" />
 		<PackageReference Include="Chinese" Version="0.5.0" />
-		<PackageReference Include="DnsClient" Version="1.7.0" />
-		<PackageReference Include="DryIoc.dll" Version="4.8.8" />
 		<PackageReference Include="Mapster" Version="7.3.0" />
 		<PackageReference Include="MessagePack" Version="2.5.108" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
@@ -46,8 +44,8 @@
 		<PackageReference Include="Polly" Version="7.2.3" />
 		<PackageReference Include="RestSharp" Version="110.2.0" />
 		<PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
-		<PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
-		<PackageReference Include="System.Threading.Channels" Version="7.0.0" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
+		<PackageReference Include="System.Threading.Channels" Version="8.0.0" />
 	</ItemGroup>
 
 </Project>

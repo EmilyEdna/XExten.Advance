@@ -2,28 +2,28 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace XExten.Advance.HttpFramework.MultiCommon
+namespace XExten.Advance.NetFramework.Enums
 {
     /// <summary>
-    /// RequestType
+    /// 请求方式
     /// </summary>
-    public enum MultiType
+    public enum Method
     {
-        /// <summary>
-        /// POST
-        /// </summary>
-        POST = 1,
         /// <summary>
         /// GET
         /// </summary>
-        GET = 2,
+        GET,
+        /// <summary>
+        /// POST
+        /// </summary>
+        POST,
         /// <summary>
         /// DELETE
         /// </summary>
-        DELETE = 3,
+        DELETE,
         /// <summary>
         /// PUT
         /// </summary>
-        PUT = 4
+        PUT
     }
 }

@@ -1,26 +1,13 @@
 ﻿using System;
-using System.IO;
-using System.Net;
-using System.Net.Sockets;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 using XExten.Advance.AopFramework.AopAttribute;
 using XExten.Advance.EventFramework;
 using XExten.Advance.EventFramework.EventSources;
 using XExten.Advance.EventFramework.PublishEvent;
 using XExten.Advance.EventFramework.SubscriptEvent;
+using XExten.Advance.IocFramework;
 using XExten.Advance.StaticFramework;
-using XExten.Advance.LinqFramework;
-using DryIoc;
-using XExten.Advance.HttpFramework.MultiFactory;
-using System.Linq;
-using XExten.Advance.CacheFramework;
-using XExten.Advance.CacheFramework.RunTimeCache;
-using XExten.Advance.RestHttpFramework;
-using XExten.Advance.RestHttpFramework.Options;
 
 namespace Test
 {
@@ -28,28 +15,32 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            //Console.WriteLine(SyncStatic.Translate("hello world"));
-            //EventTest.EventTestClassMethod();
-            //AopTestClass.AopTestClassMethod();
-            //HttpTestClass.HttpTestClassMethod();
-            RestTestClass.RestTestMethod();
-            //NormalTestClass.NormalTestClassMethod();
+            EventBus.Lancher(Assembly.Load(typeof(EventTest).Assembly.GetName().Name));
+            while (true)
+            {
+                Console.WriteLine("1【RSA】2【EVENT】3【Aop】`【退出】");
+                var input = Console.ReadLine();
+                if (input == "`") break;
+                if (input == "1")
+                    RSAHelper.RsaTest();
+                if (input == "2")
+                    EventTest.EventTestClassMethod();
+                if (input == "3")
+                    AopTestClass.AopTestClassMethod();
+            }
+
         }
     }
-    #region HttpRest
-    public class RestTestClass
+
+
+    #region RSA
+    public class RSAHelper
     {
-        public static  void RestTestMethod()
+        public static void RsaTest()
         {
-            var data = IRestHttpClient.Rest.UseHeader(opt =>
-            {
-                opt.HeaderKey = RestConstProvider.UserAgent;
-                opt.HeaderValue = RestConstProvider.UserAgentWindows;
-            }).UseNode(opt =>
-            {
-                opt.Route = "https://baidu.com";
-            }).Build().RunStringAsync().Result;
-            Console.WriteLine(data.FirstOrDefault());
+            SyncStatic.GenerateRSAKey("D:\\Project");
+            var p = SyncStatic.RSA("你好", true);
+            var m = SyncStatic.RSA(p, false);
         }
     }
     #endregion
@@ -60,8 +51,6 @@ namespace Test
     {
         public static void EventTestClassMethod()
         {
-            EventBus.Lancher(Assembly.Load(typeof(EventTest).Assembly.GetName().Name));
-
             IEventPublish.Instance.PublishAsync(t =>
             {
                 t.Payload = new { Name = "张三", Age = 20 };
@@ -69,7 +58,7 @@ namespace Test
             });
         }
     }
-    public class EventSubTest : XExten.Advance.EventFramework.SubscriptEvent.IEventSubscriber
+    public class EventSubTest : IEventSubscriber
     {
         [EventSubscribe("Json")]
         public Task Tests(IEventSource args)
@@ -128,47 +117,8 @@ namespace Test
     {
         public static void AopTestClassMethod()
         {
-            var container = new Container().RegistAop<IAopTest>();
-            container.Resolve<IAopTest>().AopTestMethod();
-        }
-    }
-    #endregion
-
-    #region HttpTest
-    public class HttpTestClass
-    {
-        public static void HttpTestClassMethod()
-        {
-            var data = IHttpMultiClient.HttpMulti
-             .AddHeader(t =>
-             {
-                 t.HeaderKey = "Host";
-                 t.HeaderValue = "konachan.com";
-             })
-             .AddNode(opt =>
-             {
-                 opt.NodePath = "https://104.21.4.105:443/post.json";
-             })
-             .Build(opt =>
-             {
-                 opt.UseHttps = true;
-                 opt.UseZip = true;
-             }).RunString().FirstOrDefault();
-            Console.WriteLine(data);
-        }
-    }
-    #endregion
-
-    #region NormalTest
-    public class NormalTestClass
-    {
-        public static void NormalTestClassMethod()
-        {
-            Caches.RunTimeCacheSet("1", "1", 600, true);
-            Caches.RunTimeCacheSet("2", "2", 600, true);
-            MemoryCaches.RemoveAllCache();
-            var ret = Caches.RunTimeCacheGet<string>("1");
-            Console.WriteLine();
+            SyncStatic.RegistAop<IAopTest>();
+            IocDependency.Resolve<IAopTest>().AopTestMethod();
         }
     }
     #endregion

@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace XExten.Advance.RestHttpFramework.Options
+namespace XExten.Advance.NetFramework.Enums
 {
     /// <summary>
-    /// 
+    /// 平台
     /// </summary>
-    public enum RestProviderType
+    public enum Platform
     {
         /// <summary>
-        /// 
+        /// Windows
         /// </summary>
-        JSON,
+        Windows,
         /// <summary>
-        /// 
+        /// IOS
         /// </summary>
-        XML,
+        IOS,
         /// <summary>
-        /// 
+        /// Android
         /// </summary>
-        FORM
+        Android
     }
 }

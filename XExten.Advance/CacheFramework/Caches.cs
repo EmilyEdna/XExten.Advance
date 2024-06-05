@@ -31,7 +31,6 @@ namespace XExten.Advance.CacheFramework
                 return RedisCaches.Instance.GetDatabase();
             }
         }
-
         /// <summary>
         /// mongodb
         /// </summary>
@@ -109,7 +108,6 @@ namespace XExten.Advance.CacheFramework
             RedisCaches.StringSet<T>(key, value, MinutesOrSecond==0?null:exp);
         }
 
-
         /// <summary>
         /// 添加MongoDB缓存
         /// </summary>
@@ -141,7 +139,7 @@ namespace XExten.Advance.CacheFramework
         {
             return RedisCaches.StringGet<T>(key.ToString());
         }
-
+  
         /// <summary>
         /// 获取MongoDB缓存
         /// </summary>
@@ -236,7 +234,6 @@ namespace XExten.Advance.CacheFramework
             TimeSpan? exp = (UseSecond ? (DateTime.Now.AddSeconds(MinutesOrSecond) - DateTime.Now) : (DateTime.Now.AddMinutes(MinutesOrSecond) - DateTime.Now));
             await RedisCaches.StringSetAsync<T>(key, value, MinutesOrSecond == 0 ? null : exp);
         }
-
         /// <summary>
         /// 添加MongoDB缓存
         /// </summary>

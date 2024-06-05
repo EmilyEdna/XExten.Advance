@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Text.Json.Serialization;
 using XExten.Advance.LinqFramework;
 
-namespace XExten.Advance.HttpFramework.MultiCommon
+namespace XExten.Advance.NetFramework.Options
 {
     /// <summary>
     /// 封装数据
@@ -30,7 +30,7 @@ namespace XExten.Advance.HttpFramework.MultiCommon
         /// <param name="Entity"></param>
         /// <param name="Map"></param>
         /// <returns></returns>
-        public static List<KeyValuePair<String, String>> KeyValuePairs<T>(T Entity, IDictionary<string, string> Map = null) where T:class,new()
+        public static List<KeyValuePair<String, String>> KeyValuePairs<T>(T Entity, IDictionary<string, string> Map = null) where T : class, new()
         {
             return KeyValuePairs(Entity.GetType().GetProperties().ToList(), Entity, Map);
         }
