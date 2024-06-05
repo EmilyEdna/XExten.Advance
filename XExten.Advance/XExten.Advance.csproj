@@ -7,8 +7,8 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>XExten.Advance</PackageId>
 		<Product>XExten.Advance</Product>
-		<Version>1.2.5.1-preview</Version>
-		<AssemblyVersion>1.2.5.1</AssemblyVersion>
+		<Version>2.2.2.1-preview</Version>
+		<AssemblyVersion>2.2.2.1</AssemblyVersion>
 		<PackageProjectUrl>https://github.com/EmilyEdna/XExten.Advance</PackageProjectUrl>
 		<FileVersion>2.2.2.1</FileVersion>
 		<AssemblyName>XExten.Advance</AssemblyName>
@@ -20,29 +20,27 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Remove="CacheFramework\MongoDbCache\**" />
-		<Compile Remove="CacheFramework\RedisCache\**" />
-		<Compile Remove="InternalFramework\Office\**" />
-		<EmbeddedResource Remove="CacheFramework\MongoDbCache\**" />
-		<EmbeddedResource Remove="CacheFramework\RedisCache\**" />
-		<EmbeddedResource Remove="InternalFramework\Office\**" />
-		<None Remove="CacheFramework\MongoDbCache\**" />
-		<None Remove="CacheFramework\RedisCache\**" />
-		<None Remove="InternalFramework\Office\**" />
+	  <Compile Remove="CacheFramework\RedisCache\**" />
+	  <Compile Remove="InternalFramework\Office\**" />
+	  <EmbeddedResource Remove="CacheFramework\RedisCache\**" />
+	  <EmbeddedResource Remove="InternalFramework\Office\**" />
+	  <None Remove="CacheFramework\RedisCache\**" />
+	  <None Remove="InternalFramework\Office\**" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="12.0.1" />
 		<PackageReference Include="Chinese" Version="0.5.0" />
 		<PackageReference Include="Mapster" Version="7.3.0" />
-		<PackageReference Include="MessagePack" Version="2.5.108" />
+		<PackageReference Include="MessagePack" Version="2.5.140" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="7.0.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="7.0.0" />
-		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="Polly" Version="7.2.3" />
-		<PackageReference Include="RestSharp" Version="110.2.0" />
+		<PackageReference Include="Polly" Version="8.4.0" />
+		<PackageReference Include="RestSharp" Version="111.2.0" />
 		<PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
 		<PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
 		<PackageReference Include="System.Threading.Channels" Version="8.0.0" />

@@ -22,8 +22,6 @@ using XExten.Advance.InternalFramework.Securities.Common;
 using XExten.Advance.InternalFramework.Translate;
 using XExten.Advance.IocFramework;
 using XExten.Advance.LinqFramework;
-/*using XExten.Advance.InternalFramework.Office;
-using XExten.Advance.InternalFramework.Office.Common;*/
 
 
 namespace XExten.Advance.StaticFramework
@@ -216,38 +214,6 @@ namespace XExten.Advance.StaticFramework
             }
             return Assemblies;
         }
-
-        /*/// <summary>
-        /// 导出EXCEL
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="Data">需要被导出的数据</param>
-        /// <param name="Types">Excel类型</param>
-        /// <param name="SheetName">工作表名称</param>
-        /// <param name="stream">流</param>
-        /// <param name="action">自定义导出</param>
-        /// <param name="footer">页脚内容</param>
-        /// <param name="DateFormat">时间格式</param>
-        public static void ExportExcel<T>(IEnumerable<T> Data, ExcelType Types, string SheetName,
-            Action<Stream> action, dynamic footer = null, Stream stream = null, string DateFormat = "yyyy-MM-dd") where T : class, new()
-        {
-            ExcelFactory.ExportExcel(Data, Types, SheetName, action, footer, stream, DateFormat);
-        }
-
-        /// <summary>
-        /// 导入EXCEL
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="fs">流</param>
-        /// <param name="Types">类型</param>
-        /// <param name="HasPageFooter">文档是否有页脚</param>
-        /// <param name="SheetIndex">数据表索引</param>
-        /// <returns></returns>
-        public static List<T> ImportExcel<T>(Stream fs, ExcelType Types,
-            bool HasPageFooter = false, int SheetIndex = 0) where T : new()
-        {
-            return ExcelFactory.ImportExcel<T>(fs, Types, HasPageFooter, SheetIndex);
-        }*/
 
         /// <summary>
         /// 设置属性值
