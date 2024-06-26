@@ -57,6 +57,17 @@ namespace XExten.Advance.LinqFramework
             if (param.IsNullOrEmpty()) return false;
             return Regex.IsMatch(param, @"(13[0-9]|14[014-9]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}");
         }
+
+        /// <summary>
+        /// 正则表达式验证
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        public static bool IsRegex(this string param, string pattern)
+        {
+            return Regex.IsMatch(param, pattern);
+        }
         #endregion
 
         #region Async
@@ -95,6 +106,14 @@ namespace XExten.Advance.LinqFramework
         /// <param name="param"></param>
         /// <returns></returns>
         public static async Task<bool> IsPhoneAsync(this string param) => await Task.Run(() => IsPhone(param));
+
+        /// <summary>
+        /// 正则表达式验证
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        public static async Task<bool> IsRegexAsync(this string param, string pattern) => await Task.Run(() => IsRegex(param, pattern));
         #endregion
     }
 }

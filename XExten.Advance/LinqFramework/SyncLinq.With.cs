@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace XExten.Advance.LinqFramework
@@ -42,6 +43,30 @@ namespace XExten.Advance.LinqFramework
 
             return result;
         }
+
+        /// <summary>
+        /// 正则匹配
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        public static string WithRegex(this string param, string pattern)
+        {
+            return Regex.Match(param, pattern).Value.ToString();
+        }
+
+        /// <summary>
+        /// 正则替换
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="pattern"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string WithRegexReplace(this string param, string pattern,string value)
+        {
+            return Regex.Replace(param, pattern, value);
+        }
+
         #endregion
 
         #region Async
@@ -52,7 +77,7 @@ namespace XExten.Advance.LinqFramework
         /// <param name="param"></param>
         /// <returns></returns>
         public static async Task<List<string>> WithNamesAsync<T>(this IEnumerable<T> param) where T : class, new() => await Task.Run(() => WithNames(param));
-        
+
         /// <summary>
         /// 返回一个实体中所有数据
         /// </summary>
@@ -60,6 +85,24 @@ namespace XExten.Advance.LinqFramework
         /// <param name="param"></param>
         /// <returns></returns>
         public static async Task<Dictionary<string, object>> WithKeyValueAsync<T>(T param) where T : class, new() => await Task.Run(() => WithKeyValue(param));
+
+        /// <summary>
+        /// 正则匹配
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        public static async Task<string> WithRegexAsync(this string param, string pattern)=> await Task.Run(() => WithRegex(param, pattern));
+      
+        /// <summary>
+        /// 正则替换
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="pattern"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static async Task<string> WithRegexReplaceAsync(this string param, string pattern, string value) => await Task.Run(() => WithRegexReplace(param, pattern, value));
+
         #endregion
     }
 }

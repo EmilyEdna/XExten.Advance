@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace XExten.Advance.LinqFramework
@@ -114,16 +115,7 @@ namespace XExten.Advance.LinqFramework
         /// <returns></returns>
         public static string AsOkJson(this string param)
         {
-            var temp = param.Replace("\"", "").Replace("{", "{\"").Replace(":", "\":\"").Replace(",", "\",\"").Replace("}", "\"}");
-            if (temp.Contains("[") || temp.Contains("]"))
-                temp = temp.Replace("\"[", "[\"").Replace("]\"", "\"]");
-            if (temp.Contains("{\"[") || temp.Contains("]\"}"))
-                temp = temp.Replace("{\"[", "{[").Replace("]\"}", "]}");
-            if (temp.Contains("[\"{") || temp.Contains("}\"]"))
-                temp = temp.Replace("[\"{", "[{").Replace("}\"]", "}]");
-            if (temp.Contains("}\",\"{"))
-                temp = temp.Replace("}\",\"{", "},{");
-            return temp;
+            return Regex.Replace(param, "(?<=([^{:,]))(\")(?=([^}:,]))", "");
         }
         #endregion
 
@@ -154,7 +146,7 @@ namespace XExten.Advance.LinqFramework
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public static async Task< long> AsLongAsync(this string param) => await Task.Run(() => AsLong(param));
+        public static async Task<long> AsLongAsync(this string param) => await Task.Run(() => AsLong(param));
 
         /// <summary>
         /// To DateTime
