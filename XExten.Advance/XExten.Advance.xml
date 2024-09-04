@@ -1508,12 +1508,30 @@
             <typeparam name="TImplementation"></typeparam>
             <param name="Module">1 瞬时 2 单例 3 作用域</param>
         </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.RegisterByNamed``2(System.Object,System.Int32)">
+            <summary>
+            根据关键字注册
+            </summary>
+            <typeparam name="TService"></typeparam>
+            <typeparam name="TImplementation"></typeparam>
+            <param name="Name"></param>
+            <param name="Module">1 瞬时 2 单例 3 作用域</param>
+        </member>
         <member name="M:XExten.Advance.IocFramework.IocDependency.Register(System.Type,System.Type,System.Int32)">
             <summary>
              注册
             </summary>
             <param name="serviceType"></param>
             <param name="implementationType"></param>
+            <param name="Module">1 瞬时 2 单例 3 作用域</param>
+        </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.RegisterByNamed(System.Type,System.Type,System.Object,System.Int32)">
+            <summary>
+            根据关键字注册
+            </summary>
+            <param name="serviceType"></param>
+            <param name="implementationType"></param>
+            <param name="Name"></param>
             <param name="Module">1 瞬时 2 单例 3 作用域</param>
         </member>
         <member name="M:XExten.Advance.IocFramework.IocDependency.Register(System.Type,System.Int32)">
@@ -1523,6 +1541,14 @@
             <param name="serviceType"></param>
             <param name="Module">1 瞬时 2 单例 3 作用域</param>
         </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.RegisterByNamed(System.Type,System.Object,System.Int32)">
+            <summary>
+            根据关键字注册
+            </summary>
+            <param name="serviceType"></param>
+            <param name="Name"></param>
+            <param name="Module">1 瞬时 2 单例 3 作用域</param>
+        </member>
         <member name="M:XExten.Advance.IocFramework.IocDependency.Resolve``1">
             <summary>
             取出实例
@@ -1530,7 +1556,22 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.ResolveByNamed``1(System.Object)">
+            <summary>
+            取出实例
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Name"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.IocFramework.IocDependency.Resolves``1">
+            <summary>
+            取出实例集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.ResolvesByNamed``1(System.Object)">
             <summary>
             取出实例集合
             </summary>
@@ -1544,9 +1585,55 @@
             <param name="serviceType"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.ResolveByNamed(System.Type,System.Object)">
+            <summary>
+            取出实例
+            </summary>
+            <param name="serviceType"></param>
+            <param name="Name"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.IocFramework.IocDependency.Resolves(System.Type)">
             <summary>
             取出实例集合
+            </summary>
+            <param name="serviceType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.ResolvesByNamed(System.Type,System.Object)">
+            <summary>
+            取出实例集合
+            </summary>
+            <param name="serviceType"></param>
+            <param name="Name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.IsExistsByNamed``1(System.Object)">
+            <summary>
+            判断实例是否存在
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.IsExistsByNamed(System.Type,System.Object)">
+            <summary>
+            判断实例是否存在
+            </summary>
+            <param name="serviceType"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.IsExists``1">
+            <summary>
+            判断实例是否存在
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.IocFramework.IocDependency.IsExists(System.Type)">
+            <summary>
+            判断实例是否存在
             </summary>
             <param name="serviceType"></param>
             <returns></returns>
@@ -1570,7 +1657,7 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.JsonDbFramework.JsonDbContext.LoadInMonery``1">
+        <member name="M:XExten.Advance.JsonDbFramework.JsonDbContext.LoadInMemory``1">
             <summary>
             加载数据到内存
             </summary>
@@ -1766,164 +1853,103 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToRodAsync(System.Decimal,System.Int32)">
-             <summary>
-            保留小数非四舍五入
-             </summary>
-             <param name="param"></param>
-             <param name="parrent"></param>
-             <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMd5Async(System.String,System.Int32)">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsOkJson(System.String)">
             <summary>
-            Md5
+            将错误的JSON转为正确结果
             </summary>
             <param name="param"></param>
-            <param name="bit"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToFmtDateAsync(System.DateTime,System.Int32,System.String)">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsIntAsync(System.String)">
             <summary>
-            时间格式化
+            To Int
             </summary>
             <param name="param"></param>
-            <param name="fmtType">
-            0 : default
-            1 : yyyy-MM-dd HH:mm:ss:ffff
-            2 : yyyy年MM月dd日
-            </param>
-            <param name="fmt"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToEntityAsync``1(System.Data.DataTable)">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsFloatAsync(System.String)">
             <summary>
-            DataTable 2 Entity
+            To Float
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsDoubleAsync(System.String)">
+            <summary>
+            To Double
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsLongAsync(System.String)">
+            <summary>
+            To Long
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsDateTimeAsync(System.String)">
+            <summary>
+            To DateTime
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsStringAsync(System.Object)">
+            <summary>
+            To String
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsBoolAsync(System.String)">
+            <summary>
+            To Bool
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsBoolAsync(System.Int32)">
+            <summary>
+            To Bool
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsBytesAsync(System.String)">
+            <summary>
+            To Bytes
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsDecimalAsync(System.String)">
+            <summary>
+            To Decimal
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsOkJsonAsync(System.String)">
+            <summary>
+            将错误的JSON转为正确结果
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ByUri``1(``0,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            将实体转为URL参数
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
+            <param name="MapFied"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToJsonAsync``1(``0,Newtonsoft.Json.JsonSerializerSettings)">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ByUri(System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
             <summary>
-            序列化 JsonNet
+            将键值对转为URL参数
             </summary>
-            <typeparam name="T"></typeparam>
-            <param name="param"></param>
-            <param name="Option"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToModelAsync``1(System.String,Newtonsoft.Json.JsonSerializerSettings)">
-            <summary>
-            反序列化 JsonNet
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="param"></param>
-            <param name="Option"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToDesAsync(System.Enum)">
-            <summary>
-            返回指定的枚举描述值
-            </summary>
-            <param name="Param"></param>
-            <returns>枚举描叙</returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToDesAsync``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
-            <summary>
-             返回具有标记为描述属性字段的属性值的实体
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="Param"></param>
-            <param name="Expres"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToAttrAsync``2(``0,System.String,System.Boolean)">
-            <summary>
-            获取指定字段的Attribute
-            </summary>
-            <typeparam name="TSource">指定实体</typeparam>
-            <typeparam name="TAttribute">特性</typeparam>
-            <param name="Param">指定实体</param>
-            <param name="FieldName">字段名</param>
-            <param name="IsProperty">是否获取属性</param>
-            <returns>Attribute</returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToTablesAsync``1(System.Collections.Generic.IList{``0})">
-            <summary>
-            将集合转换为数据表并返回数据表
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="queryable"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapperAsync``1(System.Object)">
-            <summary>
-            映射对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapperAsync``1(System.Object,System.Type)">
-            <summary>
-            映射对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="param"></param>
-            <param name="target"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapperAsync``2(System.Object)">
-            <summary>
-            映射集合
-            </summary>
-            <typeparam name="K"></typeparam>
-            <typeparam name="T"></typeparam>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapperAsync(System.Object,System.Type,System.Type,System.Type)">
-            <summary>
-            映射集合
-            </summary>
-            <param name="param"></param>
-            <param name="source"></param>
-            <param name="target"></param>
-            <param name="targets"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapestAsync``1(System.Object,Mapster.TypeAdapterConfig)">
-            <summary>
-            映射对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="param"></param>
-            <param name="config"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapestAsync(System.Object,System.Type,Mapster.TypeAdapterConfig)">
-            <summary>
-            映射对象
-            </summary>
-            <param name="param"></param>
-            <param name="destinationType"></param>
-            <param name="config"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToRandomAsync``1(System.Collections.Generic.List{``0},System.Int32)">
-            <summary>
-            随机数组
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="param"></param>
-            <param name="index"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToDisorderAsync``1(System.Collections.Generic.List{``0})">
-            <summary>
-            乱序列表
-            </summary>
-            <typeparam name="T"></typeparam>
             <param name="param"></param>
             <returns></returns>
         </member>
@@ -1943,22 +1969,6 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithNamesAsync``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            返回实体中所有的字段名
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithKeyValueAsync``1(``0)">
-            <summary>
-            返回一个实体中所有数据
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.IsNullOrEmpty(System.String)">
              <summary>
             检查字符
@@ -1974,11 +1984,196 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.IsIDCard(System.String)">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.Is18IDCard(System.String)">
             <summary>
             是否身份证
             </summary>
             <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.Is15IDCard(System.String)">
+            <summary>
+            是否身份证
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.IsPhone(System.String)">
+            <summary>
+            验证手机号
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.IsRegex(System.String,System.String)">
+            <summary>
+            正则表达式验证
+            </summary>
+            <param name="param"></param>
+            <param name="pattern"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.IsNullOrEmptyAsync(System.String)">
+             <summary>
+            检查字符
+             </summary>
+             <param name="param"></param>
+             <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.IsNullOrEmptyAsync``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            检查集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.Is18IDCardAsync(System.String)">
+            <summary>
+            是否身份证
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.Is15IDCardAsync(System.String)">
+            <summary>
+            是否身份证
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.IsPhoneAsync(System.String)">
+            <summary>
+            验证手机号
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.IsRegexAsync(System.String,System.String)">
+            <summary>
+            正则表达式验证
+            </summary>
+            <param name="param"></param>
+            <param name="pattern"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ForDicEach``2(System.Collections.Generic.IDictionary{``0,``1},System.Action{``0,``1})">
+            <summary>
+            遍历字典
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="K"></typeparam>
+            <param name="param"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ForDicEach``2(System.Collections.Generic.IDictionary{``0,``1},System.Action{``0,``1,System.Int32})">
+            <summary>
+            遍历字典
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="K"></typeparam>
+            <param name="param"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ForArrayEach``1(System.Array,System.Action{``0})">
+            <summary>
+            遍历数组
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ForArrayEach``1(System.Array,System.Action{``0,System.Int32})">
+            <summary>
+            遍历数组
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ForEnumerEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            遍历集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ForEnumerEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0,System.Int32})">
+            <summary>
+            遍历集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ForDicEachAsync``2(System.Collections.Generic.IDictionary{``0,``1},System.Action{``0,``1})">
+            <summary>
+            遍历字典
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="K"></typeparam>
+            <param name="param"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ForDicEachAsync``2(System.Collections.Generic.IDictionary{``0,``1},System.Action{``0,``1,System.Int32})">
+            <summary>
+            遍历字典
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="K"></typeparam>
+            <param name="param"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ForArrayEachAsync``1(System.Array,System.Action{``0})">
+            <summary>
+            遍历数组
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ForArrayEachAsync``1(System.Array,System.Action{``0,System.Int32})">
+            <summary>
+            遍历数组
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ForEnumerEachAsync``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            遍历集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ForEnumerEachAsync``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0,System.Int32})">
+            <summary>
+            遍历集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            合并表达式 ExprOne AND ExprTwo
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="ExprOne"></param>
+            <param name="ExprTwo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            合并表达式 ExprOne or ExprTwo
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="ExprOne"></param>
+            <param name="ExprTwo"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToRod(System.Decimal,System.Int32)">
@@ -2027,22 +2222,28 @@
             <param name="Option"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToJsonLight``1(``0,System.Boolean)">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToBytes``1(``0,System.Boolean)">
             <summary>
             序列化对象MsgPack
             </summary>
-            <typeparam name="T"></typeparam>
             <param name="param"></param>
             <param name="isPublic"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToModelLight``1(``0,System.Byte[]@,System.Boolean)">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToJsonLight(System.Byte[],System.Boolean)">
+            <summary>
+            序列化Bytes为Json
+            </summary>
+            <param name="param"></param>
+            <param name="isPublic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToModelLight``1(System.Byte[],System.Boolean)">
             <summary>
             反序列化对象MsgPack
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
-            <param name="bytes"></param>
             <param name="isPublic"></param>
             <returns></returns>
         </member>
@@ -2152,6 +2353,15 @@
             <param name="index"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToFactor``1(System.Collections.Generic.List{``0},System.Double)">
+            <summary>
+            根据系数间隔获取集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="factor"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToDisorder``1(System.Collections.Generic.List{``0})">
             <summary>
             乱序列表
@@ -2160,46 +2370,199 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ByUri``1(``0,System.Collections.Generic.IDictionary{System.String,System.String})">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToRodAsync(System.Decimal,System.Int32)">
+             <summary>
+            保留小数非四舍五入
+             </summary>
+             <param name="param"></param>
+             <param name="parrent"></param>
+             <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMd5Async(System.String,System.Int32)">
             <summary>
-            将实体转为URL参数
+            Md5
+            </summary>
+            <param name="param"></param>
+            <param name="bit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToFmtDateAsync(System.DateTime,System.Int32,System.String)">
+            <summary>
+            时间格式化
+            </summary>
+            <param name="param"></param>
+            <param name="fmtType">
+            0 : default
+            1 : yyyy-MM-dd HH:mm:ss:ffff
+            2 : yyyy年MM月dd日
+            </param>
+            <param name="fmt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToEntityAsync``1(System.Data.DataTable)">
+            <summary>
+            DataTable 2 Entity
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
-            <param name="MapFied"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ByUri(System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToJsonAsync``1(``0,Newtonsoft.Json.JsonSerializerSettings)">
             <summary>
-            将键值对转为URL参数
+            序列化 JsonNet
             </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="Option"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToBytesAsync``1(``0,System.Boolean)">
+            <summary>
+            序列化对象MsgPack
+            </summary>
+            <param name="param"></param>
+            <param name="isPublic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToJsonLightAsync(System.Byte[],System.Boolean)">
+            <summary>
+            序列化Bytes为Json
+            </summary>
+            <param name="param"></param>
+            <param name="isPublic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToModelLightAsync``1(System.Byte[],System.Boolean)">
+            <summary>
+            反序列化对象MsgPack
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="isPublic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToModelAsync``1(System.String,Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>
+            反序列化 JsonNet
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="Option"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToDesAsync(System.Enum)">
+            <summary>
+            返回指定的枚举描述值
+            </summary>
+            <param name="param"></param>
+            <returns>枚举描叙</returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToDesAsync``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+             返回具有标记为描述属性字段的属性值的实体
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="Param"></param>
+            <param name="Expres"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToAttrAsync``2(``0,System.String,System.Boolean)">
+            <summary>
+            获取指定字段的Attribute
+            </summary>
+            <typeparam name="TSource">指定实体</typeparam>
+            <typeparam name="TAttribute">特性</typeparam>
+            <param name="Param">指定实体</param>
+            <param name="FieldName">字段名</param>
+            <param name="IsProperty">是否获取属性</param>
+            <returns>Attribute</returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToTablesAsync``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            将集合转换为数据表并返回数据表
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queryable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapperAsync``1(System.Object)">
+            <summary>
+            映射对象
+            </summary>
+            <typeparam name="T"></typeparam>
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ForDicEach``2(System.Collections.Generic.IDictionary{``0,``1},System.Action{``0,``1})">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapperAsync(System.Object,System.Type)">
             <summary>
-            遍历字典
+            映射对象
             </summary>
-            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapperAsync``2(System.Object)">
+            <summary>
+            映射集合
+            </summary>
             <typeparam name="K"></typeparam>
+            <typeparam name="T"></typeparam>
             <param name="param"></param>
-            <param name="action"></param>
+            <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ForArrayEach``1(System.Array,System.Action{``0})">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapperAsync(System.Object,System.Type,System.Type,System.Type)">
             <summary>
-            遍历数组
+            映射对象
+            </summary>
+            <param name="param"></param>
+            <param name="source"></param>
+            <param name="target"></param>
+            <param name="targets"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapestAsync``1(System.Object,Mapster.TypeAdapterConfig)">
+            <summary>
+            映射对象
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
-            <param name="action"></param>
+            <param name="config"></param>
+            <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ForEnumerEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapestAsync(System.Object,System.Type,Mapster.TypeAdapterConfig)">
             <summary>
-            遍历集合
+            映射对象
+            </summary>
+            <param name="param"></param>
+            <param name="destinationType"></param>
+            <param name="config"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToRandomAsync``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            随机数组
             </summary>
             <typeparam name="T"></typeparam>
             <param name="param"></param>
-            <param name="action"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToFactorAsync``1(System.Collections.Generic.List{``0},System.Double)">
+            <summary>
+            根据系数间隔获取集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <param name="factor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToDisorderAsync``1(System.Collections.Generic.List{``0})">
+            <summary>
+            乱序列表
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <returns></returns>
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithNames``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
@@ -2217,22 +2580,54 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithRegex(System.String,System.String)">
             <summary>
-            合并表达式 ExprOne AND ExprTwo
+            正则匹配
             </summary>
-            <typeparam name="T"></typeparam>
-            <param name="ExprOne"></param>
-            <param name="ExprTwo"></param>
+            <param name="param"></param>
+            <param name="pattern"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithRegexReplace(System.String,System.String,System.String)">
             <summary>
-            合并表达式 ExprOne or ExprTwo
+            正则替换
+            </summary>
+            <param name="param"></param>
+            <param name="pattern"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithNamesAsync``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            返回实体中所有的字段名
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="ExprOne"></param>
-            <param name="ExprTwo"></param>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithKeyValueAsync``1(``0)">
+            <summary>
+            返回一个实体中所有数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithRegexAsync(System.String,System.String)">
+            <summary>
+            正则匹配
+            </summary>
+            <param name="param"></param>
+            <param name="pattern"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithRegexReplaceAsync(System.String,System.String,System.String)">
+            <summary>
+            正则替换
+            </summary>
+            <param name="param"></param>
+            <param name="pattern"></param>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="T:XExten.Advance.NetFramework.ConstDefault">
@@ -2325,6 +2720,26 @@
             表单
             </summary>
         </member>
+        <member name="T:XExten.Advance.NetFramework.Enums.ImpMode">
+            <summary>
+            获取实现方法
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.NetFramework.Enums.ImpMode.None">
+            <summary>
+            随机
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.NetFramework.Enums.ImpMode.Http">
+            <summary>
+            HTTP
+            </summary>
+        </member>
+        <member name="F:XExten.Advance.NetFramework.Enums.ImpMode.Reset">
+            <summary>
+            Reset
+            </summary>
+        </member>
         <member name="T:XExten.Advance.NetFramework.Enums.Method">
             <summary>
             请求方式
@@ -2399,10 +2814,26 @@
             <param name="action"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.NetFramework.INetFactory.AddWhereNode(System.Boolean,System.Action{XExten.Advance.NetFramework.Options.DefaultNodes})">
+            <summary>
+            添加请求地址
+            </summary>
+            <param name="condition"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.NetFramework.INetFactory.AddNode(System.Collections.Generic.List{XExten.Advance.NetFramework.Options.DefaultNodes})">
             <summary>
             添加请求地址
             </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.NetFramework.INetFactory.AddWhereNode(System.Boolean,System.Collections.Generic.List{XExten.Advance.NetFramework.Options.DefaultNodes})">
+            <summary>
+            添加请求地址
+            </summary>
+            <param name="condition"></param>
             <param name="action"></param>
             <returns></returns>
         </member>
@@ -2494,7 +2925,7 @@
             <param name="Lifespan">HttpClient生命周期 默认1秒钟</param>
             <param name="platform">使用平台</param>
         </member>
-        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.Resolve``1">
+        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.Resolve``1(XExten.Advance.NetFramework.Enums.ImpMode)">
             <summary>
             限定获取实例
             </summary>
@@ -2676,12 +3107,6 @@
             <param name="final"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.StaticFramework.SyncStatic.RandomPho">
-            <summary>
-            随机手机
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.CHNPinYin(System.String,Chinese.PinyinFormat,Chinese.ChineseTypes)">
             <summary>
             获取中文拼音
@@ -2689,22 +3114,6 @@
             <param name="Chinese"></param>
             <param name="format"></param>
             <param name="chineseType"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.StaticFramework.SyncStatic.BarHtml(System.String,System.Int32,System.Int32)">
-            <summary>
-            返回条形码
-            </summary>
-            <param name="param"></param>
-            <param name="width"></param>
-            <param name="height"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.StaticFramework.SyncStatic.HText(System.String)">
-            <summary>
-            把网页内容转为文本
-            </summary>
-            <param name="html"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.ReadXml(System.String,System.String,System.String)">
@@ -2747,12 +3156,6 @@
             </summary>
             <typeparam name="T"></typeparam>
             <param name="Xml"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.StaticFramework.SyncStatic.VerifyCode">
-            <summary>
-            创建一个验证吗
-            </summary>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.Assembly(System.String)">
@@ -2904,6 +3307,13 @@
             <param name="path"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.CreateFull(System.String)">
+            <summary>
+            创建文件夹下文件
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.DeleteFolder(System.String)">
             <summary>
             删除所有文件
@@ -2959,7 +3369,7 @@
         </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.RegistAop``1">
             <summary>
-            注册代理
+            注册Aop代理
             </summary>
             <returns></returns>
         </member>
@@ -2978,14 +3388,30 @@
             <param name="type">0 表示解密 1表示加密</param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.MultiOpenCheck">
+             <summary>
+            程序多开检测
+             </summary>
+             <returns></returns>
+        </member>
         <member name="P:XExten.Advance.ThreadFramework.TaskModel.ThreadTask">
             <summary>
             线程
             </summary>
         </member>
-        <member name="P:XExten.Advance.ThreadFramework.TaskModel.RunTask">
+        <member name="P:XExten.Advance.ThreadFramework.TaskModel.RunAsync">
             <summary>
             需要执行的代码
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.ThreadFramework.TaskModel.Run">
+            <summary>
+                    需要执行的代码
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.ThreadFramework.TaskModel.Token">
+            <summary>
+            取消
             </summary>
         </member>
         <member name="T:XExten.Advance.ThreadFramework.ThreadFactory">
@@ -2998,53 +3424,51 @@
             实例
             </summary>
         </member>
-        <member name="P:XExten.Advance.ThreadFramework.ThreadFactory.RestartInterval">
+        <member name="F:XExten.Advance.ThreadFramework.ThreadFactory.IsRestar">
             <summary>
-            等待时间
+            是否重启
             </summary>
         </member>
-        <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.StartWithRestart(System.Action,System.String,System.Boolean,System.Action)">
-            <summary>
-            带重启的线程循环任务
-            </summary>
-            <param name="action"></param>
-            <param name="key"></param>
-            <param name="isRestart"></param>
-            <param name="RunComplete"></param>
-        </member>
-        <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.StartWithRestart(System.String,System.Action,System.Action)">
-            <summary>
-            自动重启并完成任务的线程
-            </summary>
-            <param name="key"></param>
-            <param name="action"></param>
-            <param name="RunComplete"></param>
-        </member>
-        <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.Start(System.Action,System.String)">
+        <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.StartWithRestart(System.Func{System.Threading.Tasks.Task},System.String,System.Action{System.Exception},System.Boolean)">
             <summary>
             启动任务
             </summary>
             <param name="action"></param>
             <param name="key"></param>
+            <param name="err"></param>
+            <param name="restart"></param>
         </member>
-        <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.StopTask(System.String,System.Action)">
+        <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.StartWithRestart(System.Action,System.String,System.Action{System.Exception},System.Boolean)">
+            <summary>
+            启动任务
+            </summary>
+            <param name="action"></param>
+            <param name="key"></param>
+            <param name="err"></param>
+            <param name="restart"></param>
+        </member>
+        <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.GetTaskKey">
+            <summary>
+            获取所有的线程Key
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.StopTask(System.String)">
             <summary>
             停止指定任务
             </summary>
             <param name="key">任务名</param>
-            <param name="ExitCallback">任务结束的回调</param>
         </member>
         <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.Dispose">
             <summary>
             释放所有线程资源
             </summary>
         </member>
-        <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.IsComplete(System.String)">
+        <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.Dispose(System.String)">
             <summary>
-            判断指定线程是否完成
+            释放所有线程资源排除特定的线程
             </summary>
-            <param name="key"></param>
-            <returns></returns>
+            <param name="excludeKey"></param>
         </member>
         <member name="T:XExten.Advance.ValidataFramework.Enum.ValitionEnum">
             <summary>
