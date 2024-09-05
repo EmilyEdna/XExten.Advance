@@ -1,4 +1,5 @@
 ﻿using Chinese;
+using ImageMagick;
 using Microsoft.Extensions.DependencyModel;
 using Polly;
 using System;
@@ -32,6 +33,21 @@ namespace XExten.Advance.StaticFramework
     /// </summary>
     public static class SyncStatic
     {
+        /// <summary>
+        /// 将流转为指定图片流
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="magick"></param>
+        /// <returns></returns>
+        public static byte[] ConvertBytesImage(byte[] bytes, MagickFormat magick= MagickFormat.Jpg)
+        {
+            using var image = new MagickImage(bytes);
+            using var outputStream = new MemoryStream();
+            image.Format = magick;
+            image.Write(outputStream);
+            return outputStream.ToArray();
+        }
+
         /// <summary>
         /// 异常处理
         /// </summary>

@@ -3089,6 +3089,14 @@
             StaticUtile
             </summary>
         </member>
+        <member name="M:XExten.Advance.StaticFramework.SyncStatic.ConvertBytesImage(System.Byte[],ImageMagick.MagickFormat)">
+            <summary>
+            将流转为指定图片流
+            </summary>
+            <param name="bytes"></param>
+            <param name="magick"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.StaticFramework.SyncStatic.TryCatch(System.Action,System.Action{System.Exception},System.Action)">
             <summary>
             异常处理
