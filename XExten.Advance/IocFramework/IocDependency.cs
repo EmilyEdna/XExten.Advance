@@ -52,6 +52,8 @@ namespace XExten.Advance.IocFramework
                 _Services.TryAddKeyedSingleton<TService, TImplementation>(Name);
             else
                 _Services.TryAddKeyedScoped<TService, TImplementation>(Name);
+
+            _Provider = _Services.BuildServiceProvider();
         }
 
         /// <summary>
