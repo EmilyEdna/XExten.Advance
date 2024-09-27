@@ -825,6 +825,11 @@
             删除所有缓存
             </summary>
         </member>
+        <member name="T:XExten.Advance.Communication.ICommunication">
+            <summary>
+            通信
+            </summary>
+        </member>
         <member name="T:XExten.Advance.EventFramework.EventBus">
             <summary>
             事件总线
