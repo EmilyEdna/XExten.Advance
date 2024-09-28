@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using XExten.Advance.Communication.Model;
 
 namespace XExten.Advance.Communication
 {
@@ -28,7 +29,7 @@ namespace XExten.Advance.Communication
         /// 打开链接
         /// </summary>
         /// <param name="input"></param>
-        void Connect(ConnectParams input);
+        void Connect(CommunicationParams input);
 
         /// <summary>
         /// 发送指令

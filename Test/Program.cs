@@ -2,11 +2,14 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using XExten.Advance.AopFramework.AopAttribute;
+using XExten.Advance.Communication;
+using XExten.Advance.Communication.Model;
 using XExten.Advance.EventFramework;
 using XExten.Advance.EventFramework.EventSources;
 using XExten.Advance.EventFramework.PublishEvent;
 using XExten.Advance.EventFramework.SubscriptEvent;
 using XExten.Advance.IocFramework;
+using XExten.Advance.LinqFramework;
 using XExten.Advance.StaticFramework;
 
 namespace Test
@@ -16,9 +19,10 @@ namespace Test
         public static void Main(string[] args)
         {
             EventBus.Lancher(Assembly.Load(typeof(EventTest).Assembly.GetName().Name));
+            CommunicationModule.Initialize();
             while (true)
             {
-                Console.WriteLine("1【RSA】2【EVENT】3【Aop】`【退出】");
+                Console.WriteLine("1【RSA】2【EVENT】3【Aop】4【通信】`【退出】");
                 var input = Console.ReadLine();
                 if (input == "`") break;
                 if (input == "1")
@@ -27,8 +31,9 @@ namespace Test
                     EventTest.EventTestClassMethod();
                 if (input == "3")
                     AopTestClass.AopTestClassMethod();
+                if (input == "4")
+                    CommuincationClass.UdpTest();
             }
-
         }
     }
 
@@ -119,6 +124,57 @@ namespace Test
         {
             SyncStatic.RegistAop<IAopTest>();
             IocDependency.Resolve<IAopTest>().AopTestMethod();
+        }
+    }
+    #endregion
+
+    #region Commuincation
+    public class CommuincationClass
+    {
+        public static void TcpTest() 
+        {
+            ICommunication Tcp = IocDependency.ResolveByNamed<ICommunication>(CommunicationEnum.TCP);
+            Tcp.Connect(new CommunicationParams
+            {
+                Host = "127.0.0.1",
+                Port=9000
+            });
+            Console.WriteLine(Tcp.IsConnected);
+            Tcp.Received += MsgReceived;
+            while (true)
+            {
+                var input = Console.ReadLine();
+                if (input.ToUpper() != "ESC")
+                    Tcp.SendCommand(input.ByBytes());
+                else
+                    break;
+            }
+        }
+
+        public static void UdpTest()
+        {
+            ICommunication Udp = IocDependency.ResolveByNamed<ICommunication>(CommunicationEnum.UDP);
+            Udp.Connect(new CommunicationParams
+            {
+                Host = "127.0.0.1",
+                Port = 777,
+                BindPort=999,
+            });
+            Console.WriteLine(Udp.IsConnected);
+            Udp.Received += MsgReceived;
+            while (true)
+            {
+                var input = Console.ReadLine();
+                if (input.ToUpper() != "ESC")
+                    Udp.SendCommand(input.ByBytes());
+                else
+                    break;
+            }
+        }
+
+        private static void MsgReceived(byte[] obj)
+        {
+            Console.WriteLine(obj.ByString());
         }
     }
     #endregion

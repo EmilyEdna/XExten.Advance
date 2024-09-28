@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.Ports;
-using System.Text;
+﻿using System.IO.Ports;
 
-namespace XExten.Advance.Communication
+namespace XExten.Advance.Communication.Model
 {
     /// <summary>
     /// 连接参数
     /// </summary>
-    public class ConnectParams
+    public class CommunicationParams
     {
         /// <summary>
         /// COM口/IP
@@ -17,12 +14,17 @@ namespace XExten.Advance.Communication
         /// <summary>
         /// 端口
         /// </summary>
-        public int Port {  get; set; }
+        public int Port { get; set; }
+
+        /// <summary>
+        /// 绑定端口
+        /// </summary>
+        public int BindPort { get; set; }
 
         /// <summary>
         /// 奇偶校验
         /// </summary>
-        public Parity Parity { get; set; }= Parity.None;
+        public Parity Parity { get; set; } = Parity.None;
 
         /// <summary>
         /// 数据位

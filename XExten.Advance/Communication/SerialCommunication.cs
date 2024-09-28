@@ -1,26 +1,35 @@
 ﻿using System;
 using System.IO.Ports;
 using System.Threading;
+using XExten.Advance.Communication.Model;
 
 namespace XExten.Advance.Communication
 {
+    /// <summary>
+    /// 串口通信
+    /// </summary>
     internal class SerialCommunication : ICommunication
     {
-        private SerialPort Serial;
+        #region 字段
+        private SerialPort Client;
 
         private bool IsAsync = false;
+        #endregion
 
+        #region 接口属性
         public bool IsConnected { get; set; } = false;
 
         public bool DisposeReceived { get; set; } = false;
 
         public event Action<byte[]> Received;
+        #endregion
 
-        public void Connect(ConnectParams input)
+        #region 接口实现
+        public void Connect(CommunicationParams input)
         {
             try
             {
-                Serial = new SerialPort
+                Client ??= new SerialPort
                 {
                     Parity = input.Parity,
                     DataBits = input.DataBits,
@@ -30,8 +39,8 @@ namespace XExten.Advance.Communication
                     ReadTimeout = input.ReplayTimeout,
                     WriteTimeout = input.SendTimeout,
                 };
-                Serial.Open();
-                IsConnected = Serial.IsOpen;
+                Client.Open();
+                IsConnected = Client.IsOpen;
             }
             catch
             {
@@ -40,25 +49,26 @@ namespace XExten.Advance.Communication
         }
         public void SendCommand(byte[] cmd)
         {
-            if (Serial != null && IsConnected)
+            if (Client != null && IsConnected)
             {
-                Serial.Write(cmd, 0, cmd.Length);
+                Client.Write(cmd, 0, cmd.Length);
                 if (DisposeReceived) return;
                 if (!IsAsync)
                 {
                     int Timeout = 0;
-                    while (Serial.BytesToRead < 2)
+                    while (Client.BytesToRead < 2)
                     {
                         Thread.Sleep(20);
                         Timeout += 20;
-                        if (Timeout >= Serial.ReadTimeout)
+                        if (Timeout >= Client.ReadTimeout)
                             break;
                     }
-                    if (Timeout < Serial.ReadTimeout)
+                    if (Timeout < Client.ReadTimeout)
                     {
-                        byte[] bytes = new byte[Serial.BytesToRead];
-                        Serial.Read(bytes, 0, bytes.Length);
+                        byte[] bytes = new byte[Client.BytesToRead];
+                        Client.Read(bytes, 0, bytes.Length);
                         Received?.Invoke(bytes);
+                        Array.Clear(bytes, 0, bytes.Length);
                     }
                 }
             }
@@ -67,9 +77,9 @@ namespace XExten.Advance.Communication
 
         public void Close()
         {
-            if (Serial != null && IsConnected)
+            if (Client != null && IsConnected)
             {
-                Serial.Close();
+                Client.Close();
                 IsConnected = false;
             }
         }
@@ -78,23 +88,28 @@ namespace XExten.Advance.Communication
         public void UseAsyncReceived(bool flag)
         {
             IsAsync = flag;
-            if (Serial != null && IsConnected)
+            if (Client != null && IsConnected)
             {
                 if (IsAsync)
-                    Serial.DataReceived += Serial_DataReceived;
+                    Client.DataReceived += ReceivedMessage;
                 else
-                    Serial.DataReceived -= Serial_DataReceived;
+                    Client.DataReceived -= ReceivedMessage;
             }
 
         }
+        #endregion
 
-        private void Serial_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        #region 私有
+        private void ReceivedMessage(object sender, SerialDataReceivedEventArgs e)
         {
             if (DisposeReceived) return;
             var com = (SerialPort)sender;
             byte[] bytes = new byte[com.BytesToRead];
             com.Read(bytes, 0, bytes.Length);
             Received?.Invoke(bytes);
+            Array.Clear(bytes, 0, bytes.Length);
         }
+        #endregion
+
     }
 }

@@ -67,6 +67,22 @@ namespace XExten.Advance.LinqFramework
             });
             return $"?{string.Join("&", result)}";
         }
+        
+        /// <summary>
+        /// Encoding获取流
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static byte[] ByBytes(this string param)
+            => Encoding.Default.GetBytes(param);
+
+        /// <summary>
+        /// Encoding获取字符串
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public static string ByString(this byte[] param)
+            => Encoding.Default.GetString(param);
         #endregion
 
         #region Async
