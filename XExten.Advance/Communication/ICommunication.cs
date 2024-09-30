@@ -16,14 +16,14 @@ namespace XExten.Advance.Communication
         event Action<byte[]> Received;
 
         /// <summary>
+        /// 异常事件
+        /// </summary>
+        event Action<Exception> Error;
+
+        /// <summary>
         /// 是否连接成功
         /// </summary>
         bool IsConnected { get; set; }
-
-        /// <summary>
-        /// 是否丢弃数据
-        /// </summary>
-        bool DisposeReceived { get; set; }
 
         /// <summary>
         /// 打开链接
@@ -35,17 +35,19 @@ namespace XExten.Advance.Communication
         /// 发送指令
         /// </summary>
         /// <param name="cmd"></param>
-        void SendCommand(byte[] cmd);
+        /// <param name="DisposeReceived">是否丢弃数据</param>
+        byte[] SendCommand(byte[] cmd, bool DisposeReceived=true);
+
+        /// <summary>
+        /// 发送指令
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <param name="DisposeReceived">是否丢弃数据</param>
+        void SendCommandAsync(byte[] cmd, bool DisposeReceived=true);
 
         /// <summary>
         /// 断开连接
         /// </summary>
         void Close();
-
-        /// <summary>
-        /// 使用同步还是异步接收数据
-        /// </summary>
-        /// <param name="flag"></param>
-        void UseAsyncReceived(bool flag);
     }
 }

@@ -12,16 +12,14 @@ namespace XExten.Advance.Communication
     {
         #region 字段
         private SerialPort Client;
-
-        private bool IsAsync = false;
+        private bool DisposeReceived = true;
         #endregion
 
         #region 接口属性
         public bool IsConnected { get; set; } = false;
 
-        public bool DisposeReceived { get; set; } = false;
-
         public event Action<byte[]> Received;
+        public event Action<Exception> Error;
         #endregion
 
         #region 接口实现
@@ -42,21 +40,23 @@ namespace XExten.Advance.Communication
                 Client.Open();
                 IsConnected = Client.IsOpen;
             }
-            catch
+            catch (Exception ex)
             {
                 IsConnected = false;
+                Error?.Invoke(ex);
             }
         }
-        public void SendCommand(byte[] cmd)
+        public byte[] SendCommand(byte[] cmd, bool DisposeReceived = true)
         {
-            if (Client != null && IsConnected)
+            try
             {
-                Client.Write(cmd, 0, cmd.Length);
-                if (DisposeReceived) return;
-                if (!IsAsync)
+                this.DisposeReceived = DisposeReceived;
+                if (Client != null && IsConnected)
                 {
+                    UseAsyncReceived(false);
+                    Client.Write(cmd, 0, cmd.Length);
                     int Timeout = 0;
-                    while (Client.BytesToRead < 2)
+                    while (Client.BytesToRead < 0)
                     {
                         Thread.Sleep(20);
                         Timeout += 20;
@@ -67,13 +67,36 @@ namespace XExten.Advance.Communication
                     {
                         byte[] bytes = new byte[Client.BytesToRead];
                         Client.Read(bytes, 0, bytes.Length);
-                        Received?.Invoke(bytes);
-                        Array.Clear(bytes, 0, bytes.Length);
+                        if (!DisposeReceived)
+                            return bytes;
                     }
+                    else
+                        return Array.Empty<byte>();
                 }
+            }
+            catch (Exception ex)
+            {
+                Error?.Invoke(ex);
             }
         }
 
+        public void SendCommandAsync(byte[] cmd, bool DisposeReceived = true)
+        {
+            try
+            {
+                this.DisposeReceived = DisposeReceived;
+                if (Client != null && IsConnected)
+                {
+                    UseAsyncReceived(true);
+                    Client.Write(cmd, 0, cmd.Length);
+                    Thread.Sleep(20);
+                }
+            }
+            catch (Exception ex)
+            {
+                Error?.Invoke(ex);
+            }
+        }
 
         public void Close()
         {
@@ -83,32 +106,40 @@ namespace XExten.Advance.Communication
                 IsConnected = false;
             }
         }
+        #endregion
 
-
-        public void UseAsyncReceived(bool flag)
+        #region 私有
+        private void UseAsyncReceived(bool flag)
         {
-            IsAsync = flag;
             if (Client != null && IsConnected)
             {
-                if (IsAsync)
+                if (flag)
                     Client.DataReceived += ReceivedMessage;
                 else
                     Client.DataReceived -= ReceivedMessage;
             }
-
         }
-        #endregion
 
-        #region 私有
         private void ReceivedMessage(object sender, SerialDataReceivedEventArgs e)
         {
-            if (DisposeReceived) return;
-            var com = (SerialPort)sender;
-            byte[] bytes = new byte[com.BytesToRead];
-            com.Read(bytes, 0, bytes.Length);
-            Received?.Invoke(bytes);
-            Array.Clear(bytes, 0, bytes.Length);
+            try
+            {
+                var com = (SerialPort)sender;
+                var len = com.BytesToRead;
+                if (len > 0)
+                {
+                    byte[] bytes = new byte[len];
+                    com.Read(bytes, 0, bytes.Length);
+                    if (!DisposeReceived)
+                        Received?.Invoke(bytes);
+                }
+            }
+            catch (Exception ex)
+            {
+                Error?.Invoke(ex);
+            }
         }
+
         #endregion
 
     }

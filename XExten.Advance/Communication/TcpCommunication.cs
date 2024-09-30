@@ -22,15 +22,16 @@ namespace XExten.Advance.Communication
 
         private CancellationTokenSource TokenSource = new CancellationTokenSource();
 
+        private bool DisposeReceived = true;
+
         private bool IsAsync = false;
         #endregion
 
         #region 接口属性
         public bool IsConnected { get; set; } = false;
 
-        public bool DisposeReceived { get; set; } = false;
-
         public event Action<byte[]> Received;
+        public event Action<Exception> Error;
         #endregion
 
         #region 接口实现
@@ -47,30 +48,32 @@ namespace XExten.Advance.Communication
                 Stream = Client.GetStream();
                 IsConnected = Client.Connected;
             }
-            catch
+            catch (Exception ex)
             {
                 IsConnected = false;
-                throw;
+                Error?.Invoke(ex);
             }
         }
 
-        public void SendCommand(byte[] cmd)
+        public byte[] SendCommand(byte[] cmd, bool DisposeReceived = true)
         {
-            if (Client != null && IsConnected)
+            try
             {
-                Stream.Write(cmd, 0, cmd.Length);
-                if (DisposeReceived) return;
-                if (!IsAsync)
+                this.DisposeReceived = DisposeReceived;
+                if (Client != null && IsConnected)
                 {
+                    UseAsyncReceived(false);
+                    Stream.Write(cmd, 0, cmd.Length);
                     int Timeout = 0;
-                    while (Timeout<Client.ReceiveTimeout)
+                    while (Timeout < Client.ReceiveTimeout)
                     {
                         if (Stream.DataAvailable)
                         {
                             byte[] bytes = new byte[Client.ReceiveBufferSize];
                             Stream.Read(bytes, 0, bytes.Length);
-                            Received?.Invoke(bytes);
-                            Array.Clear(bytes, 0, bytes.Length);
+                            Stream.Flush();
+                            if (!DisposeReceived)
+                                return bytes;
                             break;
                         }
                         Thread.Sleep(20);
@@ -79,8 +82,34 @@ namespace XExten.Advance.Communication
                             break;
                     }
                 }
+                return Array.Empty<byte>();
+            }
+            catch (Exception ex)
+            {
+                Error?.Invoke(ex);
+                return Array.Empty<byte>();
             }
         }
+
+        public void SendCommandAsync(byte[] cmd, bool DisposeReceived = true)
+        {
+            try
+            {
+                this.DisposeReceived = DisposeReceived;
+                if (Client != null && IsConnected) 
+                {
+                    UseAsyncReceived(true);
+                    Stream.Write(cmd, 0, cmd.Length);
+                    Stream.Flush();
+                    Thread.Sleep(20);
+                }
+            }
+            catch (Exception ex)
+            {
+                Error?.Invoke(ex);
+            }
+        }
+
 
         public void Close()
         {
@@ -90,8 +119,27 @@ namespace XExten.Advance.Communication
                 IsConnected = false;
             }
         }
+        #endregion
 
-        public void UseAsyncReceived(bool flag)
+        #region 私有
+        private async Task ReceivedMessage()
+        {
+            if (Client != null && IsConnected)
+            {
+                while (IsAsync)
+                {
+                    if (Stream.DataAvailable)
+                    {
+                        byte[] bytes = new byte[Client.ReceiveBufferSize];
+                        await Stream.ReadAsync(bytes, 0, bytes.Length);
+                        Stream.Flush();
+                        if (!DisposeReceived)
+                            Received?.Invoke(bytes);
+                    }
+                }
+            }
+        }
+        private void UseAsyncReceived(bool flag)
         {
             IsAsync = flag;
             if (IsAsync)
@@ -106,25 +154,6 @@ namespace XExten.Advance.Communication
             {
                 TokenSource.Cancel();
                 ReceivedTask?.Dispose();
-            }
-        }
-        #endregion
-
-        #region 私有
-        private async Task ReceivedMessage()
-        {
-            if (Client != null && IsConnected)
-            {
-                while (IsAsync)
-                {
-                    if (Stream.DataAvailable && !DisposeReceived)
-                    {
-                        byte[] bytes = new byte[Client.ReceiveBufferSize];
-                        await Stream.ReadAsync(bytes, 0, bytes.Length);
-                        Received?.Invoke(bytes);
-                        Array.Clear(bytes, 0, bytes.Length);
-                    }
-                }
             }
         }
         #endregion
