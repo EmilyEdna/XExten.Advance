@@ -845,14 +845,14 @@
             数据接收事件
             </summary>
         </member>
+        <member name="E:XExten.Advance.Communication.ICommunication.Error">
+            <summary>
+            异常事件
+            </summary>
+        </member>
         <member name="P:XExten.Advance.Communication.ICommunication.IsConnected">
             <summary>
             是否连接成功
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.Communication.ICommunication.DisposeReceived">
-            <summary>
-            是否丢弃数据
             </summary>
         </member>
         <member name="M:XExten.Advance.Communication.ICommunication.Connect(XExten.Advance.Communication.Model.CommunicationParams)">
@@ -861,22 +861,76 @@
             </summary>
             <param name="input"></param>
         </member>
-        <member name="M:XExten.Advance.Communication.ICommunication.SendCommand(System.Byte[])">
+        <member name="M:XExten.Advance.Communication.ICommunication.SendCommand(System.Byte[],System.Boolean)">
             <summary>
             发送指令
             </summary>
             <param name="cmd"></param>
+            <param name="DisposeReceived">是否丢弃数据</param>
+        </member>
+        <member name="M:XExten.Advance.Communication.ICommunication.SendCommandAsync(System.Byte[],System.Boolean)">
+            <summary>
+            发送指令
+            </summary>
+            <param name="cmd"></param>
+            <param name="DisposeReceived">是否丢弃数据</param>
         </member>
         <member name="M:XExten.Advance.Communication.ICommunication.Close">
             <summary>
             断开连接
             </summary>
         </member>
-        <member name="M:XExten.Advance.Communication.ICommunication.UseAsyncReceived(System.Boolean)">
+        <member name="T:XExten.Advance.Communication.IServerCommunication">
             <summary>
-            使用同步还是异步接收数据
+            TCP服务端
             </summary>
-            <param name="flag"></param>
+        </member>
+        <member name="E:XExten.Advance.Communication.IServerCommunication.Received">
+            <summary>
+            数据接收事件
+            </summary>
+        </member>
+        <member name="E:XExten.Advance.Communication.IServerCommunication.Error">
+            <summary>
+            异常事件
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.Communication.IServerCommunication.Start(System.String,System.Int32,System.Int32)">
+            <summary>
+            启动
+            </summary>
+            <param name="ip">ip</param>
+            <param name="port">port</param>
+            <param name="dataSize">接受的数据大小</param>
+        </member>
+        <member name="M:XExten.Advance.Communication.IServerCommunication.Close">
+            <summary>
+            关闭
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.Communication.IServerCommunication.SendAll(System.Byte[])">
+            <summary>
+            广播消息
+            </summary>
+            <param name="data">数据</param>
+        </member>
+        <member name="M:XExten.Advance.Communication.IServerCommunication.Send(System.Guid,System.Byte[])">
+            <summary>
+            对指定客户端发送消息
+            </summary>
+            <param name="clientId">客服端id</param>
+            <param name="data">数据</param>
+        </member>
+        <member name="M:XExten.Advance.Communication.IServerCommunication.RemoveSession(System.Guid)">
+            <summary>
+            删除指定的客服端会话
+            </summary>
+            <param name="clientId"></param>
+        </member>
+        <member name="M:XExten.Advance.Communication.IServerCommunication.ClearSession">
+            <summary>
+            清空所有会话
+            </summary>
         </member>
         <member name="T:XExten.Advance.Communication.Model.CommunicationEnum">
             <summary>
@@ -951,6 +1005,11 @@
         <member name="P:XExten.Advance.Communication.Model.CommunicationParams.ReplayTimeout">
             <summary>
             回复超时(ms)
+            </summary>
+        </member>
+        <member name="T:XExten.Advance.Communication.Model.ServerCommunicationParams">
+            <summary>
+            服务配置参数
             </summary>
         </member>
         <member name="T:XExten.Advance.Communication.SerialCommunication">
@@ -2721,6 +2780,20 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithByteHex(System.Byte[])">
+            <summary>
+            Bytes转hex
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithHexByte(System.String)">
+            <summary>
+            hex转bytes
+            </summary>
+            <param name="hex"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithNames``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             返回实体中所有的字段名
@@ -2752,6 +2825,20 @@
             <param name="param"></param>
             <param name="pattern"></param>
             <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithByteHexAsync(System.Byte[])">
+            <summary>
+            Bytes转hex
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithHexByteAsync(System.String)">
+            <summary>
+            hex转bytes
+            </summary>
+            <param name="hex"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.WithNamesAsync``1(System.Collections.Generic.IEnumerable{``0})">
@@ -3634,155 +3721,6 @@
             释放所有线程资源排除特定的线程
             </summary>
             <param name="excludeKey"></param>
-        </member>
-        <member name="T:XExten.Advance.ValidataFramework.Enum.ValitionEnum">
-            <summary>
-            验证类型
-            </summary>
-        </member>
-        <member name="F:XExten.Advance.ValidataFramework.Enum.ValitionEnum.Ignore">
-            <summary>
-            忽略
-            </summary>
-        </member>
-        <member name="F:XExten.Advance.ValidataFramework.Enum.ValitionEnum.NotNull">
-            <summary>
-            非空验证
-            </summary>
-        </member>
-        <member name="F:XExten.Advance.ValidataFramework.Enum.ValitionEnum.Regex">
-            <summary>
-            正则验证
-            </summary>
-        </member>
-        <member name="F:XExten.Advance.ValidataFramework.Enum.ValitionEnum.Customer">
-            <summary>
-            自定义验证
-            </summary>
-        </member>
-        <member name="T:XExten.Advance.ValidataFramework.Enum.ValitionModuleEnum">
-            <summary>
-            验证模式
-            </summary>
-        </member>
-        <member name="F:XExten.Advance.ValidataFramework.Enum.ValitionModuleEnum.Single">
-            <summary>
-            单个验证不满足则返回
-            </summary>
-        </member>
-        <member name="F:XExten.Advance.ValidataFramework.Enum.ValitionModuleEnum.Global">
-            <summary>
-            全局验证完统一返回
-            </summary>
-        </member>
-        <member name="T:XExten.Advance.ValidataFramework.ValitionAttribute">
-            <summary>
-            参数验证
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.ValidataFramework.ValitionAttribute.InfoMsg">
-            <summary>
-            验证消息
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.ValidataFramework.ValitionAttribute.ValiType">
-            <summary>
-            验证类型
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.ValidataFramework.ValitionAttribute.RegexStr">
-            <summary>
-            正在表达式
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.ValidataFramework.ValitionAttribute.UsageAppendField">
-            <summary>
-            是否使用不满足要求的自动名称代入返回信息
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.ValidataFramework.ValitionAttribute.CustomerValition">
-            <summary>
-            自定义验证 需要自行实现ValitionBaseCustomer
-            </summary>
-        </member>
-        <member name="T:XExten.Advance.ValidataFramework.ValitionBaseCustomer">
-            <summary>
-            自定义验证父类
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.ValidataFramework.ValitionBaseCustomer.UserCustomerValition(System.String,System.String)">
-            <summary>
-            自定义验证
-            </summary>
-            <param name="propertyName">属性名称</param>
-            <param name="requestParam">请求参数</param>
-            <returns>T1 是否符合要求,T2 验证信息</returns>
-        </member>
-        <member name="T:XExten.Advance.ValidataFramework.ValitionBaseRule">
-            <summary>
-            校验规则
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.ValidataFramework.ValitionBaseRule.ValitionRules(System.Collections.Generic.Dictionary{System.String,System.String},System.Reflection.ParameterInfo[])">
-            <summary>
-            校验逻辑
-            </summary>
-            <param name="pairs"></param>
-            <param name="parameters"></param>
-            <returns></returns>
-        </member>
-        <member name="T:XExten.Advance.ValidataFramework.ValitionClassAttribute">
-            <summary>
-            参数验证
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.ValidataFramework.ValitionClassAttribute.ModuleType">
-            <summary>
-            验证模式
-            </summary>
-        </member>
-        <member name="T:XExten.Advance.ValidataFramework.ValitionExtension">
-            <summary>
-            注册验证框架
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.ValidataFramework.ValitionExtension.UseValition(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
-            <summary>
-            使用验证
-            </summary>
-            <param name="application"></param>
-            <returns></returns>
-        </member>
-        <member name="T:XExten.Advance.ValidataFramework.ValitionMiddleWare">
-            <summary>
-            验证中间件
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.ValidataFramework.ValitionMiddleWare.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
-            <summary>
-            初始化
-            </summary>
-            <param name="RequestDelegates"></param>
-        </member>
-        <member name="M:XExten.Advance.ValidataFramework.ValitionMiddleWare.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
-            <summary>
-            执行
-            </summary>
-            <param name="Context"></param>
-            <returns></returns>
-        </member>
-        <member name="T:XExten.Advance.ValidataFramework.ValitionRule">
-            <summary>
-            校验规则
-            </summary>
-        </member>
-        <member name="M:XExten.Advance.ValidataFramework.ValitionRule.ValitionRules(System.Collections.Generic.Dictionary{System.String,System.String},System.Reflection.ParameterInfo[])">
-            <summary>
-            验证参数
-            </summary>
-            <param name="pairs"></param>
-            <param name="parameters"></param>
-            <returns></returns>
         </member>
     </members>
 </doc>

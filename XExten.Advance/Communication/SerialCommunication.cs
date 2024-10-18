@@ -73,10 +73,12 @@ namespace XExten.Advance.Communication
                     else
                         return Array.Empty<byte>();
                 }
+                return Array.Empty<byte>();
             }
             catch (Exception ex)
             {
                 Error?.Invoke(ex);
+                return Array.Empty<byte>();
             }
         }
 

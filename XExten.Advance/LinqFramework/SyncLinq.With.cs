@@ -10,6 +10,31 @@ namespace XExten.Advance.LinqFramework
     {
 
         #region With
+
+        /// <summary>
+        /// Bytes转hex
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static string WithByteHex(this byte[] bytes)
+            => string.Join("", bytes.Select(t => t.ToString("x2")));
+
+        /// <summary>
+        /// hex转bytes
+        /// </summary>
+        /// <param name="hex"></param>
+        /// <returns></returns>
+        public static byte[] WithHexByte(this string hex)
+        {
+            var inputByteArray = new byte[hex.Length / 2];
+            for (var x = 0; x < inputByteArray.Length; x++)
+            {
+                var i = Convert.ToInt32(hex.Substring(x * 2, 2), 16);
+                inputByteArray[x] = (byte)i;
+            }
+            return inputByteArray;
+        }
+
         /// <summary>
         /// 返回实体中所有的字段名
         /// </summary>
@@ -70,6 +95,23 @@ namespace XExten.Advance.LinqFramework
         #endregion
 
         #region Async
+
+        /// <summary>
+        /// Bytes转hex
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static Task<string> WithByteHexAsync(this byte[] bytes)
+            => Task.Run(() => WithByteHex(bytes));
+
+        /// <summary>
+        /// hex转bytes
+        /// </summary>
+        /// <param name="hex"></param>
+        /// <returns></returns>
+        public static Task<byte[]> WithHexByteAsync(this string hex)
+            => Task.Run(() => WithHexByte(hex));
+
         /// <summary>
         /// 返回实体中所有的字段名
         /// </summary>
