@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NPOI.SS.Formula.Functions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -106,6 +107,16 @@ namespace XExten.Advance.Communication
                         input.IsAlive = true;
                         input.OnlineDate = DateTime.Now;
                         stream.Read(bytes, 0, bytes.Length);
+
+                        int index = 0;
+                        for (index = bytes.Length - 1; index >= 0; index--)
+                        {
+                            if (bytes[index] != 0)
+                            {
+                                break;
+                            }
+                        }
+                        bytes = bytes.Take(index + 1).ToArray();
                         Received?.Invoke(input.Id, bytes);
                     }
                 }

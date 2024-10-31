@@ -88,15 +88,7 @@ namespace XExten.Advance.LinqFramework
             if (param == 1) return true;
             else return false;
         }
-        /// <summary>
-        /// To Bytes
-        /// </summary>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        public static byte[] AsBytes(this string param)
-        {
-            return Encoding.Default.GetBytes(param);
-        }
+
         /// <summary>
         /// To Decimal
         /// </summary>
@@ -175,13 +167,6 @@ namespace XExten.Advance.LinqFramework
         /// <param name="param"></param>
         /// <returns></returns>
         public static async Task<bool> AsBoolAsync(this int param) => await Task.Run(() => AsBool(param));
-
-        /// <summary>
-        /// To Bytes
-        /// </summary>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        public static async Task<byte[]> AsBytesAsync(this string param) => await Task.Run(() => AsBytes(param));
 
         /// <summary>
         /// To Decimal

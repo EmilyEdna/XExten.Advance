@@ -1,6 +1,7 @@
 ﻿using SixLabors.ImageSharp.Memory;
 using System;
 using System.IO;
+using System.Linq;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
@@ -72,6 +73,15 @@ namespace XExten.Advance.Communication
                             byte[] bytes = new byte[Client.ReceiveBufferSize];
                             Stream.Read(bytes, 0, bytes.Length);
                             Stream.Flush();
+                            int index = 0;
+                            for (index = bytes.Length - 1; index >= 0; index--)
+                            {
+                                if (bytes[index] != 0)
+                                {
+                                    break;
+                                }
+                            }
+                            bytes = bytes.Take(index + 1).ToArray();
                             if (!DisposeReceived)
                                 return bytes;
                             break;
@@ -133,6 +143,15 @@ namespace XExten.Advance.Communication
                         byte[] bytes = new byte[Client.ReceiveBufferSize];
                         await Stream.ReadAsync(bytes, 0, bytes.Length);
                         Stream.Flush();
+                        int index = 0;
+                        for (index = bytes.Length - 1; index >= 0; index--)
+                        {
+                            if (bytes[index] != 0)
+                            {
+                                break;
+                            }
+                        }
+                        bytes = bytes.Take(index + 1).ToArray();
                         if (!DisposeReceived)
                             Received?.Invoke(bytes);
                     }
