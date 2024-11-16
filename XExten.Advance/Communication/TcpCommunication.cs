@@ -82,16 +82,15 @@ namespace XExten.Advance.Communication
                             Stream.Read(bytes, 0, bytes.Length);
                             Stream.Flush();
 
-                            int LastIndex = 0;
-                            for (int index = bytes.Length; index >= 0; index--)
+                            int index = 0;
+                            for (index = bytes.Length - 1; index >= 0; index--)
                             {
-                                if (bytes[index] == 0)
+                                if (bytes[index] != 0)
                                 {
-                                    LastIndex = index;
                                     break;
                                 }
                             }
-                            bytes = bytes.Skip(LastIndex + 1).ToArray();
+                            bytes = bytes.Take(index + 1).ToArray();
                             Record(bytes, false);
                             if (!DisposeReceived)
                                 return bytes;
@@ -155,16 +154,15 @@ namespace XExten.Advance.Communication
                         byte[] bytes = new byte[Client.ReceiveBufferSize];
                         await Stream.ReadAsync(bytes, 0, bytes.Length);
                         Stream.Flush();
-                        int LastIndex = 0;
-                        for (int index = bytes.Length; index >= 0; index--)
+                        int index = 0;
+                        for (index = bytes.Length - 1; index >= 0; index--)
                         {
-                            if (bytes[index] == 0)
+                            if (bytes[index] != 0)
                             {
-                                LastIndex = index;
                                 break;
                             }
                         }
-                        bytes = bytes.Skip(LastIndex + 1).ToArray();
+                        bytes = bytes.Take(index + 1).ToArray();
                         Record(bytes, false);
                         if (!DisposeReceived)
                             Received?.Invoke(bytes);
