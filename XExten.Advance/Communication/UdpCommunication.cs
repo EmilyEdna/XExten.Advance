@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Org.BouncyCastle.Utilities;
+using System;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using XExten.Advance.Communication.Model;
+using XExten.Advance.LinqFramework;
+using XExten.Advance.LogFramework;
 
 namespace XExten.Advance.Communication
 {
@@ -25,6 +28,8 @@ namespace XExten.Advance.Communication
         private bool DisposeReceived = true;
 
         private bool IsAsync = false;
+
+        private CommunicationParams Params;
         #endregion
 
         #region 接口属性
@@ -39,6 +44,7 @@ namespace XExten.Advance.Communication
         {
             try
             {
+                Params = input;
                 Client ??= new UdpClient(input.BindPort);
                 Client.Client.ReceiveTimeout = input.ReplayTimeout;
                 Client.Client.SendTimeout = input.SendTimeout;
@@ -62,12 +68,14 @@ namespace XExten.Advance.Communication
                 {
                     UseAsyncReceived(false);
                     Client.Send(cmd, cmd.Length);
+                    Record(cmd, true);
                     int Timeout = 0;
                     while (Timeout < Client.Client.ReceiveTimeout)
                     {
                         if (Client.Available > 0)
                         {
                             byte[] bytes = Client.Receive(ref EndPoint);
+                            Record(bytes, false);
                             if (!DisposeReceived)
                                 return bytes;
                             break;
@@ -96,6 +104,7 @@ namespace XExten.Advance.Communication
                 {
                     UseAsyncReceived(true);
                     Client.Send(cmd, cmd.Length);
+                    Record(cmd, true);
                     Thread.Sleep(20);
                 }
             }
@@ -145,6 +154,7 @@ namespace XExten.Advance.Communication
                         if (Client.Available > 0)
                         {
                             byte[] bytes = (await Client.ReceiveAsync()).Buffer;
+                            Record(bytes, false);
                             if (!DisposeReceived)
                                 Received?.Invoke(bytes);
                         }
@@ -155,6 +165,16 @@ namespace XExten.Advance.Communication
             {
                 Error?.Invoke(ex);
             }
+        }
+        #endregion
+
+        #region 日志记录
+        private void Record(byte[] bytes, bool IsSend)
+        {
+            if (this.Params.IsDecodeWriteLog)
+                $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {bytes.ByString()}".Info();
+            else
+                $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {bytes.WithByteHex()}".Info();
         }
         #endregion
     }

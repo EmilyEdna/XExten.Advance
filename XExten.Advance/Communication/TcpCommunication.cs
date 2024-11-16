@@ -1,10 +1,15 @@
-﻿using SixLabors.ImageSharp.Memory;
+﻿using Org.BouncyCastle.Utilities;
+using SixLabors.ImageSharp.Memory;
+using SixLabors.ImageSharp.PixelFormats;
 using System;
 using System.IO;
+using System.Linq;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using XExten.Advance.Communication.Model;
+using XExten.Advance.LinqFramework;
+using XExten.Advance.LogFramework;
 
 namespace XExten.Advance.Communication
 {
@@ -25,6 +30,8 @@ namespace XExten.Advance.Communication
         private bool DisposeReceived = true;
 
         private bool IsAsync = false;
+
+        private CommunicationParams Params;
         #endregion
 
         #region 接口属性
@@ -39,6 +46,7 @@ namespace XExten.Advance.Communication
         {
             try
             {
+                Params = input;
                 Client ??= new TcpClient
                 {
                     SendTimeout = input.SendTimeout,
@@ -64,14 +72,27 @@ namespace XExten.Advance.Communication
                 {
                     UseAsyncReceived(false);
                     Stream.Write(cmd, 0, cmd.Length);
+                    Record(cmd, true);
                     int Timeout = 0;
                     while (Timeout < Client.ReceiveTimeout)
                     {
                         if (Stream.DataAvailable)
                         {
-                            byte[] bytes = new byte[Client.ReceiveBufferSize];
+                            byte[] bytes = new byte[Params.ReceiveBufferSize];
                             Stream.Read(bytes, 0, bytes.Length);
                             Stream.Flush();
+
+                            int LastIndex = 0;
+                            for (int index = bytes.Length; index >= 0; index--)
+                            {
+                                if (bytes[index] == 0)
+                                {
+                                    LastIndex = index;
+                                    break;
+                                }
+                            }
+                            bytes = bytes.Skip(LastIndex + 1).ToArray();
+                            Record(bytes, false);
                             if (!DisposeReceived)
                                 return bytes;
                             break;
@@ -96,10 +117,11 @@ namespace XExten.Advance.Communication
             try
             {
                 this.DisposeReceived = DisposeReceived;
-                if (Client != null && IsConnected) 
+                if (Client != null && IsConnected)
                 {
                     UseAsyncReceived(true);
                     Stream.Write(cmd, 0, cmd.Length);
+                    Record(cmd, true);
                     Stream.Flush();
                     Thread.Sleep(20);
                 }
@@ -133,6 +155,17 @@ namespace XExten.Advance.Communication
                         byte[] bytes = new byte[Client.ReceiveBufferSize];
                         await Stream.ReadAsync(bytes, 0, bytes.Length);
                         Stream.Flush();
+                        int LastIndex = 0;
+                        for (int index = bytes.Length; index >= 0; index--)
+                        {
+                            if (bytes[index] == 0)
+                            {
+                                LastIndex = index;
+                                break;
+                            }
+                        }
+                        bytes = bytes.Skip(LastIndex + 1).ToArray();
+                        Record(bytes, false);
                         if (!DisposeReceived)
                             Received?.Invoke(bytes);
                     }
@@ -155,6 +188,16 @@ namespace XExten.Advance.Communication
                 TokenSource.Cancel();
                 ReceivedTask?.Dispose();
             }
+        }
+        #endregion
+
+        #region 日志记录
+        private void Record(byte[] bytes, bool IsSend)
+        {
+            if (this.Params.IsDecodeWriteLog)
+                $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {bytes.ByString()}".Info();
+            else
+                $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {bytes.WithByteHex()}".Info();
         }
         #endregion
     }

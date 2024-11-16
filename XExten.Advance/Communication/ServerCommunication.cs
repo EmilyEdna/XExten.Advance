@@ -6,6 +6,8 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using XExten.Advance.Communication.Model;
+using XExten.Advance.LinqFramework;
+using XExten.Advance.LogFramework;
 
 namespace XExten.Advance.Communication
 {
@@ -32,15 +34,16 @@ namespace XExten.Advance.Communication
                 while (!_CancellationTokenSource.IsCancellationRequested)
                 {
                     var Client = _TcpListener.AcceptTcpClient();
-
-                    Session.Add(new ServerCommunicationParams
+                    ServerCommunicationParams session = new ServerCommunicationParams
                     {
                         Id = Guid.NewGuid(),
                         IsAlive = true,
                         Callback = CallbackReceived,
                         Client = Client,
                         OnlineDate = DateTime.Now,
-                    });
+                    };
+                    Session.Add(session);
+                    $"The online ID of the TcpClient is [{session.Id}], and the online time is[{session.OnlineDate:yyyy-MM-dd HH:mm:ss}]".Debug();
                 }
             }, _CancellationTokenSource.Token);
             //数据监听
@@ -67,6 +70,8 @@ namespace XExten.Advance.Communication
                     if (Session.Count > 0)
                     {
                         Session.RemoveAll(t => !t.IsAlive && DateTime.Now.Subtract(t.OnlineDate).TotalHours >= 1);
+
+                        $"Clean up the inactive agents, and the remaining active agents are [{string.Join(",", Session.Select(t=>t.Id))}]".Debug();
                     }
                 }
             }, _CancellationTokenSource.Token);
@@ -106,6 +111,7 @@ namespace XExten.Advance.Communication
                         input.IsAlive = true;
                         input.OnlineDate = DateTime.Now;
                         stream.Read(bytes, 0, bytes.Length);
+                        $"TcpServer Received Data Is [{bytes.WithByteHex()}]".Info();
                         Received?.Invoke(input.Id, bytes);
                     }
                 }

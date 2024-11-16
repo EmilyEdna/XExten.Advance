@@ -25,15 +25,7 @@ namespace XExten.Advance.LinqFramework
         /// <param name="hex"></param>
         /// <returns></returns>
         public static byte[] WithHexByte(this string hex)
-        {
-            var inputByteArray = new byte[hex.Length / 2];
-            for (var x = 0; x < inputByteArray.Length; x++)
-            {
-                var i = Convert.ToInt32(hex.Substring(x * 2, 2), 16);
-                inputByteArray[x] = (byte)i;
-            }
-            return inputByteArray;
-        }
+             => hex.Split(" ").Select(t => (byte)Convert.ToInt32(t, 16)).ToArray();
 
         /// <summary>
         /// 返回实体中所有的字段名
