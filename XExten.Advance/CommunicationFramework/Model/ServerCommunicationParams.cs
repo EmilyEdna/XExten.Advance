@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 
-namespace XExten.Advance.Communication.Model
+namespace XExten.Advance.CommunicationFramework.Model
 {
     /// <summary>
     /// 服务配置参数

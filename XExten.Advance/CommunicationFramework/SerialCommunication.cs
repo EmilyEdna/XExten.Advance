@@ -1,30 +1,18 @@
 ﻿using System;
-using System.IO;
-using System.Net;
-using System.Net.Sockets;
+using System.IO.Ports;
 using System.Threading;
-using System.Threading.Tasks;
-using XExten.Advance.Communication.Model;
+using XExten.Advance.CommunicationFramework.Model;
 
-namespace XExten.Advance.Communication
+namespace XExten.Advance.CommunicationFramework
 {
     /// <summary>
-    /// Udp通信
+    /// 串口通信
     /// </summary>
-    internal class UdpCommunication : ICommunication
+    internal class SerialCommunication : ICommunication
     {
         #region 字段
-        private UdpClient Client;
-
-        private Task ReceivedTask;
-
-        private IPEndPoint EndPoint;
-
-        private CancellationTokenSource TokenSource = new CancellationTokenSource();
-
+        private SerialPort Client;
         private bool DisposeReceived = true;
-
-        private bool IsAsync = false;
         #endregion
 
         #region 接口属性
@@ -39,12 +27,18 @@ namespace XExten.Advance.Communication
         {
             try
             {
-                Client ??= new UdpClient(input.BindPort);
-                Client.Client.ReceiveTimeout = input.ReplayTimeout;
-                Client.Client.SendTimeout = input.SendTimeout;
-                EndPoint = new IPEndPoint(IPAddress.Parse(input.Host), input.Port);
-                Client.Connect(EndPoint);
-                IsConnected = Client.Client.Connected;
+                Client ??= new SerialPort
+                {
+                    Parity = input.Parity,
+                    DataBits = input.DataBits,
+                    BaudRate = input.BaudRate,
+                    StopBits = input.StopBits,
+                    PortName = input.Host,
+                    ReadTimeout = input.ReplayTimeout,
+                    WriteTimeout = input.SendTimeout,
+                };
+                Client.Open();
+                IsConnected = Client.IsOpen;
             }
             catch (Exception ex)
             {
@@ -52,7 +46,6 @@ namespace XExten.Advance.Communication
                 Error?.Invoke(ex);
             }
         }
-
         public byte[] SendCommand(byte[] cmd, bool DisposeReceived = true)
         {
             try
@@ -61,22 +54,24 @@ namespace XExten.Advance.Communication
                 if (Client != null && IsConnected)
                 {
                     UseAsyncReceived(false);
-                    Client.Send(cmd, cmd.Length);
+                    Client.Write(cmd, 0, cmd.Length);
                     int Timeout = 0;
-                    while (Timeout < Client.Client.ReceiveTimeout)
+                    while (Client.BytesToRead < 0)
                     {
-                        if (Client.Available > 0)
-                        {
-                            byte[] bytes = Client.Receive(ref EndPoint);
-                            if (!DisposeReceived)
-                                return bytes;
-                            break;
-                        }
                         Thread.Sleep(20);
                         Timeout += 20;
-                        if (Timeout >= Client.Client.ReceiveTimeout)
+                        if (Timeout >= Client.ReadTimeout)
                             break;
                     }
+                    if (Timeout < Client.ReadTimeout)
+                    {
+                        byte[] bytes = new byte[Client.BytesToRead];
+                        Client.Read(bytes, 0, bytes.Length);
+                        if (!DisposeReceived)
+                            return bytes;
+                    }
+                    else
+                        return Array.Empty<byte>();
                 }
                 return Array.Empty<byte>();
             }
@@ -95,7 +90,7 @@ namespace XExten.Advance.Communication
                 if (Client != null && IsConnected)
                 {
                     UseAsyncReceived(true);
-                    Client.Send(cmd, cmd.Length);
+                    Client.Write(cmd, 0, cmd.Length);
                     Thread.Sleep(20);
                 }
             }
@@ -118,37 +113,27 @@ namespace XExten.Advance.Communication
         #region 私有
         private void UseAsyncReceived(bool flag)
         {
-            IsAsync = flag;
-            if (IsAsync)
+            if (Client != null && IsConnected)
             {
-                if (TokenSource.IsCancellationRequested || ReceivedTask == null)
-                {
-                    TokenSource = new CancellationTokenSource();
-                    ReceivedTask = Task.Factory.StartNew(ReceivedMessage, TokenSource.Token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
-                }
-            }
-            else
-            {
-                TokenSource.Cancel();
-                ReceivedTask?.Dispose();
+                if (flag)
+                    Client.DataReceived += ReceivedMessage;
+                else
+                    Client.DataReceived -= ReceivedMessage;
             }
         }
 
-        private async Task ReceivedMessage()
+        private void ReceivedMessage(object sender, SerialDataReceivedEventArgs e)
         {
             try
             {
-                if (Client != null && IsConnected)
+                var com = (SerialPort)sender;
+                var len = com.BytesToRead;
+                if (len > 0)
                 {
-                    while (IsAsync)
-                    {
-                        if (Client.Available > 0)
-                        {
-                            byte[] bytes = (await Client.ReceiveAsync()).Buffer;
-                            if (!DisposeReceived)
-                                Received?.Invoke(bytes);
-                        }
-                    }
+                    byte[] bytes = new byte[len];
+                    com.Read(bytes, 0, bytes.Length);
+                    if (!DisposeReceived)
+                        Received?.Invoke(bytes);
                 }
             }
             catch (Exception ex)
@@ -156,6 +141,8 @@ namespace XExten.Advance.Communication
                 Error?.Invoke(ex);
             }
         }
+
         #endregion
+
     }
 }

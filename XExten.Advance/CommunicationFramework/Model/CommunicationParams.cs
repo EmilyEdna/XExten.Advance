@@ -1,6 +1,6 @@
 ﻿using System.IO.Ports;
 
-namespace XExten.Advance.Communication.Model
+namespace XExten.Advance.CommunicationFramework.Model
 {
     /// <summary>
     /// 连接参数

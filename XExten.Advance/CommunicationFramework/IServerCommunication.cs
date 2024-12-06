@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using XExten.Advance.Communication.Model;
+using XExten.Advance.CommunicationFramework.Model;
 
-namespace XExten.Advance.Communication
+namespace XExten.Advance.CommunicationFramework
 {
     /// <summary>
     /// TCP服务端

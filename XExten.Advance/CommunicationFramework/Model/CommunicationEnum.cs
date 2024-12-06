@@ -1,4 +1,4 @@
-﻿namespace XExten.Advance.Communication.Model
+﻿namespace XExten.Advance.CommunicationFramework.Model
 {
     /// <summary>
     /// 通信实例

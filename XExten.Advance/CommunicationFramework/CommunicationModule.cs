@@ -1,8 +1,8 @@
 ﻿using System.Text;
-using XExten.Advance.Communication.Model;
+using XExten.Advance.CommunicationFramework.Model;
 using XExten.Advance.IocFramework;
 
-namespace XExten.Advance.Communication
+namespace XExten.Advance.CommunicationFramework
 {
     /// <summary>
     /// 通信实例模块
