@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Org.BouncyCastle.Utilities;
+using System;
 using System.IO.Ports;
 using System.Threading;
-using XExten.Advance.CommunicationFramework.Model;
+using XExten.Advance.Communication.Model;
+using XExten.Advance.LinqFramework;
+using XExten.Advance.LogFramework;
 
 namespace XExten.Advance.CommunicationFramework
 {
@@ -12,7 +15,10 @@ namespace XExten.Advance.CommunicationFramework
     {
         #region 字段
         private SerialPort Client;
+
         private bool DisposeReceived = true;
+
+        private CommunicationParams Params;
         #endregion
 
         #region 接口属性
@@ -27,6 +33,7 @@ namespace XExten.Advance.CommunicationFramework
         {
             try
             {
+                Params = input;
                 Client ??= new SerialPort
                 {
                     Parity = input.Parity,
@@ -55,6 +62,7 @@ namespace XExten.Advance.CommunicationFramework
                 {
                     UseAsyncReceived(false);
                     Client.Write(cmd, 0, cmd.Length);
+                    Record(cmd, true);
                     int Timeout = 0;
                     while (Client.BytesToRead < 0)
                     {
@@ -67,6 +75,7 @@ namespace XExten.Advance.CommunicationFramework
                     {
                         byte[] bytes = new byte[Client.BytesToRead];
                         Client.Read(bytes, 0, bytes.Length);
+                        Record(bytes, false);
                         if (!DisposeReceived)
                             return bytes;
                     }
@@ -91,6 +100,7 @@ namespace XExten.Advance.CommunicationFramework
                 {
                     UseAsyncReceived(true);
                     Client.Write(cmd, 0, cmd.Length);
+                    Record(cmd, true);
                     Thread.Sleep(20);
                 }
             }
@@ -132,6 +142,7 @@ namespace XExten.Advance.CommunicationFramework
                 {
                     byte[] bytes = new byte[len];
                     com.Read(bytes, 0, bytes.Length);
+                    Record(bytes, false);
                     if (!DisposeReceived)
                         Received?.Invoke(bytes);
                 }
@@ -142,6 +153,16 @@ namespace XExten.Advance.CommunicationFramework
             }
         }
 
+        #endregion
+
+        #region 日志记录
+        private void Record(byte[] bytes, bool IsSend)
+        {
+            if (this.Params.IsDecodeWriteLog)
+                $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {bytes.ByString()}".Info();
+            else
+                $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {bytes.WithByteHex()}".Info();
+        }
         #endregion
 
     }

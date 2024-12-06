@@ -5,7 +5,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
-using XExten.Advance.CommunicationFramework.Model;
+using XExten.Advance.Communication.Model;
+using XExten.Advance.LinqFramework;
+using XExten.Advance.LogFramework;
 
 namespace XExten.Advance.CommunicationFramework
 {
@@ -32,15 +34,16 @@ namespace XExten.Advance.CommunicationFramework
                 while (!_CancellationTokenSource.IsCancellationRequested)
                 {
                     var Client = _TcpListener.AcceptTcpClient();
-
-                    Session.Add(new ServerCommunicationParams
+                    ServerCommunicationParams session = new ServerCommunicationParams
                     {
                         Id = Guid.NewGuid(),
                         IsAlive = true,
                         Callback = CallbackReceived,
                         Client = Client,
                         OnlineDate = DateTime.Now,
-                    });
+                    };
+                    Session.Add(session);
+                    $"The online ID of the TcpClient is [{session.Id}], and the online time is[{session.OnlineDate:yyyy-MM-dd HH:mm:ss}]".Debug();
                 }
             }, _CancellationTokenSource.Token);
             //数据监听
@@ -67,6 +70,8 @@ namespace XExten.Advance.CommunicationFramework
                     if (Session.Count > 0)
                     {
                         Session.RemoveAll(t => !t.IsAlive && DateTime.Now.Subtract(t.OnlineDate).TotalHours >= 1);
+
+                        $"Clean up the inactive agents, and the remaining active agents are [{string.Join(",", Session.Select(t=>t.Id))}]".Debug();
                     }
                 }
             }, _CancellationTokenSource.Token);
@@ -116,6 +121,7 @@ namespace XExten.Advance.CommunicationFramework
                             }
                         }
                         bytes = bytes.Take(index + 1).ToArray();
+                        $"TcpServer Received Data Is [{bytes.WithByteHex()}]".Info();
                         Received?.Invoke(input.Id, bytes);
                     }
                 }

@@ -1007,6 +1007,21 @@
             回复超时(ms)
             </summary>
         </member>
+        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.ReceiveBufferSize">
+            <summary>
+            接受数据大小
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.LogHead">
+            <summary>
+            日志头
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.IsDecodeWriteLog">
+            <summary>
+            解码数据写日志
+            </summary>
+        </member>
         <member name="T:XExten.Advance.Communication.Model.ServerCommunicationParams">
             <summary>
             服务配置参数
@@ -2873,6 +2888,62 @@
             <param name="pattern"></param>
             <param name="value"></param>
             <returns></returns>
+        </member>
+        <member name="T:XExten.Advance.LogFramework.XLog">
+            <summary>
+            日志
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.LogFramework.XLog.RegisetLog">
+            <summary>
+            注册日志框架
+            </summary>
+        </member>
+        <member name="M:XExten.Advance.LogFramework.XLog.Debug(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            调试
+            </summary>
+            <param name="info"></param>
+            <param name="method"></param>
+            <param name="classes"></param>
+            <param name="line"></param>
+        </member>
+        <member name="M:XExten.Advance.LogFramework.XLog.Info(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            信息
+            </summary>
+            <param name="info"></param>
+            <param name="method"></param>
+            <param name="classes"></param>
+            <param name="line"></param>
+        </member>
+        <member name="M:XExten.Advance.LogFramework.XLog.Warn(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            警告
+            </summary>
+            <param name="info"></param>
+            <param name="method"></param>
+            <param name="classes"></param>
+            <param name="line"></param>
+        </member>
+        <member name="M:XExten.Advance.LogFramework.XLog.Error(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            错误
+            </summary>
+            <param name="info"></param>
+            <param name="method"></param>
+            <param name="classes"></param>
+            <param name="line"></param>
+        </member>
+        <member name="M:XExten.Advance.LogFramework.XLog.Fatal(System.Exception,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            致命
+            </summary>
+            <param name="ex"></param>
+            <param name="info"></param>
+            <param name="method"></param>
+            <param name="classes"></param>
+            <param name="line"></param>
         </member>
         <member name="T:XExten.Advance.NetFramework.ConstDefault">
             <summary>

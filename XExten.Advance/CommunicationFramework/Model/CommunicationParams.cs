@@ -55,5 +55,20 @@ namespace XExten.Advance.CommunicationFramework.Model
         /// 回复超时(ms)
         /// </summary>
         public int ReplayTimeout { get; set; } = 3000;
+
+        /// <summary>
+        /// 接受数据大小
+        /// </summary>
+        public int ReceiveBufferSize { get; set; } = 1024;
+
+        /// <summary>
+        /// 日志头
+        /// </summary>
+        public string LogHead {  get; set; }
+
+        /// <summary>
+        /// 解码数据写日志
+        /// </summary>
+        public bool IsDecodeWriteLog { get; set; } = false;
     }
 }
