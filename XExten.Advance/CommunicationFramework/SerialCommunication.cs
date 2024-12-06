@@ -2,7 +2,7 @@
 using System;
 using System.IO.Ports;
 using System.Threading;
-using XExten.Advance.Communication.Model;
+using XExten.Advance.CommunicationFramework.Model;
 using XExten.Advance.LinqFramework;
 using XExten.Advance.LogFramework;
 

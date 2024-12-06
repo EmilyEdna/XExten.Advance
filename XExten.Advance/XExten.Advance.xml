@@ -825,77 +825,77 @@
             删除所有缓存
             </summary>
         </member>
-        <member name="T:XExten.Advance.Communication.CommunicationModule">
+        <member name="T:XExten.Advance.CommunicationFramework.CommunicationModule">
             <summary>
             通信实例模块
             </summary>
         </member>
-        <member name="M:XExten.Advance.Communication.CommunicationModule.Initialize">
+        <member name="M:XExten.Advance.CommunicationFramework.CommunicationModule.Initialize">
             <summary>
             初始化
             </summary>
         </member>
-        <member name="T:XExten.Advance.Communication.ICommunication">
+        <member name="T:XExten.Advance.CommunicationFramework.ICommunication">
             <summary>
             通信
             </summary>
         </member>
-        <member name="E:XExten.Advance.Communication.ICommunication.Received">
+        <member name="E:XExten.Advance.CommunicationFramework.ICommunication.Received">
             <summary>
             数据接收事件
             </summary>
         </member>
-        <member name="E:XExten.Advance.Communication.ICommunication.Error">
+        <member name="E:XExten.Advance.CommunicationFramework.ICommunication.Error">
             <summary>
             异常事件
             </summary>
         </member>
-        <member name="P:XExten.Advance.Communication.ICommunication.IsConnected">
+        <member name="P:XExten.Advance.CommunicationFramework.ICommunication.IsConnected">
             <summary>
             是否连接成功
             </summary>
         </member>
-        <member name="M:XExten.Advance.Communication.ICommunication.Connect(XExten.Advance.Communication.Model.CommunicationParams)">
+        <member name="M:XExten.Advance.CommunicationFramework.ICommunication.Connect(XExten.Advance.CommunicationFramework.Model.CommunicationParams)">
             <summary>
             打开链接
             </summary>
             <param name="input"></param>
         </member>
-        <member name="M:XExten.Advance.Communication.ICommunication.SendCommand(System.Byte[],System.Boolean)">
+        <member name="M:XExten.Advance.CommunicationFramework.ICommunication.SendCommand(System.Byte[],System.Boolean)">
             <summary>
             发送指令
             </summary>
             <param name="cmd"></param>
             <param name="DisposeReceived">是否丢弃数据</param>
         </member>
-        <member name="M:XExten.Advance.Communication.ICommunication.SendCommandAsync(System.Byte[],System.Boolean)">
+        <member name="M:XExten.Advance.CommunicationFramework.ICommunication.SendCommandAsync(System.Byte[],System.Boolean)">
             <summary>
             发送指令
             </summary>
             <param name="cmd"></param>
             <param name="DisposeReceived">是否丢弃数据</param>
         </member>
-        <member name="M:XExten.Advance.Communication.ICommunication.Close">
+        <member name="M:XExten.Advance.CommunicationFramework.ICommunication.Close">
             <summary>
             断开连接
             </summary>
         </member>
-        <member name="T:XExten.Advance.Communication.IServerCommunication">
+        <member name="T:XExten.Advance.CommunicationFramework.IServerCommunication">
             <summary>
             TCP服务端
             </summary>
         </member>
-        <member name="E:XExten.Advance.Communication.IServerCommunication.Received">
+        <member name="E:XExten.Advance.CommunicationFramework.IServerCommunication.Received">
             <summary>
             数据接收事件
             </summary>
         </member>
-        <member name="E:XExten.Advance.Communication.IServerCommunication.Error">
+        <member name="E:XExten.Advance.CommunicationFramework.IServerCommunication.Error">
             <summary>
             异常事件
             </summary>
         </member>
-        <member name="M:XExten.Advance.Communication.IServerCommunication.Start(System.String,System.Int32,System.Int32)">
+        <member name="M:XExten.Advance.CommunicationFramework.IServerCommunication.Start(System.String,System.Int32,System.Int32)">
             <summary>
             启动
             </summary>
@@ -903,141 +903,141 @@
             <param name="port">port</param>
             <param name="dataSize">接受的数据大小</param>
         </member>
-        <member name="M:XExten.Advance.Communication.IServerCommunication.Close">
+        <member name="M:XExten.Advance.CommunicationFramework.IServerCommunication.Close">
             <summary>
             关闭
             </summary>
         </member>
-        <member name="M:XExten.Advance.Communication.IServerCommunication.SendAll(System.Byte[])">
+        <member name="M:XExten.Advance.CommunicationFramework.IServerCommunication.SendAll(System.Byte[])">
             <summary>
             广播消息
             </summary>
             <param name="data">数据</param>
         </member>
-        <member name="M:XExten.Advance.Communication.IServerCommunication.Send(System.Guid,System.Byte[])">
+        <member name="M:XExten.Advance.CommunicationFramework.IServerCommunication.Send(System.Guid,System.Byte[])">
             <summary>
             对指定客户端发送消息
             </summary>
             <param name="clientId">客服端id</param>
             <param name="data">数据</param>
         </member>
-        <member name="M:XExten.Advance.Communication.IServerCommunication.RemoveSession(System.Guid)">
+        <member name="M:XExten.Advance.CommunicationFramework.IServerCommunication.RemoveSession(System.Guid)">
             <summary>
             删除指定的客服端会话
             </summary>
             <param name="clientId"></param>
         </member>
-        <member name="M:XExten.Advance.Communication.IServerCommunication.ClearSession">
+        <member name="M:XExten.Advance.CommunicationFramework.IServerCommunication.ClearSession">
             <summary>
             清空所有会话
             </summary>
         </member>
-        <member name="T:XExten.Advance.Communication.Model.CommunicationEnum">
+        <member name="T:XExten.Advance.CommunicationFramework.Model.CommunicationEnum">
             <summary>
             通信实例
             </summary>
         </member>
-        <member name="F:XExten.Advance.Communication.Model.CommunicationEnum.COM">
+        <member name="F:XExten.Advance.CommunicationFramework.Model.CommunicationEnum.COM">
             <summary>
             串口
             </summary>
         </member>
-        <member name="F:XExten.Advance.Communication.Model.CommunicationEnum.TCP">
+        <member name="F:XExten.Advance.CommunicationFramework.Model.CommunicationEnum.TCP">
             <summary>
             TCP
             </summary>
         </member>
-        <member name="F:XExten.Advance.Communication.Model.CommunicationEnum.UDP">
+        <member name="F:XExten.Advance.CommunicationFramework.Model.CommunicationEnum.UDP">
             <summary>
             UDP
             </summary>
         </member>
-        <member name="T:XExten.Advance.Communication.Model.CommunicationParams">
+        <member name="T:XExten.Advance.CommunicationFramework.Model.CommunicationParams">
             <summary>
             连接参数
             </summary>
         </member>
-        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.Host">
+        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.Host">
             <summary>
             COM口/IP
             </summary>
         </member>
-        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.Port">
+        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.Port">
             <summary>
             端口
             </summary>
         </member>
-        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.BindPort">
+        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.BindPort">
             <summary>
             绑定端口
             </summary>
         </member>
-        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.Parity">
+        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.Parity">
             <summary>
             奇偶校验
             </summary>
         </member>
-        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.DataBits">
+        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.DataBits">
             <summary>
             数据位
             </summary>
         </member>
-        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.StopBits">
+        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.StopBits">
             <summary>
             启停位
             </summary>
         </member>
-        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.BaudRate">
+        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.BaudRate">
             <summary>
             波特率
             </summary>
         </member>
-        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.ConnectTimeout">
+        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.ConnectTimeout">
             <summary>
             连接超时(ms)
             </summary>
         </member>
-        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.SendTimeout">
+        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.SendTimeout">
             <summary>
             发送超时(ms)
             </summary>
         </member>
-        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.ReplayTimeout">
+        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.ReplayTimeout">
             <summary>
             回复超时(ms)
             </summary>
         </member>
-        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.ReceiveBufferSize">
+        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.ReceiveBufferSize">
             <summary>
             接受数据大小
             </summary>
         </member>
-        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.LogHead">
+        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.LogHead">
             <summary>
             日志头
             </summary>
         </member>
-        <member name="P:XExten.Advance.Communication.Model.CommunicationParams.IsDecodeWriteLog">
+        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.IsDecodeWriteLog">
             <summary>
             解码数据写日志
             </summary>
         </member>
-        <member name="T:XExten.Advance.Communication.Model.ServerCommunicationParams">
+        <member name="T:XExten.Advance.CommunicationFramework.Model.ServerCommunicationParams">
             <summary>
             服务配置参数
             </summary>
         </member>
-        <member name="T:XExten.Advance.Communication.SerialCommunication">
+        <member name="T:XExten.Advance.CommunicationFramework.SerialCommunication">
             <summary>
             串口通信
             </summary>
         </member>
-        <member name="T:XExten.Advance.Communication.TcpCommunication">
+        <member name="T:XExten.Advance.CommunicationFramework.TcpCommunication">
             <summary>
             Tcp通信
             </summary>
         </member>
-        <member name="T:XExten.Advance.Communication.UdpCommunication">
+        <member name="T:XExten.Advance.CommunicationFramework.UdpCommunication">
             <summary>
             Udp通信
             </summary>
@@ -2056,13 +2056,6 @@
             <param name="param"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsBytes(System.String)">
-            <summary>
-            To Bytes
-            </summary>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsDecimal(System.String)">
             <summary>
             To Decimal
@@ -2129,13 +2122,6 @@
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsBoolAsync(System.Int32)">
             <summary>
             To Bool
-            </summary>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsBytesAsync(System.String)">
-            <summary>
-            To Bytes
             </summary>
             <param name="param"></param>
             <returns></returns>
