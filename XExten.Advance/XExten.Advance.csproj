@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.1;net8</TargetFrameworks>
+		<TargetFrameworks>netstandard2.1;net9</TargetFrameworks>
 		<Authors>EmilyEdna</Authors>
 		<Description>XExten包的优化升级版本，后期只会更新这个包，不在维护XExten包</Description>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
