@@ -68,7 +68,7 @@ namespace XExten.Advance.ThreadFramework
         /// <param name="key"></param>
         /// <param name="err"></param>
         /// <param name="restart"></param>
-        public async void StartWithRestart(Func<Task> action, string key, Action<Exception> err = null,bool restart=true)
+        public async void StartWithRestart(Func<Task> action, string key, Action<Exception> err = null, bool restart = true)
         {
             if (!Threads.ContainsKey(key))
             {
@@ -89,7 +89,8 @@ namespace XExten.Advance.ThreadFramework
                         }
                     }
                 }, Threads[key].Token.Token, TaskCreationOptions.LongRunning, TaskScheduler.Current))
-                .ContinueWith((task, obj) => {
+                .ContinueWith((task, obj) =>
+                {
                     ThreadStatus(task, obj.ToString());
                     if (IsRestar)
                     {
@@ -110,7 +111,7 @@ namespace XExten.Advance.ThreadFramework
         {
             if (!Threads.ContainsKey(key))
             {
-                IsRestar=true;
+                IsRestar = true;
                 Threads.TryAdd(key, new TaskModel());
                 Threads[key].Run = action;
                 Threads[key].ThreadTask = Task.Factory.StartNew(() =>
@@ -127,7 +128,8 @@ namespace XExten.Advance.ThreadFramework
                         }
                     }
                 }, Threads[key].Token.Token, TaskCreationOptions.LongRunning, TaskScheduler.Current)
-                    .ContinueWith((task, obj) => {
+                    .ContinueWith((task, obj) =>
+                    {
                         ThreadStatus(task, obj.ToString());
                         if (IsRestar)
                         {
@@ -160,21 +162,23 @@ namespace XExten.Advance.ThreadFramework
         /// </summary>
         public void Dispose()
         {
+            IsRestar = false;
             for (int i = 0; i < Threads.Count; i++)
             {
                 Threads.ElementAt(i).Value.Token.Cancel();
                 Threads.ElementAt(i).Value.Run = null;
                 Threads.ElementAt(i).Value.RunAsync = null;
             }
-            IsRestar = false;
+            IsRestar = true;
         }
 
         /// <summary>
         /// 释放所有线程资源排除特定的线程
         /// </summary>
         /// <param name="excludeKey"></param>
-        public void Dispose(string excludeKey)
+        public void ExcludeDispose(string excludeKey)
         {
+            IsRestar = false;
             for (int i = 0; i < Threads.Count; i++)
             {
                 var data = Threads.ElementAt(i);
@@ -185,7 +189,22 @@ namespace XExten.Advance.ThreadFramework
                     Threads.ElementAt(i).Value.RunAsync = null;
                 }
             }
-            IsRestar = false;
+            IsRestar = true;
         }
+
+        /// <summary>
+        /// 释放指定线程
+        /// </summary>
+        /// <param name="includeKey"></param>
+        public void IncludeDispose(string includeKey)
+        {
+            IsRestar = false;
+            Threads[includeKey].Token.Cancel();
+            Threads[includeKey].Run = null;
+            Threads[includeKey].RunAsync = null;
+            Threads.Remove(includeKey, out _);
+            IsRestar = true;
+        }
+
     }
 }

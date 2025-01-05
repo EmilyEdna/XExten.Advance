@@ -42,26 +42,6 @@ namespace XExten.Advance.CommunicationFramework.Model
         public int BaudRate { get; set; } = 9600;
 
         /// <summary>
-        /// 连接超时(ms)
-        /// </summary>
-        public int ConnectTimeout { get; set; } = 3000;
-
-        /// <summary>
-        /// 发送超时(ms)
-        /// </summary>
-        public int SendTimeout { get; set; } = 3000;
-
-        /// <summary>
-        /// 回复超时(ms)
-        /// </summary>
-        public int ReplayTimeout { get; set; } = 3000;
-
-        /// <summary>
-        /// 接受数据大小
-        /// </summary>
-        public int ReceiveBufferSize { get; set; } = 1024;
-
-        /// <summary>
         /// 日志头
         /// </summary>
         public string LogHead {  get; set; }
@@ -70,5 +50,10 @@ namespace XExten.Advance.CommunicationFramework.Model
         /// 解码数据写日志
         /// </summary>
         public bool IsDecodeWriteLog { get; set; } = false;
+
+        /// <summary>
+        /// 接收数据线程Key
+        /// </summary>
+        public string ThreadKey {  get; set; }
     }
 }

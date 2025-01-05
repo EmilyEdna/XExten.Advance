@@ -1,13 +1,11 @@
-﻿using Org.BouncyCastle.Utilities;
-using System;
-using System.IO;
-using System.Net;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Sockets;
-using System.Threading;
 using System.Threading.Tasks;
 using XExten.Advance.CommunicationFramework.Model;
 using XExten.Advance.LinqFramework;
 using XExten.Advance.LogFramework;
+using XExten.Advance.ThreadFramework;
 
 namespace XExten.Advance.CommunicationFramework
 {
@@ -16,166 +14,220 @@ namespace XExten.Advance.CommunicationFramework
     /// </summary>
     internal class UdpCommunication : ICommunication
     {
-        #region 字段
+
         private UdpClient Client;
-
-        private Task ReceivedTask;
-
-        private IPEndPoint EndPoint;
-
-        private CancellationTokenSource TokenSource = new CancellationTokenSource();
-
-        private bool DisposeReceived = true;
-
-        private bool IsAsync = false;
-
         private CommunicationParams Params;
-        #endregion
+        private bool ReadBack;
 
-        #region 接口属性
-        public bool IsConnected { get; set; } = false;
+        public bool IsConnected { get; private set; }
 
-        public event Action<byte[]> Received;
-        public event Action<Exception> Error;
-        #endregion
+        public object CommunicationObject { get; private set; }
 
-        #region 接口实现
+        public List<byte> Cache { get; private set; }
+
+        public UdpCommunication()
+        {
+            ReadBack = false;
+            Cache = new List<byte>();
+        }
+
         public void Connect(CommunicationParams input)
         {
             try
             {
                 Params = input;
                 Client ??= new UdpClient(input.BindPort);
-                Client.Client.ReceiveTimeout = input.ReplayTimeout;
-                Client.Client.SendTimeout = input.SendTimeout;
-                EndPoint = new IPEndPoint(IPAddress.Parse(input.Host), input.Port);
-                Client.Connect(EndPoint);
+                Client.Connect(input.Host, input.Port);
+                CommunicationObject = Client;
                 IsConnected = Client.Client.Connected;
+                ThreadFactory.Instance.StartWithRestart(Received, Params.ThreadKey.IsNullOrEmpty() ? nameof(UdpCommunication) : Params.ThreadKey, ex => ex.Fatal(ex.Message));
             }
             catch (Exception ex)
             {
-                IsConnected = false;
-                Error?.Invoke(ex);
-            }
-        }
-
-        public byte[] SendCommand(byte[] cmd, bool DisposeReceived = true)
-        {
-            try
-            {
-                this.DisposeReceived = DisposeReceived;
-                if (Client != null && IsConnected)
-                {
-                    UseAsyncReceived(false);
-                    Client.Send(cmd, cmd.Length);
-                    Record(cmd, true);
-                    int Timeout = 0;
-                    while (Timeout < Client.Client.ReceiveTimeout)
-                    {
-                        if (Client.Available > 0)
-                        {
-                            byte[] bytes = Client.Receive(ref EndPoint);
-                            Record(bytes, false);
-                            if (!DisposeReceived)
-                                return bytes;
-                            break;
-                        }
-                        Thread.Sleep(20);
-                        Timeout += 20;
-                        if (Timeout >= Client.Client.ReceiveTimeout)
-                            break;
-                    }
-                }
-                return Array.Empty<byte>();
-            }
-            catch (Exception ex)
-            {
-                Error?.Invoke(ex);
-                return Array.Empty<byte>();
-            }
-        }
-
-        public void SendCommandAsync(byte[] cmd, bool DisposeReceived = true)
-        {
-            try
-            {
-                this.DisposeReceived = DisposeReceived;
-                if (Client != null && IsConnected)
-                {
-                    UseAsyncReceived(true);
-                    Client.Send(cmd, cmd.Length);
-                    Record(cmd, true);
-                    Thread.Sleep(20);
-                }
-            }
-            catch (Exception ex)
-            {
-                Error?.Invoke(ex);
+                throw ex;
             }
         }
 
         public void Close()
         {
-            if (Client != null && IsConnected)
-            {
-                Client.Close();
-                IsConnected = false;
-            }
-        }
-        #endregion
-
-        #region 私有
-        private void UseAsyncReceived(bool flag)
-        {
-            IsAsync = flag;
-            if (IsAsync)
-            {
-                if (TokenSource.IsCancellationRequested || ReceivedTask == null)
-                {
-                    TokenSource = new CancellationTokenSource();
-                    ReceivedTask = Task.Factory.StartNew(ReceivedMessage, TokenSource.Token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
-                }
-            }
-            else
-            {
-                TokenSource.Cancel();
-                ReceivedTask?.Dispose();
-            }
-        }
-
-        private async Task ReceivedMessage()
-        {
             try
             {
-                if (Client != null && IsConnected)
-                {
-                    while (IsAsync)
-                    {
-                        if (Client.Available > 0)
-                        {
-                            byte[] bytes = (await Client.ReceiveAsync()).Buffer;
-                            Record(bytes, false);
-                            if (!DisposeReceived)
-                                Received?.Invoke(bytes);
-                        }
-                    }
-                }
+                ThreadFactory.Instance.IncludeDispose(Params.ThreadKey.IsNullOrEmpty() ? nameof(UdpCommunication) : Params.ThreadKey);
+                Client.Close();
+                IsConnected = Client.Client.Connected;
+                Client.Dispose();
             }
             catch (Exception ex)
             {
-                Error?.Invoke(ex);
+                throw ex;
             }
         }
-        #endregion
-
-        #region 日志记录
-        private void Record(byte[] bytes, bool IsSend)
+        public async Task<byte[]> SendAndReadByteAsync(string cmd)
         {
-            if (this.Params.IsDecodeWriteLog)
-                $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {bytes.ByString()}".Info();
-            else
-                $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {bytes.WithByteHex()}".Info();
+            try
+            {
+                ReadBack = true;
+                Cache.Clear();
+                Record(null, cmd, true);
+                var scmd = cmd.ByBytes();
+                await Client.SendAsync(scmd, scmd.Length);
+                byte[] bytes = (await Client.ReceiveAsync()).Buffer;
+                Record(bytes, null, false);
+                ReadBack = false;
+                return bytes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-        #endregion
+
+        public async Task<string> SendAndReadStringAsync(string cmd)
+        {
+            try
+            {
+                ReadBack = true;
+                Cache.Clear();
+                Record(null, cmd, true);
+                var scmd = cmd.ByBytes();
+                await Client.SendAsync(scmd, scmd.Length);
+                byte[] bytes = (await Client.ReceiveAsync()).Buffer;
+                Record(bytes, null, false);
+                ReadBack = false;
+                return bytes.ByString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SendAndNoRead(string cmd)
+        {
+            try
+            {
+                Cache.Clear();
+                Record(null, cmd, true);
+                var scmd = cmd.ByBytes();
+                await Client.SendAsync(scmd, scmd.Length);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SendAndReadInCache(string cmd)
+        {
+            try
+            {
+                ReadBack = false;
+                Cache.Clear();
+                Record(null, cmd, true);
+                var scmd = cmd.ByBytes();
+                await Client.SendAsync(scmd, scmd.Length);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<byte[]> SendAndReadByteAsync(byte[] cmd)
+        {
+            try
+            {
+                ReadBack = true;
+                Cache.Clear();
+                Record(cmd, null, true);
+                await Client.SendAsync(cmd, cmd.Length);
+                byte[] bytes = (await Client.ReceiveAsync()).Buffer;
+                Record(bytes, null, false);
+                ReadBack = false;
+                return bytes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<string> SendAndReadStringAsync(byte[] cmd)
+        {
+            try
+            {
+                ReadBack = true;
+                Cache.Clear();
+                Record(cmd, null, true);
+                await Client.SendAsync(cmd, cmd.Length);
+                byte[] bytes = (await Client.ReceiveAsync()).Buffer;
+                Record(bytes, null, false);
+                ReadBack = false;
+                return bytes.ByString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SendAndNoRead(byte[] cmd)
+        {
+            try
+            {
+                Cache.Clear();
+                Record(cmd, null, true);
+                await Client.SendAsync(cmd, cmd.Length);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SendAndReadInCache(byte[] cmd)
+        {
+            try
+            {
+                ReadBack = false;
+                Cache.Clear();
+                Record(cmd, null, true);
+                await Client.SendAsync(cmd, cmd.Length);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private async Task Received()
+        {
+            if (ReadBack == false)
+            {
+                byte[] bytes = (await Client.ReceiveAsync()).Buffer;
+                Record(bytes, null, false);
+                Cache.AddRange(bytes);
+            }
+        }
+
+
+        private void Record(byte[] bytes, string cmd, bool IsSend)
+        {
+            if (cmd.IsNullOrEmpty())
+            {
+                if (this.Params.IsDecodeWriteLog)
+                    $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {bytes.ByString()}".Info();
+                else
+                    $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {bytes.WithByteHex()}".Info();
+            }
+            else
+            {
+                if (this.Params.IsDecodeWriteLog)
+                    $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {cmd}".Info();
+                else
+                    $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {cmd}".Info();
+            }
+        }
+
     }
 }

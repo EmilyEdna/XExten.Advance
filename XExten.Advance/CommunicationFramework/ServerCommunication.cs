@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NPOI.SS.Formula.Functions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -66,10 +67,19 @@ namespace XExten.Advance.CommunicationFramework
             {
                 while (!_CancellationTokenSource.IsCancellationRequested)
                 {
-                    Thread.Sleep(3600 * 1000);
+                    Thread.Sleep(60000);
+
+                    foreach (var session in Session)
+                    {
+                        if (DateTime.Now.Subtract(session.OnlineDate).TotalSeconds > 30)
+                        {
+                            session.IsAlive = false;
+                        }
+                    }
+
                     if (Session.Count > 0)
                     {
-                        Session.RemoveAll(t => !t.IsAlive && DateTime.Now.Subtract(t.OnlineDate).TotalHours >= 1);
+                        Session.RemoveAll(t => t.IsAlive==false && DateTime.Now.Subtract(t.OnlineDate).TotalSeconds > 30);
 
                         $"Clean up the inactive agents, and the remaining active agents are [{string.Join(",", Session.Select(t=>t.Id))}]".Debug();
                     }
@@ -105,7 +115,6 @@ namespace XExten.Advance.CommunicationFramework
                 {
                     byte[] bytes = new byte[_DataSize];
                     var stream = input.Client.GetStream();
-                    input.IsAlive = false;
                     if (stream.DataAvailable)
                     {
                         input.IsAlive = true;

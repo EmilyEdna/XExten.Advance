@@ -1,10 +1,11 @@
-﻿using Org.BouncyCastle.Utilities;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.IO.Ports;
-using System.Threading;
+using System.Threading.Tasks;
 using XExten.Advance.CommunicationFramework.Model;
 using XExten.Advance.LinqFramework;
 using XExten.Advance.LogFramework;
+using XExten.Advance.ThreadFramework;
 
 namespace XExten.Advance.CommunicationFramework
 {
@@ -13,157 +14,253 @@ namespace XExten.Advance.CommunicationFramework
     /// </summary>
     internal class SerialCommunication : ICommunication
     {
-        #region 字段
+
         private SerialPort Client;
-
-        private bool DisposeReceived = true;
-
         private CommunicationParams Params;
-        #endregion
+        private bool ReadBack;
 
-        #region 接口属性
-        public bool IsConnected { get; set; } = false;
+        public bool IsConnected { get; private set; }
 
-        public event Action<byte[]> Received;
-        public event Action<Exception> Error;
-        #endregion
+        public object CommunicationObject { get; private set; }
 
-        #region 接口实现
+        public List<byte> Cache { get; private set; }
+
+        public SerialCommunication()
+        {
+            ReadBack = false;
+            Cache = new List<byte>();
+            CommunicationObject = Client = new SerialPort();
+        }
+
         public void Connect(CommunicationParams input)
         {
             try
             {
                 Params = input;
-                Client ??= new SerialPort
-                {
-                    Parity = input.Parity,
-                    DataBits = input.DataBits,
-                    BaudRate = input.BaudRate,
-                    StopBits = input.StopBits,
-                    PortName = input.Host,
-                    ReadTimeout = input.ReplayTimeout,
-                    WriteTimeout = input.SendTimeout,
-                };
+                Client.Parity = input.Parity;
+                Client.DataBits = input.DataBits;
+                Client.BaudRate = input.BaudRate;
+                Client.StopBits = input.StopBits;
+                Client.PortName = input.Host;
                 Client.Open();
                 IsConnected = Client.IsOpen;
+                ThreadFactory.Instance.StartWithRestart(Received, Params.ThreadKey.IsNullOrEmpty()? nameof(SerialCommunication): Params.ThreadKey, ex => ex.Fatal(ex.Message));
             }
             catch (Exception ex)
             {
-                IsConnected = false;
-                Error?.Invoke(ex);
-            }
-        }
-        public byte[] SendCommand(byte[] cmd, bool DisposeReceived = true)
-        {
-            try
-            {
-                this.DisposeReceived = DisposeReceived;
-                if (Client != null && IsConnected)
-                {
-                    UseAsyncReceived(false);
-                    Client.Write(cmd, 0, cmd.Length);
-                    Record(cmd, true);
-                    int Timeout = 0;
-                    while (Client.BytesToRead < 0)
-                    {
-                        Thread.Sleep(20);
-                        Timeout += 20;
-                        if (Timeout >= Client.ReadTimeout)
-                            break;
-                    }
-                    if (Timeout < Client.ReadTimeout)
-                    {
-                        byte[] bytes = new byte[Client.BytesToRead];
-                        Client.Read(bytes, 0, bytes.Length);
-                        Record(bytes, false);
-                        if (!DisposeReceived)
-                            return bytes;
-                    }
-                    else
-                        return Array.Empty<byte>();
-                }
-                return Array.Empty<byte>();
-            }
-            catch (Exception ex)
-            {
-                Error?.Invoke(ex);
-                return Array.Empty<byte>();
-            }
-        }
-
-        public void SendCommandAsync(byte[] cmd, bool DisposeReceived = true)
-        {
-            try
-            {
-                this.DisposeReceived = DisposeReceived;
-                if (Client != null && IsConnected)
-                {
-                    UseAsyncReceived(true);
-                    Client.Write(cmd, 0, cmd.Length);
-                    Record(cmd, true);
-                    Thread.Sleep(20);
-                }
-            }
-            catch (Exception ex)
-            {
-                Error?.Invoke(ex);
+                throw ex;
             }
         }
 
         public void Close()
         {
-            if (Client != null && IsConnected)
-            {
-                Client.Close();
-                IsConnected = false;
-            }
-        }
-        #endregion
-
-        #region 私有
-        private void UseAsyncReceived(bool flag)
-        {
-            if (Client != null && IsConnected)
-            {
-                if (flag)
-                    Client.DataReceived += ReceivedMessage;
-                else
-                    Client.DataReceived -= ReceivedMessage;
-            }
-        }
-
-        private void ReceivedMessage(object sender, SerialDataReceivedEventArgs e)
-        {
             try
             {
-                var com = (SerialPort)sender;
-                var len = com.BytesToRead;
-                if (len > 0)
-                {
-                    byte[] bytes = new byte[len];
-                    com.Read(bytes, 0, bytes.Length);
-                    Record(bytes, false);
-                    if (!DisposeReceived)
-                        Received?.Invoke(bytes);
-                }
+                ThreadFactory.Instance.IncludeDispose(Params.ThreadKey.IsNullOrEmpty() ? nameof(SerialCommunication) : Params.ThreadKey);
+                Client.Close();
+                IsConnected = Client.IsOpen;
+                Client.Dispose();
             }
             catch (Exception ex)
             {
-                Error?.Invoke(ex);
+                throw ex;
             }
         }
 
-        #endregion
 
-        #region 日志记录
-        private void Record(byte[] bytes, bool IsSend)
+        public async Task<byte[]> SendAndReadByteAsync(string cmd)
         {
-            if (this.Params.IsDecodeWriteLog)
-                $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {bytes.ByString()}".Info();
-            else
-                $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {bytes.WithByteHex()}".Info();
+            try
+            {
+                Cache.Clear();
+                Record(null, cmd, true);
+                ReadBack = true;
+                Client.DiscardInBuffer();
+                Client.DiscardOutBuffer();
+                Client.WriteLine(cmd);
+                while (Client.BytesToRead < 0)
+                {
+                    await Task.Delay(25);
+                }
+                byte[] bytes = new byte[Client.BytesToRead];
+                Client.Read(bytes, 0, bytes.Length);
+                Record(bytes, null, false);
+                ReadBack = false;
+                return bytes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-        #endregion
 
+        public async Task<string> SendAndReadStringAsync(string cmd)
+        {
+            try
+            {
+                Cache.Clear();
+                Record(null, cmd, true);
+                ReadBack = true;
+                Client.DiscardInBuffer();
+                Client.DiscardOutBuffer();
+                Client.WriteLine(cmd);
+                var data = Client.ReadLine();
+                Record(null, data, false);
+                ReadBack = false;
+                await Task.CompletedTask;
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SendAndNoRead(string cmd)
+        {
+            try
+            {
+                Cache.Clear();
+                Record(null, cmd, true);
+                Client.DiscardInBuffer();
+                Client.DiscardOutBuffer();
+                Client.WriteLine(cmd);
+                await Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SendAndReadInCache(string cmd)
+        {
+            try
+            {
+                Cache.Clear();
+                ReadBack = false;
+                Record(null, cmd, true);
+                Client.DiscardInBuffer();
+                Client.DiscardOutBuffer();
+                Client.WriteLine(cmd);
+                await Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<byte[]> SendAndReadByteAsync(byte[] cmd)
+        {
+            try
+            {
+                Cache.Clear();
+                Record(cmd, null, true);
+                ReadBack = true;
+                Client.DiscardInBuffer();
+                Client.DiscardOutBuffer();
+                Client.Write(cmd,0,cmd.Length);
+                while (Client.BytesToRead < 0)
+                {
+                    await Task.Delay(25);
+                }
+                byte[] bytes = new byte[Client.BytesToRead];
+                Client.Read(bytes, 0, bytes.Length);
+                Record(bytes, null, false);
+                ReadBack = false;
+                return bytes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<string> SendAndReadStringAsync(byte[] cmd)
+        {
+            try
+            {
+                Cache.Clear();
+                Record(cmd, null, true);
+                ReadBack = true;
+                Client.DiscardInBuffer();
+                Client.DiscardOutBuffer();
+                Client.Write(cmd,0,cmd.Length);
+                var data = Client.ReadLine();
+                Record(null, data, false);
+                ReadBack = false;
+                await Task.CompletedTask;
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SendAndNoRead(byte[] cmd)
+        {
+            try
+            {
+                Cache.Clear();
+                Record(cmd, null, true);
+                Client.DiscardInBuffer();
+                Client.DiscardOutBuffer();
+                Client.Write(cmd, 0, cmd.Length);
+                await Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SendAndReadInCache(byte[] cmd)
+        {
+            try
+            {
+                Cache.Clear();
+                ReadBack = false;
+                Record(cmd, null, true);
+                Client.DiscardInBuffer();
+                Client.DiscardOutBuffer();
+                Client.Write(cmd, 0, cmd.Length);
+                await Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void Record(byte[] bytes,string cmd, bool IsSend)
+        {
+            if (cmd.IsNullOrEmpty())
+            {
+                if (this.Params.IsDecodeWriteLog)
+                    $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {bytes.ByString()}".Info();
+                else
+                    $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {bytes.WithByteHex()}".Info();
+            }
+            else
+            {
+                if (this.Params.IsDecodeWriteLog)
+                    $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {cmd}".Info();
+                else
+                    $"{this.Params.LogHead} {(IsSend ? "Send -->" : "Received <--")} {cmd}".Info();
+            }
+        }
+
+        private void Received()
+        {
+            if (ReadBack == false)
+            {
+                byte[] bytes = new byte[Client.BytesToRead];
+                Client.Read(bytes, 0, bytes.Length);
+                Record(bytes, null, false);
+                Cache.AddRange(bytes);
+            }
+        }
     }
 }
