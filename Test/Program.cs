@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using XExten.Advance.AopFramework.AopAttribute;
-using XExten.Advance.Communication;
-using XExten.Advance.Communication.Model;
+using XExten.Advance.CommunicationFramework;
+using XExten.Advance.CommunicationFramework.Model;
 using XExten.Advance.EventFramework;
 using XExten.Advance.EventFramework.EventSources;
 using XExten.Advance.EventFramework.PublishEvent;
@@ -18,6 +20,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
+            AxConvert.RunConvert();
             EventBus.Lancher(Assembly.Load(typeof(EventTest).Assembly.GetName().Name));
             CommunicationModule.Initialize();
             while (true)
@@ -36,6 +39,103 @@ namespace Test
             }
         }
     }
+
+    #region Covert
+
+    public class MauiRoot
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Category { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Cover { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Route { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Hash { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Commom { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Id { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Span { get; set; }
+    }
+
+    public class PCRoot
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Cover { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Route { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Duration { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Title { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ViewCount { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Latest { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Platfrom { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string PId { get; set; }
+    }
+
+    public class AxConvert
+    {
+        public static void RunConvert()
+        {
+            var Root = SyncStatic.ReadFile("D:\\Export.txt").ToModel<List<MauiRoot>>();
+            var Data = Root.Select(t => new PCRoot
+            {
+
+                PId = t.Id,
+                Cover = t.Cover,
+                Duration = null,
+                Latest = DateTime.Now.ToFmtDate(3, "yyyy-MM-dd"),
+                Route = t.Route,
+                Title = t.Name,
+                ViewCount = "1",
+                Platfrom = t.Route.Contains("javbangers") ? "Jav" : (t.Route.Contains("spankbang") ? "Skb" : "A24")
+
+            }).ToList().ToJson();
+
+        }
+    }
+    #endregion
 
 
     #region RSA
@@ -131,21 +231,23 @@ namespace Test
     #region Commuincation
     public class CommuincationClass
     {
-        public static void TcpTest() 
+        public static void TcpTest()
         {
             ICommunication Tcp = IocDependency.ResolveByNamed<ICommunication>(CommunicationEnum.TCP);
             Tcp.Connect(new CommunicationParams
             {
                 Host = "127.0.0.1",
-                Port=9000
+                Port = 9000
             });
             Console.WriteLine(Tcp.IsConnected);
-            Tcp.Received += MsgReceived;
             while (true)
             {
                 var input = Console.ReadLine();
                 if (input.ToUpper() != "ESC")
-                    Tcp.SendCommand(input.ByBytes());
+                {
+                    Tcp.SendAndReadInCache(input.ByBytes());
+                    Console.WriteLine(Tcp.Cache.ToArray().ByString());
+                }
                 else
                     break;
             }
@@ -158,23 +260,20 @@ namespace Test
             {
                 Host = "127.0.0.1",
                 Port = 777,
-                BindPort=999,
+                BindPort = 999,
             });
             Console.WriteLine(Udp.IsConnected);
-            Udp.Received += MsgReceived;
             while (true)
             {
                 var input = Console.ReadLine();
                 if (input.ToUpper() != "ESC")
-                    Udp.SendCommand(input.ByBytes());
+                {
+                    Udp.SendAndReadInCache(input.ByBytes());
+                    Console.WriteLine(Udp.Cache.ToArray().ByString());
+                }
                 else
                     break;
             }
-        }
-
-        private static void MsgReceived(byte[] obj)
-        {
-            Console.WriteLine(obj.ByString());
         }
     }
     #endregion
