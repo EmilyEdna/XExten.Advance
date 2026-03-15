@@ -840,19 +840,19 @@
             通信
             </summary>
         </member>
-        <member name="E:XExten.Advance.CommunicationFramework.ICommunication.Received">
-            <summary>
-            数据接收事件
-            </summary>
-        </member>
-        <member name="E:XExten.Advance.CommunicationFramework.ICommunication.Error">
-            <summary>
-            异常事件
-            </summary>
-        </member>
         <member name="P:XExten.Advance.CommunicationFramework.ICommunication.IsConnected">
             <summary>
             是否连接成功
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.CommunicationFramework.ICommunication.CommunicationObject">
+            <summary>
+            当前连接对象
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.CommunicationFramework.ICommunication.Cache">
+            <summary>
+            缓存区
             </summary>
         </member>
         <member name="M:XExten.Advance.CommunicationFramework.ICommunication.Connect(XExten.Advance.CommunicationFramework.Model.CommunicationParams)">
@@ -861,24 +861,66 @@
             </summary>
             <param name="input"></param>
         </member>
-        <member name="M:XExten.Advance.CommunicationFramework.ICommunication.SendCommand(System.Byte[],System.Boolean)">
-            <summary>
-            发送指令
-            </summary>
-            <param name="cmd"></param>
-            <param name="DisposeReceived">是否丢弃数据</param>
-        </member>
-        <member name="M:XExten.Advance.CommunicationFramework.ICommunication.SendCommandAsync(System.Byte[],System.Boolean)">
-            <summary>
-            发送指令
-            </summary>
-            <param name="cmd"></param>
-            <param name="DisposeReceived">是否丢弃数据</param>
-        </member>
         <member name="M:XExten.Advance.CommunicationFramework.ICommunication.Close">
             <summary>
             断开连接
             </summary>
+        </member>
+        <member name="M:XExten.Advance.CommunicationFramework.ICommunication.SendAndReadByteAsync(System.String)">
+            <summary>
+            发送并回读
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.CommunicationFramework.ICommunication.SendAndReadStringAsync(System.String)">
+            <summary>
+            发送并回读
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.CommunicationFramework.ICommunication.SendAndNoRead(System.String)">
+            <summary>
+            发送不回读也不取缓存
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.CommunicationFramework.ICommunication.SendAndReadInCache(System.String)">
+            <summary>
+            发送需自己处理缓存区
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.CommunicationFramework.ICommunication.SendAndReadByteAsync(System.Byte[])">
+            <summary>
+            发送并回读
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.CommunicationFramework.ICommunication.SendAndReadStringAsync(System.Byte[])">
+            <summary>
+            发送并回读
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.CommunicationFramework.ICommunication.SendAndNoRead(System.Byte[])">
+            <summary>
+            发送不回读也不取缓存
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.CommunicationFramework.ICommunication.SendAndReadInCache(System.Byte[])">
+            <summary>
+            发送需自己处理缓存区
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
         </member>
         <member name="T:XExten.Advance.CommunicationFramework.IServerCommunication">
             <summary>
@@ -992,26 +1034,6 @@
             波特率
             </summary>
         </member>
-        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.ConnectTimeout">
-            <summary>
-            连接超时(ms)
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.SendTimeout">
-            <summary>
-            发送超时(ms)
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.ReplayTimeout">
-            <summary>
-            回复超时(ms)
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.ReceiveBufferSize">
-            <summary>
-            接受数据大小
-            </summary>
-        </member>
         <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.LogHead">
             <summary>
             日志头
@@ -1020,6 +1042,11 @@
         <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.IsDecodeWriteLog">
             <summary>
             解码数据写日志
+            </summary>
+        </member>
+        <member name="P:XExten.Advance.CommunicationFramework.Model.CommunicationParams.ThreadKey">
+            <summary>
+            接收数据线程Key
             </summary>
         </member>
         <member name="T:XExten.Advance.CommunicationFramework.Model.ServerCommunicationParams">
@@ -1143,11 +1170,6 @@
             </summary>
         </member>
         <member name="P:XExten.Advance.HttpEvent.HttpActionEvent">
-            <summary>
-            请求异常事件
-            </summary>
-        </member>
-        <member name="P:XExten.Advance.HttpEvent.RestActionEvent">
             <summary>
             请求异常事件
             </summary>
@@ -3021,26 +3043,6 @@
             表单
             </summary>
         </member>
-        <member name="T:XExten.Advance.NetFramework.Enums.ImpMode">
-            <summary>
-            获取实现方法
-            </summary>
-        </member>
-        <member name="F:XExten.Advance.NetFramework.Enums.ImpMode.None">
-            <summary>
-            随机
-            </summary>
-        </member>
-        <member name="F:XExten.Advance.NetFramework.Enums.ImpMode.Http">
-            <summary>
-            HTTP
-            </summary>
-        </member>
-        <member name="F:XExten.Advance.NetFramework.Enums.ImpMode.Reset">
-            <summary>
-            Reset
-            </summary>
-        </member>
         <member name="T:XExten.Advance.NetFramework.Enums.Method">
             <summary>
             请求方式
@@ -3226,7 +3228,7 @@
             <param name="Lifespan">HttpClient生命周期 默认1秒钟</param>
             <param name="platform">使用平台</param>
         </member>
-        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.Resolve``1(XExten.Advance.NetFramework.Enums.ImpMode)">
+        <member name="M:XExten.Advance.NetFramework.NetFactoryExtension.Resolve``1">
             <summary>
             限定获取实例
             </summary>
@@ -3773,11 +3775,17 @@
             释放所有线程资源
             </summary>
         </member>
-        <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.Dispose(System.String)">
+        <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.ExcludeDispose(System.String)">
             <summary>
             释放所有线程资源排除特定的线程
             </summary>
             <param name="excludeKey"></param>
+        </member>
+        <member name="M:XExten.Advance.ThreadFramework.ThreadFactory.IncludeDispose(System.String)">
+            <summary>
+            释放指定线程
+            </summary>
+            <param name="includeKey"></param>
         </member>
     </members>
 </doc>

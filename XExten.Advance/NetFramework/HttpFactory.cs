@@ -255,7 +255,11 @@ namespace XExten.Advance.NetFramework
                 }
                 if (Builder.IgnoreHttps)
                 {
+#if NET9_0_OR_GREATER
+                    Handler.SslProtocols =  SslProtocols.Tls12 | SslProtocols.Tls13;
+#else
                     Handler.SslProtocols = SslProtocols.Tls | SslProtocols.Tls11 | SslProtocols.Tls12;
+#endif
                     Handler.ServerCertificateCustomValidationCallback = delegate { return true; };
                 }
                 if (Builder.Gzip)
@@ -356,6 +360,6 @@ namespace XExten.Advance.NetFramework
                 return ms;
             }
         }
-        #endregion
+#endregion
     }
 }

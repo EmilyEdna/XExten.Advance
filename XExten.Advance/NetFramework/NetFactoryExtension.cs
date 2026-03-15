@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using XExten.Advance.IocFramework;
@@ -28,7 +27,6 @@ namespace XExten.Advance.NetFramework
             ConstDefault.Platform = platform;
             IocDependency._Services.AddHttpClient(string.Empty, opt => opt.DefaultRequestHeaders.UserAgent.ParseAdd(ConstDefault.GetPlatformAgentValue()))
                 .SetHandlerLifetime(TimeSpan.FromSeconds(Lifespan));
-            IocDependency.Register<INetFactory, RestFactory>(1);
             IocDependency.Register<INetFactory, HttpFactory>(1);
         }
 
@@ -37,18 +35,11 @@ namespace XExten.Advance.NetFramework
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static T Resolve<T>(ImpMode mode = ImpMode.None) where T : INetFactory
+        public static T Resolve<T>() where T : INetFactory
         {
             var Service = IocDependency.Resolves<T>();
             if (!Service.Any()) return default;
-            if (mode == ImpMode.Http) return Service.LastOrDefault();
-            else if (mode == ImpMode.Reset) return Service.FirstOrDefault();
-            else
-            {
-                var index = new Random().Next(2);
-                if (index == 0) return Service.FirstOrDefault();
-                else return Service.LastOrDefault();
-            }
+            return Service.LastOrDefault();
         }
     }
 }

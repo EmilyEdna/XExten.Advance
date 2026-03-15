@@ -2,8 +2,8 @@
 using System.Reflection;
 using System.Threading.Tasks;
 using XExten.Advance.AopFramework.AopAttribute;
-using XExten.Advance.Communication;
-using XExten.Advance.Communication.Model;
+using XExten.Advance.CommunicationFramework;
+using XExten.Advance.CommunicationFramework.Model;
 using XExten.Advance.EventFramework;
 using XExten.Advance.EventFramework.EventSources;
 using XExten.Advance.EventFramework.PublishEvent;
@@ -140,15 +140,6 @@ namespace Test
                 Port=9000
             });
             Console.WriteLine(Tcp.IsConnected);
-            Tcp.Received += MsgReceived;
-            while (true)
-            {
-                var input = Console.ReadLine();
-                if (input.ToUpper() != "ESC")
-                    Tcp.SendCommand(input.ByBytes());
-                else
-                    break;
-            }
         }
 
         public static void UdpTest()
@@ -161,20 +152,6 @@ namespace Test
                 BindPort=999,
             });
             Console.WriteLine(Udp.IsConnected);
-            Udp.Received += MsgReceived;
-            while (true)
-            {
-                var input = Console.ReadLine();
-                if (input.ToUpper() != "ESC")
-                    Udp.SendCommand(input.ByBytes());
-                else
-                    break;
-            }
-        }
-
-        private static void MsgReceived(byte[] obj)
-        {
-            Console.WriteLine(obj.ByString());
         }
     }
     #endregion

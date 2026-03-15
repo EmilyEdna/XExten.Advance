@@ -247,7 +247,7 @@ namespace XExten.Advance.LinqFramework
         public static T ToMapper<T>(this object param)
         {
             if (param == null) return default;
-            IMapper mapper = new MapperConfiguration(t => t.CreateMap(param.GetType(), typeof(T))).CreateMapper();
+            IMapper mapper = new MapperConfiguration(t => t.CreateMap(param.GetType(), typeof(T)),null).CreateMapper();
             return mapper.Map<T>(param);
         }
 
@@ -260,7 +260,7 @@ namespace XExten.Advance.LinqFramework
         public static object ToMapper(this object param, Type target)
         {
             if (param == null) return default;
-            IMapper mapper = new MapperConfiguration(t => t.CreateMap(param.GetType(), target)).CreateMapper();
+            IMapper mapper = new MapperConfiguration(t => t.CreateMap(param.GetType(), target), null).CreateMapper();
             return mapper.Map(param, param.GetType(), target);
         }
 
@@ -274,7 +274,7 @@ namespace XExten.Advance.LinqFramework
         public static List<T> ToMapper<K, T>(this object param)
         {
             if (param == null) return default;
-            IMapper mapper = new MapperConfiguration(t => t.CreateMap(typeof(K), typeof(T))).CreateMapper();
+            IMapper mapper = new MapperConfiguration(t => t.CreateMap(typeof(K), typeof(T)), null).CreateMapper();
             return mapper.Map<List<T>>(param);
         }
 
@@ -289,7 +289,7 @@ namespace XExten.Advance.LinqFramework
         public static object ToMapper(this object param, Type source, Type target, Type targets)
         {
             if (param == null) return default;
-            IMapper mapper = new MapperConfiguration(t => t.CreateMap(source, target)).CreateMapper();
+            IMapper mapper = new MapperConfiguration(t => t.CreateMap(source, target), null).CreateMapper();
             return mapper.Map(param, param.GetType(), targets);
         }
 

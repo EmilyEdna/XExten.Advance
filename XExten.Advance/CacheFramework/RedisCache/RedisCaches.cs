@@ -218,7 +218,7 @@ namespace XExten.Advance.CacheFramework.RedisCache
         /// <returns></returns>
         public static bool StringSet(string key, string val, TimeSpan? exp = default(TimeSpan?))
         {
-            return Save(db => db.StringSet(key, val, exp));
+            return Save(db => db.StringSet(key, val, exp,When.Always));
         }
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace XExten.Advance.CacheFramework.RedisCache
         /// <returns></returns>
         public static bool StringSet<T>(string key, T obj, TimeSpan? exp = default(TimeSpan?))
         {
-            return Save(db => db.StringSet(key, ConvertToJson(obj), exp));
+            return Save(db => db.StringSet(key, ConvertToJson(obj), exp, When.Always));
         }
 
         /// <summary>
@@ -271,7 +271,7 @@ namespace XExten.Advance.CacheFramework.RedisCache
         /// <returns></returns>
         public static async Task<bool> StringSetAsync(string key, string val, TimeSpan? exp = default(TimeSpan?))
         {
-            return await Save(db => db.StringSetAsync(key, val, exp));
+            return await Save(db => db.StringSetAsync(key, val, exp, When.Always));
         }
 
         /// <summary>
@@ -284,7 +284,7 @@ namespace XExten.Advance.CacheFramework.RedisCache
         /// <returns></returns>
         public static async Task<bool> StringSetAsync<T>(string key, T obj, TimeSpan? exp = default(TimeSpan?))
         {
-            return await Save(db => db.StringSetAsync(key, ConvertToJson(obj), exp));
+            return await Save(db => db.StringSetAsync(key, ConvertToJson(obj), exp, When.Always));
         }
 
         /// <summary>
