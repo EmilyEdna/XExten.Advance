@@ -2092,6 +2092,22 @@
             <param name="param"></param>
             <returns></returns>
         </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsByteEncrypt(System.String,System.String)">
+            <summary>
+            位加密
+            </summary>
+            <param name="input"></param>
+            <param name="decodeKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsByteDecrypt(System.String,System.String)">
+            <summary>
+            位解密
+            </summary>
+            <param name="input"></param>
+            <param name="decodeKey"></param>
+            <returns></returns>
+        </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.AsIntAsync(System.String)">
             <summary>
             To Int

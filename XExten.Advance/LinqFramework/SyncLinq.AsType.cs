@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -108,6 +109,33 @@ namespace XExten.Advance.LinqFramework
         public static string AsOkJson(this string param)
         {
             return Regex.Replace(param, "(?<=([^{:,]))(\")(?=([^}:,]))", "");
+        }
+
+        /// <summary>
+        /// 位加密
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="decodeKey"></param>
+        /// <returns></returns>
+        public static string AsByteEncrypt(this string input, string decodeKey = "ABCDEFG")
+        {
+            var Key = decodeKey.Select(m => (int)m).ToArray();
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes(input).Reverse().Select((t, i) => (byte)~((~((t >> 3) | (t << 5))) ^ Key[i % Key.Length])).Reverse().ToArray());
+        }
+        /// <summary>
+        /// 位解密
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="decodeKey"></param>
+        /// <returns></returns>
+        public static string AsByteDecrypt(this string input, string decodeKey = "ABCDEFG")
+        {
+            var Key = decodeKey.Select(m => (int)m).ToArray();
+            return Encoding.UTF8.GetString(Convert.FromBase64String(input).Reverse().Select((t, i) =>
+                 {
+                     var v = ~(~t ^ Key[i % Key.Length]);
+                     return (byte)((v >> 5) | (v << 3));
+                 }).Reverse().ToArray());
         }
         #endregion
 
