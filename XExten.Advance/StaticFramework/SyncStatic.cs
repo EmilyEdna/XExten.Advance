@@ -244,7 +244,7 @@ namespace XExten.Advance.StaticFramework
         /// <param name="footer">页脚内容</param>
         /// <param name="DateFormat">时间格式</param>
         public static void ExportExcel<T>(IEnumerable<T> Data, ExcelType Types, string SheetName,
-            Action<Stream> action, dynamic footer = null, Stream stream = null, string DateFormat = "yyyy-MM-dd") where T : class, new()
+            Action<Stream> action, object footer = null, Stream stream = null, string DateFormat = "yyyy-MM-dd") where T : class, new()
         {
             ExcelFactory.ExportExcel(Data, Types, SheetName, action, footer, stream, DateFormat);
         }

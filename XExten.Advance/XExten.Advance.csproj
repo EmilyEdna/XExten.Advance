@@ -1,9 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.1;net9;net10</TargetFrameworks>
 		<Authors>EmilyEdna</Authors>
-		<Description>XExten包的优化升级版本，后期只会更新这个包，不在维护XExten包</Description>
+		<Description>XExten包的优化升级版本，后期只会更新这个包，不在维护XExten包 netstandard2.1;</Description>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>XExten.Advance</PackageId>
 		<Product>XExten.Advance</Product>
@@ -13,7 +12,8 @@
 		<FileVersion>2.2.3.6</FileVersion>
 		<AssemblyName>XExten.Advance</AssemblyName>
 		<RootNamespace>XExten.Advance</RootNamespace>
-	</PropertyGroup>
+		<TargetFrameworks>net9.0;net10.0;netstandard2.1;</TargetFrameworks>
+</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>D:\Project\XExten.Advance\XExten.Advance\XExten.Advance.xml</DocumentationFile>

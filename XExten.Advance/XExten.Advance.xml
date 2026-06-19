@@ -2546,41 +2546,6 @@
             <param name="queryable"></param>
             <returns></returns>
         </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapper``1(System.Object)">
-            <summary>
-            映射对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapper(System.Object,System.Type)">
-            <summary>
-            映射对象
-            </summary>
-            <param name="param"></param>
-            <param name="target"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapper``2(System.Object)">
-            <summary>
-            映射集合
-            </summary>
-            <typeparam name="K"></typeparam>
-            <typeparam name="T"></typeparam>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapper(System.Object,System.Type,System.Type,System.Type)">
-            <summary>
-            映射对象
-            </summary>
-            <param name="param"></param>
-            <param name="source"></param>
-            <param name="target"></param>
-            <param name="targets"></param>
-            <returns></returns>
-        </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapest``1(System.Object,Mapster.TypeAdapterConfig)">
             <summary>
             映射对象
@@ -2738,41 +2703,6 @@
             </summary>
             <typeparam name="T"></typeparam>
             <param name="queryable"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapperAsync``1(System.Object)">
-            <summary>
-            映射对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapperAsync(System.Object,System.Type)">
-            <summary>
-            映射对象
-            </summary>
-            <param name="param"></param>
-            <param name="target"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapperAsync``2(System.Object)">
-            <summary>
-            映射集合
-            </summary>
-            <typeparam name="K"></typeparam>
-            <typeparam name="T"></typeparam>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
-        <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapperAsync(System.Object,System.Type,System.Type,System.Type)">
-            <summary>
-            映射对象
-            </summary>
-            <param name="param"></param>
-            <param name="source"></param>
-            <param name="target"></param>
-            <param name="targets"></param>
             <returns></returns>
         </member>
         <member name="M:XExten.Advance.LinqFramework.SyncLinq.ToMapestAsync``1(System.Object,Mapster.TypeAdapterConfig)">

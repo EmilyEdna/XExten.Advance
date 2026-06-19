@@ -1,16 +1,14 @@
-﻿using NPOI.HSSF.UserModel;
-using NPOI.SS.Util;
-using NPOI.XSSF.UserModel;
-using XExten.Advance.InternalFramework.Office.Common;
-using XExten.Advance.LinqFramework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.Util;
+using NPOI.XSSF.UserModel;
+using XExten.Advance.InternalFramework.Office.Common;
+using XExten.Advance.LinqFramework;
 
 namespace XExten.Advance.InternalFramework.Office
 {
@@ -30,7 +28,7 @@ namespace XExten.Advance.InternalFramework.Office
         /// <param name="stream">流</param>
         /// <param name="Footer">页脚内容</param>
         /// <param name="DateFormat">事件格式</param>
-        internal static void ExportExcel<T>(IEnumerable<T> Data, ExcelType Types, string SheetName, Action<Stream> action = null, dynamic Footer = null, Stream stream = null, string DateFormat = "yyyy-MM-dd") where T : class, new()
+        internal static void ExportExcel<T>(IEnumerable<T> Data, ExcelType Types, string SheetName, Action<Stream> action = null, object Footer = null, Stream stream = null, string DateFormat = "yyyy-MM-dd") where T : class, new()
         {
             int Rows = Data.Count();//数据行
             var PropNames = Data.WithNames();
