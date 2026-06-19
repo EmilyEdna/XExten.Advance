@@ -449,41 +449,6 @@ namespace XExten.Advance.LinqFramework
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="param"></param>
-        /// <returns></returns>
-        public static async Task<T> ToMapperAsync<T>(this object param) => await Task.Run(() => ToMapper<T>(param));
-
-        /// <summary>
-        /// 映射对象
-        /// </summary>
-        /// <param name="param"></param>
-        /// <param name="target"></param>
-        /// <returns></returns>
-        public static async Task<object> ToMapperAsync(this object param, Type target) => await Task.Run(() => ToMapper(param, target));
-
-        /// <summary>
-        /// 映射集合
-        /// </summary>
-        /// <typeparam name="K"></typeparam>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        public static async Task<List<T>> ToMapperAsync<K, T>(this object param) => await Task.Run(() => ToMapper<K,T>(param));
-
-        /// <summary>
-        /// 映射对象
-        /// </summary>
-        /// <param name="param"></param>
-        /// <param name="source"></param>
-        /// <param name="target"></param>
-        /// <param name="targets"></param>
-        /// <returns></returns>
-        public static async Task<object> ToMapperAsync(this object param, Type source, Type target, Type targets) => await Task.Run(() => ToMapper(param, source, target, targets));
-
-        /// <summary>
-        /// 映射对象
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="param"></param>
         /// <param name="config"></param>
         /// <returns></returns>
         public static async Task<T> ToMapestAsync<T>(this object param, TypeAdapterConfig config = null) => await Task.Run(() => ToMapest<T>(param, config));
