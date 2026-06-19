@@ -1,9 +1,4 @@
-﻿using AutoMapper;
-using Mapster;
-using MessagePack;
-using MessagePack.Resolvers;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +7,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
+using Mapster;
+using MessagePack;
+using MessagePack.Resolvers;
+using Newtonsoft.Json;
 using XExten.Advance.InternalFramework.Securities;
 
 namespace XExten.Advance.LinqFramework
@@ -236,61 +235,6 @@ namespace XExten.Advance.LinqFramework
                 }
             }
             return dt;
-        }
-
-        /// <summary>
-        /// 映射对象
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        public static T ToMapper<T>(this object param)
-        {
-            if (param == null) return default;
-            IMapper mapper = new MapperConfiguration(t => t.CreateMap(param.GetType(), typeof(T)),null).CreateMapper();
-            return mapper.Map<T>(param);
-        }
-
-        /// <summary>
-        /// 映射对象
-        /// </summary>
-        /// <param name="param"></param>
-        /// <param name="target"></param>
-        /// <returns></returns>
-        public static object ToMapper(this object param, Type target)
-        {
-            if (param == null) return default;
-            IMapper mapper = new MapperConfiguration(t => t.CreateMap(param.GetType(), target), null).CreateMapper();
-            return mapper.Map(param, param.GetType(), target);
-        }
-
-        /// <summary>
-        /// 映射集合
-        /// </summary>
-        /// <typeparam name="K"></typeparam>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        public static List<T> ToMapper<K, T>(this object param)
-        {
-            if (param == null) return default;
-            IMapper mapper = new MapperConfiguration(t => t.CreateMap(typeof(K), typeof(T)), null).CreateMapper();
-            return mapper.Map<List<T>>(param);
-        }
-
-        /// <summary>
-        /// 映射对象
-        /// </summary>
-        /// <param name="param"></param>
-        /// <param name="source"></param>
-        /// <param name="target"></param>
-        /// <param name="targets"></param>
-        /// <returns></returns>
-        public static object ToMapper(this object param, Type source, Type target, Type targets)
-        {
-            if (param == null) return default;
-            IMapper mapper = new MapperConfiguration(t => t.CreateMap(source, target), null).CreateMapper();
-            return mapper.Map(param, param.GetType(), targets);
         }
 
         /// <summary>
